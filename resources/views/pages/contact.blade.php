@@ -2,9 +2,6 @@
 
 @section('content')
 
-    @include('partials.topbar')
-    @include('partials.header')
-
     <!-- ===================== PAGE HEADER ===================== -->
     <div style="
         background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0A1520 100%);
@@ -269,16 +266,14 @@
 
 
     <!-- ===================== GOOGLE MAP ===================== -->
-    <div style="line-height:0;">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-            width="100%" height="420" style="border:0; display:block; filter: grayscale(0.3) sepia(0.1);" allowfullscreen=""
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
+   <div style="line-height:0;">
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3157.937359755442!2d72.94634697549728!3d33.622862473321824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbfd07891722f%3A0x56d81ad239073793!2sJWFX%2B4HV%2C%20Islamabad%2C%20Pakistan!5e1!3m2!1sen!2s!4v1772943909510!5m2!1sen!2s"
+        width="100%" height="420" style="border:0; display:block; filter: grayscale(0.3) sepia(0.1);"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
 
-
-    @include('partials.footer')
 
 @endsection
 

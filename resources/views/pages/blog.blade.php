@@ -2,9 +2,6 @@
 
 @section('content')
 
-    @include('partials.topbar')
-    @include('partials.header')
-
     <!-- ===================== PAGE HEADER ===================== -->
     <div style="
         background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #0A1520 100%);
@@ -328,9 +325,6 @@
             </div>
         </div>
     </section>
-
-
-    @include('partials.footer')
 
 @endsection
 

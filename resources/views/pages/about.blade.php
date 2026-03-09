@@ -2,9 +2,6 @@
 
 @section('content')
 
-@include('partials.topbar')
-@include('partials.header')
-
 <!-- ===================== PAGE HEADER ===================== -->
 <div style="
     background: linear-gradient(135deg, #1a1208 0%, #2d1f05 50%, #1a1208 100%);
@@ -233,8 +230,6 @@
     </div>
 </section>
 <!-- Team End -->
-
-@include('partials.footer')
 
 @endsection
 
