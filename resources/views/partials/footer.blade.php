@@ -10,24 +10,27 @@
                     Address
                 </h5>
                 <p class="mb-2" style="font-size: 14px; color: rgba(255,255,255,0.5);">
-                    <i class="fa fa-map-marker-alt me-3" style="color: var(--gold);"></i>123 Street, New York, USA
+                    <i class="fa fa-map-marker-alt me-3" style="color: var(--gold);"></i>JWFX+4HV, Jhangi Sayedan, Islamabad, Pakistan
                 </p>
                 <p class="mb-2" style="font-size: 14px; color: rgba(255,255,255,0.5);">
-                    <i class="fa fa-phone-alt me-3" style="color: var(--gold);"></i>+012 345 67890
+                    <i class="fas fa-phone-alt me-3" style="color: var(--gold);"></i>+92 314 1833216
                 </p>
                 <p class="mb-2" style="font-size: 14px; color: rgba(255,255,255,0.5);">
-                    <i class="fa fa-envelope me-3" style="color: var(--gold);"></i>info@bismillah.com
+                    <i class="fas fa-phone-alt me-3" style="color: var(--gold);"></i>+44 7415 770822
+                </p>
+                <p class="mb-2" style="font-size: 14px; color: rgba(255,255,255,0.5);">
+                    <i class="fa fa-envelope me-3" style="color: var(--gold);"></i>bismillahquranacademy2@gmail.com
                 </p>
                 <div class="d-flex pt-2" style="gap: 9px;">
                     <a href="" style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
                        onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
                        onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
-                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-facebook-f"></i>
                     </a>
                     <a href="" style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
                        onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
                        onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
-                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
                     </a>
                     <a href="" style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
                        onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
@@ -48,22 +51,22 @@
                     Quick Links
                 </h5>
                 <div class="footer-links">
-                    <a href="{{ route('about') }}"    style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
+                    <a href="{{ route('about') }}" style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
                        onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
                        onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
                         <span style="color: var(--gold);">› </span>About Us
                     </a>
-                    <a href="{{ route('contact') }}"  style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
+                    <a href="{{ route('contact') }}" style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
                        onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
                        onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
                         <span style="color: var(--gold);">› </span>Contact Us
                     </a>
-                    <a href="{{ route('courses') }}"  style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
+                    <a href="{{ route('courses') }}" style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
                        onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
                        onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
                         <span style="color: var(--gold);">› </span>Our Courses
                     </a>
-                    <a href="{{ route('enroll') }}"   style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
+                    <a href="{{ ('enroll') }}" style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
                        onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
                        onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
                         <span style="color: var(--gold);">› </span>Enroll Now
@@ -124,12 +127,12 @@
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     <span style="font-size: 12px; color: rgba(255,255,255,0.3);">
-                        &copy; <a href="{{ route('home') }}" style="color: var(--gold); text-decoration: none;">Bismillah Islamic Academy</a>, All Rights Reserved.
+                        &copy; <a href="{{ route('home') }}" style="color: var(--gold); text-decoration: none;">Bismillah Islamic Academy</a>, All Rights Reserved 2026.
                     </span>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <span style="font-size: 12px; color: rgba(255,255,255,0.3);">
-                        Designed By <a href="#" style="color: var(--gold); text-decoration: none;">Your Team</a>
+                        Designed By <a href="#" style="color: var(--gold); text-decoration: none;">DK Designs</a>
                     </span>
                 </div>
             </div>

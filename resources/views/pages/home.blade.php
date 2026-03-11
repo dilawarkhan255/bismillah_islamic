@@ -37,12 +37,12 @@
                                 "Read in the name of your Lord who created" — Surah Al-Alaq
                             </p>
                             <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-                                <a href="{{ route('enroll') }}" class="btn py-3 px-5 me-2"
-                                   style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); box-shadow: 0 4px 20px rgba(174,130,37,0.35);">
+                                <a href="{{ ('enroll') }}" class="btn py-3 px-5 me-2"
+                                   style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); box-shadow: 0 4px 20px rgba(174,130,37,0.35); cursor: pointer;">
                                     Enroll Now
                                 </a>
                                 <a href="{{ route('about') }}" class="btn py-3 px-5"
-                                   style="background: transparent; color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid rgba(255,255,255,0.5);">
+                                   style="background: transparent; color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid rgba(255,255,255,0.5); cursor: pointer;">
                                     Learn More
                                 </a>
                             </div>
@@ -66,11 +66,11 @@
                             </p>
                             <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
                                 <a href="{{ route('courses') }}" class="btn py-3 px-5 me-2"
-                                style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold);">
+                                style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); cursor: pointer;">
                                     View Courses
                                 </a>
                                 <a href="{{ route('contact') }}" class="btn py-3 px-5"
-                                style="background: transparent; color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid rgba(255,255,255,0.5);">
+                                style="background: transparent; color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid rgba(255,255,255,0.5); cursor: pointer;">
                                     Contact Us
                                 </a>
                             </div>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
 
-                <!-- Slide 3 -->
+                <!-- Slide 3 — FIXED: color was var(--gold) making text invisible -->
                 <div class="carousel-item">
                     <img class="w-100" src="{{ asset('img/slide-3.jpg') }}" alt="Image">
                     <div class="carousel-caption">
@@ -93,12 +93,13 @@
                                 Learn from qualified Islamic scholars with years of teaching experience
                             </p>
                             <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+                                {{-- FIX: was color:var(--gold) — button text was same as bg, invisible --}}
                                 <a href="{{ route('team') }}" class="btn py-3 px-5 me-2"
-                                   style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold);">
+                                   style="background: var(--gold); color: #ffffff; font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); cursor: pointer;">
                                     Meet Our Teachers
                                 </a>
-                                <a href="{{ route('enroll') }}" class="btn py-3 px-5"
-                                   style="background: transparent; color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid rgba(255,255,255,0.5);">
+                                <a href="{{ ('enroll') }}" class="btn py-3 px-5"
+                                   style="background: transparent; color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid rgba(255,255,255,0.5); cursor: pointer;">
                                     Enroll Now
                                 </a>
                             </div>
@@ -159,174 +160,6 @@
     <!-- Stats End -->
 
 
-   <!-- ===================== HOW TO LEARN ONLINE ===================== -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-
-                <!-- Left: Image -->
-                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
-                    <div class="position-relative">
-                        <img src="{{ asset('img/how-to-learn.jpg') }}"
-                             alt="Learn Quran Online"
-                             class="img-fluid w-100 rounded"
-                             style="object-fit: cover; height: 560px;">
-
-                        <!-- Floating badge on image -->
-                        <div class="position-absolute top-0 start-0 m-3 px-3 py-2"
-                             style="background: var(--navy); border: 1px solid var(--gold); border-radius: 4px;">
-                            <span style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;">
-                                ✦ Online Classes Available
-                            </span>
-                        </div>
-
-                        <!-- Floating stat badge -->
-                        <div class="position-absolute bottom-0 end-0 m-3 p-3 text-center"
-                             style="background: var(--gold); min-width: 110px; border-radius: 4px;">
-                            <div style="font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; color: var(--white); line-height: 1;">1500+</div>
-                            <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.85); font-family: 'Cinzel', serif;">Students</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Steps -->
-                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
-                    <h6 class="section-title bg-white text-start pe-3" style="color: var(--gold);">How It Works</h6>
-                    <h1 class="display-6 mb-2" style="font-family: 'Cinzel', serif; color: var(--navy);">
-                        Learn Quran Online By<br><span style="color: var(--gold);">Following These Steps</span>
-                    </h1>
-                    <p class="mb-4" style="color: var(--text-mid); line-height: 1.9; font-size: 15px;">
-                        Our online classes make it easy for students worldwide to learn Quran from certified scholars — from the comfort of home.
-                    </p>
-
-                    <!-- Steps -->
-                    @php
-                        $steps = [
-                            [
-                                'num'   => '01',
-                                'icon'  => 'fa-user-plus',
-                                'title' => 'Register / Enroll Online',
-                                'desc'  => 'Fill out our simple enrollment form and create your student account in minutes.',
-                            ],
-                            [
-                                'num'   => '02',
-                                'icon'  => 'fa-calendar-check',
-                                'title' => 'Schedule a Free Trial Class',
-                                'desc'  => 'Book a free trial session with one of our qualified teachers at your preferred time.',
-                            ],
-                            [
-                                'num'   => '03',
-                                'icon'  => 'fa-book-open',
-                                'title' => 'Choose Your Course',
-                                'desc'  => 'Select from Norani Qaida, Quran Recitation, Tajweed, Hifz, Islamic Studies and more.',
-                            ],
-                            [
-                                'num'   => '04',
-                                'icon'  => 'fa-chalkboard-teacher',
-                                'title' => 'Start Learning with Teacher',
-                                'desc'  => 'Attend live one-on-one or group classes via Zoom/Skype with your dedicated teacher.',
-                            ],
-                            [
-                                'num'   => '05',
-                                'icon'  => 'fa-certificate',
-                                'title' => 'Get Certificate',
-                                'desc'  => 'Upon completion, receive an official certificate from Bismillah Islamic Academy.',
-                            ],
-                        ];
-                    @endphp
-
-                    <div class="d-flex flex-column gap-3">
-                        @foreach($steps as $step)
-                        <div class="d-flex align-items-start gap-3 p-3"
-                             style="border: 1px solid rgba(174,130,37,0.15); border-radius: 6px; background: var(--off-white); transition: all 0.3s;"
-                             onmouseover="this.style.borderColor='var(--gold)'; this.style.background='var(--white)';"
-                             onmouseout="this.style.borderColor='rgba(174,130,37,0.15)'; this.style.background='var(--off-white)';">
-
-                            <!-- Step number circle -->
-                            <div class="flex-shrink-0 d-flex align-items-center justify-content-center"
-                                 style="width: 48px; height: 48px; border-radius: 50%; background: var(--navy); border: 2px solid var(--gold);">
-                                <i class="fa {{ $step['icon'] }}" style="color: var(--gold); font-size: 16px;"></i>
-                            </div>
-
-                            <!-- Step content -->
-                            <div>
-                                <div class="d-flex align-items-center gap-2 mb-1">
-                                    <span style="font-family: 'Cinzel', serif; font-size: 10px; color: var(--gold); letter-spacing: 2px;">STEP {{ $step['num'] }}</span>
-                                </div>
-                                <h6 class="mb-1" style="font-family: 'Cinzel', serif; color: var(--navy); font-size: 14px;">{{ $step['title'] }}</h6>
-                                <p class="mb-0" style="font-size: 13px; color: var(--text-mid); line-height: 1.7;">{{ $step['desc'] }}</p>
-                            </div>
-
-                        </div>
-                        @endforeach
-                    </div>
-
-                    <!-- CTA Button -->
-                    <div class="mt-4">
-                        <a href="{{ route('enroll') }}" class="btn py-3 px-5"
-                           style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); transition: all 0.3s;"
-                           onmouseover="this.style.background='transparent'; this.style.color='var(--gold)';"
-                           onmouseout="this.style.background='var(--gold)'; this.style.color='var(--white)';">
-                            Enroll Now — It's Free
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- How To Learn End -->
-
-
-    <!-- ===================== COURSES ===================== -->
-    <div class="container-xxl py-5" style="background: var(--light-bg);">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h6 class="section-title text-center px-3" style="background: var(--light-bg); color: var(--gold);">Our Courses</h6>
-                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">We Focus On Authentic Islamic Education</h1>
-            </div>
-            <div class="row g-4">
-                @php
-                    $courses = [
-                        ['img' => 'service-1.jpg', 'title' => 'Norani Qaida',     'delay' => '0.1s'],
-                        ['img' => 'service-2.jpg', 'title' => 'Quran Recitation', 'delay' => '0.3s'],
-                        ['img' => 'service-3.jpg', 'title' => 'Tajweed Rules',    'delay' => '0.5s'],
-                        ['img' => 'service-4.jpg', 'title' => 'Hifz ul Quran',   'delay' => '0.1s'],
-                        ['img' => 'service-5.jpg', 'title' => 'Islamic Studies',  'delay' => '0.3s'],
-                        ['img' => 'service-6.jpg', 'title' => 'Arabic Language',  'delay' => '0.5s'],
-                        ['img' => 'service-7.jpg', 'title' => 'Hadith & Seerah',  'delay' => '0.1s'],
-                        ['img' => 'service-8.jpg', 'title' => 'Dua & Azkar',      'delay' => '0.3s'],
-                        ['img' => 'service-9.jpg', 'title' => 'Namaz & Ibadat',   'delay' => '0.5s'],
-                    ];
-                @endphp
-                @foreach($courses as $course)
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $course['delay'] }}">
-                    <a href="{{ route('courses') }}" class="text-decoration-none d-block">
-                        <div class="position-relative overflow-hidden rounded">
-                            <img src="{{ asset('img/' . $course['img']) }}"
-                                 alt="{{ $course['title'] }}"
-                                 class="img-fluid w-100"
-                                 style="height: 250px; object-fit: cover; display: block; transition: transform 0.4s ease;"
-                                 onmouseover="this.style.transform='scale(1.05)'"
-                                 onmouseout="this.style.transform='scale(1)'">
-                            <div class="position-absolute bottom-0 start-0 end-0"
-                                 style="background: linear-gradient(to top, rgba(13,27,42,0.90) 0%, rgba(13,27,42,0.4) 50%, transparent 100%); padding: 40px 16px 18px;">
-                                <h4 class="mb-0 text-white text-center"
-                                    style="font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 1px;">
-                                    {{ $course['title'] }}
-                                </h4>
-                                <div class="mx-auto mt-2" style="width: 40px; height: 2px; background: var(--gold);"></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <!-- Courses End -->
-
-
     <!-- ===================== WHY CHOOSE US ===================== -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -342,10 +175,10 @@
                         <div class="row g-4">
                             @php
                                 $skills = [
-                                    ['label' => 'Quran & Tajweed',  'val' => 95, 'delay' => '0s'],
-                                    ['label' => 'Islamic Studies',  'val' => 90, 'delay' => '0.2s'],
-                                    ['label' => 'Arabic Language',  'val' => 85, 'delay' => '0.4s'],
-                                    ['label' => 'Hifz Program',     'val' => 88, 'delay' => '0.6s'],
+                                    ['label' => 'Quran & Tajweed',  'val' => 99, 'delay' => '0s'],
+                                    ['label' => 'Islamic Studies',  'val' => 99, 'delay' => '0.2s'],
+                                    ['label' => 'Arabic Language',  'val' => 99, 'delay' => '0.4s'],
+                                    ['label' => 'Hifz Program',     'val' => 99, 'delay' => '0.6s'],
                                 ];
                             @endphp
                             @foreach($skills as $skill)
@@ -377,32 +210,246 @@
     <!-- Why Choose Us End -->
 
 
-    <!-- ===================== GALLERY ===================== -->
+    <!-- ===================== COURSES ===================== -->
     <div class="container-xxl py-5" style="background: var(--light-bg);">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h6 class="section-title text-center px-3" style="background: var(--light-bg); color: var(--gold);">Our Gallery</h6>
-                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">Moments From Our Academy</h1>
+                <h6 class="section-title text-center px-3" style="background: var(--light-bg); color: var(--gold);">Our Courses</h6>
+                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">We Focus On Authentic Islamic Education</h1>
             </div>
-            <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.1s">
-                @for ($i = 1; $i <= 9; $i++)
-                <div class="project-item border rounded h-100 p-4"
-                     data-dot="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}"
-                     style="background: var(--white); border-color: rgba(174,130,37,0.15) !important;">
-                    <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="{{ asset('img/project-' . $i . '.jpg') }}" alt="">
-                        <a href="{{ asset('img/project-' . $i . '.jpg') }}" data-lightbox="gallery">
-                            <i class="fa fa-search-plus fa-2x" style="color: var(--gold-light);"></i>
-                        </a>
-                    </div>
-                    <h6 style="font-family: 'Cinzel', serif; color: var(--navy); font-size: 13px;">Academy Event</h6>
-                    <span style="font-size: 12px; color: var(--text-muted);">Bismillah Islamic Academy</span>
+            <div class="row g-4">
+                @php
+                    $courses = [
+                        ['img' => 'service-1.jpg', 'title' => 'Norani Qaida',     'delay' => '0.1s'],
+                        ['img' => 'service-2.jpg', 'title' => 'Quran Recitation', 'delay' => '0.3s'],
+                        ['img' => 'service-3.jpg', 'title' => 'Tajweed Rules',    'delay' => '0.5s'],
+                        ['img' => 'service-4.jpg', 'title' => 'Hifz ul Quran',   'delay' => '0.1s'],
+                        ['img' => 'service-5.jpg', 'title' => 'Islamic Studies',  'delay' => '0.3s'],
+                        ['img' => 'service-7.jpg', 'title' => 'Hadith & Seerah',  'delay' => '0.1s'],
+                    ];
+                @endphp
+                @foreach($courses as $course)
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $course['delay'] }}">
+                    <a href="{{ route('courses') }}" class="text-decoration-none d-block">
+                        <div class="position-relative overflow-hidden rounded">
+                            <img src="{{ asset('img/' . $course['img']) }}"
+                                 alt="{{ $course['title'] }}"
+                                 class="img-fluid w-100"
+                                 style="height: 250px; object-fit: cover; display: block; transition: transform 0.4s ease;"
+                                 onmouseover="this.style.transform='scale(1.05)'"
+                                 onmouseout="this.style.transform='scale(1)'">
+                            <div class="position-absolute bottom-0 start-0 end-0"
+                                 style="background: linear-gradient(to top, rgba(13,27,42,0.90) 0%, rgba(13,27,42,0.4) 50%, transparent 100%); padding: 40px 16px 18px;">
+                                <h4 class="mb-0 text-white text-center"
+                                    style="font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 1px;">
+                                    {{ $course['title'] }}
+                                </h4>
+                                <div class="mx-auto mt-2" style="width: 40px; height: 2px; background: var(--gold);"></div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                @endfor
+                @endforeach
+                <div class="text-center mt-5 wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="{{ route('courses') }}" class="btn py-3 px-5"
+                    style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold);">
+                        View All Courses
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Gallery End -->
+    <!-- Courses End -->
+
+
+    <!-- ===================== FREE TRIAL ===================== -->
+    <div class="container-xxl py-5" style="background: var(--off-white);">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+
+                <!-- Left: Image -->
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
+                    <div class="position-relative">
+                        <img src="{{ asset('img/trial.jpg') }}"
+                             alt="Free Trial Class"
+                             class="img-fluid w-100 rounded"
+                             style="height: 480px; object-fit: cover; object-position: center;">
+
+                        <!-- Floating badge -->
+                        <div class="position-absolute"
+                             style="top: 24px; left: -16px; background: var(--navy); border: 2px solid var(--gold); padding: 14px 20px; border-radius: 4px; box-shadow: 0 8px 32px rgba(13,27,42,0.25);">
+                            <div style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 28px; font-weight: 700; line-height: 1;">3</div>
+                            <div style="font-family: 'Cinzel', serif; color: var(--white); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px;">Days Free</div>
+                        </div>
+
+                        <!-- Bottom ribbon -->
+                        <div class="position-absolute bottom-0 start-0 end-0"
+                             style="background: linear-gradient(to top, rgba(13,27,42,0.92) 0%, transparent 100%); padding: 40px 24px 20px; border-radius: 0 0 4px 4px;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 36px; height: 2px; background: var(--gold);"></div>
+                                <span style="font-family: 'Amiri', serif; color: rgba(255,255,255,0.75); font-size: 15px; font-style: italic;">No commitment required</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Content -->
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
+                    <h6 class="section-title bg-white text-start pe-3" style="color: var(--gold); background: var(--off-white) !important;">Free Trial</h6>
+                    <h1 class="display-6 mb-3" style="font-family: 'Cinzel', serif; color: var(--navy);">
+                        Start Your <span style="color: var(--gold);">3 Days</span><br>Free Trial Classes
+                    </h1>
+                    <p class="mb-4" style="color: var(--text-mid); line-height: 1.9; font-size: 15px;">
+                        Experience the quality of our teaching before you commit. Join our <strong style="color: var(--navy);">3-day free trial</strong> and let your child learn directly from our qualified Quran teachers — completely free, no obligation.
+                    </p>
+
+                    @php
+                        $trialFeatures = [
+                            ['icon' => 'fa-user-graduate', 'title' => 'One-on-One Session',   'desc' => 'Personal attention from a certified Quran teacher.'],
+                            ['icon' => 'fa-clock',          'title' => 'Flexible Timing',      'desc' => 'Choose class time that suits your schedule.'],
+                            ['icon' => 'fa-shield-alt',     'title' => 'No Commitment',        'desc' => 'Cancel anytime — zero pressure, zero cost.'],
+                        ];
+                    @endphp
+
+                    <div class="d-flex flex-column gap-3 mb-4">
+                        @foreach($trialFeatures as $f)
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="flex-shrink-0 d-flex align-items-center justify-content-center"
+                                 style="width: 44px; height: 44px; border-radius: 50%; background: var(--navy); border: 2px solid var(--gold);">
+                                <i class="fa {{ $f['icon'] }}" style="color: var(--gold); font-size: 15px;"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1" style="font-family: 'Cinzel', serif; color: var(--navy); font-size: 13px;">{{ $f['title'] }}</h6>
+                                <p class="mb-0" style="font-size: 13px; color: var(--text-mid); line-height: 1.7;">{{ $f['desc'] }}</p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{{ ('enroll') }}" class="btn py-3 px-5"
+                           style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); transition: all 0.3s;"
+                           onmouseover="this.style.background='transparent'; this.style.color='var(--gold)';"
+                           onmouseout="this.style.background='var(--gold)'; this.style.color='var(--white)';">
+                            Book Free Trial
+                        </a>
+                        <a href="{{ route('contact') }}" class="btn py-3 px-5"
+                           style="background: transparent; color: var(--navy); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--navy); transition: all 0.3s;"
+                           onmouseover="this.style.background='var(--navy)'; this.style.color='var(--white)';"
+                           onmouseout="this.style.background='transparent'; this.style.color='var(--navy)';">
+                            Ask a Question
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Free Trial End -->
+
+
+    <!-- ===================== HOW IT WORKS ===================== -->
+    <div class="hiw-section">
+
+        <div class="hiw-bg-image">
+            <img src="{{ asset('img/how-to-learn.jpg') }}" alt="" aria-hidden="true">
+            <div class="hiw-bg-overlay"></div>
+        </div>
+
+        <div class="container" style="position:relative; z-index:2;">
+
+            <div class="hiw-header wow fadeInUp" data-wow-delay="0.1s">
+                <span class="hiw-eyebrow">✦ Simple Process ✦</span>
+                <h1 class="hiw-heading">How It <span>Works</span></h1>
+                <p class="hiw-subtext">From registration to certification — your complete Quran learning journey in 5 easy steps, delivered live via <strong style="color: var(--gold); font-style: normal;">Microsoft Teams</strong>.</p>
+            </div>
+
+            <div class="hiw-steps-row wow fadeInUp" data-wow-delay="0.2s">
+
+                @php
+                    $steps = [
+                        ['num' => '01', 'icon' => 'fa-user-plus',          'title' => 'Register Online',    'desc' => 'Fill out our simple enrollment form and create your student account in minutes.'],
+                        ['num' => '02', 'icon' => 'fa-calendar-check',     'title' => 'Book Free Trial',    'desc' => 'Schedule a free trial session with a qualified teacher at your preferred time.'],
+                        ['num' => '03', 'icon' => 'fa-book-open',          'title' => 'Choose Your Course', 'desc' => 'Pick from Norani Qaida, Tajweed, Hifz, Islamic Studies, Arabic & more.'],
+                        ['num' => '04', 'icon' => 'fa-chalkboard-teacher', 'title' => 'Start Learning',     'desc' => 'Attend live one-on-one classes via Microsoft Teams — our primary online classroom platform.'],
+                        ['num' => '05', 'icon' => 'fa-certificate',        'title' => 'Get Certified',      'desc' => 'Earn an official certificate from Bismillah Islamic Academy upon completion.'],
+                    ];
+                @endphp
+
+                @foreach($steps as $step)
+                <div class="hiw-step-col">
+
+                    @if(!$loop->last)
+                    <div class="hiw-arrow">
+                        <svg viewBox="0 0 40 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 6 Q10 1 20 6 Q30 11 40 6" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+                            <polygon points="36,3 40,6 36,9" fill="var(--gold)" opacity="0.8"/>
+                        </svg>
+                    </div>
+                    @endif
+
+                    <div class="hiw-card">
+                        <div class="hiw-wm">{{ $step['num'] }}</div>
+                        <div class="hiw-icon-ring">
+                            <div class="hiw-icon-inner">
+                                <i class="fa {{ $step['icon'] }}"></i>
+                            </div>
+                        </div>
+                        <div class="hiw-step-badge">STEP {{ $step['num'] }}</div>
+                        <div class="hiw-card-divider"></div>
+                        <h6 class="hiw-card-title">{{ $step['title'] }}</h6>
+                        <p class="hiw-card-desc">{{ $step['desc'] }}</p>
+                        @if($step['num'] === '04')
+                        <div class="hiw-teams-badge">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.5 8.5h-3v-1a2.5 2.5 0 1 0-5 0v1h-3A1.5 1.5 0 0 0 7 10v8a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 21 18v-8a1.5 1.5 0 0 0-1.5-1.5z" fill="rgba(174,130,37,0.8)"/>
+                                <circle cx="14" cy="7" r="2" fill="var(--gold)"/>
+                                <rect x="10" y="13" width="8" height="1.5" rx="0.75" fill="white" opacity="0.9"/>
+                                <rect x="10" y="16" width="5" height="1.5" rx="0.75" fill="white" opacity="0.6"/>
+                            </svg>
+                            Microsoft Teams
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
+
+            <div class="hiw-cta wow fadeInUp" data-wow-delay="0.4s">
+                <p class="hiw-cta-text">Ready to begin your Quran journey?</p>
+                <a href="{{ ('enroll') }}" class="hiw-cta-btn">
+                    <span>Enroll Now — It's Free</span>
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <!-- How It Works End -->
+
+
+    <!-- ===================== TEAM FULL IMAGE ===================== -->
+    <div class="container-xxl py-5" style="background: var(--light-bg);">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h6 class="section-title text-center px-3" style="background: var(--light-bg); color: var(--gold);">Our Academy</h6>
+                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">Meet Our Team</h1>
+            </div>
+            <div class="wow fadeInUp" data-wow-delay="0.2s">
+                <div class="position-relative overflow-hidden rounded">
+                    <img src="{{ asset('img/teams.jpg') }}"
+                         alt="Bismillah Islamic Academy Team"
+                         class="w-100"
+                         style="height: 550px; object-fit: cover; object-position: center; display: block;">
+                    <div class="position-absolute top-0 start-0 w-100 h-100"
+                         style="background: linear-gradient(to top, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.1) 60%, transparent 100%);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team Full Image End -->
 
 
     <!-- ===================== TEAM ===================== -->
@@ -502,12 +549,36 @@
 {{-- ===================== PAGE STYLES ===================== --}}
 @push('styles')
 <style>
+
+/* ===== GLOBAL CURSOR FIX ===== */
+/* Every clickable element site-wide shows pointer */
+a,
+button,
+[role="button"],
+.btn,
+.nav-link,
+.dropdown-item,
+.carousel-control-prev,
+.carousel-control-next,
+.carousel-indicators button,
+.owl-prev,
+.owl-next,
+.back-to-top,
+.hiw-card,
+.bia-socials a,
+.bstrip-socials a,
+.team-social a,
+.hiw-cta-btn,
+.bia-enroll-btn,
+.bstrip-enroll {
+    cursor: pointer !important;
+}
+
 /* ===== STATS SECTION ===== */
 .stats-section {
     background: var(--navy);
     padding: 60px 0;
 }
-
 .stat-item {
     text-align: center;
     padding: 20px 10px;
@@ -515,24 +586,20 @@
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
 .stat-item.visible {
     opacity: 1;
     transform: translateY(0);
 }
-
 .stat-item:nth-child(1) { transition-delay: 0.1s; }
 .stat-item:nth-child(2) { transition-delay: 0.3s; }
 .stat-item:nth-child(3) { transition-delay: 0.5s; }
 .stat-item:nth-child(4) { transition-delay: 0.7s; }
-
 .stat-icon {
     color: var(--gold);
     font-size: 2.5rem;
     margin-bottom: 15px;
     display: block;
 }
-
 .stat-number {
     font-family: 'Cinzel', serif;
     font-size: 2.8rem;
@@ -541,7 +608,6 @@
     line-height: 1;
     margin-bottom: 10px;
 }
-
 .stat-label {
     font-size: 11px;
     letter-spacing: 2px;
@@ -549,16 +615,246 @@
     color: rgba(255, 255, 255, 0.55);
     font-family: 'Cinzel', serif;
 }
-
-.project-carousel .owl-dots {
-    display: none !important;
-}
-
 .carousel-item,
 .carousel-item img {
     height: 620px;
     object-fit: cover;
 }
+
+/* ===================================================
+   HOW IT WORKS
+   =================================================== */
+.hiw-section {
+    position: relative;
+    padding: 100px 0 90px;
+    overflow: hidden;
+}
+.hiw-bg-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+.hiw-bg-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.hiw-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(105deg,
+            rgba(13,27,42,0.97) 0%,
+            rgba(13,27,42,0.92) 40%,
+            rgba(13,27,42,0.80) 65%,
+            rgba(13,27,42,0.70) 100%);
+}
+.hiw-header { text-align: center; margin-bottom: 60px; }
+.hiw-eyebrow {
+    font-family: 'Amiri', serif;
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 4px;
+    display: block;
+    margin-bottom: 14px;
+    opacity: 0.9;
+}
+.hiw-heading {
+    font-family: 'Cinzel', serif;
+    color: #ffffff;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+.hiw-heading span { color: var(--gold); }
+.hiw-subtext {
+    color: rgba(255,255,255,0.6);
+    font-size: 15px;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.9;
+    font-family: 'Amiri', serif;
+    font-style: italic;
+}
+.hiw-steps-row {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    position: relative;
+}
+.hiw-step-col {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+}
+.hiw-arrow {
+    position: absolute;
+    top: 44px;
+    right: -22px;
+    width: 44px;
+    height: 16px;
+    z-index: 3;
+    opacity: 0.55;
+}
+.hiw-arrow svg { width: 100%; height: 100%; }
+.hiw-card {
+    position: relative;
+    background: rgba(13,27,42,0.65);
+    border: 1px solid rgba(174,130,37,0.28);
+    border-radius: 12px;
+    padding: 36px 18px 28px;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.38s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.hiw-card:hover {
+    background: rgba(13,27,42,0.80);
+    border-color: var(--gold);
+    transform: translateY(-8px);
+    box-shadow:
+        0 24px 56px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(174,130,37,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.hiw-wm {
+    position: absolute;
+    bottom: -12px;
+    right: 4px;
+    font-family: 'Cinzel', serif;
+    font-size: 74px;
+    font-weight: 700;
+    color: rgba(174,130,37,0.07);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    transition: color 0.38s;
+}
+.hiw-card:hover .hiw-wm { color: rgba(174,130,37,0.14); }
+.hiw-icon-ring {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    border: 1px solid rgba(174,130,37,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 18px;
+    transition: all 0.38s ease;
+    position: relative; z-index: 1;
+    flex-shrink: 0;
+}
+.hiw-card:hover .hiw-icon-ring {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 5px rgba(174,130,37,0.12), 0 0 24px rgba(174,130,37,0.25);
+}
+.hiw-icon-inner {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: rgba(174,130,37,0.12);
+    border: 1px solid rgba(174,130,37,0.35);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.38s;
+}
+.hiw-card:hover .hiw-icon-inner { background: var(--gold); border-color: var(--gold); }
+.hiw-icon-inner i {
+    color: #e8b84b; font-size: 18px;
+    transition: color 0.38s;
+    filter: drop-shadow(0 0 4px rgba(232,184,75,0.6));
+}
+.hiw-card:hover .hiw-icon-inner i { color: var(--navy); filter: none; }
+.hiw-step-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 9px; letter-spacing: 3px;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 8px;
+    position: relative; z-index: 1;
+    transition: color 0.38s;
+    text-shadow: 0 0 12px rgba(174,130,37,0.6);
+}
+.hiw-card:hover .hiw-step-badge { color: #f0c040; text-shadow: 0 0 16px rgba(240,192,64,0.8); }
+.hiw-card-divider {
+    width: 28px; height: 2px;
+    background: rgba(174,130,37,0.25);
+    margin: 0 auto 12px; border-radius: 2px;
+    transition: width 0.38s ease, background 0.38s;
+    position: relative; z-index: 1;
+}
+.hiw-card:hover .hiw-card-divider { width: 54px; background: var(--gold); }
+.hiw-card-title {
+    font-family: 'Cinzel', serif;
+    color: #ffffff; font-size: 13.5px; font-weight: 700;
+    margin-bottom: 10px; line-height: 1.45;
+    position: relative; z-index: 1;
+    transition: color 0.38s;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+}
+.hiw-card:hover .hiw-card-title { color: var(--gold); }
+.hiw-card-desc {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.85; margin: 0;
+    position: relative; z-index: 1;
+    flex: 1; transition: color 0.38s;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+.hiw-card:hover .hiw-card-desc { color: #ffffff; }
+.hiw-teams-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    margin-top: 16px; padding: 7px 14px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 6px; font-size: 11px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.5px; font-weight: 600;
+    color: #ffffff;
+    position: relative; z-index: 1;
+    transition: all 0.38s; flex-shrink: 0; text-shadow: none;
+}
+.hiw-card:hover .hiw-teams-badge {
+    border-color: var(--gold); color: var(--gold);
+    background: rgba(174,130,37,0.12);
+}
+.hiw-cta { text-align: center; margin-top: 60px; }
+.hiw-cta-text {
+    font-family: 'Amiri', serif;
+    color: rgba(255,255,255,0.5);
+    font-size: 15px; font-style: italic;
+    margin-bottom: 20px; letter-spacing: 1px;
+}
+.hiw-cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: var(--navy);
+    font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px 40px; border: 2px solid var(--gold);
+    text-decoration: none; transition: all 0.3s ease; border-radius: 0;
+}
+.hiw-cta-btn:hover { background: transparent; color: var(--gold); }
+.hiw-cta-btn i { font-size: 11px; transition: transform 0.3s; }
+.hiw-cta-btn:hover i { transform: translateX(4px); }
+
+@media (max-width: 991px) {
+    .hiw-steps-row { flex-direction: column; gap: 14px; max-width: 500px; margin: 0 auto; }
+    .hiw-step-col { flex: none; width: 100%; }
+    .hiw-arrow { display: none; }
+    .hiw-card { flex-direction: row; text-align: left; padding: 20px 18px; align-items: flex-start; }
+    .hiw-icon-ring { flex-shrink: 0; margin: 0 16px 0 0; }
+    .hiw-card-divider { margin: 8px 0; }
+    .hiw-wm { font-size: 52px; bottom: -6px; right: 4px; }
+    .hiw-teams-badge { margin-top: 10px; }
+}
+@media (max-width: 575px) {
+    .hiw-section { padding: 70px 0 60px; }
+}
+
 </style>
 @endpush
 
@@ -578,7 +874,7 @@
         function step(timestamp) {
             if (!startTime) startTime = timestamp;
             var progress = Math.min((timestamp - startTime) / duration, 1);
-            var eased = 1 - (1 - progress) * (1 - progress); // easeOutQuad
+            var eased = 1 - (1 - progress) * (1 - progress);
             el.textContent = Math.floor(eased * target);
             if (progress < 1) {
                 requestAnimationFrame(step);
@@ -631,6 +927,5 @@
     var whySec = document.querySelector('.skill');
     if (whySec) skillObs.observe(whySec.closest('.container-xxl'));
 })();
-
 </script>
 @endpush

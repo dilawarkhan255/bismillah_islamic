@@ -16,8 +16,8 @@ Route::get('/courses', function () {
 })->name('courses');
 
 Route::get('/gallery', function () {
-    return view('pages.projects');
-})->name('projects');
+    return view('pages.gallery');
+})->name('gallery');
 
 Route::get('/blog', function () {
     return view('pages.blog');
@@ -30,10 +30,6 @@ Route::get('/team', function () {
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
-
-Route::get('/enroll', function () {
-    return view('pages.enroll');
-})->name('enroll');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
