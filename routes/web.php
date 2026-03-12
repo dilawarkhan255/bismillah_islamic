@@ -31,6 +31,14 @@ Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
 
+Route::get('/free_trial', function () {
+    return view('pages.free_trial');
+})->name('free_trial');
+
+Route::get('/pricing', function () {
+    return view('pages.pricing');
+})->name('pricing');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

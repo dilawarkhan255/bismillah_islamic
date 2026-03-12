@@ -99,21 +99,22 @@ Row 2: Logo left | Nav CENTER
         <div class="navbar-nav mx-auto p-3 p-lg-0">
             <a href="{{ route('home') }}"
                 class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
-            <a href="{{ route('blog') }}"
-                class="nav-item nav-link {{ request()->routeIs('blog') ? 'active' : '' }}">Blog</a>
+            <a href="{{ route('about') }}"
+                class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About Us</a>
             <a href="{{ route('courses') }}"
                 class="nav-item nav-link {{ request()->routeIs('courses') ? 'active' : '' }}">Courses</a>
             <a href="{{ route('gallery') }}"
                 class="nav-item nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</a>
-            <a href="{{ route('about') }}"
-                class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About Us</a>
+            <a href="{{ route('team') }}" class="nav-item nav-link {{ request()->routeIs('team') ? 'active' : '' }}">Our
+                Teachers</a>
+
             <a href="{{ route('contact') }}"
                 class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">More</a>
                 <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                    <a href="{{ route('team') }}"
-                        class="dropdown-item {{ request()->routeIs('team') ? 'active' : '' }}">Our Teachers</a>
+                    <a href="{{ route('blog') }}"
+                        class="dropdown-item {{ request()->routeIs('blog') ? 'active' : '' }}">Blog</a>
                 </div>
             </div>
         </div>

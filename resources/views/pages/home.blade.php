@@ -26,25 +26,19 @@
                 <div class="carousel-item active">
                     <img class="w-100" src="{{ asset('img/slide-1.jpg') }}" alt="Image">
                     <div class="carousel-caption">
-                        <div class="p-3" style="max-width: 900px;">
-                            <div class="hero-badge animate__animated animate__fadeInDown" style="color: var(--gold-light); font-family: 'Amiri', serif; letter-spacing: 4px; font-size: 17px; margin-bottom: 22px; display: inline-block; padding: 8px 28px; border: 1px solid rgba(174,130,37,0.5);">
+                        <div class="slide-content-wrap">
+                            <div class="hero-badge animate__animated animate__fadeInDown">
                                 ✦ Bismillah Islamic Academy ✦
                             </div>
-                            <h1 class="display-1 text-white mb-3 animated zoomIn" style="font-family: 'Cinzel', serif;">
+                            <h1 class="slide-title animated zoomIn">
                                 Learn The Holy <span style="color: var(--gold-light);">Quran</span>
                             </h1>
-                            <p class="animated fadeInUp" style="font-family: 'Amiri', serif; font-size: 19px; color: rgba(255,255,255,0.65); margin-bottom: 36px; letter-spacing: 1px;">
+                            <p class="slide-sub animated fadeInUp">
                                 "Read in the name of your Lord who created" — Surah Al-Alaq
                             </p>
-                            <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-                                <a href="{{ ('enroll') }}" class="btn py-3 px-5 me-2"
-                                   style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); box-shadow: 0 4px 20px rgba(174,130,37,0.35); cursor: pointer;">
-                                    Enroll Now
-                                </a>
-                                <a href="{{ route('about') }}" class="btn py-3 px-5"
-                                   style="background: transparent; color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid rgba(255,255,255,0.5); cursor: pointer;">
-                                    Learn More
-                                </a>
+                            <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
+                                <a href="{{ route('free_trial') }}" class="slide-btn-gold">Free Trial</a>
+                                <a href="{{ route('about') }}" class="slide-btn-outline">Learn More</a>
                             </div>
                         </div>
                     </div>
@@ -54,54 +48,41 @@
                 <div class="carousel-item">
                     <img class="w-100" src="{{ asset('img/slide-2.jpg') }}" alt="Image">
                     <div class="carousel-caption">
-                        <div class="p-3" style="max-width: 900px;">
-                            <div class="animate__animated animate__fadeInDown" style="color: var(--gold-light); font-family: 'Amiri', serif; letter-spacing: 4px; font-size: 17px; margin-bottom: 22px; display: inline-block; padding: 8px 28px; border: 1px solid rgba(174,130,37,0.5);">
+                        <div class="slide-content-wrap">
+                            <div class="hero-badge animate__animated animate__fadeInDown">
                                 ✦ Join Our Community ✦
                             </div>
-                            <h1 class="display-1 text-white mb-3 animated zoomIn" style="font-family: 'Cinzel', serif;">
+                            <h1 class="slide-title animated zoomIn">
                                 Islamic <span style="color: var(--gold-light);">Education</span><br>For Every Age
                             </h1>
-                            <p class="animated fadeInUp" style="font-family: 'Amiri', serif; font-size: 19px; color: rgba(255,255,255,0.65); margin-bottom: 36px; letter-spacing: 1px;">
+                            <p class="slide-sub animated fadeInUp">
                                 Quran, Tajweed, Hadith, Islamic Studies & Arabic Language
                             </p>
-                            <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-                                <a href="{{ route('courses') }}" class="btn py-3 px-5 me-2"
-                                style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); cursor: pointer;">
-                                    View Courses
-                                </a>
-                                <a href="{{ route('contact') }}" class="btn py-3 px-5"
-                                style="background: transparent; color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid rgba(255,255,255,0.5); cursor: pointer;">
-                                    Contact Us
-                                </a>
+                            <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
+                                <a href="{{ route('courses') }}" class="slide-btn-gold">View Courses</a>
+                                <a href="{{ route('contact') }}" class="slide-btn-outline">Contact Us</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 3 — FIXED: color was var(--gold) making text invisible -->
+                <!-- Slide 3 -->
                 <div class="carousel-item">
                     <img class="w-100" src="{{ asset('img/slide-3.jpg') }}" alt="Image">
                     <div class="carousel-caption">
-                        <div class="p-3" style="max-width: 900px;">
-                            <div class="animate__animated animate__fadeInDown" style="color: var(--gold-light); font-family: 'Amiri', serif; letter-spacing: 4px; font-size: 17px; margin-bottom: 22px; display: inline-block; padding: 8px 28px; border: 1px solid rgba(174,130,37,0.5);">
+                        <div class="slide-content-wrap">
+                            <div class="hero-badge animate__animated animate__fadeInDown">
                                 ✦ Expert Teachers ✦
                             </div>
-                            <h1 class="display-1 text-white mb-3 animated zoomIn" style="font-family: 'Cinzel', serif;">
+                            <h1 class="slide-title animated zoomIn">
                                 Certified <span style="color: var(--gold-light);">Scholars</span><br>& Hafiz-e-Quran
                             </h1>
-                            <p class="animated fadeInUp" style="font-family: 'Amiri', serif; font-size: 19px; color: rgba(255,255,255,0.65); margin-bottom: 36px; letter-spacing: 1px;">
+                            <p class="slide-sub animated fadeInUp">
                                 Learn from qualified Islamic scholars with years of teaching experience
                             </p>
-                            <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-                                {{-- FIX: was color:var(--gold) — button text was same as bg, invisible --}}
-                                <a href="{{ route('team') }}" class="btn py-3 px-5 me-2"
-                                   style="background: var(--gold); color: #ffffff; font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); cursor: pointer;">
-                                    Meet Our Teachers
-                                </a>
-                                <a href="{{ ('enroll') }}" class="btn py-3 px-5"
-                                   style="background: transparent; color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid rgba(255,255,255,0.5); cursor: pointer;">
-                                    Enroll Now
-                                </a>
+                            <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
+                                <a href="{{ route('team') }}" class="slide-btn-gold">Meet Our Teachers</a>
+                                <a href="{{ ('enroll') }}" class="slide-btn-outline">Enroll Now</a>
                             </div>
                         </div>
                     </div>
@@ -157,7 +138,6 @@
             </div>
         </div>
     </section>
-    <!-- Stats End -->
 
 
     <!-- ===================== WHY CHOOSE US ===================== -->
@@ -207,7 +187,6 @@
             </div>
         </div>
     </div>
-    <!-- Why Choose Us End -->
 
 
     <!-- ===================== COURSES ===================== -->
@@ -259,30 +238,22 @@
             </div>
         </div>
     </div>
-    <!-- Courses End -->
 
 
     <!-- ===================== FREE TRIAL ===================== -->
     <div class="container-xxl py-5" style="background: var(--off-white);">
         <div class="container">
             <div class="row g-5 align-items-center">
-
-                <!-- Left: Image -->
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                     <div class="position-relative">
-                        <img src="{{ asset('img/trial.jpg') }}"
-                             alt="Free Trial Class"
+                        <img src="{{ asset('img/trial.jpg') }}" alt="Free Trial Class"
                              class="img-fluid w-100 rounded"
                              style="height: 480px; object-fit: cover; object-position: center;">
-
-                        <!-- Floating badge -->
                         <div class="position-absolute"
                              style="top: 24px; left: -16px; background: var(--navy); border: 2px solid var(--gold); padding: 14px 20px; border-radius: 4px; box-shadow: 0 8px 32px rgba(13,27,42,0.25);">
                             <div style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 28px; font-weight: 700; line-height: 1;">3</div>
                             <div style="font-family: 'Cinzel', serif; color: var(--white); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px;">Days Free</div>
                         </div>
-
-                        <!-- Bottom ribbon -->
                         <div class="position-absolute bottom-0 start-0 end-0"
                              style="background: linear-gradient(to top, rgba(13,27,42,0.92) 0%, transparent 100%); padding: 40px 24px 20px; border-radius: 0 0 4px 4px;">
                             <div style="display: flex; align-items: center; gap: 10px;">
@@ -292,8 +263,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Right: Content -->
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
                     <h6 class="section-title bg-white text-start pe-3" style="color: var(--gold); background: var(--off-white) !important;">Free Trial</h6>
                     <h1 class="display-6 mb-3" style="font-family: 'Cinzel', serif; color: var(--navy);">
@@ -302,7 +271,6 @@
                     <p class="mb-4" style="color: var(--text-mid); line-height: 1.9; font-size: 15px;">
                         Experience the quality of our teaching before you commit. Join our <strong style="color: var(--navy);">3-day free trial</strong> and let your child learn directly from our qualified Quran teachers — completely free, no obligation.
                     </p>
-
                     @php
                         $trialFeatures = [
                             ['icon' => 'fa-user-graduate', 'title' => 'One-on-One Session',   'desc' => 'Personal attention from a certified Quran teacher.'],
@@ -310,7 +278,6 @@
                             ['icon' => 'fa-shield-alt',     'title' => 'No Commitment',        'desc' => 'Cancel anytime — zero pressure, zero cost.'],
                         ];
                     @endphp
-
                     <div class="d-flex flex-column gap-3 mb-4">
                         @foreach($trialFeatures as $f)
                         <div class="d-flex align-items-start gap-3">
@@ -325,9 +292,8 @@
                         </div>
                         @endforeach
                     </div>
-
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="{{ ('enroll') }}" class="btn py-3 px-5"
+                        <a href="{{ route('free_trial') }}" class="btn py-3 px-5"
                            style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); transition: all 0.3s;"
                            onmouseover="this.style.background='transparent'; this.style.color='var(--gold)';"
                            onmouseout="this.style.background='var(--gold)'; this.style.color='var(--white)';">
@@ -341,21 +307,17 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-    <!-- Free Trial End -->
 
 
     <!-- ===================== HOW IT WORKS ===================== -->
     <div class="hiw-section">
-
         <div class="hiw-bg-image">
             <img src="{{ asset('img/how-to-learn.jpg') }}" alt="" aria-hidden="true">
             <div class="hiw-bg-overlay"></div>
         </div>
-
         <div class="container" style="position:relative; z-index:2;">
 
             <div class="hiw-header wow fadeInUp" data-wow-delay="0.1s">
@@ -365,7 +327,6 @@
             </div>
 
             <div class="hiw-steps-row wow fadeInUp" data-wow-delay="0.2s">
-
                 @php
                     $steps = [
                         ['num' => '01', 'icon' => 'fa-user-plus',          'title' => 'Register Online',    'desc' => 'Fill out our simple enrollment form and create your student account in minutes.'],
@@ -378,7 +339,6 @@
 
                 @foreach($steps as $step)
                 <div class="hiw-step-col">
-
                     @if(!$loop->last)
                     <div class="hiw-arrow">
                         <svg viewBox="0 0 40 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -387,17 +347,24 @@
                         </svg>
                     </div>
                     @endif
-
                     <div class="hiw-card">
                         <div class="hiw-wm">{{ $step['num'] }}</div>
+
+                        {{-- 1. Step label at the very top --}}
+                        <div class="hiw-step-badge">STEP {{ $step['num'] }}</div>
+
+                        {{-- 2. Icon ring --}}
                         <div class="hiw-icon-ring">
                             <div class="hiw-icon-inner">
                                 <i class="fa {{ $step['icon'] }}"></i>
                             </div>
                         </div>
-                        <div class="hiw-step-badge">STEP {{ $step['num'] }}</div>
+
+                        {{-- 3. Title --}}
                         <div class="hiw-card-divider"></div>
                         <h6 class="hiw-card-title">{{ $step['title'] }}</h6>
+
+                        {{-- 4. Description block --}}
                         <p class="hiw-card-desc">{{ $step['desc'] }}</p>
                         @if($step['num'] === '04')
                         <div class="hiw-teams-badge">
@@ -413,20 +380,17 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
 
             <div class="hiw-cta wow fadeInUp" data-wow-delay="0.4s">
                 <p class="hiw-cta-text">Ready to begin your Quran journey?</p>
-                <a href="{{ ('enroll') }}" class="hiw-cta-btn">
+                <a href="{{ route('free_trial') }}" class="hiw-cta-btn">
                     <span>Enroll Now — It's Free</span>
                     <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
-
         </div>
     </div>
-    <!-- How It Works End -->
 
 
     <!-- ===================== TEAM FULL IMAGE ===================== -->
@@ -438,10 +402,8 @@
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.2s">
                 <div class="position-relative overflow-hidden rounded">
-                    <img src="{{ asset('img/teams.jpg') }}"
-                         alt="Bismillah Islamic Academy Team"
-                         class="w-100"
-                         style="height: 550px; object-fit: cover; object-position: center; display: block;">
+                    <img src="{{ asset('img/teams.jpg') }}" alt="Bismillah Islamic Academy Team"
+                         class="w-100" style="height: 550px; object-fit: cover; object-position: center; display: block;">
                     <div class="position-absolute top-0 start-0 w-100 h-100"
                          style="background: linear-gradient(to top, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.1) 60%, transparent 100%);">
                     </div>
@@ -449,7 +411,6 @@
             </div>
         </div>
     </div>
-    <!-- Team Full Image End -->
 
 
     <!-- ===================== TEAM ===================== -->
@@ -479,15 +440,15 @@
                                 <span style="color: var(--gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Lato', sans-serif; display: block; margin-bottom: 14px;">{{ $member['role'] }}</span>
                             </div>
                             <div class="team-social" style="display: flex; justify-content: center; gap: 8px; margin-top: 14px;">
-                                <a href="#" style="width: 34px; height: 34px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 13px; text-decoration: none; transition: all 0.3s;"
-                                   onmouseover="this.style.background='var(--gold)'; this.style.color='white';"
-                                   onmouseout="this.style.background='transparent'; this.style.color='var(--gold)';"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" style="width: 34px; height: 34px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 13px; text-decoration: none; transition: all 0.3s;"
-                                   onmouseover="this.style.background='var(--gold)'; this.style.color='white';"
-                                   onmouseout="this.style.background='transparent'; this.style.color='var(--gold)';"><i class="fab fa-twitter"></i></a>
-                                <a href="#" style="width: 34px; height: 34px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 13px; text-decoration: none; transition: all 0.3s;"
-                                   onmouseover="this.style.background='var(--gold)'; this.style.color='white';"
-                                   onmouseout="this.style.background='transparent'; this.style.color='var(--gold)';"><i class="fab fa-instagram"></i></a>
+                                <a href="#" style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
+                                   onmouseover="this.style.background='var(--gold)';this.style.color='white';"
+                                   onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
+                                   onmouseover="this.style.background='var(--gold)';this.style.color='white';"
+                                   onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i class="fab fa-twitter"></i></a>
+                                <a href="#" style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
+                                   onmouseover="this.style.background='var(--gold)';this.style.color='white';"
+                                   onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -496,7 +457,6 @@
             </div>
         </div>
     </div>
-    <!-- Team End -->
 
 
     <!-- ===================== TESTIMONIALS ===================== -->
@@ -509,14 +469,10 @@
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 @php
                     $testimonials = [
-                        ['name' => 'Ahmad Khan',   'role' => 'Parent',  'img' => 'testimonial-1.jpg',
-                         'text' => 'Alhamdulillah, my son memorized 5 Juz in just one year. The teachers are dedicated and the environment is truly Islamic.'],
-                        ['name' => 'Sarah Bibi',   'role' => 'Parent',  'img' => 'testimonial-2.jpg',
-                         'text' => 'My daughter improved her Tajweed tremendously. The academy provides a wonderful learning atmosphere for children.'],
-                        ['name' => 'Omar Farooq',  'role' => 'Student', 'img' => 'testimonial-3.jpg',
-                         'text' => 'The Arabic language course helped me understand the Quran directly. Highly recommend to every Muslim.'],
-                        ['name' => 'Aisha Rahman', 'role' => 'Parent',  'img' => 'testimonial-4.jpg',
-                         'text' => 'Best Islamic school in the area. The scholars here are very knowledgeable and approachable. JazakAllah Khair!'],
+                        ['name' => 'Ahmad Khan',   'role' => 'Parent',  'img' => 'testimonial-1.jpg', 'text' => 'Alhamdulillah, my son memorized 5 Juz in just one year. The teachers are dedicated and the environment is truly Islamic.'],
+                        ['name' => 'Sarah Bibi',   'role' => 'Parent',  'img' => 'testimonial-2.jpg', 'text' => 'My daughter improved her Tajweed tremendously. The academy provides a wonderful learning atmosphere for children.'],
+                        ['name' => 'Omar Farooq',  'role' => 'Student', 'img' => 'testimonial-3.jpg', 'text' => 'The Arabic language course helped me understand the Quran directly. Highly recommend to every Muslim.'],
+                        ['name' => 'Aisha Rahman', 'role' => 'Parent',  'img' => 'testimonial-4.jpg', 'text' => 'Best Islamic school in the area. The scholars here are very knowledgeable and approachable. JazakAllah Khair!'],
                     ];
                 @endphp
                 @foreach($testimonials as $t)
@@ -525,23 +481,20 @@
                     <div class="d-flex align-items-center mb-4">
                         <img class="flex-shrink-0 rounded-circle border p-1"
                              src="{{ asset('img/' . $t['img']) }}" alt="{{ $t['name'] }}"
-                             style="width: 62px; height: 62px; border-color: var(--gold) !important; object-fit: cover;">
+                             style="width:62px;height:62px;border-color:var(--gold)!important;object-fit:cover;">
                         <div class="ms-4">
-                            <h5 class="mb-1" style="font-family: 'Cinzel', serif; color: var(--navy); font-size: 14px;">{{ $t['name'] }}</h5>
-                            <span style="color: var(--gold); font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">{{ $t['role'] }}</span>
-                            <div style="color: var(--gold); font-size: 12px; margin-top: 3px;">★★★★★</div>
+                            <h5 class="mb-1" style="font-family:'Cinzel',serif;color:var(--navy);font-size:14px;">{{ $t['name'] }}</h5>
+                            <span style="color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;">{{ $t['role'] }}</span>
+                            <div style="color:var(--gold);font-size:12px;margin-top:3px;">★★★★★</div>
                         </div>
                     </div>
-                    <div style="height: 1px; background: rgba(174,130,37,0.12); margin-bottom: 16px;"></div>
-                    <p class="mb-0" style="font-family: 'Amiri', serif; font-size: 16px; font-style: italic; color: var(--text-mid); line-height: 1.85;">
-                        {{ $t['text'] }}
-                    </p>
+                    <div style="height:1px;background:rgba(174,130,37,0.12);margin-bottom:16px;"></div>
+                    <p class="mb-0" style="font-family:'Amiri',serif;font-size:16px;font-style:italic;color:var(--text-mid);line-height:1.85;">{{ $t['text'] }}</p>
                 </div>
                 @endforeach
             </div>
         </div>
     </div>
-    <!-- Testimonials End -->
 
 @endsection
 
@@ -550,35 +503,153 @@
 @push('styles')
 <style>
 
-/* ===== GLOBAL CURSOR FIX ===== */
-/* Every clickable element site-wide shows pointer */
-a,
-button,
-[role="button"],
-.btn,
-.nav-link,
-.dropdown-item,
-.carousel-control-prev,
-.carousel-control-next,
-.carousel-indicators button,
-.owl-prev,
-.owl-next,
-.back-to-top,
-.hiw-card,
-.bia-socials a,
-.bstrip-socials a,
-.team-social a,
-.hiw-cta-btn,
-.bia-enroll-btn,
-.bstrip-enroll {
+/* ── GLOBAL CURSOR ───────────────────────────────── */
+a, button, [role="button"], .btn, .nav-link, .dropdown-item,
+.carousel-control-prev, .carousel-control-next, .carousel-indicators button,
+.owl-prev, .owl-next, .back-to-top, .hiw-card, .bia-socials a,
+.bstrip-socials a, .team-social a, .hiw-cta-btn, .bia-enroll-btn, .bstrip-enroll {
     cursor: pointer !important;
 }
 
-/* ===== STATS SECTION ===== */
-.stats-section {
-    background: var(--navy);
-    padding: 60px 0;
+/* =====================================================
+   HERO CAROUSEL — Responsive
+   ===================================================== */
+.carousel-item,
+.carousel-item img {
+    height: 620px;
+    object-fit: cover;
 }
+
+.slide-content-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 12px;
+}
+
+/* Badge */
+.hero-badge {
+    color: var(--gold-light);
+    font-family: 'Amiri', serif;
+    letter-spacing: 4px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 7px 26px;
+    border: 1px solid rgba(174,130,37,0.5);
+}
+
+/* Heading — clamp scales from 26px (mobile) to 70px (desktop) */
+.slide-title {
+    font-family: 'Cinzel', serif;
+    color: #fff;
+    font-size: clamp(26px, 5.5vw, 70px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+}
+
+/* Subtitle */
+.slide-sub {
+    font-family: 'Amiri', serif;
+    font-size: clamp(12px, 1.8vw, 19px);
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+}
+
+/* Button row */
+.slide-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* Gold button */
+.slide-btn-gold {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 13px 30px;
+    border: 2px solid var(--gold);
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(174,130,37,0.35);
+    transition: all 0.3s;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.slide-btn-gold:hover { background: transparent; color: var(--gold); }
+
+/* Outline button */
+.slide-btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 13px 30px;
+    border: 2px solid rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.slide-btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── Tablet ──────────────────────────────────────── */
+@media (max-width: 767px) {
+    .carousel-item,
+    .carousel-item img { height: 480px; }
+
+    .carousel-caption { bottom: 28px; }
+
+    .hero-badge {
+        font-size: 10px;
+        letter-spacing: 2px;
+        padding: 5px 14px;
+        margin-bottom: 12px;
+    }
+
+    .slide-sub { margin-bottom: 18px; }
+
+    .slide-btn-gold,
+    .slide-btn-outline {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+        padding: 10px 20px;
+    }
+}
+
+/* ── Mobile ──────────────────────────────────────── */
+@media (max-width: 480px) {
+    .carousel-item,
+    .carousel-item img { height: 400px; }
+
+    .slide-btns {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .slide-btn-gold,
+    .slide-btn-outline {
+        width: 100%;
+        max-width: 210px;
+        text-align: center;
+        padding: 10px 14px;
+    }
+}
+
+/* ── STATS ───────────────────────────────────────── */
+.stats-section { background: var(--navy); padding: 60px 0; }
 .stat-item {
     text-align: center;
     padding: 20px 10px;
@@ -586,127 +657,51 @@ button,
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.stat-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+.stat-item.visible { opacity: 1; transform: translateY(0); }
 .stat-item:nth-child(1) { transition-delay: 0.1s; }
 .stat-item:nth-child(2) { transition-delay: 0.3s; }
 .stat-item:nth-child(3) { transition-delay: 0.5s; }
 .stat-item:nth-child(4) { transition-delay: 0.7s; }
-.stat-icon {
-    color: var(--gold);
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    display: block;
-}
-.stat-number {
-    font-family: 'Cinzel', serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: 10px;
-}
-.stat-label {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
-    font-family: 'Cinzel', serif;
-}
-.carousel-item,
-.carousel-item img {
-    height: 620px;
-    object-fit: cover;
-}
+.stat-icon { color: var(--gold); font-size: 2.5rem; margin-bottom: 15px; display: block; }
+.stat-number { font-family: 'Cinzel', serif; font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 10px; }
+.stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); font-family: 'Cinzel', serif; }
 
-/* ===================================================
+/* =====================================================
    HOW IT WORKS
-   =================================================== */
-.hiw-section {
-    position: relative;
-    padding: 100px 0 90px;
-    overflow: hidden;
-}
-.hiw-bg-image {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-}
-.hiw-bg-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-}
+   ===================================================== */
+.hiw-section { position: relative; padding: 100px 0 90px; overflow: hidden; }
+.hiw-bg-image { position: absolute; inset: 0; z-index: 0; }
+.hiw-bg-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .hiw-bg-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(105deg,
-            rgba(13,27,42,0.97) 0%,
-            rgba(13,27,42,0.92) 40%,
-            rgba(13,27,42,0.80) 65%,
-            rgba(13,27,42,0.70) 100%);
+    position: absolute; inset: 0;
+    background: linear-gradient(105deg,
+        rgba(13,27,42,0.97) 0%,
+        rgba(13,27,42,0.92) 40%,
+        rgba(13,27,42,0.80) 65%,
+        rgba(13,27,42,0.70) 100%);
 }
 .hiw-header { text-align: center; margin-bottom: 60px; }
-.hiw-eyebrow {
-    font-family: 'Amiri', serif;
-    color: var(--gold);
-    font-size: 15px;
-    letter-spacing: 4px;
-    display: block;
-    margin-bottom: 14px;
-    opacity: 0.9;
-}
-.hiw-heading {
-    font-family: 'Cinzel', serif;
-    color: #ffffff;
-    font-size: clamp(26px, 3.5vw, 40px);
-    font-weight: 700;
-    margin-bottom: 14px;
-    line-height: 1.2;
-}
+.hiw-eyebrow { font-family: 'Amiri', serif; color: var(--gold); font-size: 15px; letter-spacing: 4px; display: block; margin-bottom: 14px; opacity: 0.9; }
+.hiw-heading { font-family: 'Cinzel', serif; color: #fff; font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
 .hiw-heading span { color: var(--gold); }
-.hiw-subtext {
-    color: rgba(255,255,255,0.6);
-    font-size: 15px;
-    max-width: 560px;
-    margin: 0 auto;
-    line-height: 1.9;
-    font-family: 'Amiri', serif;
-    font-style: italic;
-}
-.hiw-steps-row {
-    display: flex;
-    align-items: stretch;
-    gap: 16px;
-    position: relative;
-}
-.hiw-step-col {
-    flex: 1;
-    position: relative;
-    display: flex;
-    align-items: stretch;
-}
-.hiw-arrow {
-    position: absolute;
-    top: 44px;
-    right: -22px;
-    width: 44px;
-    height: 16px;
-    z-index: 3;
-    opacity: 0.55;
-}
+.hiw-subtext { color: rgba(255,255,255,0.6); font-size: 15px; max-width: 560px; margin: 0 auto; line-height: 1.9; font-family: 'Amiri', serif; font-style: italic; }
+
+/* Steps row */
+.hiw-steps-row { display: flex; align-items: stretch; gap: 14px; position: relative; }
+.hiw-step-col { flex: 1; position: relative; display: flex; align-items: stretch; }
+.hiw-arrow { position: absolute; top: 44px; right: -22px; width: 44px; height: 16px; z-index: 3; opacity: 0.55; }
 .hiw-arrow svg { width: 100%; height: 100%; }
+
+/* ── Card — TEXT BLOCK STYLE ──────────────────────── */
 .hiw-card {
     position: relative;
     background: rgba(13,27,42,0.65);
+    /* sharp corners — block feel */
+    border-radius: 0;
+    /* gold left accent bar */
     border: 1px solid rgba(174,130,37,0.28);
-    border-radius: 12px;
-    padding: 36px 18px 28px;
+    border-left: 3px solid rgba(174,130,37,0.55);
+    padding: 30px 16px 26px;
     text-align: center;
     width: 100%;
     overflow: hidden;
@@ -719,140 +714,245 @@ button,
     -webkit-backdrop-filter: blur(8px);
 }
 .hiw-card:hover {
-    background: rgba(13,27,42,0.80);
+    background: rgba(13,27,42,0.82);
     border-color: var(--gold);
+    border-left-color: var(--gold);
     transform: translateY(-8px);
-    box-shadow:
-        0 24px 56px rgba(0,0,0,0.5),
-        0 0 0 1px rgba(174,130,37,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.06);
+    box-shadow: 0 24px 56px rgba(0,0,0,0.5), 0 0 0 1px rgba(174,130,37,0.2);
 }
+
+/* Watermark number */
 .hiw-wm {
-    position: absolute;
-    bottom: -12px;
-    right: 4px;
-    font-family: 'Cinzel', serif;
-    font-size: 74px;
-    font-weight: 700;
-    color: rgba(174,130,37,0.07);
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-    transition: color 0.38s;
+    position: absolute; bottom: -12px; right: 4px;
+    font-family: 'Cinzel', serif; font-size: 72px; font-weight: 700;
+    color: rgba(174,130,37,0.07); line-height: 1;
+    pointer-events: none; user-select: none; transition: color 0.38s;
+    overflow: hidden;   /* never bleeds outside card */
+    max-width: 100%;
 }
 .hiw-card:hover .hiw-wm { color: rgba(174,130,37,0.14); }
+
+/* Icon ring — square */
 .hiw-icon-ring {
-    width: 68px; height: 68px;
-    border-radius: 50%;
+    width: 62px; height: 62px;
+    border-radius: 0;
     border: 1px solid rgba(174,130,37,0.3);
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 18px;
+    margin: 0 auto 14px;
     transition: all 0.38s ease;
-    position: relative; z-index: 1;
-    flex-shrink: 0;
+    position: relative; z-index: 1; flex-shrink: 0;
 }
 .hiw-card:hover .hiw-icon-ring {
     border-color: var(--gold);
-    box-shadow: 0 0 0 5px rgba(174,130,37,0.12), 0 0 24px rgba(174,130,37,0.25);
+    box-shadow: 0 0 0 4px rgba(174,130,37,0.12), 0 0 20px rgba(174,130,37,0.2);
 }
 .hiw-icon-inner {
-    width: 50px; height: 50px;
-    border-radius: 50%;
+    width: 44px; height: 44px;
+    border-radius: 0;
     background: rgba(174,130,37,0.12);
     border: 1px solid rgba(174,130,37,0.35);
     display: flex; align-items: center; justify-content: center;
     transition: all 0.38s;
 }
 .hiw-card:hover .hiw-icon-inner { background: var(--gold); border-color: var(--gold); }
-.hiw-icon-inner i {
-    color: #e8b84b; font-size: 18px;
-    transition: color 0.38s;
-    filter: drop-shadow(0 0 4px rgba(232,184,75,0.6));
-}
+.hiw-icon-inner i { color: #e8b84b; font-size: 17px; transition: color 0.38s; filter: drop-shadow(0 0 4px rgba(232,184,75,0.6)); }
 .hiw-card:hover .hiw-icon-inner i { color: var(--navy); filter: none; }
+
+/* Step badge — sits at very top of card as a label */
 .hiw-step-badge {
     font-family: 'Cinzel', serif;
-    font-size: 9px; letter-spacing: 3px;
-    color: var(--gold); text-transform: uppercase;
-    margin-bottom: 8px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(174,130,37,0.18);
     position: relative; z-index: 1;
-    transition: color 0.38s;
-    text-shadow: 0 0 12px rgba(174,130,37,0.6);
+    transition: color 0.38s, border-color 0.38s;
+    text-shadow: 0 0 12px rgba(174,130,37,0.5);
 }
-.hiw-card:hover .hiw-step-badge { color: #f0c040; text-shadow: 0 0 16px rgba(240,192,64,0.8); }
+.hiw-card:hover .hiw-step-badge {
+    color: #f0c040;
+    border-bottom-color: rgba(174,130,37,0.4);
+}
+
+/* Divider */
 .hiw-card-divider {
-    width: 28px; height: 2px;
-    background: rgba(174,130,37,0.25);
-    margin: 0 auto 12px; border-radius: 2px;
+    width: 32px; height: 2px;
+    background: rgba(174,130,37,0.3);
+    margin: 0 auto 10px;
     transition: width 0.38s ease, background 0.38s;
     position: relative; z-index: 1;
 }
-.hiw-card:hover .hiw-card-divider { width: 54px; background: var(--gold); }
+.hiw-card:hover .hiw-card-divider { width: 56px; background: var(--gold); }
+
+/* Title — UPPERCASE TEXT BLOCK */
 .hiw-card-title {
     font-family: 'Cinzel', serif;
-    color: #ffffff; font-size: 13.5px; font-weight: 700;
-    margin-bottom: 10px; line-height: 1.45;
+    color: #fff;
+    font-size: 11.5px;
+    font-weight: 700;
+    margin-bottom: 0;
+    line-height: 1.4;
     position: relative; z-index: 1;
     transition: color 0.38s;
     text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 .hiw-card:hover .hiw-card-title { color: var(--gold); }
+
+/* Description — dark block paragraph */
 .hiw-card-desc {
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.88);
-    line-height: 1.85; margin: 0;
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.9;
+    margin: 0;
     position: relative; z-index: 1;
-    flex: 1; transition: color 0.38s;
+    flex: 1;
+    transition: color 0.38s, background 0.38s;
     text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    /* ── TEXT BLOCK styling ── */
+    text-align: left;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.22);
+    border-top: 1px solid rgba(174,130,37,0.12);
 }
-.hiw-card:hover .hiw-card-desc { color: #ffffff; }
+.hiw-card:hover .hiw-card-desc {
+    color: #fff;
+    background: rgba(0,0,0,0.30);
+    border-top-color: rgba(174,130,37,0.28);
+}
+
+/* Teams badge */
 .hiw-teams-badge {
     display: inline-flex; align-items: center; gap: 7px;
-    margin-top: 16px; padding: 7px 14px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 6px; font-size: 11px;
-    font-family: 'Lato', sans-serif;
-    letter-spacing: 0.5px; font-weight: 600;
-    color: #ffffff;
-    position: relative; z-index: 1;
-    transition: all 0.38s; flex-shrink: 0; text-shadow: none;
+    margin-top: 12px; padding: 6px 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 0;
+    font-size: 10px; font-family: 'Lato', sans-serif;
+    letter-spacing: 1px; font-weight: 600; color: #fff;
+    position: relative; z-index: 1; transition: all 0.38s; flex-shrink: 0;
 }
-.hiw-card:hover .hiw-teams-badge {
-    border-color: var(--gold); color: var(--gold);
-    background: rgba(174,130,37,0.12);
-}
+.hiw-card:hover .hiw-teams-badge { border-color: var(--gold); color: var(--gold); background: rgba(174,130,37,0.1); }
+
+/* CTA */
 .hiw-cta { text-align: center; margin-top: 60px; }
-.hiw-cta-text {
-    font-family: 'Amiri', serif;
-    color: rgba(255,255,255,0.5);
-    font-size: 15px; font-style: italic;
-    margin-bottom: 20px; letter-spacing: 1px;
-}
+.hiw-cta-text { font-family: 'Amiri', serif; color: rgba(255,255,255,0.5); font-size: 15px; font-style: italic; margin-bottom: 20px; letter-spacing: 1px; }
 .hiw-cta-btn {
     display: inline-flex; align-items: center; gap: 10px;
     background: var(--gold); color: var(--navy);
     font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700;
     letter-spacing: 2px; text-transform: uppercase;
     padding: 14px 40px; border: 2px solid var(--gold);
-    text-decoration: none; transition: all 0.3s ease; border-radius: 0;
+    text-decoration: none; transition: all 0.3s; border-radius: 0;
 }
 .hiw-cta-btn:hover { background: transparent; color: var(--gold); }
 .hiw-cta-btn i { font-size: 11px; transition: transform 0.3s; }
 .hiw-cta-btn:hover i { transform: translateX(4px); }
 
+/* ── HIW Mobile ──────────────────────────────────── */
 @media (max-width: 991px) {
-    .hiw-steps-row { flex-direction: column; gap: 14px; max-width: 500px; margin: 0 auto; }
-    .hiw-step-col { flex: none; width: 100%; }
+    /* fix horizontal scroll — constrain section */
+    .hiw-section { overflow-x: hidden; }
+
+    .hiw-steps-row {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    .hiw-step-col {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+    }
     .hiw-arrow { display: none; }
-    .hiw-card { flex-direction: row; text-align: left; padding: 20px 18px; align-items: flex-start; }
-    .hiw-icon-ring { flex-shrink: 0; margin: 0 16px 0 0; }
-    .hiw-card-divider { margin: 8px 0; }
-    .hiw-wm { font-size: 52px; bottom: -6px; right: 4px; }
-    .hiw-teams-badge { margin-top: 10px; }
+
+    /* Card — vertical stack, full width, no overflow */
+    .hiw-card {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: 18px 16px 16px;
+        border-left: 3px solid var(--gold);
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    /* Icon ring — smaller but still visible */
+    .hiw-icon-ring {
+        display: flex;             /* show it — not hidden */
+        width: 44px;
+        height: 44px;
+        border-radius: 0;
+        margin: 0 0 12px 0;       /* sits above badge */
+        flex-shrink: 0;
+    }
+    .hiw-icon-inner {
+        width: 32px;
+        height: 32px;
+    }
+    .hiw-icon-inner i { font-size: 13px; }
+
+    /* STEP BADGE — block, top */
+    .hiw-step-badge {
+        display: block;
+        width: 100%;
+        margin-bottom: 6px;
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    /* Divider — short left-aligned */
+    .hiw-card-divider {
+        display: block;
+        margin: 0 0 8px 0;
+        width: 28px;
+    }
+
+    /* TITLE — block, own line */
+    .hiw-card-title {
+        display: block;
+        width: 100%;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+
+    /* DESC — dark block paragraph below title */
+    .hiw-card-desc {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 8px;
+        padding: 10px 12px;
+        font-size: 12px;
+        line-height: 1.85;
+        text-align: left;
+        background: rgba(0,0,0,0.22);
+        border-top: 1px solid rgba(174,130,37,0.15);
+    }
+
+    /* Watermark stays subtle */
+    .hiw-wm { font-size: 46px; bottom: -6px; right: 4px; }
+    .hiw-teams-badge { margin-top: 10px; align-self: flex-start; }
 }
+
 @media (max-width: 575px) {
     .hiw-section { padding: 70px 0 60px; }
+    .hiw-card { padding: 14px 12px 12px; }
+    /* extra safety — no element bleeds outside viewport */
+    .hiw-steps-row, .hiw-step-col, .hiw-card { max-width: 100% !important; }
 }
 
 </style>
@@ -863,24 +963,19 @@ button,
 @push('scripts')
 <script>
 (function () {
-    /* ===== STATS COUNTER ===== */
+    /* ── STATS COUNTER ──────────────────────────────── */
     var counted = false;
 
     function animateCounter(el) {
         var target = parseInt(el.getAttribute('data-target'));
-        var duration = 2000;
-        var startTime = null;
-
-        function step(timestamp) {
-            if (!startTime) startTime = timestamp;
-            var progress = Math.min((timestamp - startTime) / duration, 1);
-            var eased = 1 - (1 - progress) * (1 - progress);
+        var duration = 2000, startTime = null;
+        function step(ts) {
+            if (!startTime) startTime = ts;
+            var prog = Math.min((ts - startTime) / duration, 1);
+            var eased = 1 - (1 - prog) * (1 - prog);
             el.textContent = Math.floor(eased * target);
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            } else {
-                el.textContent = target;
-            }
+            if (prog < 1) requestAnimationFrame(step);
+            else el.textContent = target;
         }
         requestAnimationFrame(step);
     }
@@ -888,44 +983,34 @@ button,
     function startCounting() {
         if (counted) return;
         counted = true;
-        document.querySelectorAll('.stat-item').forEach(function (item) {
-            item.classList.add('visible');
-        });
-        document.querySelectorAll('.stat-number[data-target]').forEach(function (el) {
-            animateCounter(el);
-        });
+        document.querySelectorAll('.stat-item').forEach(function (i) { i.classList.add('visible'); });
+        document.querySelectorAll('.stat-number[data-target]').forEach(animateCounter);
     }
 
     var statsSection = document.querySelector('.stats-section');
     if (statsSection) {
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    startCounting();
-                    observer.disconnect();
-                }
-            });
-        }, { threshold: 0.3 });
-        observer.observe(statsSection);
+        new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (e) { if (e.isIntersecting) { startCounting(); obs.disconnect(); } });
+        }, { threshold: 0.3 }).observe(statsSection);
     }
 
-    /* ===== SKILL BARS ===== */
+    /* ── SKILL BARS ─────────────────────────────────── */
     var skillsDone = false;
-    var skillObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-            if (e.isIntersecting && !skillsDone) {
-                skillsDone = true;
-                setTimeout(function () {
-                    document.querySelectorAll('.progress-bar').forEach(function (bar) {
-                        bar.style.width = bar.getAttribute('aria-valuenow') + '%';
-                    });
-                }, 200);
-            }
-        });
-    }, { threshold: 0.3 });
-
     var whySec = document.querySelector('.skill');
-    if (whySec) skillObs.observe(whySec.closest('.container-xxl'));
+    if (whySec) {
+        new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting && !skillsDone) {
+                    skillsDone = true;
+                    setTimeout(function () {
+                        document.querySelectorAll('.progress-bar').forEach(function (bar) {
+                            bar.style.width = bar.getAttribute('aria-valuenow') + '%';
+                        });
+                    }, 200);
+                }
+            });
+        }, { threshold: 0.3 }).observe(whySec.closest('.container-xxl'));
+    }
 })();
 </script>
 @endpush
