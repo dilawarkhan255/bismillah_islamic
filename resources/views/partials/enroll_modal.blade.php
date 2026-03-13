@@ -23,7 +23,7 @@
 
             <!-- Modal Body -->
             <div class="modal-body" style="background:var(--white); padding: 35px;">
-                <form action="#" method="POST" id="enrollForm">
+               <form action="{{ route('enroll') }}" method="POST" id="enrollForm">
                     @csrf
                     <div class="row g-3">
 
@@ -100,7 +100,7 @@
                             <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:10px;">Preferred Class Type *</label>
                             <div style="display:flex; gap:15px; flex-wrap:wrap;">
                                 @php
-                                $types = ['On-Site (Academy)', 'Online (Zoom)', 'Home Tutoring'];
+                                $types = ['Online (Microsot Teams)'];
                                 @endphp
                                 @foreach($types as $type)
                                 <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-family:'Lato',sans-serif; font-size:13px; color:var(--text-mid);">

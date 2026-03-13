@@ -24,7 +24,6 @@ body {
     font-family: 'Lato', sans-serif;
     background: var(--navy);
     color: var(--white);
-    overflow-x: hidden;
 }
 
 /* ── GEOMETRIC PATTERN ── */

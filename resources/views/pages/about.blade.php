@@ -28,7 +28,8 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="h-100">
                         <h6 class="section-title bg-white text-start pe-3" style="color:var(--gold);">About Us</h6>
-                        <h1 class="display-6 mb-4">Bismillah <span style="color:var(--gold);">Islamic Academy</span> With <span style="color:var(--gold);">10
+                        <h1 class="display-6 mb-4">Bismillah <span style="color:var(--gold);">Islamic Academy</span> With
+                            <span style="color:var(--gold);">10
                                 Years</span> Of Excellence</h1>
                         <p style="color:var(--text-mid);">Bismillah Islamic Academy was founded with one mission — to
                             provide every Muslim student with authentic, accessible, and high-quality Islamic education. We
@@ -69,7 +70,8 @@
                 <div class="col-lg-4 text-lg-end wow fadeInUp" data-wow-delay="0.3s">
                     <a href="{{ route('contact') }}" class="btn rounded-pill py-3 px-5 me-3 mb-3"
                         style="background:var(--gold);color:#fff;border:none;">Enroll Now</a>
-                    <a href="#" class="btn btn-outline-light rounded-pill py-3 px-5 mb-3">View Courses</a>
+                    <a href="{{ route('courses') }}" class="btn btn-outline-light rounded-pill py-3 px-5 mb-3">View
+                        Courses</a>
                 </div>
             </div>
         </div>
@@ -80,22 +82,53 @@
 
 @push('styles')
     <style>
+        /* ══════════════════════════════════════════════════
+               OVERFLOW FIX — about page horizontal scroll band
+               ══════════════════════════════════════════════════ */
+        .page-header,
+        .cta-section,
+        .container-fluid {
+            max-width: 100%;
+        }
 
         /* ── Page Header ─────────────────────────────────────────── */
         .page-header {
             background-image:
                 linear-gradient(rgba(13, 27, 42, 0.80), rgba(13, 27, 42, 0.80)),
-                url('{{ asset("img/teams-1.jpg") }}');
+                    url('{{ asset("img/about-bg.jpg") }}');
             background-repeat: no-repeat;
             background-size: cover;
-            background-position: center 70% !important;  /* image ka center show karo */
-            background-attachment: scroll !important;        /* mobile-safe (fixed causes crop on iOS) */
+            background-attachment: scroll;
             border-bottom: 3px solid var(--gold);
-            min-height: 280px;
+            min-height: 200px;
+        }
+
+
+
+        /* Page header text sizing — mobile safe */
+        .page-header .display-4 {
+            font-size: clamp(1.6rem, 6vw, 3rem);
+            line-height: 1.2;
         }
 
         .page-header .breadcrumb-item+.breadcrumb-item::before {
             color: var(--gold);
+        }
+
+        /* Breadcrumb — prevent overflow on tiny screens */
+        .page-header .breadcrumb {
+            flex-wrap: wrap;
+            row-gap: 4px;
+        }
+
+        .page-header .breadcrumb-item {
+            font-size: clamp(12px, 3vw, 14px);
+        }
+
+        /* ── About section images ──────────────────────── */
+        .img-border img {
+            max-width: 100%;
+            height: auto;
         }
 
         /* ── Skill bars ──────────────────────────────────────────── */
@@ -112,21 +145,41 @@
         .cta-section {
             background-image:
                 linear-gradient(rgba(13, 27, 42, 0.88), rgba(13, 27, 42, 0.88)),
-                url('{{ asset("img/teams-1.jpg") }}');
+                url('{{ asset("img/about-bg.jpg") }}');
             background-repeat: no-repeat;
             background-size: cover;
-            background-position: center center;  /* same image — center crop */
-            background-attachment: scroll;        /* scroll = safe on all devices */
+            background-position: center center;
+            /* scroll by default — mobile safe */
+            background-attachment: scroll;
             border-top: 2px solid var(--gold);
             border-bottom: 2px solid var(--gold);
         }
 
-        /* Desktop only: enable parallax fixed effect */
+        /* Desktop only — parallax */
         @media (min-width: 992px) {
-            .page-header,
             .cta-section {
-                background-attachment: fixed;     /* parallax on desktop */
-                background-position: center 30%;  /* thoda upar se show karo — sky/top visible */
+                background-attachment: fixed;
+                background-position: center 30%;
+            }
+        }
+
+        /* CTA heading — responsive size */
+        .cta-section .display-6 {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            line-height: 1.3;
+        }
+
+        /* CTA buttons — stack on mobile */
+        @media (max-width: 575px) {
+            .cta-section .col-lg-4 {
+                text-align: center !important;
+            }
+
+            .cta-section .btn {
+                display: block;
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto 12px !important;
             }
         }
 
@@ -140,6 +193,30 @@
             background: rgba(255, 255, 255, 0.08);
             border-color: var(--gold-light);
             color: var(--gold-light);
+        }
+
+        /* ── About section row overflow guard ───────────── */
+        .container-xxl .row {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        /* ── Mobile padding fix ──────────────────────────── */
+        @media (max-width: 575px) {
+            .container-xxl.py-5 {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+
+            .page-header {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+
+            .page-header .container {
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.5rem !important;
+            }
         }
     </style>
 @endpush

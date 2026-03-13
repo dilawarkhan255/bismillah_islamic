@@ -289,7 +289,14 @@
             padding: 110px 0 90px;
             overflow: hidden;
             isolation: isolate;
-            background: var(--navy); /* fallback if image fails to load */
+            background: var(--navy);
+        }
+
+        @media (max-width: 767px) {
+            .page-hero { padding: 80px 0 60px; }
+        }
+        @media (max-width: 575px) {
+            .page-hero { padding: 60px 0 50px; }
         }
 
         /* ── BG IMAGE LAYER ──────────────────────────────────────── */
@@ -633,10 +640,15 @@
 
         .card-img-wrap img {
             width: 100%;
-            height: 220px;
+            height: clamp(160px, 22vw, 220px); /* ✅ responsive: chhota screen pe 160px, desktop pe 220px */
             object-fit: cover;
             display: block;
             transition: transform .5s ease;
+        }
+
+        /* ✅ Mobile: aur chhota */
+        @media (max-width: 575px) {
+            .card-img-wrap img { height: 200px; }
         }
         .course-card:hover .card-img-wrap img { transform: scale(1.08); }
 

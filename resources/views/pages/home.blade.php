@@ -24,7 +24,7 @@
 
                 <!-- Slide 1 -->
                 <div class="carousel-item active">
-                    <img class="w-100" src="{{ asset('img/slide-1.jpg') }}" alt="Image">
+                    <img class="w-100 carousel-img" src="{{ asset('img/slide-1.jpg') }}" alt="Image">
                     <div class="carousel-caption">
                         <div class="slide-content-wrap">
                             <div class="hero-badge animate__animated animate__fadeInDown">
@@ -46,7 +46,7 @@
 
                 <!-- Slide 2 -->
                 <div class="carousel-item">
-                    <img class="w-100" src="{{ asset('img/slide-2.jpg') }}" alt="Image">
+                    <img class="w-100 carousel-img" src="{{ asset('img/slide-2.jpg') }}" alt="Image">
                     <div class="carousel-caption">
                         <div class="slide-content-wrap">
                             <div class="hero-badge animate__animated animate__fadeInDown">
@@ -68,7 +68,7 @@
 
                 <!-- Slide 3 -->
                 <div class="carousel-item">
-                    <img class="w-100" src="{{ asset('img/slide-3.jpg') }}" alt="Image">
+                    <img class="w-100 carousel-img" src="{{ asset('img/slide-3.jpg') }}" alt="Image">
                     <div class="carousel-caption">
                         <div class="slide-content-wrap">
                             <div class="hero-badge animate__animated animate__fadeInDown">
@@ -82,7 +82,7 @@
                             </p>
                             <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
                                 <a href="{{ route('team') }}" class="slide-btn-gold">Meet Our Teachers</a>
-                                <a href="{{ ('enroll') }}" class="slide-btn-outline">Enroll Now</a>
+                                <a href="{{ route('free_trial') }}" class="slide-btn-outline">Enroll Now</a>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
     <!-- ===================== STATS ===================== -->
     <section class="stats-section">
         <div class="container">
-            <div class="row">
+            <div class="row g-0">
                 <div class="col-lg-3 col-md-6 col-6">
                     <div class="stat-item">
                         <i class="fa fa-certificate stat-icon"></i>
@@ -213,8 +213,7 @@
                         <div class="position-relative overflow-hidden rounded">
                             <img src="{{ asset('img/' . $course['img']) }}"
                                  alt="{{ $course['title'] }}"
-                                 class="img-fluid w-100"
-                                 style="height: 250px; object-fit: cover; display: block; transition: transform 0.4s ease;"
+                                 class="img-fluid w-100 course-img"
                                  onmouseover="this.style.transform='scale(1.05)'"
                                  onmouseout="this.style.transform='scale(1)'">
                             <div class="position-absolute bottom-0 start-0 end-0"
@@ -247,8 +246,7 @@
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                     <div class="position-relative">
                         <img src="{{ asset('img/trial.jpg') }}" alt="Free Trial Class"
-                             class="img-fluid w-100 rounded"
-                             style="height: 480px; object-fit: cover; object-position: center;">
+                             class="img-fluid w-100 rounded trial-img">
                         <div class="position-absolute"
                              style="top: 24px; left: -16px; background: var(--navy); border: 2px solid var(--gold); padding: 14px 20px; border-radius: 4px; box-shadow: 0 8px 32px rgba(13,27,42,0.25);">
                             <div style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 28px; font-weight: 700; line-height: 1;">3</div>
@@ -349,22 +347,14 @@
                     @endif
                     <div class="hiw-card">
                         <div class="hiw-wm">{{ $step['num'] }}</div>
-
-                        {{-- 1. Step label at the very top --}}
                         <div class="hiw-step-badge">STEP {{ $step['num'] }}</div>
-
-                        {{-- 2. Icon ring --}}
                         <div class="hiw-icon-ring">
                             <div class="hiw-icon-inner">
                                 <i class="fa {{ $step['icon'] }}"></i>
                             </div>
                         </div>
-
-                        {{-- 3. Title --}}
                         <div class="hiw-card-divider"></div>
                         <h6 class="hiw-card-title">{{ $step['title'] }}</h6>
-
-                        {{-- 4. Description block --}}
                         <p class="hiw-card-desc">{{ $step['desc'] }}</p>
                         @if($step['num'] === '04')
                         <div class="hiw-teams-badge">
@@ -403,7 +393,7 @@
             <div class="wow fadeInUp" data-wow-delay="0.2s">
                 <div class="position-relative overflow-hidden rounded">
                     <img src="{{ asset('img/teams.jpg') }}" alt="Bismillah Islamic Academy Team"
-                         class="w-100" style="height: 550px; object-fit: cover; object-position: center; display: block;">
+                         class="w-100 team-full-img">
                     <div class="position-absolute top-0 start-0 w-100 h-100"
                          style="background: linear-gradient(to top, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.1) 60%, transparent 100%);">
                     </div>
@@ -503,6 +493,16 @@
 @push('styles')
 <style>
 
+/* ══════════════════════════════════════════════════
+   GLOBAL OVERFLOW FIX — horizontal scroll band karo
+   ══════════════════════════════════════════════════ */
+.hero-carousel,
+.stats-section,
+.hiw-section,
+.container-xxl {
+    max-width: 100%;
+}
+
 /* ── GLOBAL CURSOR ───────────────────────────────── */
 a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 .carousel-control-prev, .carousel-control-next, .carousel-indicators button,
@@ -511,13 +511,43 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
     cursor: pointer !important;
 }
 
-/* =====================================================
-   HERO CAROUSEL — Responsive
-   ===================================================== */
-.carousel-item,
-.carousel-item img {
+/* ══════════════════════════════════════════════════
+   HERO CAROUSEL — Responsive height via aspect-ratio
+   ══════════════════════════════════════════════════ */
+
+/* Desktop default */
+.carousel-img {
+    width: 100%;
     height: 620px;
     object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+    .carousel-img { height: 500px; }
+}
+
+/* Large mobile */
+@media (max-width: 767px) {
+    .carousel-img { height: 420px; }
+    .carousel-caption { bottom: 20px; left: 8px; right: 8px; }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .carousel-img {
+        height: 320px;
+        /* Mobile pe center crop better lagti hai */
+        object-position: center 30%;
+    }
+    .carousel-caption { bottom: 12px; left: 4px; right: 4px; }
+}
+
+/* Very small (320px) */
+@media (max-width: 360px) {
+    .carousel-img { height: 260px; }
 }
 
 .slide-content-wrap {
@@ -538,11 +568,11 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
     border: 1px solid rgba(174,130,37,0.5);
 }
 
-/* Heading — clamp scales from 26px (mobile) to 70px (desktop) */
+/* Heading */
 .slide-title {
     font-family: 'Cinzel', serif;
     color: #fff;
-    font-size: clamp(26px, 5.5vw, 70px);
+    font-size: clamp(20px, 5.5vw, 70px);
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 16px;
@@ -551,7 +581,7 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 /* Subtitle */
 .slide-sub {
     font-family: 'Amiri', serif;
-    font-size: clamp(12px, 1.8vw, 19px);
+    font-size: clamp(11px, 1.8vw, 19px);
     color: rgba(255,255,255,0.65);
     margin-bottom: 28px;
     letter-spacing: 1px;
@@ -565,7 +595,6 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
     justify-content: center;
 }
 
-/* Gold button */
 .slide-btn-gold {
     display: inline-block;
     background: var(--gold);
@@ -585,7 +614,6 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 }
 .slide-btn-gold:hover { background: transparent; color: var(--gold); }
 
-/* Outline button */
 .slide-btn-outline {
     display: inline-block;
     background: transparent;
@@ -604,52 +632,53 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 }
 .slide-btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-/* ── Tablet ──────────────────────────────────────── */
+/* Tablet adjustments */
 @media (max-width: 767px) {
-    .carousel-item,
-    .carousel-item img { height: 480px; }
-
-    .carousel-caption { bottom: 28px; }
-
     .hero-badge {
         font-size: 10px;
         letter-spacing: 2px;
         padding: 5px 14px;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
-
-    .slide-sub { margin-bottom: 18px; }
-
+    .slide-sub { margin-bottom: 14px; }
     .slide-btn-gold,
     .slide-btn-outline {
         font-size: 9px;
         letter-spacing: 1.5px;
-        padding: 10px 20px;
+        padding: 9px 18px;
     }
 }
 
-/* ── Mobile ──────────────────────────────────────── */
+/* Mobile */
 @media (max-width: 480px) {
-    .carousel-item,
-    .carousel-item img { height: 400px; }
-
     .slide-btns {
         flex-direction: column;
         align-items: center;
         gap: 8px;
     }
-
     .slide-btn-gold,
     .slide-btn-outline {
         width: 100%;
-        max-width: 210px;
+        max-width: 200px;
         text-align: center;
-        padding: 10px 14px;
+        padding: 9px 14px;
     }
 }
 
-/* ── STATS ───────────────────────────────────────── */
-.stats-section { background: var(--navy); padding: 60px 0; }
+/* ══════════════════════════════════════════════════
+   STATS — Row negative margin fix
+   ══════════════════════════════════════════════════ */
+.stats-section {
+    background: var(--navy);
+    padding: 60px 0;
+}
+
+/* Override Bootstrap's row negative margin inside stats */
+.stats-section .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
 .stat-item {
     text-align: center;
     padding: 20px 10px;
@@ -666,10 +695,75 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 .stat-number { font-family: 'Cinzel', serif; font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: 10px; }
 .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); font-family: 'Cinzel', serif; }
 
+/* Mobile stats: smaller font */
+@media (max-width: 480px) {
+    .stat-number { font-size: 2rem; }
+    .stat-icon { font-size: 1.8rem; }
+    .stat-label { font-size: 10px; letter-spacing: 1px; }
+}
+
+/* ══════════════════════════════════════════════════
+   COURSE IMAGES — responsive height
+   ══════════════════════════════════════════════════ */
+.course-img {
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+@media (max-width: 575px) {
+    .course-img { height: 200px; }
+}
+
+/* ══════════════════════════════════════════════════
+   TRIAL IMAGE — responsive height
+   ══════════════════════════════════════════════════ */
+.trial-img {
+    height: 480px;
+    object-fit: cover;
+    object-position: center;
+}
+@media (max-width: 991px) {
+    .trial-img { height: 360px; }
+}
+@media (max-width: 575px) {
+    .trial-img { height: 260px; }
+}
+
+/* Trial badge — on mobile it was going off left edge */
+@media (max-width: 575px) {
+    .trial-img + div[style*="top: 24px"] {
+        left: 8px !important;
+        top: 12px !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════
+   TEAM FULL IMAGE — responsive
+   ══════════════════════════════════════════════════ */
+.team-full-img {
+    height: 550px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+@media (max-width: 767px) {
+    .team-full-img { height: 320px; }
+}
+@media (max-width: 480px) {
+    .team-full-img { height: 220px; }
+}
+
 /* =====================================================
    HOW IT WORKS
    ===================================================== */
-.hiw-section { position: relative; padding: 100px 0 90px; overflow: hidden; }
+.hiw-section {
+    position: relative;
+    padding: 100px 0 90px;
+    overflow: hidden;       /* ← ye horizontal scroll band karta hai */
+    width: 100%;
+    max-width: 100%;
+}
 .hiw-bg-image { position: absolute; inset: 0; z-index: 0; }
 .hiw-bg-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .hiw-bg-overlay {
@@ -682,23 +776,27 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 }
 .hiw-header { text-align: center; margin-bottom: 60px; }
 .hiw-eyebrow { font-family: 'Amiri', serif; color: var(--gold); font-size: 15px; letter-spacing: 4px; display: block; margin-bottom: 14px; opacity: 0.9; }
-.hiw-heading { font-family: 'Cinzel', serif; color: #fff; font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
+.hiw-heading { font-family: 'Cinzel', serif; color: #fff; font-size: clamp(24px, 3.5vw, 40px); font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
 .hiw-heading span { color: var(--gold); }
 .hiw-subtext { color: rgba(255,255,255,0.6); font-size: 15px; max-width: 560px; margin: 0 auto; line-height: 1.9; font-family: 'Amiri', serif; font-style: italic; }
 
 /* Steps row */
-.hiw-steps-row { display: flex; align-items: stretch; gap: 14px; position: relative; }
-.hiw-step-col { flex: 1; position: relative; display: flex; align-items: stretch; }
+.hiw-steps-row {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+    position: relative;
+    width: 100%;
+}
+.hiw-step-col { flex: 1; position: relative; display: flex; align-items: stretch; min-width: 0; }
 .hiw-arrow { position: absolute; top: 44px; right: -22px; width: 44px; height: 16px; z-index: 3; opacity: 0.55; }
 .hiw-arrow svg { width: 100%; height: 100%; }
 
-/* ── Card — TEXT BLOCK STYLE ──────────────────────── */
+/* Card */
 .hiw-card {
     position: relative;
     background: rgba(13,27,42,0.65);
-    /* sharp corners — block feel */
     border-radius: 0;
-    /* gold left accent bar */
     border: 1px solid rgba(174,130,37,0.28);
     border-left: 3px solid rgba(174,130,37,0.55);
     padding: 30px 16px 26px;
@@ -721,18 +819,15 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
     box-shadow: 0 24px 56px rgba(0,0,0,0.5), 0 0 0 1px rgba(174,130,37,0.2);
 }
 
-/* Watermark number */
 .hiw-wm {
     position: absolute; bottom: -12px; right: 4px;
     font-family: 'Cinzel', serif; font-size: 72px; font-weight: 700;
     color: rgba(174,130,37,0.07); line-height: 1;
     pointer-events: none; user-select: none; transition: color 0.38s;
-    overflow: hidden;   /* never bleeds outside card */
-    max-width: 100%;
+    overflow: hidden; max-width: 100%;
 }
 .hiw-card:hover .hiw-wm { color: rgba(174,130,37,0.14); }
 
-/* Icon ring — square */
 .hiw-icon-ring {
     width: 62px; height: 62px;
     border-radius: 0;
@@ -758,7 +853,6 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 .hiw-icon-inner i { color: #e8b84b; font-size: 17px; transition: color 0.38s; filter: drop-shadow(0 0 4px rgba(232,184,75,0.6)); }
 .hiw-card:hover .hiw-icon-inner i { color: var(--navy); filter: none; }
 
-/* Step badge — sits at very top of card as a label */
 .hiw-step-badge {
     font-family: 'Cinzel', serif;
     font-size: 9px;
@@ -779,7 +873,6 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
     border-bottom-color: rgba(174,130,37,0.4);
 }
 
-/* Divider */
 .hiw-card-divider {
     width: 32px; height: 2px;
     background: rgba(174,130,37,0.3);
@@ -789,7 +882,6 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 }
 .hiw-card:hover .hiw-card-divider { width: 56px; background: var(--gold); }
 
-/* Title — UPPERCASE TEXT BLOCK */
 .hiw-card-title {
     font-family: 'Cinzel', serif;
     color: #fff;
@@ -805,7 +897,6 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 }
 .hiw-card:hover .hiw-card-title { color: var(--gold); }
 
-/* Description — dark block paragraph */
 .hiw-card-desc {
     font-size: 11.5px;
     color: rgba(255,255,255,0.82);
@@ -815,7 +906,6 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
     flex: 1;
     transition: color 0.38s, background 0.38s;
     text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-    /* ── TEXT BLOCK styling ── */
     text-align: left;
     width: 100%;
     margin-top: 10px;
@@ -829,7 +919,6 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
     border-top-color: rgba(174,130,37,0.28);
 }
 
-/* Teams badge */
 .hiw-teams-badge {
     display: inline-flex; align-items: center; gap: 7px;
     margin-top: 12px; padding: 6px 12px;
@@ -842,7 +931,6 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 }
 .hiw-card:hover .hiw-teams-badge { border-color: var(--gold); color: var(--gold); background: rgba(174,130,37,0.1); }
 
-/* CTA */
 .hiw-cta { text-align: center; margin-top: 60px; }
 .hiw-cta-text { font-family: 'Amiri', serif; color: rgba(255,255,255,0.5); font-size: 15px; font-style: italic; margin-bottom: 20px; letter-spacing: 1px; }
 .hiw-cta-btn {
@@ -859,24 +947,27 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
 
 /* ── HIW Mobile ──────────────────────────────────── */
 @media (max-width: 991px) {
-    /* fix horizontal scroll — constrain section */
-    .hiw-section { overflow-x: hidden; }
+    .hiw-section {
+        overflow: hidden;
+        padding: 70px 0 60px;
+    }
 
     .hiw-steps-row {
         flex-direction: column;
         gap: 12px;
         width: 100%;
         max-width: 100%;
-        margin: 0 auto;
+        margin: 0;
+        box-sizing: border-box;
     }
     .hiw-step-col {
         flex: none;
         width: 100%;
         max-width: 100%;
+        box-sizing: border-box;
     }
     .hiw-arrow { display: none; }
 
-    /* Card — vertical stack, full width, no overflow */
     .hiw-card {
         flex-direction: column;
         align-items: flex-start;
@@ -886,50 +977,40 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
         width: 100%;
         box-sizing: border-box;
         overflow: hidden;
+        /* No hover transform on touch — prevents layout shift */
+        transition: background 0.3s, border-color 0.3s;
+    }
+    /* Disable translateY on touch devices — causes scroll jitter */
+    @media (hover: none) {
+        .hiw-card:hover { transform: none; }
     }
 
-    /* Icon ring — smaller but still visible */
     .hiw-icon-ring {
-        display: flex;             /* show it — not hidden */
-        width: 44px;
-        height: 44px;
+        display: flex;
+        width: 44px; height: 44px;
         border-radius: 0;
-        margin: 0 0 12px 0;       /* sits above badge */
+        margin: 0 0 12px 0;
         flex-shrink: 0;
     }
-    .hiw-icon-inner {
-        width: 32px;
-        height: 32px;
-    }
+    .hiw-icon-inner { width: 32px; height: 32px; }
     .hiw-icon-inner i { font-size: 13px; }
 
-    /* STEP BADGE — block, top */
     .hiw-step-badge {
         display: block;
         width: 100%;
         margin-bottom: 6px;
         font-size: 9px;
-        letter-spacing: 3px;
     }
-
-    /* Divider — short left-aligned */
     .hiw-card-divider {
         display: block;
         margin: 0 0 8px 0;
         width: 28px;
     }
-
-    /* TITLE — block, own line */
     .hiw-card-title {
         display: block;
         width: 100%;
         font-size: 12px;
-        letter-spacing: 1.5px;
-        margin-bottom: 0;
-        text-transform: uppercase;
     }
-
-    /* DESC — dark block paragraph below title */
     .hiw-card-desc {
         display: block;
         width: 100%;
@@ -937,22 +1018,18 @@ a, button, [role="button"], .btn, .nav-link, .dropdown-item,
         margin-top: 8px;
         padding: 10px 12px;
         font-size: 12px;
-        line-height: 1.85;
         text-align: left;
-        background: rgba(0,0,0,0.22);
-        border-top: 1px solid rgba(174,130,37,0.15);
     }
-
-    /* Watermark stays subtle */
     .hiw-wm { font-size: 46px; bottom: -6px; right: 4px; }
     .hiw-teams-badge { margin-top: 10px; align-self: flex-start; }
 }
 
 @media (max-width: 575px) {
-    .hiw-section { padding: 70px 0 60px; }
     .hiw-card { padding: 14px 12px 12px; }
-    /* extra safety — no element bleeds outside viewport */
-    .hiw-steps-row, .hiw-step-col, .hiw-card { max-width: 100% !important; }
+    .hiw-steps-row, .hiw-step-col, .hiw-card {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
 }
 
 </style>

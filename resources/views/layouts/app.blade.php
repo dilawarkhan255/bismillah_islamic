@@ -66,11 +66,48 @@
             box-sizing: border-box;
         }
 
+        html {
+            max-width: 100%;
+        }
+
         body {
             font-family: 'Lato', sans-serif;
             background-color: var(--white);
             color: var(--text-dark);
-            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        .row {
+            --bs-gutter-x: 1.5rem;
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        .row>* {
+            padding-right: calc(var(--bs-gutter-x) * 0.5) !important;
+            padding-left: calc(var(--bs-gutter-x) * 0.5) !important;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+
+            .container-xxl {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .container-xxl>.container {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
         }
 
         h1,
@@ -82,34 +119,101 @@
             font-family: 'Cinzel', serif;
         }
 
+        a,
+        button,
+        [role="button"],
+        label[for],
+        select,
+        summary,
+        input[type="submit"],
+        input[type="button"],
+        input[type="reset"],
+        input[type="checkbox"],
+        input[type="radio"],
+        .btn,
+        .nav-link,
+        .dropdown-item,
+        .dropdown-toggle,
+        .navbar-toggler,
+        .carousel-control-prev,
+        .carousel-control-next,
+        .carousel-indicators button,
+        .owl-prev,
+        .owl-next,
+        .owl-dot,
+        .back-to-top,
+        .hiw-card,
+        .hiw-cta-btn,
+        .bia-socials a,
+        .bstrip-socials a,
+        .bstrip-enroll,
+        .bia-enroll-btn,
+        .btn-enroll,
+        .team-social a,
+        .stat-item {
+            cursor: pointer !important;
+        }
+
         /* ===== SPINNER ===== */
         #spinner {
             position: fixed;
             inset: 0;
-            background: var(--white);
+            background: var(--navy);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
+            z-index: 99999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
         #spinner.hide {
             opacity: 0;
+            visibility: hidden;
             pointer-events: none;
         }
 
-        .spinner-ring {
-            width: 68px;
-            height: 68px;
-            border: 3px solid rgba(174, 130, 37, 0.15);
-            border-top-color: var(--gold);
+        .spinner-logo {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 14px;
+            border: 2px solid rgba(174, 130, 37, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            position: relative;
         }
 
-        @keyframes spin {
+        .spinner-logo-arabic {
+            font-family: 'Amiri', serif;
+            color: var(--gold);
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .spinner-ring {
+            position: absolute;
+            inset: -8px;
+            border: 3px solid transparent;
+            border-top-color: var(--gold);
+            border-right-color: rgba(174, 130, 37, 0.3);
+            border-radius: 50%;
+            animation: spinnerSpin 1s linear infinite;
+        }
+
+        .spinner-ring-outer {
+            position: absolute;
+            inset: -18px;
+            border: 1px solid rgba(174, 130, 37, 0.15);
+            border-top-color: rgba(174, 130, 37, 0.5);
+            border-radius: 50%;
+            animation: spinnerSpin 2s linear infinite reverse;
+        }
+
+        @keyframes spinnerSpin {
             to {
                 transform: rotate(360deg);
             }
@@ -117,10 +221,59 @@
 
         .spinner-text {
             font-family: 'Cinzel', serif;
-            color: var(--navy);
-            font-size: 13px;
-            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 11px;
+            letter-spacing: 5px;
             text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .spinner-sub {
+            font-family: 'Amiri', serif;
+            color: rgba(174, 130, 37, 0.7);
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .spinner-dots {
+            display: flex;
+            gap: 6px;
+            margin-top: 20px;
+        }
+
+        .spinner-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0.3;
+            animation: spinnerDot 1.2s ease-in-out infinite;
+        }
+
+        .spinner-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .spinner-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .spinner-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes spinnerDot {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
         /* ===== TOPBAR ===== */
@@ -372,6 +525,41 @@
                 height: 65px !important;
             }
         }
+
+        /* ===== SWEETALERT2 — ACADEMY THEME ===== */
+        .swal-popup {
+            border: 1px solid rgba(174, 130, 37, 0.4) !important;
+            border-top: 4px solid #AE8225 !important;
+            border-radius: 0 !important;
+            font-family: 'Lato', sans-serif !important;
+        }
+
+        .swal-title {
+            font-family: 'Cinzel', serif !important;
+            font-size: 17px !important;
+            color: #AE8225 !important;
+        }
+
+        .swal-btn {
+            font-family: 'Cinzel', serif !important;
+            font-size: 11px !important;
+            letter-spacing: 2px !important;
+            text-transform: uppercase !important;
+            padding: 12px 30px !important;
+            border-radius: 0 !important;
+        }
+
+        .swal-timer {
+            background: #AE8225 !important;
+        }
+
+        .swal2-icon.swal2-success .swal2-success-ring {
+            border-color: rgba(174, 130, 37, 0.3) !important;
+        }
+
+        .swal2-icon.swal2-success [class^='swal2-success-line'] {
+            background-color: #AE8225 !important;
+        }
     </style>
 
     @stack('styles')
@@ -381,9 +569,17 @@
 
     <!-- Spinner Start -->
     <div id="spinner">
-        <div style="text-align:center;">
+        <div class="spinner-logo">
+            <div class="spinner-ring-outer"></div>
             <div class="spinner-ring"></div>
-            <p class="spinner-text">Loading...</p>
+            <span class="spinner-logo-arabic">ب</span>
+        </div>
+        <p class="spinner-text">Bismillah Academy</p>
+        <p class="spinner-sub">بِسْمِ اللَّهِ</p>
+        <div class="spinner-dots">
+            <div class="spinner-dot"></div>
+            <div class="spinner-dot"></div>
+            <div class="spinner-dot"></div>
         </div>
     </div>
     <!-- Spinner End -->
@@ -413,13 +609,24 @@
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
 
+    {{-- ✅ SweetAlert2 CDN — sabse pehle load hoga taake Swal available ho --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         /* ===== Spinner ===== */
         window.addEventListener('load', function () {
+            var spinner = document.getElementById('spinner');
+            var minTime = 800;
+            var loadTime = performance.now();
+            var remaining = minTime - loadTime;
             setTimeout(function () {
-                document.getElementById('spinner').classList.add('hide');
-            }, 600);
+                spinner.classList.add('hide');
+            }, remaining > 0 ? remaining : 100);
         });
+        setTimeout(function () {
+            var spinner = document.getElementById('spinner');
+            if (spinner) spinner.classList.add('hide');
+        }, 4000);
 
         /* ===== Back to top ===== */
         window.addEventListener('scroll', function () {
@@ -433,22 +640,66 @@
         /* ===== WOW init ===== */
         new WOW().init();
 
-        /* ===== Counter Up Fix =====
-           - $(document).ready ensures jQuery + plugins are loaded
-           - setTimeout(800) gives WOW enough time to make elements visible
-             before counterUp attaches the Waypoint trigger
-        */
+        /* ===== Counter Up ===== */
         $(document).ready(function () {
             setTimeout(function () {
-                $('[data-toggle="counter-up"]').counterUp({
-                    delay: 10,
-                    time: 2000
-                });
+                $('[data-toggle="counter-up"]').counterUp({ delay: 10, time: 2000 });
             }, 800);
         });
     </script>
 
+    {{-- ✅ Page specific scripts --}}
     @stack('scripts')
+
+    {{-- ✅ Vite — Alpine.js (SweetAlert CDN pehle aa chuka hai) --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- ════════════════════════════════════════════
+    SWEETALERT2 FLASH MESSAGES
+    CDN upar load ho chuka hai — ye 100% kaam karega
+    ════════════════════════════════════════════ --}}
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'JazakAllah Khair! ✦',
+                text: "{{ session('success') }}",
+                confirmButtonText: 'Close',
+                confirmButtonColor: '#AE8225',
+                background: '#0D1B2A',
+                color: '#ffffff',
+                iconColor: '#AE8225',
+                timer: 5000,
+                timerProgressBar: true,
+                customClass: {
+                    popup: 'swal-popup',
+                    title: 'swal-title',
+                    confirmButton: 'swal-btn',
+                    timerProgressBar: 'swal-timer',
+                }
+            });
+        </script>
+    @endif
+
+    @if(session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Something Went Wrong!',
+                text: "{{ session('error') }}",
+                confirmButtonText: 'Try Again',
+                confirmButtonColor: '#AE8225',
+                background: '#0D1B2A',
+                color: '#ffffff',
+                iconColor: '#e74c3c',
+                customClass: {
+                    popup: 'swal-popup',
+                    title: 'swal-title',
+                    confirmButton: 'swal-btn',
+                }
+            });
+        </script>
+    @endif
 
     @include('partials.enroll_modal')
 
