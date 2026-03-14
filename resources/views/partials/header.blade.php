@@ -85,8 +85,7 @@ Row 2: Logo left | Nav CENTER
 
 
 {{-- ── ROW 2: Navbar ──────────────────────────────────────────── --}}
-<nav class="bia-navbar navbar navbar-expand-lg navbar-dark sticky-top wow fadeIn" data-wow-delay="0.1s">
-
+<nav class="bia-navbar navbar navbar-expand-lg navbar-dark sticky-top">
     <a href="{{ route('home') }}" class="bia-brand ms-3 ms-lg-4">
         <img src="{{ asset('img/logo.png') }}" alt="Bismillah Islamic Academy">
     </a>
@@ -383,6 +382,11 @@ Row 2: Logo left | Nav CENTER
         padding-top: 0 !important;
         padding-bottom: 0 !important;
     }
+
+    .bia-navbar .collapse,
+.bia-navbar .navbar-collapse {
+    visibility: visible !important;
+}
 
     .bia-brand {
         display: inline-flex;
