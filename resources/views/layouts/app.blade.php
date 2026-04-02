@@ -703,6 +703,21 @@
 
     @include('partials.enroll_modal')
 
+    {{-- ═══ ENROLL MODAL AUTO OPEN — Har page par ═══ --}}
+    <script>
+        (function () {
+            function showModal() {
+                var modalEl = document.getElementById('enrollModal');
+                if (!modalEl) return;
+                var modal = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
+                modal.show();
+            }
+
+            window.addEventListener('load', function () {
+                setTimeout(showModal, 3000);
+            });
+        })();
+    </script>
 </body>
 
 </html>
