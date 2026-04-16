@@ -560,6 +560,104 @@
         .swal2-icon.swal2-success [class^='swal2-success-line'] {
             background-color: #AE8225 !important;
         }
+
+        /* ===== DARK MODE VARIABLES ===== */
+        [data-theme="dark"] {
+            --white: #0D1B2A;
+            --off-white: #0F1D2A;
+            --light-bg: #122233;
+            --border: rgba(174, 130, 37, 0.25);
+            --border-soft: rgba(174, 130, 37, 0.1);
+            --text-dark: #F0EFE8;
+            --text-mid: #B0BEC8;
+            --text-muted: #7A8FA0;
+            --light: #122233;
+            --dark: #F0EFE8;
+        }
+
+        [data-theme="dark"] body {
+            background-color: #0D1B2A;
+            color: #F0EFE8;
+        }
+
+        [data-theme="dark"] .header-brand {
+            background: #0F1D2A;
+            border-bottom-color: rgba(174, 130, 37, 0.25);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="dark"] .header-contact-text h6 {
+            color: #F0EFE8;
+        }
+
+        /* Cards, sections, white backgrounds */
+        [data-theme="dark"] .bg-white,
+        [data-theme="dark"] .card,
+        [data-theme="dark"] section {
+            background-color: #122233 !important;
+            color: #F0EFE8;
+        }
+
+        [data-theme="dark"] p,
+        [data-theme="dark"] li,
+        [data-theme="dark"] span:not(.bia-topbar-tagline):not(.bia-info-label):not(.bia-info-val) {
+            color: #C8D6E0;
+        }
+
+        [data-theme="dark"] h1,
+        [data-theme="dark"] h2,
+        [data-theme="dark"] h3,
+        [data-theme="dark"] h4,
+        [data-theme="dark"] h5,
+        [data-theme="dark"] h6 {
+            color: #F0EFE8;
+        }
+
+        /* Footer */
+        [data-theme="dark"] footer,
+        [data-theme="dark"] .footer {
+            background: #060F18 !important;
+        }
+
+        /* Inputs & forms */
+        [data-theme="dark"] input,
+        [data-theme="dark"] textarea,
+        [data-theme="dark"] select {
+            background: #122233 !important;
+            color: #F0EFE8 !important;
+            border-color: rgba(174, 130, 37, 0.3) !important;
+        }
+
+        /* Dark mode toggle button */
+        .theme-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: transparent;
+            border: 1.5px solid rgba(174, 130, 37, 0.45);
+            color: #D4A843;
+            font-family: 'Cinzel', serif;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 7px 14px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all .3s;
+            white-space: nowrap;
+        }
+
+        .theme-toggle-btn:hover {
+            background: #AE8225;
+            color: #fff;
+            border-color: #AE8225;
+        }
+
+        .theme-toggle-icon {
+            font-size: 13px;
+            line-height: 1;
+        }
     </style>
 
     @stack('styles')
