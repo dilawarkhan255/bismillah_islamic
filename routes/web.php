@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FormController;
 
-Route::post('/enroll',  [FormController::class, 'enroll'])->name('enroll');
+Route::post('/enroll', [FormController::class, 'enroll'])->name('enroll');
 Route::post('/contact', [FormController::class, 'contact'])->name('contact');
 
 Route::get('/', function () {

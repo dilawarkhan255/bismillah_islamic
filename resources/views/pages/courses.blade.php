@@ -170,8 +170,9 @@
                         certified scholars using modern and traditional teaching methods.
                     </p>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <a href="{{ ('enroll') }}" class="btn-gold-solid">Enroll Now</a>
-                        <a href="{{ route('contact') }}" class="btn-navy-outline">Ask a Question</a>
+                        <button type="button" class="btn-gold-solid" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                            Enroll Now
+                        </button> <a href="{{ route('contact') }}" class="btn-navy-outline">Ask a Question</a>
                     </div>
                 </div>
 
@@ -242,10 +243,11 @@
                                         <div class="feature-item"><i class="fas fa-check"></i> {{ $feat }}</div>
                                     @endforeach
                                 </div>
-                                <a href="{{ ('enroll') }}" class="card-enroll-btn">
+                                <button type="button" class="card-enroll-btn" data-bs-toggle="modal"
+                                    data-bs-target="#enrollModal">
                                     <span>Enroll Now</span>
                                     <i class="fas fa-arrow-right"></i>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -270,8 +272,15 @@
                 </div>
                 <div class="col-lg-5">
                     <div style="display:flex; gap:14px; flex-wrap:wrap;" class="justify-content-lg-end">
-                        <a href="{{ ('enroll') }}" class="btn-gold-solid">Enroll Now</a>
+
+                        <!-- FIXED: Modal trigger button -->
+                        <button type="button" class="btn-gold-solid" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                            Enroll Now
+                        </button>
+
+                        <!-- Contact link -->
                         <a href="{{ route('contact') }}" class="btn-white-outline">Contact Us</a>
+
                     </div>
                 </div>
             </div>
