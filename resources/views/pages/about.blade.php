@@ -55,8 +55,8 @@
     <!-- About End -->
 
     <!-- CTA Banner Start -->
-    <div class="container-fluid cta-section py-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-3">
+    <div class="container-fluid cta-section py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-3 ">
             <div class="row align-items-center g-5">
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="display-6 text-white mb-3">
@@ -82,14 +82,6 @@
 
 @push('styles')
     <style>
-        /* ══════════════════════════════════════════════════
-               OVERFLOW FIX — about page horizontal scroll band
-               ══════════════════════════════════════════════════ */
-        .page-header,
-        .cta-section,
-        .container-fluid {
-            max-width: 100%;
-        }
 
         /* ── Page Header ─────────────────────────────────────────── */
         .page-header {
@@ -105,41 +97,7 @@
 
 
 
-        /* Page header text sizing — mobile safe */
-        .page-header .display-4 {
-            font-size: clamp(1.6rem, 6vw, 3rem);
-            line-height: 1.2;
-        }
 
-        .page-header .breadcrumb-item+.breadcrumb-item::before {
-            color: var(--gold);
-        }
-
-        /* Breadcrumb — prevent overflow on tiny screens */
-        .page-header .breadcrumb {
-            flex-wrap: wrap;
-            row-gap: 4px;
-        }
-
-        .page-header .breadcrumb-item {
-            font-size: clamp(12px, 3vw, 14px);
-        }
-
-        /* ── About section images ──────────────────────── */
-        .img-border img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* ── Skill bars ──────────────────────────────────────────── */
-        .progress-bar {
-            background: var(--gold) !important;
-        }
-
-        /* ── Testimonial top accent ──────────────────────────────── */
-        .testimonial-item {
-            border-top: 3px solid var(--gold);
-        }
 
         /* ── CTA Section ─────────────────────────────────────────── */
         .cta-section {
@@ -155,69 +113,6 @@
             border-bottom: 2px solid var(--gold);
         }
 
-        /* Desktop only — parallax */
-        @media (min-width: 992px) {
-            .cta-section {
-                background-attachment: fixed;
-                background-position: center 30%;
-            }
-        }
-
-        /* CTA heading — responsive size */
-        .cta-section .display-6 {
-            font-size: clamp(1.4rem, 4vw, 2rem);
-            line-height: 1.3;
-        }
-
-        /* CTA buttons — stack on mobile */
-        @media (max-width: 575px) {
-            .cta-section .col-lg-4 {
-                text-align: center !important;
-            }
-
-            .cta-section .btn {
-                display: block;
-                width: 100%;
-                max-width: 280px;
-                margin: 0 auto 12px !important;
-            }
-        }
-
-        .cta-section .btn-outline-light {
-            border-color: rgba(255, 255, 255, 0.35);
-            color: #fff;
-            transition: all 0.3s;
-        }
-
-        .cta-section .btn-outline-light:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--gold-light);
-            color: var(--gold-light);
-        }
-
-        /* ── About section row overflow guard ───────────── */
-        .container-xxl .row {
-            margin-right: 0 !important;
-            margin-left: 0 !important;
-        }
-
-        /* ── Mobile padding fix ──────────────────────────── */
-        @media (max-width: 575px) {
-            .container-xxl.py-5 {
-                padding-top: 2.5rem !important;
-                padding-bottom: 2.5rem !important;
-            }
-
-            .page-header {
-                padding-top: 2rem !important;
-                padding-bottom: 2rem !important;
-            }
-
-            .page-header .container {
-                padding-top: 1.5rem !important;
-                padding-bottom: 1.5rem !important;
-            }
-        }
     </style>
 @endpush
 

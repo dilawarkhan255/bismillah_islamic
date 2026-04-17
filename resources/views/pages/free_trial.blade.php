@@ -185,9 +185,9 @@
                             style="font-family:'Cinzel',serif;font-size:11px;color:var(--navy);font-weight:700;margin-bottom:6px;">
                             <i class="far fa-clock" style="color:var(--gold);margin-right:6px;"></i>Class Hours</div>
                         <div style="font-size:12px;color:#666;font-family:'Lato',sans-serif;line-height:1.7;">
-                            🇵🇰 Pakistan: <strong>6:00 AM – 11:00 PM</strong><br>
-                            🇬🇧 UK: <strong>1:00 AM – 6:00 PM</strong><br>
-                            <span style="font-size:11px;color:#999;">Mon – Sat (Sun off)</span>
+                            🇵🇰 Pakistan: <strong>6:00 PM – 3:00 AM</strong><br>
+                            🇬🇧 UK: <strong>2:00 PM – 11:00 PM</strong><br>
+                            <span style="font-size:11px;color:#999;">Monday – Saturday (Sunday Off)</span>
                         </div>
                     </div>
                 </div>

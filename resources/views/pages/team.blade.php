@@ -63,7 +63,7 @@
 
 
     <!-- CTA Banner Start -->
-    <div class="container-fluid cta-section py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid cta-section py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-3">
             <div class="row align-items-center g-5">
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
@@ -107,96 +107,7 @@
             justify-content: center;
         }
 
-        .page-header-inner {
-            width: 100%;
-            padding: 40px 15px;
-        }
 
-        @media (min-width: 992px) {
-            .page-header {
-                background-attachment: fixed;
-                background-position: center center;
-            }
-        }
-
-        .page-header .breadcrumb-item + .breadcrumb-item::before {
-            color: var(--gold);
-        }
-
-        /* ── Team Card ───────────────────────────────────── */
-        .bia-team-card {
-            background: #fff;
-            border: 1px solid rgba(174, 130, 37, 0.15);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: transform .35s, box-shadow .35s;
-        }
-
-        .bia-team-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 50px rgba(13, 27, 42, 0.12);
-            border-color: rgba(174, 130, 37, 0.35);
-        }
-
-        .bia-team-bar {
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
-            background-size: 200% 100%;
-            animation: barShimmer 3s linear infinite;
-        }
-
-        @keyframes barShimmer {
-            0%   { background-position: 0% 0%; }
-            100% { background-position: 200% 0%; }
-        }
-
-        .bia-team-img-wrap {
-            position: relative;
-            display: inline-block;
-            margin: 32px auto 0;
-        }
-
-        .bia-team-img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(174, 130, 37, 0.30);
-            position: relative;
-            z-index: 1;
-            transition: border-color .35s;
-        }
-
-        .bia-team-card:hover .bia-team-img {
-            border-color: var(--gold);
-        }
-
-        .bia-team-ring {
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            border: 1px dashed rgba(174, 130, 37, 0.25);
-            transition: border-color .35s, transform .6s;
-        }
-
-        .bia-team-card:hover .bia-team-ring {
-            border-color: rgba(174, 130, 37, 0.55);
-            transform: rotate(45deg);
-        }
-
-        .bia-team-body {
-            padding: 20px 24px 28px;
-        }
-
-        .bia-team-name {
-            font-family: 'Cinzel', serif;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 0;
-            letter-spacing: 0.5px;
-        }
 
         /* ── CTA ─────────────────────────────────────────── */
         .cta-section {
