@@ -78,7 +78,7 @@
                             <div class="cc-form-divider"></div>
                         </div>
 
-                        <form action="{{ route('contact') }}" method="POST" class="cc-form">
+                        <form action="{{ route('contact.submit') }}" method="POST" class="cc-form">
                             @csrf
                             <div class="row g-4">
                                 <div class="col-md-6">
