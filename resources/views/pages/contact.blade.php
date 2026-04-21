@@ -45,7 +45,11 @@
                             </div>
                             <h5 class="c-info-title">{{ $card['title'] }}</h5>
                             @foreach($card['lines'] as $line)
+                               @if(str_contains($line, '@'))
+                                <a href="mailto:{{ $line }}" class="c-info-line">{{ $line }}</a>
+                            @else
                                 <p class="c-info-line">{{ $line }}</p>
+                            @endif
                             @endforeach
                         </div>
                     </div>
@@ -175,14 +179,9 @@
                                 <span>Instagram</span>
                                 <i class="fas fa-chevron-right cc-social-arrow"></i>
                             </a>
-                            <a href="#" class="cc-social-row cc-social--yt">
-                                <div class="cc-social-icon"><i class="fab fa-youtube"></i></div>
-                                <span>YouTube Channel</span>
-                                <i class="fas fa-chevron-right cc-social-arrow"></i>
-                            </a>
-                            <a href="#" class="cc-social-row cc-social--wa" style="border:none;">
+                            <a href="https://wa.me/923141833216" target="_blank" class="cc-social-row cc-social--wa" style="border:none;">
                                 <div class="cc-social-icon"><i class="fab fa-whatsapp"></i></div>
-                                <span>WhatsApp Us</span>
+                                <span>WhatsApp</span>
                                 <i class="fas fa-chevron-right cc-social-arrow"></i>
                             </a>
                         </div>
@@ -196,9 +195,9 @@
     {{-- ═══════════════════════════════════════════════════
     GOOGLE MAP
     ═══════════════════════════════════════════════════ --}}
-    <div class="cc-map-label">
-        <i class="fas fa-map-marker-alt"></i> Find Us On The Map
-    </div>
+    <!--<div class="cc-map-label">-->
+    <!--    <i class="fas fa-map-marker-alt"></i> Find Us On The Map-->
+    <!--</div>-->
 
     <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3157.93719018323!2d72.94892000000002!3d33.6228671!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df97ec9c5db731%3A0x41632ff4b234dc47!2sAllied%20Bank!5e1!3m2!1sen!2s!4v1773176142786!5m2!1sen!2s"

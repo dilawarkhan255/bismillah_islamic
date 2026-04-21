@@ -171,7 +171,7 @@
                                 <a href="{{ route('free_trial') }}" class="bia-cta-primary {{ $plan['popular'] ? 'bia-cta-gold' : '' }}" style="{{ !$plan['popular'] ? 'border-color:' . $plan['accent'] . ';color:' . $plan['accent'] . ';' : '' }}">
                                     Start Free Trial <i class="fas fa-arrow-right" style="font-size:10px;margin-left:6px;"></i>
                                 </a>
-                                <a href="https://wa.me/923141833216?text=Assalamu+Alaikum,+I+am+interested+in+Plan+{{ $plan['letter'] }}" target="_blank" class="bia-cta-wa">
+                                <a href="https://wa.me/923141833216?text=Assalamu+Alaikum,+I+am+interested+in+free+trial+classes" target="_blank" class="bia-cta-wa">
                                     <i class="fab fa-whatsapp"></i> Ask on WhatsApp
                                 </a>
                             </div>

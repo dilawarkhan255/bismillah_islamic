@@ -58,13 +58,13 @@ Row 2: Logo left | Nav CENTER
 
             <div class="bia-vr"></div>
 
-            <div class="bia-info-chip">
+           <a href="mailto:bismillahquranacademy2@gmail.com" class="bia-info-chip" style="text-decoration:none;">
                 <div class="bia-info-icon"><i class="far fa-envelope"></i></div>
                 <div>
                     <span class="bia-info-label">Email Us</span>
                     <span class="bia-info-val">bismillahquranacademy2@gmail.com</span>
                 </div>
-            </div>
+            </a>
 
         </div>
 
