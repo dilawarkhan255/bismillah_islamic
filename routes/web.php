@@ -43,6 +43,10 @@ Route::get('/pricing', function () {
     return view('pages.pricing');
 })->name('pricing');
 
+Route::get('/privacy_policy', function () {
+    return view('pages.privacy_policy');
+})->name('privacy_policy');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

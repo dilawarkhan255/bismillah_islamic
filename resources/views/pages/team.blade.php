@@ -31,12 +31,12 @@
 
             @php
                 $teachers = [
-                    ['name' => 'Sheikh Abdullah',     'img' => 'team-1.jpg'],
-                    ['name' => 'Ustaz Muhammad Ali',  'img' => 'team-2.jpg'],
-                    ['name' => 'Maulana Ibrahim',     'img' => 'team-3.jpg'],
-                    ['name' => 'Ustaz Yusuf Ahmed',   'img' => 'team-1.jpg'],
-                    ['name' => 'Sheikh Bilal Hassan', 'img' => 'team-2.jpg'],
-                    ['name' => 'Ustaza Fatima Zahra', 'img' => 'team-3.jpg'],
+                    ['name' => 'Mufti Aftab Ahmed Abbasi',     'img' => 'team-1.jpg'],
+                    ['name' => 'Hafiz Kamran Qureshi',  'img' => 'team-2.jpg'],
+                    ['name' => 'Allama Noor Ur Rehman',     'img' => 'team-3.jpg'],
+                    ['name' => 'Ustaz Yusuf Ahmed',   'img' => 'team-4.jpg'],
+                    ['name' => 'Sheikh Bilal Hassan', 'img' => 'team-5.jpg'],
+                    ['name' => 'Maulana Asif', 'img' => 'team-6.jpg'],
                 ];
             @endphp
 

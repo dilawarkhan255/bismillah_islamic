@@ -35,7 +35,7 @@
                                 Learn The Holy <span style="color: var(--gold-light);">Quran</span>
                             </h1>
                             <p class="slide-sub animated fadeInUp">
-                                "Read in the name of your Lord who created" — Surah Al-Alaq
+                                "Read in the name of your Lord who created"
                             </p>
                             <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
                                 <a href="{{ route('free_trial') }}" class="slide-btn-gold">Free Trial</a>
@@ -79,7 +79,7 @@
                                 Certified <span style="color: var(--gold-light);">Scholars</span><br>& Hafiz-e-Quran
                             </h1>
                             <p class="slide-sub animated fadeInUp">
-                                Learn from qualified Islamic scholars with years of teaching experience
+                                Learn from qualified Islamic scholars
                             </p>
                             <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
                                 <a href="{{ route('team') }}" class="slide-btn-gold">Meet Our Teachers</a>
@@ -525,9 +525,9 @@
             <div class="row g-4">
                 @php
                     $team = [
-                        ['name' => 'Sheikh Abdullah', 'role' => 'Quran Teacher', 'img' => 'team-1.jpg', 'delay' => '0.1s'],
-                        ['name' => 'Kamran Qureshi', 'role' => 'Tajweed Specialist', 'img' => 'team-2.jpg', 'delay' => '0.3s'],
-                        ['name' => 'Noor Ur Rehman', 'role' => 'Islamic Studies Teacher', 'img' => 'team-3.jpg', 'delay' => '0.5s'],
+                        ['name' => 'Mufti Aftab Ahmed Abbasi', 'role' => 'Tajweed Specialist', 'img' => 'team-1.jpg', 'delay' => '0.1s'],
+                        ['name' => 'Hafiz Kamran Qureshi', 'role' => 'Quran Teacher', 'img' => 'team-2.jpg', 'delay' => '0.3s'],
+                        ['name' => 'Allama Noor Ur Rehman', 'role' => 'Islamic Studies Teacher', 'img' => 'team-3.jpg', 'delay' => '0.5s'],
                     ];
                 @endphp
                 @foreach($team as $member)
@@ -614,12 +614,100 @@
         </div>
     </div>
 
+     <!-- ===================== QUICK CONTACT ===================== -->
+    <div class="container-xxl py-5 wow fadeIn" data-wow-delay="0.1s" style="background:#fff;">
+    <div class="container">
+
+        <div class="text-center mx-auto mb-5" style="max-width:600px;">
+            <span style="font-size:11px;color:#AE8225;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;display:block;margin-bottom:12px;">✦ Get In Touch ✦</span>
+            <h2 style="font-family:'Cinzel',serif;color:var(--navy);font-size:30px;font-weight:400;margin:0 0 10px;">
+                Have a <span style="color:#D4A843;">Question?</span> We're Here
+            </h2>
+            <p style="font-size:14px;color:var(--text-mid);font-family:'Lato',sans-serif;margin:0;line-height:1.8;">
+                Fill the form and our team will respond within 24 hours, In sha Allah.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+    <form action="{{ route('contact.submit') }}" method="POST">
+        @csrf
+        <div class="row g-3">
+            <div class="col-md-6">
+                <input type="text" class="hc-input" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="col-md-6">
+                <input type="email" class="hc-input" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="col-12">
+                <input type="text" class="hc-input" name="subject" placeholder="Subject" required>
+            </div>
+            <div class="col-12">
+                <textarea class="hc-input" name="message" placeholder="Message" style="height:200px; resize:vertical;" required></textarea>
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" class="hc-submit-btn">
+                    Send Message &nbsp;<i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+        </div>
+
+    </div>
+</div>
+    <!-- ===================== QUICK CONTACT END ===================== -->
+
 @endsection
 
 
-{{-- ===================== PAGE STYLES ===================== --}}
 @push('styles')
-
+<style>
+.hc-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: #f5f5f5;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    color: #0d1b2a;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    box-shadow: none !important;
+    outline: none !important;
+    display: block;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.hc-input::placeholder {
+    color: rgba(0,0,0,0.38);
+}
+.hc-input:hover,
+.hc-input:focus,
+.hc-input:active,
+.hc-input:focus-visible,
+.form-control.hc-input:focus,
+.form-control.hc-input:hover {
+    border-color: #AE8225 !important;
+    box-shadow: 0 0 0 3px rgba(174, 130, 37, 0.15) !important;
+    outline: none !important;
+    background: #f5f5f5 !important;
+}
+.hc-submit-btn {
+    padding: 13px 50px;
+    background: #AE8225;
+    color: #fff;
+    border: 2px solid #AE8225;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s;
+    border-radius: 0;
+}
+.hc-submit-btn:hover { background: transparent; color: #AE8225; }
+</style>
 @endpush
 
 

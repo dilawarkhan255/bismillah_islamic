@@ -16,10 +16,10 @@ Row 2: Logo left | Nav CENTER
                 <span class="bia-topbar-dot"></span>
             </span>
             <div class="bia-socials">
-                <a href="" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1JPSiUdTG3/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <!--<a href="" aria-label="Twitter"><i class="fab fa-twitter"></i></a>-->
+                <!--<a href="" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>-->
+                <a href="https://www.instagram.com/bismillahislamicacademy?igsh=OWxiZHZwc2l5aXd6&utm_source=qr" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
 
@@ -32,29 +32,29 @@ Row 2: Logo left | Nav CENTER
                 <div class="bia-info-icon"><i class="far fa-clock"></i></div>
                 <div>
                     <span class="bia-info-label">Class Hours</span>
-                    <span class="bia-info-val">Mon–Sat &nbsp;6PM – 4AM</span>
+                    <span class="bia-info-val">Mon–Sat &nbsp;24/7 - Hours</span>
                 </div>
             </div>
 
             <div class="bia-vr"></div>
 
-            <div class="bia-info-chip">
-                <div class="bia-info-icon"><i class="fas fa-phone-alt"></i></div>
+             <a href="https://wa.me/923141833216" target="_blank" class="bia-info-chip" style="text-decoration:none;">
+                <div class="bia-info-icon"><i class="fab fa-whatsapp"></i></div>
                 <div>
-                    <span class="bia-info-label">🇵🇰 Pakistan</span>
-                    <span class="bia-info-val">+92 314 1833216</span>
+                    <span class="bia-info-label">🇺🇸 USA</span>
+                    <span class="bia-info-val">+1 (929) 597-8179</span>
                 </div>
-            </div>
+            </a>
 
             <div class="bia-vr"></div>
 
-            <div class="bia-info-chip">
-                <div class="bia-info-icon"><i class="fas fa-phone-alt"></i></div>
+            <a href="https://wa.me/447415770822" target="_blank" class="bia-info-chip" style="text-decoration:none;">
+                <div class="bia-info-icon"><i class="fab fa-whatsapp"></i></div>
                 <div>
                     <span class="bia-info-label">🇬🇧 United Kingdom</span>
                     <span class="bia-info-val">+44 7415 770822</span>
                 </div>
-            </div>
+            </a>
 
             <div class="bia-vr"></div>
 
@@ -123,362 +123,474 @@ Row 2: Logo left | Nav CENTER
 
 
 <style>
-    /* ============================================================
+ /* ============================================================
    PREMIUM TOPBAR
    ============================================================ */
-    .bia-topbar {
-        background: #18232F;
-        border-bottom: 1px solid rgba(174, 130, 37, 0.25);
-        position: relative;
-        cursor: default;
-    }
+.bia-topbar {
+    background: #18232F;
+    border-bottom: 1px solid rgba(174, 130, 37, 0.25);
+    position: relative;
+    cursor: default;
+}
 
-    .bia-topbar::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg,
-                transparent 0%,
-                var(--gold, #AE8225) 20%,
-                var(--gold-light, #D4A843) 50%,
-                var(--gold, #AE8225) 80%,
-                transparent 100%);
-    }
+.bia-topbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--gold, #AE8225) 20%,
+            var(--gold-light, #D4A843) 50%,
+            var(--gold, #AE8225) 80%,
+            transparent 100%);
+}
 
-    .bia-topbar-inner {
-        display: flex;
-        align-items: center;
-        padding: 0 40px;
-        min-height: 52px;
-        gap: 0;
-    }
+.bia-topbar-inner {
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    min-height: 52px;
+    gap: 0;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
 
-    /* ── Left ── */
-    .bia-topbar-left {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        flex-shrink: 0;
-        padding: 14px 24px 14px 0;
-        cursor: pointer;
-    }
+/* ── Left ── */
+.bia-topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+    padding: 14px 24px 14px 0;
+    cursor: pointer;
+}
 
-    .bia-topbar-tagline {
-        font-family: 'Amiri', serif;
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.48);
-        letter-spacing: 1.5px;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        cursor: pointer;
-    }
+.bia-topbar-tagline {
+    font-family: 'Amiri', serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.48);
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
 
-    .bia-topbar-dot {
-        display: inline-block;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: var(--gold, #AE8225);
-        opacity: 0.75;
-    }
+.bia-topbar-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold, #AE8225);
+    opacity: 0.75;
+}
 
-    .bia-socials {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
+.bia-socials {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
-    .bia-socials a {
-        width: 28px;
-        height: 28px;
-        border: 1px solid rgba(174, 130, 37, 0.28);
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.45);
-        font-size: 10px;
-        text-decoration: none;
-        transition: all .25s;
-        cursor: pointer;
-    }
+.bia-socials a {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(174, 130, 37, 0.28);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 10px;
+    text-decoration: none;
+    transition: all .25s;
+    cursor: pointer;
+}
 
-    .bia-socials a:hover {
-        background: var(--gold, #AE8225);
-        color: #fff;
-        border-color: var(--gold, #AE8225);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(174, 130, 37, 0.35);
-    }
+.bia-socials a:hover {
+    background: var(--gold, #AE8225);
+    color: #fff;
+    border-color: var(--gold, #AE8225);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(174, 130, 37, 0.35);
+}
 
-    /* ── Dividers ── */
-    .bia-topbar-line {
-        width: 1px;
-        align-self: stretch;
-        background: linear-gradient(to bottom,
-                transparent,
-                rgba(174, 130, 37, 0.35) 30%,
-                rgba(174, 130, 37, 0.35) 70%,
-                transparent);
-        flex-shrink: 0;
-        margin: 0 4px;
-    }
+/* ── Dividers ── */
+.bia-topbar-line {
+    width: 1px;
+    align-self: stretch;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(174, 130, 37, 0.35) 30%,
+            rgba(174, 130, 37, 0.35) 70%,
+            transparent);
+    flex-shrink: 0;
+    margin: 0 4px;
+}
 
-    /* ── Center chips ── */
-    .bia-topbar-center {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        justify-content: center;
-        gap: 0;
-        padding: 0 8px;
-    }
+/* ── Center chips ── */
+.bia-topbar-center {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+    gap: 0;
+    padding: 0 8px;
+    min-width: 0;
+}
 
-    .bia-vr {
-        width: 1px;
-        height: 28px;
-        background: rgba(174, 130, 37, 0.15);
-        flex-shrink: 0;
-        margin: 0 16px;
-    }
+.bia-vr {
+    width: 1px;
+    height: 28px;
+    background: rgba(174, 130, 37, 0.15);
+    flex-shrink: 0;
+    margin: 0 16px;
+}
 
-    .bia-info-chip {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 0;
-        transition: all .25s;
-        cursor: pointer;
-    }
+.bia-info-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    transition: all .25s;
+    cursor: pointer;
+    min-width: 0;
+}
 
-    .bia-info-chip:hover .bia-info-icon {
-        background: rgba(174, 130, 37, 0.18);
-        border-color: var(--gold, #AE8225);
-    }
+.bia-info-chip:hover .bia-info-icon {
+    background: rgba(174, 130, 37, 0.18);
+    border-color: var(--gold, #AE8225);
+}
 
-    .bia-info-chip:hover .bia-info-val {
-        color: var(--gold-light, #D4A843);
-    }
+.bia-info-chip:hover .bia-info-val {
+    color: var(--gold-light, #D4A843);
+}
 
-    .bia-info-icon {
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        border: 1px solid rgba(174, 130, 37, 0.25);
-        background: rgba(174, 130, 37, 0.08);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        transition: all .25s;
-    }
+.bia-info-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(174, 130, 37, 0.25);
+    background: rgba(174, 130, 37, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all .25s;
+}
 
-    .bia-info-icon i {
-        color: var(--gold, #AE8225);
-        font-size: 11px;
-    }
+.bia-info-icon i {
+    color: var(--gold, #AE8225);
+    font-size: 11px;
+}
 
+.bia-info-chip > div {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    min-width: 0;
+}
 
-    .bia-info-chip>div {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.25;
-    }
+.bia-info-label {
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.32);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+}
 
-    .bia-info-label {
-        font-size: 9px;
-        color: rgba(255, 255, 255, 0.32);
-        text-transform: uppercase;
-        letter-spacing: 1.2px;
-        font-family: 'Lato', sans-serif;
-        cursor: pointer;
-    }
+.bia-info-val {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color .25s;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+}
 
-    .bia-info-val {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.88);
-        font-weight: 600;
-        white-space: nowrap;
-        transition: color .25s;
-        font-family: 'Lato', sans-serif;
-        cursor: pointer;
-    }
+/* Email chip val truncate */
+a.bia-info-chip .bia-info-val {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-    /* ── Right: Enroll ── */
-    .bia-topbar-right {
-        flex-shrink: 0;
-        padding: 10px 0 10px 24px;
-    }
+/* ── Right: Enroll ── */
+.bia-topbar-right {
+    flex-shrink: 0;
+    padding: 10px 0 10px 24px;
+}
 
-    .bia-enroll-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: transparent;
-        color: var(--gold-light, #D4A843);
-        font-family: 'Cinzel', serif;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        padding: 9px 20px;
-        border: 1.5px solid rgba(174, 130, 37, 0.55);
-        border-radius: 2px;
-        cursor: pointer;
-        white-space: nowrap;
-        transition: all .3s;
-        position: relative;
-        overflow: hidden;
-    }
+.bia-enroll-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--gold-light, #D4A843);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 9px 20px;
+    border: 1.5px solid rgba(174, 130, 37, 0.55);
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+}
 
-    .bia-enroll-btn::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: rgba(174, 130, 37, 0.07);
-    }
+.bia-enroll-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(174, 130, 37, 0.07);
+}
 
-    .bia-enroll-btn:hover {
-        background: var(--gold, #AE8225);
-        color: #fff;
-        border-color: var(--gold, #AE8225);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(174, 130, 37, 0.35);
-    }
+.bia-enroll-btn:hover {
+    background: var(--gold, #AE8225);
+    color: #fff;
+    border-color: var(--gold, #AE8225);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(174, 130, 37, 0.35);
+}
 
-    .bia-enroll-icon {
-        width: 22px;
-        height: 22px;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        cursor: pointer;
-    }
+.bia-enroll-icon {
+    width: 22px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+}
 
-    .bia-arrow {
-        font-size: 9px;
-        opacity: 0.7;
-        transition: transform .3s;
-    }
+.bia-arrow {
+    font-size: 9px;
+    opacity: 0.7;
+    transition: transform .3s;
+}
 
-    .bia-enroll-btn:hover .bia-arrow {
-        transform: translateX(3px);
-    }
+.bia-enroll-btn:hover .bia-arrow {
+    transform: translateX(3px);
+}
 
-    /* ============================================================
+/* ============================================================
    NAVBAR
    ============================================================ */
-    .bia-navbar {
-        background: #0F1D2A !important;
-        border-bottom: 2px solid var(--gold, #AE8225);
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
+.bia-navbar {
+    background: #ffffff !important;
+    border-bottom: 2px solid var(--gold, #AE8225);
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
 
-    .bia-navbar .collapse,
+.bia-navbar .collapse,
 .bia-navbar .navbar-collapse {
     visibility: visible !important;
 }
 
-    .bia-brand {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        flex-shrink: 0;
-        padding: 6px 0;
-        cursor: pointer;
+.bia-brand {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+.bia-brand img {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.bia-navbar .navbar-nav .nav-link {
+    font-family: 'Cinzel', serif !important;
+    font-size: 10.5px !important;
+    font-weight: 600 !important;
+    color: #0F1D2A !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 22px 16px !important;
+    transition: all .3s;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.bia-navbar .navbar-nav .nav-link:hover,
+.bia-navbar .navbar-nav .nav-link.active {
+    color: #0F1D2A !important;
+    border-bottom-color: var(--gold, #AE8225);
+    background: rgba(174, 130, 37, 0.07);
+}
+
+.bia-navbar .dropdown-menu {
+    background: #ffffff !important;
+    border: 1px solid rgba(174, 130, 37, 0.28) !important;
+    border-radius: 0 0 6px 6px !important;
+    margin-top: 0;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+.bia-navbar .dropdown-item {
+    font-family: 'Lato', sans-serif;
+    color: #0F1D2A;
+    font-size: 13px;
+    padding: 10px 22px;
+    transition: all .25s;
+    cursor: pointer;
+}
+
+.bia-navbar .dropdown-item:hover,
+.bia-navbar .dropdown-item.active {
+    background: rgba(174, 130, 37, 0.10) !important;
+    color: var(--gold, #AE8225) !important;
+    padding-left: 28px;
+}
+
+/* Toggler icon dark banana white bg pe */
+.bia-navbar .navbar-toggler-icon {
+    filter: invert(1) brightness(0);
+}
+
+/* ============================================================
+   991px - 1400px FIX
+   ============================================================ */
+@media (min-width: 992px) and (max-width: 1400px) {
+
+    .bia-topbar-inner {
+        padding: 0 16px;
     }
 
+    .bia-topbar-tagline {
+        display: none !important;
+    }
+
+    .bia-topbar-left {
+        padding: 8px 10px 8px 0;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    .bia-topbar-center {
+        flex: 1;
+        padding: 0 2px;
+        min-width: 0;
+    }
+
+    .bia-vr {
+        margin: 0 8px;
+        flex-shrink: 0;
+    }
+
+    .bia-info-chip {
+        gap: 6px;
+        flex-shrink: 1;
+        min-width: 0;
+    }
+
+    .bia-info-icon {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+    }
+
+    .bia-info-label {
+        font-size: 8px;
+    }
+
+    .bia-info-val {
+        font-size: 11px;
+    }
+
+    a.bia-info-chip .bia-info-val {
+        max-width: 130px;
+    }
+
+    .bia-topbar-right {
+        flex-shrink: 0 !important;
+        padding: 8px 0 8px 10px;
+        display: flex !important;
+        visibility: visible !important;
+    }
+
+    .bia-enroll-btn {
+        padding: 7px 12px;
+        font-size: 9px;
+        letter-spacing: 1px;
+        gap: 5px;
+        white-space: nowrap;
+    }
+
+    .bia-enroll-icon {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+    }
+
+    .bia-arrow {
+        display: none !important;
+    }
+
+    .bia-topbar-line {
+        flex-shrink: 0;
+    }
+}
+
+/* ============================================================
+   MOBILE (max 991px)
+   ============================================================ */
+@media (max-width: 991px) {
     .bia-brand img {
-        height: 62px;
-        width: auto;
-        object-fit: contain;
-        display: block;
+        height: 50px;
+    }
+
+    .bia-navbar .navbar-collapse {
+        background: #ffffff;
+        padding: 8px 0 16px;
+        border-top: 1px solid rgba(174, 130, 37, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
 
     .bia-navbar .navbar-nav .nav-link {
-        font-family: 'Cinzel', serif !important;
-        font-size: 10.5px !important;
-        font-weight: 600 !important;
-        color: rgba(255, 255, 255, 0.80) !important;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        padding: 22px 16px !important;
-        transition: all .3s;
-        border-bottom: 3px solid transparent;
-        white-space: nowrap;
-        cursor: pointer;
+        padding: 13px 22px !important;
+        border-bottom: 1px solid rgba(174, 130, 37, 0.07) !important;
+        color: #0F1D2A !important;
     }
 
     .bia-navbar .navbar-nav .nav-link:hover,
     .bia-navbar .navbar-nav .nav-link.active {
-        color: var(--gold-light, #D4A843) !important;
-        border-bottom-color: var(--gold, #AE8225);
+        padding-left: 30px !important;
+        background: rgba(174, 130, 37, 0.07);
+        color: #0F1D2A !important;
+        border-bottom-color: rgba(174, 130, 37, 0.07) !important;
     }
 
     .bia-navbar .dropdown-menu {
-        background: #0F1D2A !important;
-        border: 1px solid rgba(174, 130, 37, 0.28) !important;
-        border-radius: 0 0 6px 6px !important;
-        margin-top: 0;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+        background: rgba(174, 130, 37, 0.04) !important;
+        border: none !important;
+        border-left: 2px solid var(--gold, #AE8225) !important;
+        margin-left: 22px;
+        box-shadow: none !important;
+        border-radius: 0 !important;
     }
 
     .bia-navbar .dropdown-item {
-        font-family: 'Lato', sans-serif;
-        color: rgba(255, 255, 255, 0.65);
-        font-size: 13px;
-        padding: 10px 22px;
-        transition: all .25s;
-        cursor: pointer;
+        color: #0F1D2A;
     }
-
-    .bia-navbar .dropdown-item:hover,
-    .bia-navbar .dropdown-item.active {
-        background: rgba(174, 130, 37, 0.12) !important;
-        color: var(--gold-light, #D4A843) !important;
-        padding-left: 28px;
-    }
-
-    /* Mobile */
-    @media (max-width: 991px) {
-        .bia-brand img {
-            height: 50px;
-        }
-
-        .bia-navbar .navbar-collapse {
-            background: #0F1D2A;
-            padding: 8px 0 16px;
-            border-top: 1px solid rgba(174, 130, 37, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .bia-navbar .navbar-nav .nav-link {
-            padding: 13px 22px !important;
-            border-bottom: 1px solid rgba(174, 130, 37, 0.07) !important;
-        }
-
-        .bia-navbar .navbar-nav .nav-link:hover,
-        .bia-navbar .navbar-nav .nav-link.active {
-            padding-left: 30px !important;
-            background: rgba(174, 130, 37, 0.07);
-        }
-
-        .bia-navbar .dropdown-menu {
-            background: rgba(174, 130, 37, 0.04) !important;
-            border: none !important;
-            border-left: 2px solid var(--gold, #AE8225) !important;
-            margin-left: 22px;
-            box-shadow: none !important;
-            border-radius: 0 !important;
-        }
-    }
+}
 </style>

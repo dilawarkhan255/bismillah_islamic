@@ -262,25 +262,16 @@
         <div class="cta-pattern"></div>
         <div class="cta-glow"></div>
         <div class="container" style="position:relative; z-index:2;">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-7">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
                     <div class="cta-arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-                    <h2 class="cta-title">Ready To Start Your<br><span style="color:var(--gold-light);">Quranic
-                            Journey?</span></h2>
-                    <p class="cta-desc">Join hundreds of students already learning at Bismillah Islamic Academy. Enroll
-                        today and take the first step toward Quranic excellence.</p>
-                </div>
-                <div class="col-lg-5">
-                    <div style="display:flex; gap:14px; flex-wrap:wrap;" class="justify-content-lg-end">
-
-                        <!-- FIXED: Modal trigger button -->
+                    <h2 class="cta-title">Ready To Start Your<br><span style="color:var(--gold-light);">Quranic Journey?</span></h2>
+                    <p class="cta-desc">Join hundreds of students already learning at Bismillah Islamic Academy. Enroll today and take the first step toward Quranic excellence.</p>
+                    <div style="display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:28px;">
                         <button type="button" class="btn-gold-solid" data-bs-toggle="modal" data-bs-target="#enrollModal">
                             Enroll Now
                         </button>
-
-                        <!-- Contact link -->
                         <a href="{{ route('contact') }}" class="btn-white-outline">Contact Us</a>
-
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ class FormController extends Controller
         ]);
 
         try {
-            Mail::to('dilawarscrumad@gmail.com')
+            Mail::to(config('services.email.admin_email'))
                 ->send(new EnrollmentMail($validated));
 
             return back()->with('success', 'Enrollment request submitted! We will contact you soon, In sha Allah.');
@@ -47,7 +47,7 @@ class FormController extends Controller
         ]);
 
         try {
-            Mail::to('dilawarscrumad@gmail.com')
+            Mail::to(config('services.email.admin_email'))
                 ->send(new ContactMail($validated));
 
             return back()->with('success', 'Message received! We will respond within 24 hours, In sha Allah.');

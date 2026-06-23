@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="cc-field cc-field--select">
-                                        <label>Inquiry About <span>*</span></label>
+                                        <label>Select Course <span>*</span></label>
                                         <select name="inquiry" required>
                                             <option value="" disabled selected>Select a course…</option>
                                             <option>Norani Qaida</option>
@@ -169,12 +169,12 @@
                     <div class="cc-sidebar-box cc-sidebar-box--dark" style="margin-bottom:24px;">
                         <div class="cc-sb-header"><i class="fas fa-share-alt"></i><span>Connect With Us</span></div>
                         <div class="cc-sb-body" style="padding:12px 22px;">
-                            <a href="#" class="cc-social-row cc-social--fb">
+                            <a href="https://www.facebook.com/share/1JPSiUdTG3/?mibextid=wwXIfr"  target="_blank" class="cc-social-row cc-social--fb">
                                 <div class="cc-social-icon"><i class="fab fa-facebook-f"></i></div>
                                 <span>Facebook Page</span>
                                 <i class="fas fa-chevron-right cc-social-arrow"></i>
                             </a>
-                            <a href="#" class="cc-social-row cc-social--ig">
+                            <a href="https://www.instagram.com/bismillahislamicacademy?igsh=OWxiZHZwc2l5aXd6&utm_source=qr"  target="_blank" class="cc-social-row cc-social--ig">
                                 <div class="cc-social-icon"><i class="fab fa-instagram"></i></div>
                                 <span>Instagram</span>
                                 <i class="fas fa-chevron-right cc-social-arrow"></i>

@@ -14,35 +14,26 @@
                     <i class="fa fa-map-marker-alt me-3" style="color: var(--gold);"></i>JWFX+4HV, Jhangi Sayedan,
                     Islamabad, Pakistan
                 </p>
-                <p class="mb-2" style="font-size: 14px; color: rgba(255,255,255,0.5);">
-                    <i class="fas fa-phone-alt me-3" style="color: var(--gold);"></i>+92 314 1833216
-                </p>
-                <p class="mb-2" style="font-size: 14px; color: rgba(255,255,255,0.5);">
-                    <i class="fas fa-phone-alt me-3" style="color: var(--gold);"></i>+44 7415 770822
-                </p>
-                <p class="mb-2" style="font-size: 14px; color: rgba(255,255,255,0.5);">
+                <a href="https://wa.me/923141833216" target="_blank" class="mb-2 d-block"
+                    style="font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none;">
+                    <i class="fab fa-whatsapp me-3" style="color: var(--gold);"></i>+92 314 1833216
+                </a>
+                <a href="https://wa.me/447415770822" target="_blank" class="mb-2 d-block"
+                    style="font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none;">
+                    <i class="fab fa-whatsapp me-3" style="color: var(--gold);"></i>+44 7415 770822
+                </a>
+                <a href="mailto:bismillahquranacademy2@gmail.com" class="mb-2 d-block"
+                    style="font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none;">
                     <i class="fa fa-envelope me-3" style="color: var(--gold);"></i>bismillahquranacademy2@gmail.com
-                </p>
+                </a>
                 <div class="d-flex pt-2" style="gap: 9px;">
-                    <a href=""
+                    <a href="https://www.facebook.com/share/1JPSiUdTG3/?mibextid=wwXIfr" target="_blank"
                         style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
                         onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
                         onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href=""
-                        style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
-                        onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
-                        onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href=""
-                        style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
-                        onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
-                        onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href=""
+                    <a href="https://www.instagram.com/bismillahislamicacademy?igsh=OWxiZHZwc2l5aXd6&utm_source=qr" target="_blank"
                         style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
                         onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
                         onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
@@ -82,11 +73,11 @@
                         onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
                         <span style="color: var(--gold);">› </span>Pricing
                     </a>
-                    <a href="#"
+                      <a href="{{ route('privacy_policy') }}"
                         style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
                         onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
                         onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
-                        <span style="color: var(--gold);">› </span>Terms & Condition
+                        <span style="color: var(--gold);">› </span>Privacy Policy
                     </a>
                 </div>
             </div>
@@ -117,18 +108,9 @@
                 <p style="font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 18px;">
                     Subscribe to receive updates on new courses and Islamic events.
                 </p>
-                <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <input type="text" placeholder="Your email"
-                        style="background: rgba(255,255,255,0.06); border: 1px solid rgba(174,130,37,0.3); color: rgba(255,255,255,0.8); padding: 12px 110px 12px 16px; width: 100%; font-size: 13px; outline: none; border-radius: 0; font-family: 'Lato', sans-serif;"
-                        onfocus="this.style.borderColor='var(--gold)';"
-                        onblur="this.style.borderColor='rgba(174,130,37,0.3)';">
-                    <button type="button"
-                        style="position: absolute; right: 0; top: 0; bottom: 0; background: var(--gold); color: var(--white); border: none; padding: 0 18px; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: background 0.3s; text-transform: uppercase;"
-                        onmouseover="this.style.background='var(--gold-light)';"
-                        onmouseout="this.style.background='var(--gold)';">
-                        Sign Up
-                    </button>
-                </div>
+                  <button class="bia-enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                    <span>Enroll Now</span>
+                </button>
 
             </div>
 
@@ -144,11 +126,6 @@
                         &copy; <a href="{{ route('home') }}"
                             style="color: var(--gold); text-decoration: none;">Bismillah Islamic Academy</a>, All Rights
                         Reserved 2026.
-                    </span>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <span style="font-size: 12px; color: rgba(255,255,255,0.3);">
-                        Designed By <a href="#" style="color: var(--gold); text-decoration: none;">DK Designs</a>
                     </span>
                 </div>
             </div>

@@ -430,14 +430,19 @@ body {
 
 .card-img-wrap img {
     width: 100%;
-    height: clamp(160px, 22vw, 220px);
-    /* ✅ responsive: chhota screen pe 160px, desktop pe 220px */
+    height: 230px;
     object-fit: cover;
+    object-position: center top;
     display: block;
     transition: transform .5s ease;
 }
 
-/* ✅ Mobile: aur chhota */
+@media (max-width: 991px) {
+    .card-img-wrap img {
+        height: 210px;
+    }
+}
+
 @media (max-width: 575px) {
     .card-img-wrap img {
         height: 200px;
@@ -665,7 +670,9 @@ body {
 .cta-desc {
     color: rgba(255, 255, 255, .55);
     font-size: 15px;
-    max-width: 500px;
+    max-width: 600px;
     line-height: 1.85;
     margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
 }

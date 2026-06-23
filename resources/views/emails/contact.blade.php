@@ -25,7 +25,7 @@
         <div class="row"><span class="label">Name</span><span class="value">{{ $data['name'] }}</span></div>
         <div class="row"><span class="label">Email</span><span class="value">{{ $data['email'] }}</span></div>
         <div class="row"><span class="label">Phone</span><span class="value">{{ $data['phone'] ?? 'N/A' }}</span></div>
-        <div class="row"><span class="label">Inquiry About</span><span class="value">{{ $data['inquiry'] }}</span></div>
+       <div class="row"><span class="label">Select Course</span><span class="value">{{ $data['inquiry'] ?? 'N/A' }}</span></div>
         <div class="msg-box">{{ $data['message'] }}</div>
     </div>
     <div class="footer">Reply directly to {{ $data['email'] }} to respond to this inquiry.</div>
