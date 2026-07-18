@@ -29,30 +29,24 @@
                 <p style="color:var(--text-mid);">Our teachers are certified scholars and experienced educators committed to delivering authentic Islamic education with care and excellence.</p>
             </div>
 
-            @php
-                $teachers = [
-                    ['name' => 'Mufti Aftab Ahmed Abbasi',     'img' => 'team-1.jpg'],
-                    ['name' => 'Hafiz Kamran Qureshi',  'img' => 'team-2.jpg'],
-                    ['name' => 'Allama Noor Ur Rehman',     'img' => 'team-3.jpg'],
-                    ['name' => 'Ustaz Yusuf Ahmed',   'img' => 'team-4.jpg'],
-                    ['name' => 'Sheikh Bilal Hassan', 'img' => 'team-5.jpg'],
-                    ['name' => 'Maulana Asif', 'img' => 'team-6.jpg'],
-                ];
-            @endphp
-
             <div class="row g-4">
                 @foreach($teachers as $i => $teacher)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $i * 0.1 }}s">
-                        <div class="bia-team-card">
-                            <div class="bia-team-bar"></div>
-                            <div class="bia-team-img-wrap">
-                                <img src="{{ asset('img/' . $teacher['img']) }}" alt="{{ $teacher['name'] }}" class="bia-team-img">
-                                <div class="bia-team-ring"></div>
+                        <a href="{{ route('teacher.profile', $teacher) }}" class="text-decoration-none">
+                            <div class="bia-team-card">
+                                <div class="bia-team-bar"></div>
+                                <div class="bia-team-img-wrap">
+                                    <img src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->name }}" class="bia-team-img">
+                                    <div class="bia-team-ring"></div>
+                                </div>
+                                <div class="bia-team-body">
+                                    <h5 class="bia-team-name">{{ $teacher->name }}</h5>
+                                    @if($teacher->role)
+                                        <p class="text-muted mb-0">{{ $teacher->role }}</p>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="bia-team-body">
-                                <h5 class="bia-team-name">{{ $teacher['name'] }}</h5>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -93,27 +87,25 @@
         .page-header {
             background-image:
                 linear-gradient(rgba(13, 27, 42, 0.82), rgba(13, 27, 42, 0.82)),
-                url("{{ asset("img/feature.jpg") }}");
+                url("{{ setting('img_home_feature') ? asset("storage/" . setting('img_home_feature')) : asset("img/feature.jpg") }}");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center 40% !important;
             background-attachment: scroll !important;
             border-bottom: 3px solid var(--gold);
 
-            /* ✅ flex — text bilkul center */
+            /* flex */
             min-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-
-
         /* ── CTA ─────────────────────────────────────────── */
         .cta-section {
             background-image:
                 linear-gradient(rgba(13, 27, 42, 0.90), rgba(13, 27, 42, 0.90)),
-                url("{{ asset("img/feature.jpg") }}");
+                url("{{ setting('img_home_feature') ? asset("storage/" . setting('img_home_feature')) : asset("img/feature.jpg") }}");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;

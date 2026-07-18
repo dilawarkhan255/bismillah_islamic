@@ -106,16 +106,12 @@
                                     <div class="cc-field cc-field--select">
                                         <label>Select Course <span>*</span></label>
                                         <select name="inquiry" required>
-                                            <option value="" disabled selected>Select a course…</option>
-                                            <option>Norani Qaida</option>
-                                            <option>Quran Recitation / Nazra</option>
-                                            <option>Tajweed ul Quran</option>
-                                            <option>Hifz ul Quran</option>
-                                            <option>Islamic Studies</option>
-                                            <option>Arabic Language</option>
-                                            <option>Hadith &amp; Seerah</option>
-                                            <option>General Inquiry</option>
-                                        </select>
+                                             <option value="" disabled selected>Select a course…</option>
+                                             @foreach($courses as $course)
+                                                 <option>{{ $course }}</option>
+                                             @endforeach
+                                             <option>General Inquiry</option>
+                                         </select>
                                         <i class="fas fa-chevron-down cc-select-arrow"></i>
                                         <div class="cc-field-line"></div>
                                     </div>

@@ -242,16 +242,11 @@
                                 <div class="col-md-6">
                                     <label class="ft-label">Preferred Course *</label>
                                     <select name="course" required class="ft-input">
-                                        <option value="" disabled selected>Select course</option>
-                                        <option>Norani Qaida</option>
-                                        <option>Quran Recitation (Nazra)</option>
-                                        <option>Tajweed ul Quran</option>
-                                        <option>Hifz ul Quran</option>
-                                        <option>Islamic Studies</option>
-                                        <option>Arabic Language</option>
-                                        <option>Hadith & Seerah</option>
-                                        <option>Namaz & Ibadat</option>
-                                    </select>
+                                         <option value="" disabled selected>Select course</option>
+                                         @foreach($courses as $course)
+                                             <option>{{ $course }}</option>
+                                         @endforeach
+                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="ft-label">Preferred Timing *</label>

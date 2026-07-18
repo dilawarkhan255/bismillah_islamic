@@ -2,21 +2,10 @@
 
 @section('content')
 
-    @php
-        $gallery = [
-            ['img' => 'project-1.jpg', 'title' => 'Quran Recitation Class'],
-            ['img' => 'project-2.jpg', 'title' => 'Hifz Students Daily Lesson'],
-            ['img' => 'project-3.jpg', 'title' => 'Annual Graduation Ceremony'],
-            ['img' => 'project-4.jpg', 'title' => 'Islamic Studies Workshop'],
-            ['img' => 'project-5.jpg', 'title' => 'Arabic Language Class'],
-            ['img' => 'project-6.jpg', 'title' => 'Tajweed Intensive Session'],
-        ];
-    @endphp
-
     <!-- PAGE HEADER -->
     <div class="gallery-hero">
         <div class="gallery-hero-bg">
-            <img src="{{ asset('img/gallery-hero.jpg') }}" alt="Gallery Hero Background">
+            <img src="{{ setting('img_gallery_hero') ? asset('storage/' . setting('img_gallery_hero')) : asset('img/gallery-hero.jpg') }}" alt="Gallery Hero Background">
         </div>
         <div class="gallery-hero-pattern"></div>
         <div class="gallery-hero-glow"></div>
@@ -68,14 +57,14 @@
                 @foreach($gallery as $i => $item)
                     <div class="g-item g-scroll" data-dir="up" style="transition-delay:{{ ($i % 4) * 0.09 }}s;">
                         <div class="g-card">
-                            <img src="{{ asset('img/' . $item['img']) }}" alt="{{ $item['title'] }}" loading="lazy">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" loading="lazy">
 
                             {{-- ✅ Dark overlay only — no text, just eye icon top right --}}
                             <div class="g-card-overlay">
-                                <a href="{{ asset('img/' . $item['img']) }}"
+                                <a href="{{ asset('storage/' . $item->image) }}"
                                    class="g-card-zoom"
                                    data-lightbox="gallery"
-                                   data-title="{{ $item['title'] }}"
+                                   data-title="{{ $item->title }}"
                                    aria-label="View image">
                                     <i class="fas fa-eye"></i>
                                 </a>

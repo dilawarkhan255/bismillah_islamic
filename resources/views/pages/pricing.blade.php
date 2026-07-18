@@ -34,99 +34,29 @@
         <div class="container">
             <div class="row g-0 justify-content-center align-items-stretch bia-plan-row">
 
-                @php
-                    $plans = [
-                        [
-                            'letter' => 'A',
-                            'name' => 'Starter',
-                            'tagline' => 'Great for beginners',
-                            'popular' => false,
-                            'accent' => '#5B8DB8',
-                            'days' => 3,
-                            'label' => '3 Days / Week',
-                            'classes' => '12 classes / month',
-                            'courses' => '1 course',
-                            'report' => 'Monthly report',
-                            'cert' => false,
-                            'features' => [
-                                'Any 1 course of your choice',
-                                '30-min live one-on-one class',
-                                'Qualified Quran teacher',
-                                'Makeup class available',
-                                'Female teacher on request',
-                                'WhatsApp teacher contact',
-                            ],
-                        ],
-                        [
-                            'letter' => 'B',
-                            'name' => 'Standard',
-                            'tagline' => 'Most popular choice',
-                            'popular' => true,
-                            'accent' => '#AE8225',
-                            'days' => 5,
-                            'label' => '5 Days / Week',
-                            'classes' => '20 classes / month',
-                            'courses' => '2 courses',
-                            'report' => 'Weekly report',
-                            'cert' => true,
-                            'features' => [
-                                'Any 2 courses of your choice',
-                                '30-min live one-on-one class',
-                                'Dedicated Quran teacher',
-                                'Weekly progress report',
-                                'Completion certificate',
-                                'Makeup class available',
-                                'Female teacher on request',
-                                'Monthly parent-teacher call',
-                            ],
-                        ],
-                        [
-                            'letter' => 'C',
-                            'name' => 'Premium',
-                            'tagline' => 'Full Islamic curriculum',
-                            'popular' => false,
-                            'accent' => '#7B5EA7',
-                            'days' => 6,
-                            'label' => '6 Days / Week',
-                            'classes' => '24 classes / month',
-                            'courses' => 'All courses',
-                            'report' => 'Weekly + parent call',
-                            'cert' => true,
-                            'features' => [
-                                'Access to ALL courses',
-                                '30-min live one-on-one class',
-                                'Senior certified scholar',
-                                'Weekly report + parent call',
-                                'Completion certificate',
-                                'Priority makeup classes',
-                                'Female teacher on request',
-                                'Dedicated WhatsApp support',
-                            ],
-                        ],
-                    ];
-                @endphp
 
-                @foreach($plans as $idx => $plan)
-                    <div class="col-lg-4 col-md-6 {{ $plan['popular'] ? 'bia-col-popular' : '' }}">
-                        <div class="bia-plan {{ $plan['popular'] ? 'bia-plan-featured' : '' }}" style="--accent:{{ $plan['accent'] }};">
 
-                            @if($plan['popular'])
+                @foreach($plans as $plan)
+                    <div class="col-lg-4 col-md-6 {{ $plan->is_popular ? 'bia-col-popular' : '' }}">
+                        <div class="bia-plan {{ $plan->is_popular ? 'bia-plan-featured' : '' }}" style="--accent:{{ $plan->accent_color }};">
+
+                            @if($plan->is_popular)
                                 <div class="bia-pop-badge">⭐ Most Popular</div>
                             @endif
 
-                            <!-- Top: Letter + Name -->
+                            <!-- Top: Badge + Name -->
                             <div class="bia-plan-top">
-                                <div class="bia-plan-letter" style="color:{{ $plan['accent'] }};">{{ $plan['letter'] }}</div>
+                                <div class="bia-plan-letter" style="color:{{ $plan->accent_color }};">{{ $plan->badge }}</div>
                                 <div>
-                                    <div class="bia-plan-name">Plan {{ $plan['letter'] }} — {{ $plan['name'] }}</div>
-                                    <div class="bia-plan-tagline">{{ $plan['tagline'] }}</div>
+                                    <div class="bia-plan-name">Plan {{ $plan->badge }} — {{ $plan->name }}</div>
+                                    <div class="bia-plan-tagline">{{ $plan->name }}</div>
                                 </div>
                             </div>
 
                             <!-- Day dots visual -->
                             <div class="bia-days-row">
                                 @for($d = 1; $d <= 6; $d++)
-                                    <div class="bia-day-dot {{ $d <= $plan['days'] ? 'active' : '' }}" style="{{ $d <= $plan['days'] ? 'background:' . $plan['accent'] . ';' : '' }}">
+                                    <div class="bia-day-dot {{ $d <= $plan->days_per_week ? 'active' : '' }}" style="{{ $d <= $plan->days_per_week ? 'background:' . $plan->accent_color . ';' : '' }}">
                                         {{ ['M', 'T', 'W', 'T', 'F', 'S'][$d - 1] }}
                                     </div>
                                 @endfor
@@ -135,7 +65,7 @@
                             <!-- Key stats strip -->
                             <div class="bia-stats-strip">
                                 <div class="bia-stat">
-                                    <span class="bia-stat-val">{{ $plan['classes'] }}</span>
+                                    <span class="bia-stat-val">{{ $plan->classes_per_month }} classes / month</span>
                                     <span class="bia-stat-lbl">Classes</span>
                                 </div>
                                 <div class="bia-stat-divider"></div>
@@ -145,22 +75,22 @@
                                 </div>
                                 <div class="bia-stat-divider"></div>
                                 <div class="bia-stat">
-                                    <span class="bia-stat-val">{{ $plan['courses'] }}</span>
+                                    <span class="bia-stat-val">{{ $plan->courses_count === 'all' ? 'All courses' : $plan->courses_count . ' course' }}</span>
                                     <span class="bia-stat-lbl">Available</span>
                                 </div>
                             </div>
 
                             <!-- Features -->
                             <div class="bia-features">
-                                @foreach($plan['features'] as $f)
+                                @foreach($plan->features as $f)
                                     <div class="bia-feat">
-                                        <i class="fas fa-check" style="color:{{ $plan['accent'] }};font-size:10px;margin-top:3px;flex-shrink:0;"></i>
+                                        <i class="fas fa-check" style="color:{{ $plan->accent_color }};font-size:10px;margin-top:3px;flex-shrink:0;"></i>
                                         <span>{{ $f }}</span>
                                     </div>
                                 @endforeach
-                                @if($plan['cert'])
-                                    <div class="bia-feat bia-feat-cert" style="border-left:2px solid {{ $plan['accent'] }};">
-                                        <i class="fas fa-certificate" style="color:{{ $plan['accent'] }};font-size:10px;margin-top:3px;flex-shrink:0;"></i>
+                                @if($plan->certificate)
+                                    <div class="bia-feat bia-feat-cert" style="border-left:2px solid {{ $plan->accent_color }};">
+                                        <i class="fas fa-certificate" style="color:{{ $plan->accent_color }};font-size:10px;margin-top:3px;flex-shrink:0;"></i>
                                         <span style="font-weight:700;">Completion Certificate Included</span>
                                     </div>
                                 @endif
@@ -168,7 +98,7 @@
 
                             <!-- CTA -->
                             <div class="bia-plan-cta">
-                                <a href="{{ route('free_trial') }}" class="bia-cta-primary {{ $plan['popular'] ? 'bia-cta-gold' : '' }}" style="{{ !$plan['popular'] ? 'border-color:' . $plan['accent'] . ';color:' . $plan['accent'] . ';' : '' }}">
+                                <a href="{{ route('free_trial') }}" class="bia-cta-primary {{ $plan->is_popular ? 'bia-cta-gold' : '' }}" style="{{ !$plan->is_popular ? 'border-color:' . $plan->accent_color . ';color:' . $plan->accent_color . ';' : '' }}">
                                     Start Free Trial <i class="fas fa-arrow-right" style="font-size:10px;margin-left:6px;"></i>
                                 </a>
                                 <a href="https://wa.me/923141833216?text=Assalamu+Alaikum,+I+am+interested+in+free+trial+classes" target="_blank" class="bia-cta-wa">

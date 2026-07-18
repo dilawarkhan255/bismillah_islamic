@@ -8,88 +8,110 @@
     <section class="hero-carousel wow fadeIn" data-wow-delay="0.1s">
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1">
-                    <img class="img-fluid" src="{{ asset('img/slide-1.jpg') }}" alt="Image">
-                </button>
-                <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2">
-                    <img class="img-fluid" src="{{ asset('img/slide-2.jpg') }}" alt="Image">
-                </button>
-                <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3">
-                    <img class="img-fluid" src="{{ asset('img/slide-3.jpg') }}" alt="Image">
-                </button>
-            </div>
-
-            <div class="carousel-inner">
-
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <img class="w-100 carousel-img" src="{{ asset('img/slide-1.jpg') }}" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="slide-content-wrap">
-                            <div class="hero-badge animate__animated animate__fadeInDown">
-                                ✦ Bismillah Islamic Academy ✦
+            @if($slides->isNotEmpty())
+                <div class="carousel-inner">
+                    @foreach($slides as $index => $slide)
+                        <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
+                            <img class="w-100 carousel-img" src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}">
+                            <div class="carousel-caption">
+                                <div class="slide-content-wrap">
+                                    <div class="hero-badge animate__animated animate__fadeInDown">
+                                        ✦ {{ $slide->badge }} ✦
+                                    </div>
+                                    <h1 class="slide-title animated zoomIn">
+                                        {!! $slide->title !!}
+                                    </h1>
+                                    <p class="slide-sub animated fadeInUp">
+                                        {{ $slide->subtitle }}
+                                    </p>
+                                    <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
+                                        <a href="{{ $slide->btn1_url }}" class="slide-btn-gold">{{ $slide->btn1_text }}</a>
+                                        <a href="{{ $slide->btn2_url }}" class="slide-btn-outline">{{ $slide->btn2_text }}</a>
+                                    </div>
+                                </div>
                             </div>
-                            <h1 class="slide-title animated zoomIn">
-                                Learn The Holy <span style="color: var(--gold-light);">Quran</span>
-                            </h1>
-                            <p class="slide-sub animated fadeInUp">
-                                "Read in the name of your Lord who created"
-                            </p>
-                            <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
-                                <a href="{{ route('free_trial') }}" class="slide-btn-gold">Free Trial</a>
-                                <a href="{{ route('about') }}" class="slide-btn-outline">Learn More</a>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1">
+                        <img class="img-fluid" src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('img/slide-1.jpg') }}" alt="Slide 1">
+                    </button>
+                    <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2">
+                        <img class="img-fluid" src="{{ setting('img_home_slide_2') ? asset('storage/' . setting('img_home_slide_2')) : asset('img/slide-2.jpg') }}" alt="Slide 2">
+                    </button>
+                    <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3">
+                        <img class="img-fluid" src="{{ setting('img_home_slide_3') ? asset('storage/' . setting('img_home_slide_3')) : asset('img/slide-3.jpg') }}" alt="Slide 3">
+                    </button>
+                </div>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('img/slide-1.jpg') }}" alt="Slide 1">
+                        <div class="carousel-caption">
+                            <div class="slide-content-wrap">
+                                <div class="hero-badge animate__animated animate__fadeInDown">
+                                    ✦ Bismillah Islamic Academy ✦
+                                </div>
+                                <h1 class="slide-title animated zoomIn">
+                                    Learn The Holy <span style="color: var(--gold-light);">Quran</span>
+                                </h1>
+                                <p class="slide-sub animated fadeInUp">
+                                    "Read in the name of your Lord who created"
+                                </p>
+                                <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
+                                    <a href="{{ route('free_trial') }}" class="slide-btn-gold">Free Trial</a>
+                                    <a href="{{ route('about') }}" class="slide-btn-outline">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_2') ? asset('storage/' . setting('img_home_slide_2')) : asset('img/slide-2.jpg') }}" alt="Slide 2">
+                        <div class="carousel-caption">
+                            <div class="slide-content-wrap">
+                                <div class="hero-badge animate__animated animate__fadeInDown">
+                                    ✦ Join Our Community ✦
+                                </div>
+                                <h1 class="slide-title animated zoomIn">
+                                    Islamic <span style="color: var(--gold-light);">Education</span><br>For Every Age
+                                </h1>
+                                <p class="slide-sub animated fadeInUp">
+                                    Quran, Tajweed, Hadith, Islamic Studies & Arabic Language
+                                </p>
+                                <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
+                                    <a href="{{ route('courses') }}" class="slide-btn-gold">View Courses</a>
+                                    <a href="{{ route('contact') }}" class="slide-btn-outline">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_3') ? asset('storage/' . setting('img_home_slide_3')) : asset('img/slide-3.jpg') }}" alt="Slide 3">
+                        <div class="carousel-caption">
+                            <div class="slide-content-wrap">
+                                <div class="hero-badge animate__animated animate__fadeInDown">
+                                    ✦ Expert Teachers ✦
+                                </div>
+                                <h1 class="slide-title animated zoomIn">
+                                    Certified <span style="color: var(--gold-light);">Scholars</span><br>& Hafiz-e-Quran
+                                </h1>
+                                <p class="slide-sub animated fadeInUp">
+                                    Learn from qualified Islamic scholars
+                                </p>
+                                <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
+                                    <a href="{{ route('team') }}" class="slide-btn-gold">Meet Our Teachers</a>
+                                    <a href="{{ route('free_trial') }}" class="slide-btn-outline">Enroll Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <img class="w-100 carousel-img" src="{{ asset('img/slide-2.jpg') }}" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="slide-content-wrap">
-                            <div class="hero-badge animate__animated animate__fadeInDown">
-                                ✦ Join Our Community ✦
-                            </div>
-                            <h1 class="slide-title animated zoomIn">
-                                Islamic <span style="color: var(--gold-light);">Education</span><br>For Every Age
-                            </h1>
-                            <p class="slide-sub animated fadeInUp">
-                                Quran, Tajweed, Hadith, Islamic Studies & Arabic Language
-                            </p>
-                            <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
-                                <a href="{{ route('courses') }}" class="slide-btn-gold">View Courses</a>
-                                <a href="{{ route('contact') }}" class="slide-btn-outline">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <img class="w-100 carousel-img" src="{{ asset('img/slide-3.jpg') }}" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="slide-content-wrap">
-                            <div class="hero-badge animate__animated animate__fadeInDown">
-                                ✦ Expert Teachers ✦
-                            </div>
-                            <h1 class="slide-title animated zoomIn">
-                                Certified <span style="color: var(--gold-light);">Scholars</span><br>& Hafiz-e-Quran
-                            </h1>
-                            <p class="slide-sub animated fadeInUp">
-                                Learn from qualified Islamic scholars
-                            </p>
-                            <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
-                                <a href="{{ route('team') }}" class="slide-btn-gold">Meet Our Teachers</a>
-                                <a href="{{ route('free_trial') }}" class="slide-btn-outline">Enroll Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            @endif
 
             <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -189,7 +211,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="img-border">
-                        <img class="img-fluid" src="{{ asset('img/feature.jpg') }}" alt="Why Choose Us">
+                        <img class="img-fluid" src="{{ setting('img_home_feature') ? asset('storage/' . setting('img_home_feature')) : asset('img/feature.jpg') }}" alt="Why Choose Us">
                     </div>
                 </div>
             </div>
@@ -207,28 +229,18 @@
                     Islamic Education</h1>
             </div>
             <div class="row g-4">
-                @php
-                    $courses = [
-                        ['img' => 'service-1.jpg', 'title' => 'Norani Qaida', 'delay' => '0.1s'],
-                        ['img' => 'service-2.jpg', 'title' => 'Quran Recitation', 'delay' => '0.3s'],
-                        ['img' => 'service-3.jpg', 'title' => 'Tajweed Rules', 'delay' => '0.5s'],
-                        ['img' => 'service-4.jpg', 'title' => 'Hifz ul Quran', 'delay' => '0.1s'],
-                        ['img' => 'service-5.jpg', 'title' => 'Islamic Studies', 'delay' => '0.3s'],
-                        ['img' => 'service-7.jpg', 'title' => 'Hadith & Seerah', 'delay' => '0.1s'],
-                    ];
-                @endphp
                 @foreach($courses as $course)
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $course['delay'] }}">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
                         <a href="{{ route('courses') }}" class="text-decoration-none d-block">
                             <div class="position-relative overflow-hidden rounded">
-                                <img src="{{ asset('img/' . $course['img']) }}" alt="{{ $course['title'] }}"
+                                <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}"
                                     class="img-fluid w-100 course-img" onmouseover="this.style.transform='scale(1.05)'"
                                     onmouseout="this.style.transform='scale(1)'">
                                 <div class="position-absolute bottom-0 start-0 end-0"
                                     style="background: linear-gradient(to top, rgba(13,27,42,0.90) 0%, rgba(13,27,42,0.4) 50%, transparent 100%); padding: 40px 16px 18px;">
                                     <h4 class="mb-0 text-white text-center"
                                         style="font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 1px;">
-                                        {{ $course['title'] }}
+                                        {{ $course->title }}
                                     </h4>
                                     <div class="mx-auto mt-2" style="width: 40px; height: 2px; background: var(--gold);"></div>
                                 </div>
@@ -253,7 +265,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                     <div class="position-relative">
-                        <img src="{{ asset('img/trial.jpg') }}" alt="Free Trial Class"
+                        <img src="{{ setting('img_home_trial') ? asset('storage/' . setting('img_home_trial')) : asset('img/trial.jpg') }}" alt="Free Trial Class"
                             class="img-fluid w-100 rounded trial-img">
                         <div class="position-absolute"
                             style="top: 24px; left: -16px; background: var(--navy); border: 2px solid var(--gold); padding: 14px 20px; border-radius: 4px; box-shadow: 0 8px 32px rgba(13,27,42,0.25);">
@@ -332,7 +344,7 @@
     <!-- ===================== HOW IT WORKS ===================== -->
     <div class="hiw-section">
         <div class="hiw-bg-image">
-            <img src="{{ asset('img/how-to-learn.jpg') }}" alt="" aria-hidden="true">
+            <img src="{{ setting('img_how_to_learn') ? asset('storage/' . setting('img_how_to_learn')) : asset('img/how-to-learn.jpg') }}" alt="" aria-hidden="true">
             <div class="hiw-bg-overlay"></div>
         </div>
         <div class="container" style="position:relative; z-index:2;">
@@ -449,7 +461,7 @@
     <!-- ====== AYAH BANNER ====== -->
     <section class="ayah-section wow fadeIn" data-wow-delay="0.1s">
         <div class="ayah-bg">
-            <img src="{{ asset('img/slide-1.jpg') }}" alt="">
+            <img src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('img/slide-1.jpg') }}" alt="">
             <div class="ayah-veil"></div>
         </div>
         <div class="container ayah-body">
@@ -503,7 +515,7 @@
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.2s">
                 <div class="position-relative overflow-hidden rounded">
-                    <img src="{{ asset('img/teams.jpg') }}" alt="Bismillah Islamic Academy Team"
+                    <img src="{{ setting('img_home_teams') ? asset('storage/' . setting('img_home_teams')) : asset('img/teams.jpg') }}" alt="Bismillah Islamic Academy Team"
                         class="w-100 team-full-img">
                     <div class="position-absolute top-0 start-0 w-100 h-100"
                         style="background: linear-gradient(to top, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.1) 60%, transparent 100%);">
@@ -523,47 +535,55 @@
                     Scholars</h1>
             </div>
             <div class="row g-4">
-                @php
-                    $team = [
-                        ['name' => 'Mufti Aftab Ahmed Abbasi', 'role' => 'Tajweed Specialist', 'img' => 'team-1.jpg', 'delay' => '0.1s'],
-                        ['name' => 'Hafiz Kamran Qureshi', 'role' => 'Quran Teacher', 'img' => 'team-2.jpg', 'delay' => '0.3s'],
-                        ['name' => 'Allama Noor Ur Rehman', 'role' => 'Islamic Studies Teacher', 'img' => 'team-3.jpg', 'delay' => '0.5s'],
-                    ];
-                @endphp
-                @foreach($team as $member)
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $member['delay'] }}">
-                        <div class="team-item text-center p-4"
-                            style="background: var(--off-white); border: 1px solid rgba(174,130,37,0.15); transition: all 0.4s;">
-                            <img src="{{ asset('img/' . $member['img']) }}" alt="{{ $member['name'] }}"
-                                style="width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; display: block; margin: 0 auto 20px; padding: 4px; background: var(--white);">
-                            <div class="team-text">
-                                <div class="team-title">
-                                    <h5
-                                        style="font-family: 'Cinzel', serif; color: var(--navy); font-size: 16px; margin-bottom: 4px;">
-                                        {{ $member['name'] }}</h5>
-                                    <span
-                                        style="color: var(--gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Lato', sans-serif; display: block; margin-bottom: 14px;">{{ $member['role'] }}</span>
-                                </div>
-                                <div class="team-social"
-                                    style="display: flex; justify-content: center; gap: 8px; margin-top: 14px;">
-                                    <a href="#"
-                                        style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
-                                        onmouseover="this.style.background='var(--gold)';this.style.color='white';"
-                                        onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a href="#"
-                                        style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
-                                        onmouseover="this.style.background='var(--gold)';this.style.color='white';"
-                                        onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a href="#"
-                                        style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
-                                        onmouseover="this.style.background='var(--gold)';this.style.color='white';"
-                                        onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
-                                            class="fab fa-instagram"></i></a>
+                @foreach($teachers->filter(fn($t) => $t->is_active) as $index => $teacher)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $index + 1 }}s">
+                        <a href="{{ route('teacher.profile', $teacher) }}" class="text-decoration-none d-block">
+                            <div class="team-item text-center p-4"
+                                style="background: var(--off-white); border: 1px solid rgba(174,130,37,0.15); transition: all 0.4s;">
+                                <img src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->name }}"
+                                    style="width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; display: block; margin: 0 auto 20px; padding: 4px; background: var(--white);">
+                                <div class="team-text">
+                                    <div class="team-title">
+                                        <h5
+                                            style="font-family: 'Cinzel', serif; color: var(--navy); font-size: 16px; margin-bottom: 4px;">
+                                            {{ $teacher->name }}</h5>
+                                        <span
+                                            style="color: var(--gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Lato', sans-serif; display: block; margin-bottom: 14px;">{{ $teacher->role }}</span>
+                                    </div>
+                                    <div class="team-social"
+                                        style="display: flex; justify-content: center; gap: 8px; margin-top: 14px;">
+                                        @if($teacher->facebook_url)
+                                            <a href="{{ $teacher->facebook_url }}"
+                                                style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
+                                                onmouseover="this.style.background='var(--gold)';this.style.color='white';"
+                                                onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
+                                                    class="fab fa-facebook-f"></i></a>
+                                        @endif
+                                        @if($teacher->twitter_url)
+                                            <a href="{{ $teacher->twitter_url }}"
+                                                style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
+                                                onmouseover="this.style.background='var(--gold)';this.style.color='white';"
+                                                onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
+                                                    class="fab fa-twitter"></i></a>
+                                        @endif
+                                        @if($teacher->instagram_url)
+                                            <a href="{{ $teacher->instagram_url }}"
+                                                style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
+                                                onmouseover="this.style.background='var(--gold)';this.style.color='white';"
+                                                onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
+                                                    class="fab fa-instagram"></i></a>
+                                        @endif
+                                        @if($teacher->linkedin_url)
+                                            <a href="{{ $teacher->linkedin_url }}"
+                                                style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
+                                                onmouseover="this.style.background='var(--gold)';this.style.color='white';"
+                                                onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
+                                                    class="fab fa-linkedin-in"></i></a>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -581,33 +601,25 @@
                     Parents Say</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                @php
-                    $testimonials = [
-                        ['name' => 'Ahmad Khan', 'role' => 'Parent', 'img' => 'testimonial-1.jpg', 'text' => 'Alhamdulillah, my son memorized 5 Juz in just one year. The teachers are dedicated and the environment is truly Islamic.'],
-                        ['name' => 'Sarah Bibi', 'role' => 'Parent', 'img' => 'testimonial-2.jpg', 'text' => 'My daughter improved her Tajweed tremendously. The academy provides a wonderful learning atmosphere for children.'],
-                        ['name' => 'Omar Farooq', 'role' => 'Student', 'img' => 'testimonial-3.jpg', 'text' => 'The Arabic language course helped me understand the Quran directly. Highly recommend to every Muslim.'],
-                        ['name' => 'Aisha Rahman', 'role' => 'Parent', 'img' => 'testimonial-4.jpg', 'text' => 'Best Islamic school in the area. The scholars here are very knowledgeable and approachable. JazakAllah Khair!'],
-                    ];
-                @endphp
-                @foreach($testimonials as $t)
+                @foreach($testimonials->filter(fn($t) => $t->is_active) as $t)
                     <div class="testimonial-item rounded p-4"
                         style="background: var(--white); border: 1px solid rgba(174,130,37,0.15); position: relative; box-shadow: 0 4px 20px rgba(13,27,42,0.07);">
                         <div class="d-flex align-items-center mb-4">
-                            <img class="flex-shrink-0 rounded-circle border p-1" src="{{ asset('img/' . $t['img']) }}"
-                                alt="{{ $t['name'] }}"
+                            <img class="flex-shrink-0 rounded-circle border p-1" src="{{ asset('storage/' . $t->image) }}"
+                                alt="{{ $t->name }}"
                                 style="width:62px;height:62px;border-color:var(--gold)!important;object-fit:cover;">
                             <div class="ms-4">
                                 <h5 class="mb-1" style="font-family:'Cinzel',serif;color:var(--navy);font-size:14px;">
-                                    {{ $t['name'] }}</h5>
+                                    {{ $t->name }}</h5>
                                 <span
-                                    style="color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;">{{ $t['role'] }}</span>
+                                    style="color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;">{{ $t->role }}</span>
                                 <div style="color:var(--gold);font-size:12px;margin-top:3px;">★★★★★</div>
                             </div>
                         </div>
                         <div style="height:1px;background:rgba(174,130,37,0.12);margin-bottom:16px;"></div>
                         <p class="mb-0"
                             style="font-family:'Amiri',serif;font-size:16px;font-style:italic;color:var(--text-mid);line-height:1.85;">
-                            {{ $t['text'] }}</p>
+                            {{ $t->text }}</p>
                     </div>
                 @endforeach
             </div>

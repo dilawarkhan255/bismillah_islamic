@@ -12,14 +12,19 @@ Row 2: Logo left | Nav CENTER
         <div class="bia-topbar-left">
             <span class="bia-topbar-tagline">
                 <span class="bia-topbar-dot"></span>
-                Bismillah Islamic Academy
+                {{ \App\Models\SiteSetting::get('site_name', 'Bismillah Islamic Academy') }}
                 <span class="bia-topbar-dot"></span>
             </span>
             <div class="bia-socials">
-                <a href="https://www.facebook.com/share/1JPSiUdTG3/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <!--<a href="" aria-label="Twitter"><i class="fab fa-twitter"></i></a>-->
-                <!--<a href="" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>-->
-                <a href="https://www.instagram.com/bismillahislamicacademy?igsh=OWxiZHZwc2l5aXd6&utm_source=qr" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                @if(\App\Models\SiteSetting::get('facebook'))
+                    <a href="{{ \App\Models\SiteSetting::get('facebook') }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                @endif
+                @if(\App\Models\SiteSetting::get('instagram'))
+                    <a href="{{ \App\Models\SiteSetting::get('instagram') }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                @endif
+                @if(\App\Models\SiteSetting::get('youtube'))
+                    <a href="{{ \App\Models\SiteSetting::get('youtube') }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                @endif
             </div>
         </div>
 
@@ -32,37 +37,37 @@ Row 2: Logo left | Nav CENTER
                 <div class="bia-info-icon"><i class="far fa-clock"></i></div>
                 <div>
                     <span class="bia-info-label">Class Hours</span>
-                    <span class="bia-info-val">Mon–Sat &nbsp;24/7 - Hours</span>
+                    <span class="bia-info-val">{{ \App\Models\SiteSetting::get('class_hours', 'Mon–Sat &nbsp;24/7 - Hours') }}</span>
                 </div>
             </div>
 
             <div class="bia-vr"></div>
 
-             <a href="https://wa.me/923141833216" target="_blank" class="bia-info-chip" style="text-decoration:none;">
+             <a href="https://wa.me/{{ \App\Models\SiteSetting::get('whatsapp', '923141833216') }}" target="_blank" class="bia-info-chip" style="text-decoration:none;">
                 <div class="bia-info-icon"><i class="fab fa-whatsapp"></i></div>
                 <div>
-                    <span class="bia-info-label">🇺🇸 USA</span>
-                    <span class="bia-info-val">+1 (929) 597-8179</span>
+                    <span class="bia-info-label">🇵🇰 Pakistan</span>
+                    <span class="bia-info-val">{{ \App\Models\SiteSetting::get('phone', '+92 314 1833216') }}</span>
                 </div>
             </a>
 
             <div class="bia-vr"></div>
 
-            <a href="https://wa.me/447415770822" target="_blank" class="bia-info-chip" style="text-decoration:none;">
+            <a href="https://wa.me/{{ \App\Models\SiteSetting::get('whatsapp_uk', '447415770822') }}" target="_blank" class="bia-info-chip" style="text-decoration:none;">
                 <div class="bia-info-icon"><i class="fab fa-whatsapp"></i></div>
                 <div>
                     <span class="bia-info-label">🇬🇧 United Kingdom</span>
-                    <span class="bia-info-val">+44 7415 770822</span>
+                    <span class="bia-info-val">{{ \App\Models\SiteSetting::get('phone_uk', '+44 7415 770822') }}</span>
                 </div>
             </a>
 
             <div class="bia-vr"></div>
 
-           <a href="mailto:bismillahquranacademy2@gmail.com" class="bia-info-chip" style="text-decoration:none;">
+           <a href="mailto:{{ \App\Models\SiteSetting::get('email', 'bismillahquranacademy2@gmail.com') }}" class="bia-info-chip" style="text-decoration:none;">
                 <div class="bia-info-icon"><i class="far fa-envelope"></i></div>
                 <div>
                     <span class="bia-info-label">Email Us</span>
-                    <span class="bia-info-val">bismillahquranacademy2@gmail.com</span>
+                    <span class="bia-info-val">{{ \App\Models\SiteSetting::get('email', 'bismillahquranacademy2@gmail.com') }}</span>
                 </div>
             </a>
 
@@ -87,7 +92,7 @@ Row 2: Logo left | Nav CENTER
 {{-- ── ROW 2: Navbar ──────────────────────────────────────────── --}}
 <nav class="bia-navbar navbar navbar-expand-lg navbar-dark sticky-top">
     <a href="{{ route('home') }}" class="bia-brand ms-3 ms-lg-4">
-        <img src="{{ asset('img/logo.png') }}" alt="Bismillah Islamic Academy">
+        <img src="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('img/logo.png') }}" alt="{{ \App\Models\SiteSetting::get('site_name', 'Bismillah Islamic Academy') }}">
     </a>
 
     <button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#biaNav">
@@ -104,8 +109,8 @@ Row 2: Logo left | Nav CENTER
                 class="nav-item nav-link {{ request()->routeIs('courses') ? 'active' : '' }}">Courses</a>
             <a href="{{ route('gallery') }}"
                 class="nav-item nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</a>
-            <a href="{{ route('team') }}" class="nav-item nav-link {{ request()->routeIs('team') ? 'active' : '' }}">Our
-                Teachers</a>
+            <a href="{{ route('team') }}" class="nav-item nav-link {{ request()->routeIs('team') ? 'active' : '' }}">Our Teachers</a>
+            <a href="{{ route('our-team') }}" class="nav-item nav-link {{ request()->routeIs('our-team') ? 'active' : '' }}">Our Team</a>
 
             <a href="{{ route('contact') }}"
                 class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
@@ -118,6 +123,14 @@ Row 2: Logo left | Nav CENTER
             </div>
         </div>
     </div>
+    @auth
+        @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('editor'))
+            <a href="{{ url('/admin') }}" class="btn btn-sm d-lg-inline-flex align-items-center gap-1 me-3"
+               style="background:var(--gold);color:#fff;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 16px;border:1px solid var(--gold);text-decoration:none;white-space:nowrap;">
+                <i class="bi bi-speedometer2"></i> Admin Panel
+            </a>
+        @endif
+    @endauth
 </nav>
 {{-- ── END Navbar ─────────────────────────────────────────────── --}}
 

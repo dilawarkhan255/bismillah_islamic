@@ -11,34 +11,45 @@
                     Address
                 </h5>
                 <p class="mb-2" style="font-size: 14px; color: rgba(255,255,255,0.5);">
-                    <i class="fa fa-map-marker-alt me-3" style="color: var(--gold);"></i>JWFX+4HV, Jhangi Sayedan,
-                    Islamabad, Pakistan
+                    <i class="fa fa-map-marker-alt me-3" style="color: var(--gold);"></i>{{ \App\Models\SiteSetting::get('address', 'JWFX+4HV, Jhangi Sayedan, Islamabad, Pakistan') }}
                 </p>
-                <a href="https://wa.me/923141833216" target="_blank" class="mb-2 d-block"
+                <a href="https://wa.me/{{ \App\Models\SiteSetting::get('whatsapp', '923141833216') }}" target="_blank" class="mb-2 d-block"
                     style="font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none;">
-                    <i class="fab fa-whatsapp me-3" style="color: var(--gold);"></i>+92 314 1833216
+                    <i class="fab fa-whatsapp me-3" style="color: var(--gold);"></i>{{ \App\Models\SiteSetting::get('phone', '+92 314 1833216') }}
                 </a>
-                <a href="https://wa.me/447415770822" target="_blank" class="mb-2 d-block"
+                <a href="https://wa.me/{{ \App\Models\SiteSetting::get('whatsapp_uk', '447415770822') }}" target="_blank" class="mb-2 d-block"
                     style="font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none;">
-                    <i class="fab fa-whatsapp me-3" style="color: var(--gold);"></i>+44 7415 770822
+                    <i class="fab fa-whatsapp me-3" style="color: var(--gold);"></i>{{ \App\Models\SiteSetting::get('phone_uk', '+44 7415 770822') }}
                 </a>
-                <a href="mailto:bismillahquranacademy2@gmail.com" class="mb-2 d-block"
+                <a href="mailto:{{ \App\Models\SiteSetting::get('email', 'bismillahquranacademy2@gmail.com') }}" class="mb-2 d-block"
                     style="font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none;">
-                    <i class="fa fa-envelope me-3" style="color: var(--gold);"></i>bismillahquranacademy2@gmail.com
+                    <i class="fa fa-envelope me-3" style="color: var(--gold);"></i>{{ \App\Models\SiteSetting::get('email', 'bismillahquranacademy2@gmail.com') }}
                 </a>
                 <div class="d-flex pt-2" style="gap: 9px;">
-                    <a href="https://www.facebook.com/share/1JPSiUdTG3/?mibextid=wwXIfr" target="_blank"
+                    @if(\App\Models\SiteSetting::get('facebook'))
+                    <a href="{{ \App\Models\SiteSetting::get('facebook') }}" target="_blank"
                         style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
                         onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
                         onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://www.instagram.com/bismillahislamicacademy?igsh=OWxiZHZwc2l5aXd6&utm_source=qr" target="_blank"
+                    @endif
+                    @if(\App\Models\SiteSetting::get('instagram'))
+                    <a href="{{ \App\Models\SiteSetting::get('instagram') }}" target="_blank"
                         style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
                         onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
                         onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
                         <i class="fab fa-instagram"></i>
                     </a>
+                    @endif
+                    @if(\App\Models\SiteSetting::get('youtube'))
+                    <a href="{{ \App\Models\SiteSetting::get('youtube') }}" target="_blank"
+                        style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
+                        onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
+                        onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    @endif
                 </div>
             </div>
 
@@ -91,7 +102,7 @@
                 <div class="row g-2">
                     @for ($i = 1; $i <= 6; $i++)
                         <div class="col-4">
-                            <img class="img-fluid" src="{{ asset('img/project-' . $i . '.jpg') }}" alt="Gallery Image"
+                            <img class="img-fluid" src="{{ setting('img_footer_project_' . $i) ? asset('storage/' . setting('img_footer_project_' . $i)) : asset('img/project-' . $i . '.jpg') }}" alt="Gallery Image"
                                 style="width: 100%; height: 68px; object-fit: cover; opacity: 0.6; transition: opacity 0.3s; border-radius: 2px;"
                                 onmouseover="this.style.opacity='1';" onmouseout="this.style.opacity='0.6';">
                         </div>
@@ -123,9 +134,7 @@
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     <span style="font-size: 12px; color: rgba(255,255,255,0.3);">
-                        &copy; <a href="{{ route('home') }}"
-                            style="color: var(--gold); text-decoration: none;">Bismillah Islamic Academy</a>, All Rights
-                        Reserved 2026.
+                        {{ \App\Models\SiteSetting::get('copyright', '© 2026 Bismillah Islamic Academy. All Rights Reserved.') }}
                     </span>
                 </div>
             </div>

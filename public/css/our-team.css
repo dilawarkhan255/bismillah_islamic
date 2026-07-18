@@ -1,0 +1,171 @@
+/* ── Our Team Card ───────────────────────────────── */
+.ot-card {
+    background: #fff;
+    border: 1px solid rgba(174, 130, 37, 0.15);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform .35s, box-shadow .35s;
+    display: flex;
+    flex-direction: column;
+}
+
+.ot-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 50px rgba(13, 27, 42, 0.12);
+    border-color: rgba(174, 130, 37, 0.35);
+}
+
+.ot-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    background-size: 200% 100%;
+    animation: otShimmer 3s linear infinite;
+}
+
+@keyframes otShimmer {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+.ot-img-wrap {
+    position: relative;
+    display: inline-block;
+    margin: 32px auto 0;
+}
+
+.ot-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(174, 130, 37, 0.30);
+    position: relative;
+    z-index: 1;
+    transition: border-color .35s;
+}
+
+.ot-placeholder {
+    display: inline-grid;
+    place-items: center;
+    background: var(--off-white, #f5f5f0);
+    color: var(--gold, #AE8225);
+    font-size: 40px;
+}
+
+.ot-card:hover .ot-img {
+    border-color: var(--gold);
+}
+
+.ot-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px dashed rgba(174, 130, 37, 0.25);
+    transition: border-color .35s, transform .6s;
+}
+
+.ot-card:hover .ot-ring {
+    border-color: rgba(174, 130, 37, 0.55);
+    transform: rotate(45deg);
+}
+
+.ot-body {
+    padding: 20px 24px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ot-name {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+    transition: color .3s;
+}
+
+.ot-card:hover .ot-name {
+    color: var(--gold);
+}
+
+.ot-role {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.ot-bio {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-mid, #666);
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+.ot-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.ot-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--off-white, #f5f5f0);
+    color: var(--navy);
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
+.ot-socials a:hover {
+    background: var(--gold);
+    color: #fff;
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.ot-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: none;
+    padding: 8px 20px;
+    border: 1px solid rgba(174, 130, 37, 0.3);
+    border-radius: 50px;
+    transition: all .3s ease;
+}
+
+.ot-view-btn:hover {
+    background: var(--gold);
+    color: #fff;
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(174, 130, 37, 0.25);
+}
+
+.ot-view-btn i {
+    font-size: 11px;
+    transition: transform .3s;
+}
+
+.ot-view-btn:hover i {
+    transform: translateX(3px);
+}

@@ -15,7 +15,7 @@
                 <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between;">
                     <div>
                         <div style="font-family:'Amiri',serif; font-size:13px; color:var(--gold-light); letter-spacing:3px; text-transform:uppercase; margin-bottom:6px;">✦ Join Us ✦</div>
-                        <h4 style="font-family:'Cinzel',serif; color:var(--white); font-size:22px; font-weight:700; margin:0;">Enroll At Bismillah Islamic Academy</h4>
+                        <h4 style="font-family:'Cinzel',serif; color:var(--white); font-size:22px; font-weight:700; margin:0;">Enroll At {{ \App\Models\SiteSetting::get('site_name', 'Bismillah Islamic Academy') }}</h4>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" style="opacity:0.6;"></button>
                 </div>
@@ -86,12 +86,9 @@
                                 style="width:100%; padding:11px 14px; border:1px solid var(--border); background:var(--off-white); font-family:'Lato',sans-serif; font-size:13px; color:var(--text-dark); outline:none; border-radius:0; transition:border 0.3s; appearance:none;"
                                 class="enroll-input">
                                 <option value="">Select Course</option>
-                                <option>Quran Recitation</option>
-                                <option>Hifz ul Quran</option>
-                                <option>Tajweed Rules</option>
-                                <option>Islamic Studies</option>
-                                <option>Arabic Language</option>
-                                <option>Hadith & Seerah</option>
+                                @foreach(\App\Models\Course::active()->get() as $course)
+                                <option>{{ $course->title }}</option>
+                                @endforeach
                             </select>
                         </div>
 

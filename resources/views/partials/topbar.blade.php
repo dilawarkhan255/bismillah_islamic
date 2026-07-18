@@ -15,11 +15,18 @@
             <div class="col-lg-6 text-end">
                 <small style="color:#666; font-size:11px; letter-spacing:2px; text-transform:uppercase;">Follow us:</small>
                 <div class="social-links d-inline-flex align-items-center ms-2">
-                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    @if(\App\Models\SiteSetting::get('facebook'))
+                        <a href="{{ \App\Models\SiteSetting::get('facebook') }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    @endif
+                    @if(\App\Models\SiteSetting::get('twitter'))
+                        <a href="{{ \App\Models\SiteSetting::get('twitter') }}" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    @endif
+                    @if(\App\Models\SiteSetting::get('instagram'))
+                        <a href="{{ \App\Models\SiteSetting::get('instagram') }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    @endif
+                    @if(\App\Models\SiteSetting::get('youtube'))
+                        <a href="{{ \App\Models\SiteSetting::get('youtube') }}" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    @endif
                 </div>
             </div>
         </div>

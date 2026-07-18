@@ -4,96 +4,18 @@
 
 @section('content')
 
-    @php
-        $posts = [
-            [
-                'img' => 'project-1.jpg',
-                'cat' => 'Quran Learning',
-                'cat_color' => '#2e7d32',
-                'title' => '10 Proven Tips To Memorize The Quran Faster',
-                'excerpt' => 'Memorizing the Quran is one of the most noble acts a Muslim can pursue. We share 10 proven techniques used by our Hifz teachers to help students memorize effectively and retain what they learn for a lifetime.',
-                'author' => 'Sheikh Abdullah',
-                'date' => 'March 5, 2025',
-                'read' => '5 min read',
-            ],
-            [
-                'img' => 'project-2.jpg',
-                'cat' => 'Tajweed',
-                'cat_color' => '#b8860b',
-                'title' => 'The Importance of Tajweed: Why Correct Recitation Matters',
-                'excerpt' => 'Tajweed is not just about beautiful recitation — it is an obligation upon every Muslim. Learn about the rules of Tajweed, why scholars consider it Fard Kifayah, and how to start learning today.',
-                'author' => 'Ustaz Ibrahim',
-                'date' => 'February 20, 2025',
-                'read' => '7 min read',
-            ],
-            [
-                'img' => 'project-3.jpg',
-                'cat' => 'Islamic Parenting',
-                'cat_color' => '#1565c0',
-                'title' => 'How To Raise Quran-Loving Children in a Modern World',
-                'excerpt' => 'In an age of screens and distractions, raising children with a love for the Quran requires intention and strategy. Ustaza Fatima shares practical advice for parents on building a Quran-centered home.',
-                'author' => 'Ustaza Fatima',
-                'date' => 'February 8, 2025',
-                'read' => '6 min read',
-            ],
-            [
-                'img' => 'project-4.jpg',
-                'cat' => 'Arabic Language',
-                'cat_color' => '#00695c',
-                'title' => 'Why Every Muslim Should Learn Arabic — Even the Basics',
-                'excerpt' => 'Understanding Arabic — even at a basic level — transforms your relationship with the Quran, Salah, and Duas. We explain the first steps to start learning Quranic Arabic from scratch.',
-                'author' => 'Sheikh Abdullah',
-                'date' => 'January 25, 2025',
-                'read' => '4 min read',
-            ],
-            [
-                'img' => 'project-5.jpg',
-                'cat' => 'Ramadan Guide',
-                'cat_color' => '#6a1b9a',
-                'title' => 'A Complete Ramadan Quran Guide: Finish The Quran This Month',
-                'excerpt' => 'Ramadan is the month of the Quran. With the right daily plan, anyone can complete the entire Quran during Ramadan. Get our free schedule and practical tips inside.',
-                'author' => 'Ustaz Ibrahim',
-                'date' => 'January 10, 2025',
-                'read' => '8 min read',
-            ],
-            [
-                'img' => 'project-6.jpg',
-                'cat' => 'Islamic Studies',
-                'cat_color' => '#c62828',
-                'title' => 'Understanding Aqeedah: The Foundation of Islamic Belief',
-                'excerpt' => 'A correct understanding of Aqeedah — Islamic creed — is the foundation upon which all worship is built. This article introduces the key pillars of Islamic belief every Muslim must know.',
-                'author' => 'Sheikh Abdullah',
-                'date' => 'December 18, 2024',
-                'read' => '9 min read',
-            ],
-        ];
 
-        $categories = [
-            ['name' => 'Quran Learning', 'count' => 12, 'color' => '#2e7d32'],
-            ['name' => 'Tajweed', 'count' => 8, 'color' => '#b8860b'],
-            ['name' => 'Islamic Parenting', 'count' => 6, 'color' => '#1565c0'],
-            ['name' => 'Arabic Language', 'count' => 5, 'color' => '#00695c'],
-            ['name' => 'Ramadan Guide', 'count' => 4, 'color' => '#6a1b9a'],
-            ['name' => 'Islamic Studies', 'count' => 10, 'color' => '#c62828'],
-        ];
-
-        $recent = [
-            ['img' => 'project-1.jpg', 'title' => '10 Tips To Memorize The Quran Faster', 'date' => 'Mar 5, 2025'],
-            ['img' => 'project-2.jpg', 'title' => 'Why Tajweed Is Obligatory For Every Muslim', 'date' => 'Feb 20, 2025'],
-            ['img' => 'project-3.jpg', 'title' => 'Raising Quran-Loving Children', 'date' => 'Feb 8, 2025'],
-        ];
-    @endphp
 
 
     {{-- FEATURED HERO --}}
+    @if($featured)
     <section class="bbl-featured">
         <div class="bbl-featured-bg">
-            <img src="{{ asset('img/project-1.jpg') }}" alt="Featured Article">
+            <img src="{{ asset('storage/' . $featured->image) }}" alt="{{ $featured->title }}">
             <div class="bbl-featured-scrim"></div>
         </div>
 
         <div class="container" style="position:relative; z-index:3;">
-            {{-- ✅ FIX: justify-content-center + text-center for centered hero --}}
             <div class="row justify-content-center text-center">
                 <div class="col-lg-8 col-md-10">
 
@@ -111,18 +33,16 @@
                     </nav>
 
                     <div class="bbl-feat-cat-wrap">
-                        <span class="bbl-feat-cat" style="background:#2e7d32;">Quran Learning</span>
+                        <span class="bbl-feat-cat" style="background:{{ $featured->category->color }};">{{ $featured->category->name }}</span>
                     </div>
-                    <h1 class="bbl-feat-title bbl-reveal" style="animation-delay:.1s;">10 Proven Tips To Memorize The Quran
-                        Faster</h1>
+                    <h1 class="bbl-feat-title bbl-reveal" style="animation-delay:.1s;">{{ $featured->title }}</h1>
                     <div class="bbl-feat-meta bbl-reveal justify-content-center" style="animation-delay:.25s;">
-                        <span><i class="fas fa-user-circle"></i> Sheikh Abdullah</span>
-                        <span><i class="fas fa-calendar-alt"></i> March 5, 2025</span>
-                        <span><i class="far fa-clock"></i> 5 min read</span>
+                        <span><i class="fas fa-user-circle"></i> {{ $featured->author }}</span>
+                        <span><i class="fas fa-calendar-alt"></i> {{ $featured->published_at->format('F j, Y') }}</span>
+                        <span><i class="far fa-clock"></i> {{ $featured->read_time }}</span>
                     </div>
                     <p class="bbl-feat-excerpt bbl-reveal" style="animation-delay:.4s;">
-                        Memorizing the Quran is one of the most noble acts a Muslim can pursue. We share 10 proven
-                        techniques used by our expert Hifz teachers.
+                        {{ $featured->excerpt }}
                     </p>
                     <div class="bbl-feat-btn-wrap bbl-reveal" style="animation-delay:.55s;">
                         <a href="#" class="bbl-feat-btn">
@@ -142,6 +62,7 @@
             @endfor
         </div>
     </section>
+    @endif
 
 
     {{-- MAIN CONTENT + SIDEBAR --}}
@@ -165,23 +86,23 @@
 
                             {{-- Image --}}
                             <div class="bbl-card-thumb">
-                                <img src="{{ asset('img/' . $post['img']) }}" alt="{{ $post['title'] }}">
+                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
                                 <div class="bbl-card-thumb-overlay"></div>
                                 <span class="bbl-card-badge"
-                                    style="background:{{ $post['cat_color'] }};">{{ $post['cat'] }}</span>
-                                <span class="bbl-card-read-badge">{{ $post['read'] }}</span>
+                                    style="background:{{ $post->category->color }};">{{ $post->category->name }}</span>
+                                <span class="bbl-card-read-badge">{{ $post->read_time }}</span>
                             </div>
 
                             {{-- Body --}}
                             <div class="bbl-card-body">
                                 <div class="bbl-card-meta">
-                                    <span><i class="fas fa-user-circle"></i> {{ $post['author'] }}</span>
-                                    <span><i class="fas fa-calendar-alt"></i> {{ $post['date'] }}</span>
+                                    <span><i class="fas fa-user-circle"></i> {{ $post->author }}</span>
+                                    <span><i class="fas fa-calendar-alt"></i> {{ $post->published_at->format('F j, Y') }}</span>
                                 </div>
                                 <h3 class="bbl-card-title">
-                                    <a href="#" class="bbl-card-link">{{ $post['title'] }}</a>
+                                    <a href="#" class="bbl-card-link">{{ $post->title }}</a>
                                 </h3>
-                                <p class="bbl-card-excerpt">{{ $post['excerpt'] }}</p>
+                                <p class="bbl-card-excerpt">{{ $post->excerpt }}</p>
                                 <div class="bbl-card-footer">
                                     <a href="#" class="bbl-read-more">
                                         Read Article <i class="fas fa-long-arrow-alt-right"></i>
@@ -236,10 +157,10 @@
                         <div class="bbl-widget-bd bbl-widget-bd--flush">
                             @foreach($categories as $cat)
                                 <a href="#" class="bbl-cat">
-                                    <span class="bbl-cat-dot" style="background:{{ $cat['color'] }};"></span>
-                                    <span class="bbl-cat-name">{{ $cat['name'] }}</span>
+                                    <span class="bbl-cat-dot" style="background:{{ $cat->color }};"></span>
+                                    <span class="bbl-cat-name">{{ $cat->name }}</span>
                                     <span class="bbl-cat-count"
-                                        style="color:{{ $cat['color'] }}; border-color:{{ $cat['color'] }}33;">{{ $cat['count'] }}</span>
+                                        style="color:{{ $cat->color }}; border-color:{{ $cat->color }}33;">{{ $cat->posts_count }}</span>
                                 </a>
                             @endforeach
                         </div>
@@ -251,13 +172,13 @@
                             @foreach($recent as $ri => $r)
                                 <a href="#" class="bbl-recent {{ $ri < count($recent) - 1 ? 'bbl-recent--sep' : '' }}">
                                     <div class="bbl-recent-thumb">
-                                        <img src="{{ asset('img/' . $r['img']) }}" alt="">
+                                        <img src="{{ asset('storage/' . $r->image) }}" alt="">
                                         <div class="bbl-recent-overlay"></div>
                                     </div>
                                     <div class="bbl-recent-text">
-                                        <p class="bbl-recent-title">{{ $r['title'] }}</p>
+                                        <p class="bbl-recent-title">{{ $r->title }}</p>
                                         <span class="bbl-recent-date"><i class="fas fa-calendar-alt"></i>
-                                            {{ $r['date'] }}</span>
+                                            {{ $r->published_at->format('M j, Y') }}</span>
                                     </div>
                                 </a>
                             @endforeach

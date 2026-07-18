@@ -2,110 +2,7 @@
 
 @section('content')
 
-    @php
-        $courses = [
-            [
-                'icon' => 'fas fa-baby',
-                'img' => 'service-1.jpg',
-                'title' => 'Norani Qaida',
-                'badge' => 'Beginner',
-                'badge_color' => '#e65100',
-                'duration' => '2-4 Months',
-                'level' => '4-10 Years',
-                'desc' => 'The perfect starting point for young children. Norani Qaida teaches Arabic letters, their forms, and basic joining rules — the essential first step before Quran recitation.',
-                'features' => ['Arabic Alphabets', 'Letter Forms', 'Joining Rules', 'Short Words Practice'],
-            ],
-            [
-                'icon' => 'fas fa-quran',
-                'img' => 'service-2.jpg',
-                'title' => 'Quran Recitation (Nazra)',
-                'badge' => 'Beginner',
-                'badge_color' => '#2e7d32',
-                'duration' => '3-6 Months',
-                'level' => 'All Ages',
-                'desc' => 'Learn to read the Holy Quran with proper pronunciation. This foundational course teaches Arabic letters, vowels, and basic reading skills from scratch.',
-                'features' => ['Arabic Alphabet', 'Harakat & Tanween', 'Joining Letters', 'Basic Reading'],
-            ],
-            [
-                'icon' => 'fas fa-microphone',
-                'img' => 'service-3.jpg',
-                'title' => 'Tajweed ul Quran',
-                'badge' => 'Intermediate',
-                'badge_color' => '#b8860b',
-                'duration' => '6-12 Months',
-                'level' => '10+ Years',
-                'desc' => 'Master the rules of Tajweed — the art of reciting the Quran beautifully and correctly. Taught by certified Qaris following the Hafs an Asim narration.',
-                'features' => ['Makharij al-Huruf', 'Sifat al-Huruf', 'Noon & Meem Rules', 'Madd Rules'],
-            ],
-            [
-                'icon' => 'fas fa-star',
-                'img' => 'service-4.jpg',
-                'title' => 'Hifz ul Quran',
-                'badge' => 'Advanced',
-                'badge_color' => '#6a1b9a',
-                'duration' => '2-4 Years',
-                'level' => '7-18 Years',
-                'desc' => 'Complete memorization of the entire Holy Quran under expert Huffaz. Our structured Hifz program includes daily revision, weekly tests and parental progress reports.',
-                'features' => ['Daily Memorization', 'Weekly Revision', 'Sabqi & Manzil', 'Graduation Ceremony'],
-            ],
-            [
-                'icon' => 'fas fa-book-open',
-                'img' => 'service-5.jpg',
-                'title' => 'Islamic Studies',
-                'badge' => 'All Levels',
-                'badge_color' => '#1565c0',
-                'duration' => 'Ongoing',
-                'level' => 'All Ages',
-                'desc' => 'Comprehensive Islamic education covering Aqeedah, Fiqh, Seerah, and Islamic manners. Structured curriculum from beginner to advanced level.',
-                'features' => ['Aqeedah', 'Fiqh ul Ibadah', 'Seerah an-Nabawiyyah', 'Islamic Manners'],
-            ],
-            [
-                'icon' => 'fas fa-language',
-                'img' => 'service-6.jpg',
-                'title' => 'Arabic Language',
-                'badge' => 'Beginner–Advanced',
-                'badge_color' => '#00695c',
-                'duration' => '1-2 Years',
-                'level' => 'All Ages',
-                'desc' => 'Learn Classical Arabic to understand the Quran and Hadith directly. Our conversational and classical Arabic program builds vocabulary, grammar and comprehension.',
-                'features' => ['Arabic Grammar (Nahw)', 'Morphology (Sarf)', 'Quran Vocabulary', 'Reading Comprehension'],
-            ],
-            [
-                'icon' => 'fas fa-scroll',
-                'img' => 'service-7.jpg',
-                'title' => 'Hadith & Seerah',
-                'badge' => 'Intermediate',
-                'badge_color' => '#c62828',
-                'duration' => '6-12 Months',
-                'level' => '12+ Years',
-                'desc' => 'Study the authenticated sayings of the Prophet ﷺ and his noble life. This course covers selected Ahadith from Arbaeen an-Nawawi and key events of the Seerah.',
-                'features' => ['40 Hadith Nawawi', 'Hadith Methodology', 'Seerah an-Nabawiyyah', 'Companions of the Prophet'],
-            ],
-            [
-                'icon' => 'fas fa-mosque',
-                'img' => 'service-8.jpg',
-                'title' => 'Namaz & Ibadat',
-                'badge' => 'Beginner',
-                'badge_color' => '#1565c0',
-                'duration' => '1-2 Months',
-                'level' => 'All Ages',
-                'desc' => 'Learn the correct method of Salah, Wudu, and other acts of worship according to the Quran and Sunnah. Essential foundation course for every Muslim.',
-                'features' => ['Method of Wudu', 'Salah Step by Step', 'Farz & Sunnah Prayers', 'Common Mistakes'],
-            ],
-            [
-                'icon' => 'fas fa-hands',
-                'img' => 'service-9.jpg',
-                'title' => 'Dua & Azkar',
-                'badge' => 'All Levels',
-                'badge_color' => '#2e7d32',
-                'duration' => '1-3 Months',
-                'level' => 'All Ages',
-                'desc' => 'Learn essential daily duas and morning/evening azkar from the Quran and Sunnah. Build a strong connection with Allah through regular remembrance and supplication.',
-                'features' => ['Morning & Evening Azkar', 'Masnoon Duas', 'Dua Etiquettes', 'Memorization'],
-            ],
-        ];
-        $totalCourses = count($courses);
-    @endphp
+    @php $totalCourses = count($courses); @endphp
 
 
     <!-- ===================== PAGE HEADER ===================== -->
@@ -113,7 +10,7 @@
 
         {{-- ── BG IMAGE (swap courses-hero.jpg with your generated image) ── --}}
         <div class="page-hero-bg">
-            <img src="{{ asset('img/courses-hero.jpg') }}" alt="Courses Hero Background">
+            <img src="{{ setting('img_courses_hero') ? asset('storage/' . setting('img_courses_hero')) : asset('img/courses-hero.jpg') }}" alt="Courses Hero Background">
         </div>
 
         <div class="hero-pattern"></div>
@@ -221,25 +118,25 @@
                             <div class="card-shimmer-line"></div>
 
                             <div class="card-img-wrap">
-                                <img src="{{ asset('img/' . $course['img']) }}" alt="{{ $course['title'] }}">
+                                <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}">
                                 <div class="card-img-overlay"></div>
                                 <span class="course-badge"
-                                    style="background:{{ $course['badge_color'] }};">{{ $course['badge'] }}</span>
+                                    style="background:{{ $course->badge_color }};">{{ $course->badge }}</span>
                                 <span class="course-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                                 <div class="course-icon-circle">
-                                    <i class="{{ $course['icon'] }}"></i>
+                                    <i class="{{ $course->icon }}"></i>
                                 </div>
                             </div>
 
                             <div class="card-body-inner">
                                 <div class="card-meta">
-                                    <span><i class="far fa-clock"></i> {{ $course['duration'] }}</span>
-                                    <span><i class="fas fa-user-graduate"></i> {{ $course['level'] }}</span>
+                                    <span><i class="far fa-clock"></i> {{ $course->duration }}</span>
+                                    <span><i class="fas fa-user-graduate"></i> {{ $course->level }}</span>
                                 </div>
-                                <h4 class="card-title">{{ $course['title'] }}</h4>
-                                <p class="card-desc">{{ $course['desc'] }}</p>
+                                <h4 class="card-title">{{ $course->title }}</h4>
+                                <p class="card-desc">{{ $course->description }}</p>
                                 <div class="card-features">
-                                    @foreach($course['features'] as $feat)
+                                    @foreach($course->features as $feat)
                                         <div class="feature-item"><i class="fas fa-check"></i> {{ $feat }}</div>
                                     @endforeach
                                 </div>
