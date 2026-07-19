@@ -46,6 +46,10 @@
           <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
           <span class="nav-text">Teachers</span>
         </a>
+        <a class="nav-link {{ request()->routeIs('admin.team-members.*') ? 'active' : '' }}" href="{{ route('admin.team-members.index') }}" data-sidebar-close>
+          <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+          <span class="nav-text">Team Members</span>
+        </a>
         <a class="nav-link {{ request()->routeIs('admin.courses.*') ? 'active' : '' }}" href="{{ route('admin.courses.index') }}" data-sidebar-close>
           <span class="nav-icon"><i class="bi bi-book" aria-hidden="true"></i></span>
           <span class="nav-text">Courses</span>

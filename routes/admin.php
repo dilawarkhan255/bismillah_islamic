@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CourseController;
@@ -13,15 +12,10 @@ use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PricingController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
-
-// Admin login — guest only
-Route::middleware('guest')->group(function () {
-    Route::get('admin/login', [AdminLoginController::class, 'create'])->name('admin.login');
-    Route::post('admin/login', [AdminLoginController::class, 'store'])->name('admin.login.submit');
-});
 
 // Content management — admin + editor
 Route::prefix('admin')
@@ -34,6 +28,7 @@ Route::prefix('admin')
         Route::resource('blog-categories', BlogCategoryController::class)->except(['show'])->names('blog-categories');
         Route::resource('testimonials', TestimonialController::class)->except(['show'])->names('testimonials');
         Route::resource('gallery', GalleryController::class)->except(['show'])->names('gallery');
+        Route::resource('team-members', TeamMemberController::class)->except(['show'])->names('team-members');
     });
 
 // Admin-only routes

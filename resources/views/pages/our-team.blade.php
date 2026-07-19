@@ -30,14 +30,14 @@
             </div>
 
             <div class="row g-4">
-                @foreach($teachers as $i => $teacher)
+                @foreach($members as $i => $member)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $i * 0.1 }}s">
                         <div class="ot-card">
                             <div class="ot-bar"></div>
-                            <a href="{{ route('teacher.profile', $teacher) }}" class="text-decoration-none">
+                            <a href="{{ route('team-member.profile', $member) }}" class="text-decoration-none">
                                 <div class="ot-img-wrap">
-                                    @if($teacher->image)
-                                        <img src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->name }}" class="ot-img">
+                                    @if($member->image)
+                                        <img src="{{ asset('storage/' . $member->image) }}" alt="{{ $member->name }}" class="ot-img">
                                     @else
                                         <div class="ot-img ot-placeholder">
                                             <i class="fas fa-user"></i>
@@ -47,42 +47,51 @@
                                 </div>
                             </a>
                             <div class="ot-body">
-                                <a href="{{ route('teacher.profile', $teacher) }}" class="text-decoration-none">
-                                    <h5 class="ot-name">{{ $teacher->name }}</h5>
+                                <a href="{{ route('team-member.profile', $member) }}" class="text-decoration-none">
+                                    <h5 class="ot-name">{{ $member->name }}</h5>
                                 </a>
-                                @if($teacher->role)
-                                    <p class="ot-role">{{ $teacher->role }}</p>
+                                @if($member->role)
+                                    <p class="ot-role">{{ $member->role }}</p>
                                 @endif
-                                @if($teacher->bio)
-                                    <p class="ot-bio">{{ Str::limit(strip_tags($teacher->bio), 120) }}</p>
+                                @if($member->short_bio)
+                                    <p class="ot-bio">{{ Str::limit(strip_tags($member->short_bio), 120) }}</p>
+                                @elseif($member->bio)
+                                    <p class="ot-bio">{{ Str::limit(strip_tags($member->bio), 120) }}</p>
                                 @endif
                                 <div class="ot-socials">
-                                    @if($teacher->email)
-                                        <a href="mailto:{{ $teacher->email }}" title="Email"><i class="fas fa-envelope"></i></a>
+                                    @if($member->email)
+                                        <a href="mailto:{{ $member->email }}" title="Email"><i class="fas fa-envelope"></i></a>
                                     @endif
-                                    @if($teacher->phone)
-                                        <a href="tel:{{ $teacher->phone }}" title="Phone"><i class="fas fa-phone"></i></a>
+                                    @if($member->phone)
+                                        <a href="tel:{{ $member->phone }}" title="Phone"><i class="fas fa-phone"></i></a>
                                     @endif
-                                    @if($teacher->facebook_url)
-                                        <a href="{{ $teacher->facebook_url }}" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                    @if($member->facebook_url)
+                                        <a href="{{ $member->facebook_url }}" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                                     @endif
-                                    @if($teacher->twitter_url)
-                                        <a href="{{ $teacher->twitter_url }}" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                    @if($member->twitter_url)
+                                        <a href="{{ $member->twitter_url }}" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter"></i></a>
                                     @endif
-                                    @if($teacher->instagram_url)
-                                        <a href="{{ $teacher->instagram_url }}" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                    @if($member->instagram_url)
+                                        <a href="{{ $member->instagram_url }}" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
                                     @endif
-                                    @if($teacher->linkedin_url)
-                                        <a href="{{ $teacher->linkedin_url }}" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                    @if($member->linkedin_url)
+                                        <a href="{{ $member->linkedin_url }}" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                                     @endif
                                 </div>
-                                <a href="{{ route('teacher.profile', $teacher) }}" class="ot-view-btn">
+                                <a href="{{ route('team-member.profile', $member) }}" class="ot-view-btn">
                                     View Profile <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                 @endforeach
+
+                @if($members->isEmpty())
+                    <div class="col-12 text-center py-5">
+                        <i class="bi bi-people" style="font-size:48px;color:var(--gold);opacity:0.3;"></i>
+                        <p class="mt-3" style="color:var(--text-mid);">Team members coming soon. Stay tuned!</p>
+                    </div>
+                @endif
             </div>
 
         </div>

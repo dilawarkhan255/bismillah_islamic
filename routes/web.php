@@ -9,6 +9,7 @@ use App\Models\BlogPost;
 use App\Models\BlogCategory;
 use App\Models\PricingPlan;
 use App\Models\GalleryItem;
+use App\Models\TeamMember;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Route;
 
@@ -52,9 +53,13 @@ Route::get('/team', function () {
 })->name('team');
 
 Route::get('/our-team', function () {
-    $teachers = Teacher::active()->get();
-    return view('pages.our-team', compact('teachers'));
+    $members = TeamMember::active()->get();
+    return view('pages.our-team', compact('members'));
 })->name('our-team');
+
+Route::get('/team-member/{teamMember}', function (TeamMember $teamMember) {
+    return view('pages.team-member-profile', ['member' => $teamMember]);
+})->name('team-member.profile');
 
 Route::get('/team/{teacher}', function (Teacher $teacher) {
     return view('pages.teacher-profile', compact('teacher'));
