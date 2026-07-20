@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\HeroSlideController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PricingController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TeamMemberController;
@@ -29,6 +30,7 @@ Route::prefix('admin')
         Route::resource('testimonials', TestimonialController::class)->except(['show'])->names('testimonials');
         Route::resource('gallery', GalleryController::class)->except(['show'])->names('gallery');
         Route::resource('team-members', TeamMemberController::class)->except(['show'])->names('team-members');
+        Route::resource('sections', SectionController::class)->except(['show'])->names('sections');
     });
 
 // Admin-only routes

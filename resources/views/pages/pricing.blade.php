@@ -10,12 +10,12 @@
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#AE8225 30%,#D4A843 50%,#AE8225 70%,transparent);"></div>
         <div class="container text-center" style="position:relative;z-index:2;">
             <div style="font-family:'Amiri',serif;font-size:20px;color:rgba(174,130,37,.65);letter-spacing:3px;margin-bottom:16px;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-            <div style="display:inline-block;font-family:'Cinzel',serif;font-size:9px;color:#D4A843;letter-spacing:5px;text-transform:uppercase;padding:7px 22px;border:1px solid rgba(174,130,37,.4);margin-bottom:22px;">✦ Transparent Pricing ✦</div>
+            <div style="display:inline-block;font-family:'Cinzel',serif;font-size:9px;color:#D4A843;letter-spacing:5px;text-transform:uppercase;padding:7px 22px;border:1px solid rgba(174,130,37,.4);margin-bottom:22px;">✦ {{ setting('section_pricing_hero_title', 'Transparent Pricing') }} ✦</div>
             <h1 style="font-family:'Cinzel',serif;color:#fff;font-size:clamp(28px,4.5vw,54px);font-weight:900;line-height:1.1;margin-bottom:16px;">
-                Choose Your <span style="color:#D4A843;">Learning Plan</span>
+                {!! section('pricing', 'hero_title', 'title', 'Choose Your <span style="color:#D4A843;">Learning Plan</span>') !!}
             </h1>
             <p style="color:rgba(255,255,255,.5);font-family:'Lato',sans-serif;font-size:15px;max-width:480px;margin:0 auto 30px;line-height:1.85;">
-                All plans are <strong style="color:rgba(255,255,255,.75);">30-minute</strong> live one-on-one sessions via Microsoft Teams. Every plan includes a <strong style="color:#D4A843;">3-day free trial</strong>.
+                {{ section('pricing', 'hero_title', 'description', 'All plans are 30-minute live one-on-one sessions via Microsoft Teams. Every plan includes a 3-day free trial.') }}
             </p>
             <!-- 4 trust badges -->
             <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">

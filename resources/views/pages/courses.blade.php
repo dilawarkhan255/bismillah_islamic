@@ -31,10 +31,8 @@
         <div class="container text-center" style="position:relative; z-index:5;">
             <div class="hero-arabic  reveal-up" style="animation-delay:0s;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
             <div class="hero-tag    reveal-up" style="animation-delay:0.15s;">✦ Bismillah Islamic Academy ✦</div>
-            <h1 class="hero-title  reveal-up" style="animation-delay:0.3s;">Our Islamic <span
-                    style="color:var(--gold-light);">Courses</span></h1>
-            <p class="hero-sub    reveal-up" style="animation-delay:0.45s;">From the first Arabic letter to complete Quran
-                memorization —<br>a structured path for every student.</p>
+            <h1 class="hero-title  reveal-up" style="animation-delay:0.3s;">{!! section('courses', 'hero', 'title', 'Our Islamic <span style="color:var(--gold-light);">Courses</span>') !!}</h1>
+            <p class="hero-sub    reveal-up" style="animation-delay:0.45s;">{{ section('courses', 'hero', 'subtitle', 'From the first Arabic letter to complete Quran memorization — a structured path for every student.') }}</p>
             <nav aria-label="breadcrumb" class="reveal-up" style="animation-delay:0.6s;">
                 <ol class="breadcrumb justify-content-center mb-0" style="background:transparent;">
                     <li class="breadcrumb-item">
@@ -57,14 +55,11 @@
                 <div class="col-lg-6 scroll-reveal" data-dir="left">
                     <span class="label-tag">Our Curriculum</span>
                     <h2 class="section-h2" style="margin-top:14px;">
-                        Authentic Islamic Education<br>
-                        <span style="color:var(--gold);">For Every Age & Level</span>
+                        {!! section('courses', 'intro_title', 'title', 'Authentic Islamic Education<br>For Every Age & Level') !!}
                     </h2>
                     <div class="gold-bar"></div>
                     <p class="body-text" style="margin-bottom:28px;">
-                        Our comprehensive Islamic curriculum is carefully designed for every age — from beginners learning
-                        the Arabic alphabet to advanced Hifz students completing the entire Quran. All courses are taught by
-                        certified scholars using modern and traditional teaching methods.
+                        {{ section('courses', 'intro_title', 'description', 'Our comprehensive Islamic curriculum is carefully designed for every age — from beginners learning the Arabic alphabet to advanced Hifz students completing the entire Quran. All courses are taught by certified scholars using modern and traditional teaching methods.') }}
                     </p>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <button type="button" class="btn-gold-solid" data-bs-toggle="modal" data-bs-target="#enrollModal">
@@ -106,7 +101,7 @@
 
             <div class="text-center mb-5 scroll-reveal" data-dir="up">
                 <span class="label-tag">What We Teach</span>
-                <h2 class="section-h2" style="margin-top:12px; margin-bottom:14px;">All Available Courses</h2>
+                <h2 class="section-h2" style="margin-top:12px; margin-bottom:14px;">{{ section('courses', 'grid_title', 'title', 'All Available Courses') }}</h2>
                 <div style="width:50px; height:2px; background:var(--gold); margin:0 auto;"></div>
             </div>
 
@@ -136,9 +131,11 @@
                                 <h4 class="card-title">{{ $course->title }}</h4>
                                 <p class="card-desc">{{ $course->description }}</p>
                                 <div class="card-features">
-                                    @foreach($course->features as $feat)
-                                        <div class="feature-item"><i class="fas fa-check"></i> {{ $feat }}</div>
-                                    @endforeach
+                                    @if($course->features)
+                                        @foreach($course->features as $feat)
+                                            <div class="feature-item"><i class="fas fa-check"></i> {{ $feat }}</div>
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <button type="button" class="card-enroll-btn" data-bs-toggle="modal"
                                     data-bs-target="#enrollModal">

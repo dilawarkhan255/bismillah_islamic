@@ -10,7 +10,7 @@
         <div class="pp-arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
         <div class="pp-tag">✦ Bismillah Islamic Academy ✦</div>
         <h1 class="pp-title">Privacy <span>Policy</span></h1>
-        <p class="pp-sub">Your trust is our amanah. Here's how we protect your information.</p>
+        <p class="pp-sub">{{ section('privacy-policy', 'subtitle', 'title', 'Your trust is our amanah. Here\'s how we protect your information.') }}</p>
         <div class="pp-badge">
             <i class="fas fa-shield-alt"></i> Last Updated: January 2026
         </div>

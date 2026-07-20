@@ -25,10 +25,10 @@
             <div class="g-hero-arabic  g-reveal" style="animation-delay:0s;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
             <div class="g-hero-tag    g-reveal" style="animation-delay:0.15s;">✦ Bismillah Islamic Academy ✦</div>
             <h1 class="g-hero-title  g-reveal" style="animation-delay:0.3s;">
-                Academy <span style="color:var(--gold-light);">Gallery</span>
+                {!! section('gallery', 'hero', 'title', 'Academy <span style="color:var(--gold-light);">Gallery</span>') !!}
             </h1>
             <p class="g-hero-sub    g-reveal" style="animation-delay:0.45s;">
-                Cherished moments from our classes, ceremonies, and community events
+                {{ section('gallery', 'hero', 'subtitle', 'Cherished moments from our classes, ceremonies, and community events.') }}
             </p>
             <nav aria-label="breadcrumb" class="g-reveal" style="animation-delay:0.6s;">
                 <ol class="breadcrumb justify-content-center mb-0" style="background:transparent;">

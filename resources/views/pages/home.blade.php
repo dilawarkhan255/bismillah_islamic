@@ -170,12 +170,9 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="h-100">
                         <h6 class="section-title bg-white text-start pe-3" style="color: var(--gold);">Why Choose Us</h6>
-                        <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">Why Parents
-                            Trust Us For Their Children</h1>
+                        <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">{{ section('home', 'why_title', 'title', 'Why Parents Trust Us For Their Children') }}</h1>
                         <p class="mb-4" style="color: var(--text-mid); line-height: 1.9;">
-                            Our academy combines traditional Islamic teaching methods with modern pedagogy. Every teacher is
-                            a
-                            qualified scholar committed to nurturing the next generation of Muslims.
+                            {{ section('home', 'why_title', 'description', 'Our academy combines traditional Islamic teaching methods with modern pedagogy. Every teacher is a qualified scholar committed to nurturing the next generation of Muslims.') }}
                         </p>
                         <div class="row g-4">
                             @php
@@ -225,8 +222,7 @@
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h6 class="section-title text-center px-3" style="background: var(--light-bg); color: var(--gold);">Our
                     Courses</h6>
-                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">We Focus On Authentic
-                    Islamic Education</h1>
+                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">{{ section('home', 'courses_title', 'title', 'We Focus On Authentic Islamic Education') }}</h1>
             </div>
             <div class="row g-4">
                 @foreach($courses as $course)
@@ -291,12 +287,10 @@
                     <h6 class="section-title bg-white text-start pe-3"
                         style="color: var(--gold); background: var(--off-white) !important;">Free Trial</h6>
                     <h1 class="display-6 mb-3" style="font-family: 'Cinzel', serif; color: var(--navy);">
-                        Start Your <span style="color: var(--gold);">3 Days</span><br>Free Trial Classes
+                        {!! section('home', 'trial_title', 'title', 'Start Your <span style="color: var(--gold);">3 Days</span><br>Free Trial Classes') !!}
                     </h1>
                     <p class="mb-4" style="color: var(--text-mid); line-height: 1.9; font-size: 15px;">
-                        Experience the quality of our teaching before you commit. Join our <strong
-                            style="color: var(--navy);">3-day free trial</strong> and let your child learn directly from our
-                        qualified Quran teachers — completely free, no obligation.
+                        {{ section('home', 'trial_title', 'description', 'Experience the quality of our teaching before you commit. Join our 3-day free trial and let your child learn directly from our qualified Quran teachers — completely free, no obligation.') }}
                     </p>
                     @php
                         $trialFeatures = [
@@ -351,7 +345,7 @@
 
             <div class="hiw-header wow fadeInUp" data-wow-delay="0.1s">
                 <span class="hiw-eyebrow">✦ Simple Process ✦</span>
-                <h1 class="hiw-heading">How It <span>Works</span></h1>
+                <h1 class="hiw-heading">{!! section('home', 'how_title', 'title', 'How It <span>Works</span>') !!}</h1>
                 <p class="hiw-subtext">From registration to certification — your complete Quran learning journey in 5 easy
                     steps, delivered live via <strong style="color: var(--gold); font-style: normal;">Microsoft
                         Teams</strong>.</p>
@@ -531,8 +525,7 @@
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h6 class="section-title bg-white text-center px-3" style="color: var(--gold);">Our Teachers</h6>
-                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">Meet Our Qualified
-                    Scholars</h1>
+                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">{{ section('home', 'team_title', 'title', 'Meet Our Qualified Scholars') }}</h1>
             </div>
             <div class="row g-4">
                 @foreach($teachers->filter(fn($t) => $t->is_active) as $index => $teacher)
@@ -597,8 +590,7 @@
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h6 class="section-title text-center px-3" style="background: var(--light-bg); color: var(--gold);">
                     Testimonials</h6>
-                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">What Our Students &
-                    Parents Say</h1>
+                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">{{ section('home', 'testimonials_title', 'title', 'What Our Students & Parents Say') }}</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 @foreach($testimonials->filter(fn($t) => $t->is_active) as $t)
@@ -633,10 +625,10 @@
         <div class="text-center mx-auto mb-5" style="max-width:600px;">
             <span style="font-size:11px;color:#AE8225;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;display:block;margin-bottom:12px;">✦ Get In Touch ✦</span>
             <h2 style="font-family:'Cinzel',serif;color:var(--navy);font-size:30px;font-weight:400;margin:0 0 10px;">
-                Have a <span style="color:#D4A843;">Question?</span> We're Here
+                {!! section('home', 'contact_title', 'title', 'Have a <span style="color:#D4A843;">Question?</span> We\'re Here') !!}
             </h2>
             <p style="font-size:14px;color:var(--text-mid);font-family:'Lato',sans-serif;margin:0;line-height:1.8;">
-                Fill the form and our team will respond within 24 hours, In sha Allah.
+                {{ section('home', 'contact_title', 'description', 'Fill the form and our team will respond within 24 hours, In sha Allah.') }}
             </p>
         </div>
 

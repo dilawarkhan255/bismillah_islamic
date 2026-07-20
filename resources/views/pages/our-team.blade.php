@@ -7,7 +7,7 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center page-header-inner">
-            <h1 class="display-4 text-white animated slideInDown mb-3">Our Team</h1>
+            <h1 class="display-4 text-white animated slideInDown mb-3">{{ section('our-team', 'hero', 'title', 'Meet Our Dedicated Team') }}</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="{{ route('home') }}">Home</a></li>
@@ -24,9 +24,9 @@
         <div class="container">
 
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width:600px;">
-                <h6 class="section-title bg-white text-center pe-3" style="color:var(--gold);">Our Team</h6>
-                <h1 class="display-6 mb-4">Meet Our <span style="color:var(--gold);">Dedicated</span> Team</h1>
-                <p style="color:var(--text-mid);">Our team of qualified scholars and experienced educators is committed to delivering authentic Islamic education with care, excellence, and devotion.</p>
+                <h6 class="section-title bg-white text-center pe-3" style="color:var(--gold);">{{ section('our-team', 'hero', 'title', 'Our Team') }}</h6>
+                <h1 class="display-6 mb-4">{!! section('our-team', 'section_title', 'title', 'Meet Our <span style="color:var(--gold);">Dedicated</span> Team') !!}</h1>
+                <p style="color:var(--text-mid);">{{ section('our-team', 'section_title', 'description', 'Our team of qualified scholars and experienced educators is committed to delivering authentic Islamic education with care, excellence, and devotion.') }}</p>
             </div>
 
             <div class="row g-4">

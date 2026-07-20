@@ -70,6 +70,10 @@
           <span class="nav-icon"><i class="bi bi-images" aria-hidden="true"></i></span>
           <span class="nav-text">Gallery</span>
         </a>
+        <a class="nav-link {{ request()->routeIs('admin.sections.*') ? 'active' : '' }}" href="{{ route('admin.sections.index') }}" data-sidebar-close>
+          <span class="nav-icon"><i class="bi bi-layers" aria-hidden="true"></i></span>
+          <span class="nav-text">Content Blocks</span>
+        </a>
         @endrole
 
         @role('admin')

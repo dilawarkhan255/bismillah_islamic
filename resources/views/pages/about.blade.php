@@ -5,7 +5,7 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center py-5">
-            <h1 class="display-4 text-white animated slideInDown mb-3">About Us</h1>
+            <h1 class="display-4 text-white animated slideInDown mb-3">{{ section('about', 'hero', 'title', 'About Us') }}</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="{{ route('home') }}">Home</a></li>
@@ -28,21 +28,16 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="h-100">
                         <h6 class="section-title bg-white text-start pe-3" style="color:var(--gold);">About Us</h6>
-                        <h1 class="display-6 mb-4">Bismillah <span style="color:var(--gold);">Islamic Academy</span> With
-                            <span style="color:var(--gold);">10
-                                Years</span> Of Excellence</h1>
-                        <p style="color:var(--text-mid);">Bismillah Islamic Academy was founded with one mission — to
-                            provide every Muslim student with authentic, accessible, and high-quality Islamic education. We
-                            believe that knowledge of the Quran and Sunnah is the foundation of a righteous life.</p>
-                        <p class="mb-4" style="color:var(--text-mid);">From our humble beginning with just a few students,
-                            we have grown into a thriving academy with over 1,500 students, 25 qualified teachers, and a
-                            curriculum that spans Quran recitation, Tajweed, Hifz, Islamic Studies, and Arabic Language.</p>
+                        <h1 class="display-6 mb-4">{!! section('about', 'intro_title', 'title', 'Bismillah <span style="color:var(--gold);">Islamic Academy</span> With <span style="color:var(--gold);">10 Years</span> Of Excellence') !!}</h1>
+                        <p class="mb-0" style="color:var(--text-mid);">{{ section('about', 'intro_title', 'description', 'Bismillah Islamic Academy was founded with one mission — to provide every Muslim student with authentic, accessible, and high-quality Islamic education. We believe that knowledge of the Quran and Sunnah is the foundation of a righteous life. From our humble beginning with just a few students, we have grown into a thriving academy with over 1,500 students, 25 qualified teachers, and a curriculum that spans Quran recitation, Tajweed, Hifz, Islamic Studies, and Arabic Language.') }}
+                            </p>
+                            <p class="mb-4" style="color:var(--text-mid);"></p>
                         <div class="d-flex align-items-center mb-4 pb-2">
                             <img class="flex-shrink-0 rounded-circle" src="{{ setting('img_about_team') ? asset('storage/' . setting('img_about_team')) : asset('img/team-1.jpg') }}" alt="Founder"
                                 style="width:50px; height:50px; border:2px solid var(--gold); object-fit:cover;">
                             <div class="ps-4">
-                                <h6 style="margin:0; color:var(--navy);">Sheikh Abdullah</h6>
-                                <small style="color:var(--gold); letter-spacing:1px;">Founder & Principal</small>
+                                <h6 style="margin:0; color:var(--navy);">{{ section('about', 'founder', 'title', 'Sheikh Abdullah') }}</h6>
+                                <small style="color:var(--gold); letter-spacing:1px;">{{ section('about', 'founder', 'subtitle', 'Founder & Principal') }}</small>
                             </div>
                         </div>
                         <a href="{{ route('contact') }}" class="btn rounded-pill py-3 px-5"
@@ -59,7 +54,7 @@
         <div class="container">
             <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <span class="mv-label">Our Purpose</span>
-                <h2 class="mv-heading">Mission & <span style="color:var(--gold);">Vision</span></h2>
+                <h2 class="mv-heading">{{ section('about', 'mission', 'title', 'Mission') }} & <span style="color:var(--gold);">{{ section('about', 'vision', 'title', 'Vision') }}</span></h2>
                 <div class="mv-divider"></div>
             </div>
             <div class="row g-4 justify-content-center">
@@ -69,8 +64,8 @@
                             <i class="fas fa-bullseye"></i>
                         </div>
                         <div class="mv-card-tag">Mission</div>
-                        <h4 class="mv-card-title">Our Mission</h4>
-                        <p class="mv-card-text">To provide every Muslim student with authentic, accessible, and high-quality Islamic education — rooted in the Quran and Sunnah — through qualified scholars, modern methods, and a nurturing environment that develops both character and knowledge.</p>
+                        <h4 class="mv-card-title">{{ section('about', 'mission', 'title', 'Our Mission') }}</h4>
+                        <p class="mv-card-text">{{ section('about', 'mission', 'description', 'To provide every Muslim student with authentic, accessible, and high-quality Islamic education — rooted in the Quran and Sunnah — through qualified scholars, modern methods, and a nurturing environment that develops both character and knowledge.') }}</p>
                         <ul class="mv-list">
                             <li><i class="fas fa-check"></i> Authentic Quranic Education</li>
                             <li><i class="fas fa-check"></i> Certified & Qualified Teachers</li>
@@ -84,8 +79,8 @@
                             <i class="fas fa-eye"></i>
                         </div>
                         <div class="mv-card-tag mv-tag-vision">Vision</div>
-                        <h4 class="mv-card-title">Our Vision</h4>
-                        <p class="mv-card-text">To become the most trusted Islamic academy in the world — a place where generations of Muslims connect deeply with their Deen, memorize the Quran, and carry the light of Islamic knowledge into every corner of their lives.</p>
+                        <h4 class="mv-card-title">{{ section('about', 'vision', 'title', 'Our Vision') }}</h4>
+                        <p class="mv-card-text">{{ section('about', 'vision', 'description', 'To become the most trusted Islamic academy in the world — a place where generations of Muslims connect deeply with their Deen, memorize the Quran, and carry the light of Islamic knowledge into every corner of their lives.') }}</p>
                         <ul class="mv-list">
                             <li><i class="fas fa-check"></i> Global Islamic Education Hub</li>
                             <li><i class="fas fa-check"></i> Generations of Hafiz & Scholars</li>
@@ -104,9 +99,9 @@
         <div class="container">
             <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <span class="mv-label">Our Journey</span>
-                <h2 class="mv-heading">Our <span style="color:var(--gold);">Story</span></h2>
+                <h2 class="mv-heading">{{ section('about', 'story_title', 'title', 'Our') }} <span style="color:var(--gold);">Story</span></h2>
                 <div class="mv-divider"></div>
-                <p style="color:var(--text-mid); max-width:520px; margin:16px auto 0; font-size:15px; line-height:1.9;">From a single classroom to a global academy — every step guided by faith and dedication.</p>
+                <p style="color:var(--text-mid); max-width:520px; margin:16px auto 0; font-size:15px; line-height:1.9;">{{ section('about', 'story_title', 'subtitle', 'From a single classroom to a global academy — every step guided by faith and dedication.') }}</p>
             </div>
 
             <div class="timeline-wrap">
@@ -115,8 +110,8 @@
                     <div class="timeline-dot"><span>2016</span></div>
                     <div class="timeline-content">
                         <div class="tc-year">2016</div>
-                        <h5 class="tc-title">Academy Founded</h5>
-                        <p class="tc-text">Bismillah Islamic Academy was established in Islamabad with a small group of dedicated students and 2 qualified teachers. The journey began with a single mission — authentic Quranic education for all.</p>
+                        <h5 class="tc-title">{{ section('about', 'story_2016', 'title', 'Academy Founded') }}</h5>
+                        <p class="tc-text">{{ section('about', 'story_2016', 'description', 'Bismillah Islamic Academy was established in Islamabad with a small group of dedicated students and 2 qualified teachers. The journey began with a single mission — authentic Quranic education for all.') }}</p>
                     </div>
                 </div>
 
@@ -124,8 +119,8 @@
                     <div class="timeline-dot"><span>2018</span></div>
                     <div class="timeline-content">
                         <div class="tc-year">2018</div>
-                        <h5 class="tc-title">First Hifz Batch Completed</h5>
-                        <p class="tc-text">A proud milestone — our very first batch of Hifz students completed the memorization of the entire Holy Quran. A graduation ceremony was held to honor their dedication and hard work.</p>
+                        <h5 class="tc-title">{{ section('about', 'story_2018', 'title', 'First Hifz Batch Completed') }}</h5>
+                        <p class="tc-text">{{ section('about', 'story_2018', 'description', 'A proud milestone — our very first batch of Hifz students completed the memorization of the entire Holy Quran. A graduation ceremony was held to honor their dedication and hard work.') }}</p>
                     </div>
                 </div>
 
@@ -133,8 +128,8 @@
                     <div class="timeline-dot"><span>2020</span></div>
                     <div class="timeline-content">
                         <div class="tc-year">2020</div>
-                        <h5 class="tc-title">Curriculum Expanded</h5>
-                        <p class="tc-text">We introduced new courses including Tajweed ul Quran, Islamic Studies, and Arabic Language — transforming into a full Islamic education institution with 10+ qualified scholars.</p>
+                        <h5 class="tc-title">{{ section('about', 'story_2020', 'title', 'Curriculum Expanded') }}</h5>
+                        <p class="tc-text">{{ section('about', 'story_2020', 'description', 'We introduced new courses including Tajweed ul Quran, Islamic Studies, and Arabic Language — transforming into a full Islamic education institution with 10+ qualified scholars.') }}</p>
                     </div>
                 </div>
 
@@ -142,8 +137,8 @@
                     <div class="timeline-dot"><span>2022</span></div>
                     <div class="timeline-content">
                         <div class="tc-year">2022</div>
-                        <h5 class="tc-title">Online Expansion</h5>
-                        <p class="tc-text">Bismillah Academy went digital — launching a full online learning platform to reach Muslim students worldwide. Students from UK, USA, Canada, and Australia joined our growing family.</p>
+                        <h5 class="tc-title">{{ section('about', 'story_2022', 'title', 'Online Expansion') }}</h5>
+                        <p class="tc-text">{{ section('about', 'story_2022', 'description', 'Bismillah Academy went digital — launching a full online learning platform to reach Muslim students worldwide. Students from UK, USA, Canada, and Australia joined our growing family.') }}</p>
                     </div>
                 </div>
 
@@ -151,8 +146,8 @@
                     <div class="timeline-dot"><span>2024</span></div>
                     <div class="timeline-content">
                         <div class="tc-year">2024</div>
-                        <h5 class="tc-title">500+ Hafiz Graduates</h5>
-                        <p class="tc-text">A historic achievement — over 500 students completed full Quran memorization. Academy expanded with new teachers, new courses, and students enrolling from 15+ countries worldwide.</p>
+                        <h5 class="tc-title">{{ section('about', 'story_2024', 'title', '500+ Hafiz Graduates') }}</h5>
+                        <p class="tc-text">{{ section('about', 'story_2024', 'description', 'A historic achievement — over 500 students completed full Quran memorization. Academy expanded with new teachers, new courses, and students enrolling from 15+ countries worldwide.') }}</p>
                     </div>
                 </div>
 

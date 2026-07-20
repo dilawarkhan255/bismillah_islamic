@@ -123,14 +123,6 @@ Row 2: Logo left | Nav CENTER
             </div>
         </div>
     </div>
-    @auth
-        @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('editor'))
-            <a href="{{ url('/admin') }}" class="btn btn-sm d-lg-inline-flex align-items-center gap-1 me-3"
-               style="background:var(--gold);color:#fff;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 16px;border:1px solid var(--gold);text-decoration:none;white-space:nowrap;">
-                <i class="bi bi-speedometer2"></i> Admin Panel
-            </a>
-        @endif
-    @endauth
 </nav>
 {{-- ── END Navbar ─────────────────────────────────────────────── --}}
 

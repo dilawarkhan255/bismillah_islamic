@@ -15,13 +15,11 @@
                 اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
             <div
                 style="display:inline-block;font-family:'Cinzel',serif;font-size:10px;color:var(--gold-light);letter-spacing:4px;text-transform:uppercase;padding:6px 20px;border:1px solid rgba(174,130,37,.4);margin-bottom:18px;">
-                ✦ 3 Free Classes — No Commitment ✦</div>
+                ✦ {{ section('free-trial', 'hero_title', 'subtitle', '3 Free Classes — No Commitment') }} ✦</div>
             <h1
                 style="font-family:'Cinzel',serif;color:#fff;font-size:clamp(26px,4.5vw,52px);font-weight:900;margin-bottom:14px;">
-                Book Your <span style="color:var(--gold-light);">FREE</span> Trial Today</h1>
-            <p style="color:rgba(255,255,255,.55);font-size:15px;max-width:520px;margin:0 auto 20px;line-height:1.8;">Live
-                one-on-one classes via Microsoft Teams. Certified scholars. Female teachers available. Completely free for 3
-                days.</p>
+                {!! section('free-trial', 'hero_title', 'title', 'Book Your <span style="color:var(--gold-light);">FREE</span> Trial Today') !!}</h1>
+            <p style="color:rgba(255,255,255,.55);font-size:15px;max-width:520px;margin:0 auto 20px;line-height:1.8;">{{ section('free-trial', 'hero_title', 'description', 'Live one-on-one classes via Microsoft Teams. Certified scholars. Female teachers available. Completely free for 3 days.') }}</p>
             <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;">
                 <span
                     style="display:inline-flex;align-items:center;gap:6px;background:rgba(174,130,37,.12);border:1px solid rgba(174,130,37,.3);color:var(--gold-light);font-family:'Lato',sans-serif;font-size:11px;font-weight:700;padding:6px 14px;"><i
