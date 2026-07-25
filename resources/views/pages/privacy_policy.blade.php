@@ -24,11 +24,12 @@
             <div class="col-lg-8">
 
                 <!-- Commitment Banner -->
+                @php $ppCommitment = \App\Models\Section::where('page_name','privacy-policy')->where('section_key','commitment')->first(); @endphp
                 <div class="pp-banner">
                     <div class="pp-banner-icon"><i class="fas fa-user-shield"></i></div>
                     <div>
-                        <h5>Our Commitment</h5>
-                        <p>Bismillah Islamic Academy collects only what is needed to serve you. We never sell your data, never run ads, and always handle your information with <em>amanah</em> and <em>wudhuh</em>.</p>
+                        <h5>{{ $ppCommitment->title ?? 'Our Commitment' }}</h5>
+                        <p>{{ $ppCommitment->description ?? 'Bismillah Islamic Academy collects only what is needed to serve you. We never sell your data, never run ads, and always handle your information with amanah and wudhuh.' }}</p>
                     </div>
                 </div>
 
@@ -36,162 +37,25 @@
                 <div class="pp-accordion">
 
                     @php
-                    $sections = [
-                        [
-                            'num'   => '01',
-                            'icon'  => 'fa-info-circle',
-                            'title' => 'Introduction',
-                            'open'  => true,
-                            'body'  => '<p>This policy covers all services by Bismillah Islamic Academy — our website, enrollment forms, WhatsApp, and Google Meet classes — for students and families in Pakistan, the UK, and beyond.</p><p>By enrolling or using our website you agree to this policy.</p>'
-                        ],
-                        [
-                            'num'   => '02',
-                            'icon'  => 'fa-database',
-                            'title' => 'Information We Collect',
-                            'open'  => false,
-                            'body'  => '
-                            <p>We collect only what is necessary:</p>
-                            <div class="pp-chips">
-                                <span><i class="fas fa-user"></i> Student & parent name</span>
-                                <span><i class="fas fa-envelope"></i> Email & WhatsApp number</span>
-                                <span><i class="fas fa-globe"></i> Country & time zone</span>
-                                <span><i class="fas fa-graduation-cap"></i> Quran level & goals</span>
-                                <span><i class="fas fa-chart-line"></i> Progress reports</span>
-                                <span><i class="fas fa-laptop"></i> Basic device & browser data</span>
-                            </div>'
-                        ],
-                        [
-                            'num'   => '03',
-                            'icon'  => 'fa-cogs',
-                            'title' => 'How We Use It',
-                            'open'  => false,
-                            'body'  => '
-                            <ul class="pp-list">
-                                <li>Enroll students and assign qualified teachers</li>
-                                <li>Schedule classes in your time zone</li>
-                                <li>Send reminders, progress updates, and announcements</li>
-                                <li>Respond to inquiries and support requests</li>
-                                <li>Process payments where applicable</li>
-                                <li>Improve our courses and website</li>
-                            </ul>
-                            <div class="pp-callout">
-                                <i class="fas fa-ban"></i>
-                                <p>We will <strong>never</strong> sell your data or use it for unsolicited marketing.</p>
-                            </div>'
-                        ],
-                        [
-                            'num'   => '04',
-                            'icon'  => 'fa-share-alt',
-                            'title' => 'Data Sharing',
-                            'open'  => false,
-                            'body'  => '
-                            <p>We share your data only when necessary:</p>
-                            <div class="pp-share-list">
-                                <div class="pp-share-item">
-                                    <strong>Assigned Teachers</strong>
-                                    <span>To prepare and conduct lessons — need-to-know only</span>
-                                </div>
-                                <div class="pp-share-item">
-                                    <strong>WhatsApp / Google Meet</strong>
-                                    <span>Class sessions — protected by platform encryption</span>
-                                </div>
-                                <div class="pp-share-item">
-                                    <strong>Payment Processors</strong>
-                                    <span>Fee collection — PCI-DSS compliant only</span>
-                                </div>
-                                <div class="pp-share-item">
-                                    <strong>Legal Authorities</strong>
-                                    <span>Only if required by law</span>
-                                </div>
-                            </div>'
-                        ],
-                        [
-                            'num'   => '05',
-                            'icon'  => 'fa-lock',
-                            'title' => 'Data Security',
-                            'open'  => false,
-                            'body'  => '
-                            <div class="pp-sec-grid">
-                                <div class="pp-sec-item"><i class="fas fa-lock"></i><div><strong>Encrypted Storage</strong><p>Sensitive data is encrypted; passwords never stored in plain text.</p></div></div>
-                                <div class="pp-sec-item"><i class="fas fa-user-lock"></i><div><strong>Access Control</strong><p>Only authorized staff can access student records.</p></div></div>
-                                <div class="pp-sec-item"><i class="fas fa-shield-virus"></i><div><strong>Secure Comms</strong><p>HTTPS on website; encrypted messaging for all communications.</p></div></div>
-                                <div class="pp-sec-item"><i class="fas fa-trash-alt"></i><div><strong>Data Minimization</strong><p>We delete data when it is no longer needed.</p></div></div>
-                            </div>'
-                        ],
-                        [
-                            'num'   => '06',
-                            'icon'  => 'fa-cookie-bite',
-                            'title' => 'Cookies',
-                            'open'  => false,
-                            'body'  => '
-                            <div class="pp-cookie-list">
-                                <div class="pp-cookie-item"><span class="pp-badge-req">Required</span><strong>Essential</strong><p>Core website functions — cannot be disabled.</p></div>
-                                <div class="pp-cookie-item"><span class="pp-badge-opt">Optional</span><strong>Analytics</strong><p>Google Analytics — helps us improve the site.</p></div>
-                                <div class="pp-cookie-item"><span class="pp-badge-opt">Optional</span><strong>Preferences</strong><p>Remembers language and region settings.</p></div>
-                            </div>
-                            <p style="margin-top:14px;font-size:13px;">You can manage cookies in your browser settings.</p>'
-                        ],
-                        [
-                            'num'   => '07',
-                            'icon'  => 'fa-balance-scale',
-                            'title' => 'Your Rights',
-                            'open'  => false,
-                            'body'  => '
-                            <div class="pp-rights">
-                                <div><i class="fas fa-eye"></i> <strong>Access</strong> — request a copy of your data</div>
-                                <div><i class="fas fa-edit"></i> <strong>Rectification</strong> — correct inaccurate information</div>
-                                <div><i class="fas fa-trash"></i> <strong>Erasure</strong> — request deletion of your data</div>
-                                <div><i class="fas fa-download"></i> <strong>Portability</strong> — receive your data in a readable format</div>
-                                <div><i class="fas fa-times-circle"></i> <strong>Object</strong> — object to certain types of processing</div>
-                            </div>
-                            <div class="pp-callout" style="margin-top:18px;">
-                                <i class="fas fa-envelope"></i>
-                                <p>Email <a href="mailto:bismillahquranacademy2@gmail.com">bismillahquranacademy2@gmail.com</a> to exercise any right. We respond within 24 hours.</p>
-                            </div>'
-                        ],
-                        [
-                            'num'   => '08',
-                            'icon'  => 'fa-child',
-                            'title' => "Children's Privacy",
-                            'open'  => false,
-                            'body'  => '
-                            <div class="pp-callout pp-callout--green">
-                                <i class="fas fa-child"></i>
-                                <p><strong>Special Protection for Minors.</strong> All enrollment and communication for children is handled through a parent or legal guardian. We collect only the minimum data needed, never serve ads to minors, and never share their data beyond what is described in Section 4. Parents may request access, correction, or deletion of their child\'s data at any time.</p>
-                            </div>'
-                        ],
-                        [
-                            'num'   => '09',
-                            'icon'  => 'fa-sync-alt',
-                            'title' => 'Policy Changes',
-                            'open'  => false,
-                            'body'  => '<p>When we make significant changes, we will update the date on this page, notify enrolled families via email or WhatsApp, and post a notice on our homepage for 30 days.</p>'
-                        ],
-                        [
-                            'num'   => '10',
-                            'icon'  => 'fa-headset',
-                            'title' => 'Contact Us',
-                            'open'  => false,
-                            'body'  => '
-                            <div class="pp-contacts">
-                                <a href="mailto:bismillahquranacademy2@gmail.com" class="pp-contact">
-                                    <div class="pp-ci"><i class="fas fa-envelope"></i></div>
-                                    <div><strong>Email</strong><span>bismillahquranacademy2@gmail.com</span></div>
-                                </a>
-                                <a href="https://wa.me/923141833216" class="pp-contact" target="_blank">
-                                    <div class="pp-ci pp-ci--wa"><i class="fab fa-whatsapp"></i></div>
-                                    <div><strong>Pakistan</strong><span>+92 314 1833216</span></div>
-                                </a>
-                                <a href="https://wa.me/447415770822" class="pp-contact" target="_blank">
-                                    <div class="pp-ci pp-ci--uk"><i class="fab fa-whatsapp"></i></div>
-                                    <div><strong>United Kingdom</strong><span>+44 7415 770822</span></div>
-                                </a>
-                            </div>'
-                        ],
-                    ];
+                    $ppSections = [];
+                    foreach(['section_1','section_2','section_3','section_4','section_5','section_6','section_7','section_8','section_9','section_10'] as $sk) {
+                        $ps = \App\Models\Section::where('page_name','privacy-policy')->where('section_key',$sk)->first();
+                        if($ps) $ppSections[] = [
+                            'num'   => str_pad(count($ppSections)+1, 2, '0', STR_PAD_LEFT),
+                            'icon'  => $ps->subtitle ?? 'fa-info-circle',
+                            'title' => $ps->title,
+                            'open'  => count($ppSections) === 0,
+                            'body'  => $ps->description,
+                        ];
+                    }
+                    if(empty($ppSections)) {
+                        $ppSections = [
+                            ['num'=>'01','icon'=>'fa-info-circle','title'=>'Introduction','open'=>true,'body'=>'<p>This policy covers all services by Bismillah Islamic Academy.</p>'],
+                        ];
+                    }
                     @endphp
 
-                    @foreach($sections as $i => $s)
+                    @foreach($ppSections as $i => $s)
                     <div class="pp-item {{ $s['open'] ? 'pp-item--open' : '' }}">
                         <button class="pp-item-hd" onclick="ppToggle(this)" aria-expanded="{{ $s['open'] ? 'true' : 'false' }}">
                             <div class="pp-item-left">
@@ -218,14 +82,15 @@
 
 
 <!-- CTA -->
+@php $ppCta = \App\Models\Section::where('page_name','privacy-policy')->where('section_key','cta')->first(); @endphp
 <section class="pp-cta">
     <div class="pp-cta-bg"></div>
     <div class="container text-center" style="position:relative;z-index:2;">
         <div class="pp-arabic" style="opacity:.7;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-        <h2 class="pp-cta-title">Begin Your <span>Quranic Journey</span></h2>
-        <p class="pp-cta-sub">Your privacy is protected. Your trust is our amanah.</p>
+        <h2 class="pp-cta-title">{!! $ppCta->title ?? 'Begin Your <span>Quranic Journey</span>' !!}</h2>
+        <p class="pp-cta-sub">{{ $ppCta->description ?? 'Your privacy is protected. Your trust is our amanah.' }}</p>
         <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-            <a href="{{ route('free_trial') }}" class="pp-btn-gold">Start Free Trial</a>
+            <a href="{{ $ppCta->button_url ?? route('free_trial') }}" class="pp-btn-gold">{{ $ppCta->button_text ?? 'Start Free Trial' }}</a>
             <a href="{{ route('contact') }}" class="pp-btn-outline">Contact Us</a>
         </div>
     </div>

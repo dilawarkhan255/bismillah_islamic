@@ -75,8 +75,8 @@
 
                     <div class="bbl-posts-heading bbl-sr" data-dir="up">
                         <div>
-                            <span class="bbl-eyebrow">Islamic Knowledge</span>
-                            <h2 class="bbl-h2">Latest <span>Articles</span></h2>
+                            <span class="bbl-eyebrow">{{ section('blog', 'latest_title', 'description', 'Islamic Knowledge') }}</span>
+                            <h2 class="bbl-h2">{!! section('blog', 'latest_title', 'title', 'Latest <span>Articles</span>') !!}</h2>
                         </div>
                         <div class="bbl-gold-rule"></div>
                     </div>
@@ -145,15 +145,15 @@
                     <div class="bbl-verse">
                         <div class="bbl-verse-bg"></div>
                         <div class="bbl-verse-inner">
-                            <div class="bbl-verse-arabic">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</div>
+                            <div class="bbl-verse-arabic">{{ section('blog', 'verse', 'title', 'اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ') }}</div>
                             <div class="bbl-verse-line"></div>
-                            <p class="bbl-verse-trans">"Read in the name of your Lord who created"</p>
-                            <span class="bbl-verse-ref">Surah Al-Alaq — 96:1</span>
+                            <p class="bbl-verse-trans">{{ section('blog', 'verse', 'subtitle', '"Read in the name of your Lord who created"') }}</p>
+                            <span class="bbl-verse-ref">{{ section('blog', 'verse', 'description', 'Surah Al-Alaq — 96:1') }}</span>
                         </div>
                     </div>
 
                     <div class="bbl-widget">
-                        <div class="bbl-widget-hd"><i class="fas fa-layer-group"></i> Categories</div>
+                        <div class="bbl-widget-hd"><i class="fas fa-layer-group"></i> {{ section('blog', 'widget_categories', 'title', 'Categories') }}</div>
                         <div class="bbl-widget-bd bbl-widget-bd--flush">
                             @foreach($categories as $cat)
                                 <a href="#" class="bbl-cat">
@@ -167,7 +167,7 @@
                     </div>
 
                     <div class="bbl-widget">
-                        <div class="bbl-widget-hd"><i class="fas fa-history"></i> Recent Articles</div>
+                        <div class="bbl-widget-hd"><i class="fas fa-history"></i> {{ section('blog', 'widget_recent', 'title', 'Recent Articles') }}</div>
                         <div class="bbl-widget-bd bbl-widget-bd--flush">
                             @foreach($recent as $ri => $r)
                                 <a href="#" class="bbl-recent {{ $ri < count($recent) - 1 ? 'bbl-recent--sep' : '' }}">
@@ -189,10 +189,9 @@
                         <div class="bbl-enroll-bg"></div>
                         <div class="bbl-enroll-inner">
                             <div class="bbl-enroll-icon"><i class="fas fa-quran"></i></div>
-                            <h5 class="bbl-enroll-title">Begin Your Journey</h5>
-                            <p class="bbl-enroll-text">Join Bismillah Islamic Academy and walk the path of Quranic
-                                excellence today.</p>
-                            <a href="{{ route('free_trial') }}" class="bbl-enroll-btn">Enroll Now</a>
+                            <h5 class="bbl-enroll-title">{{ section('blog', 'cta', 'title', 'Begin Your Journey') }}</h5>
+                            <p class="bbl-enroll-text">{{ section('blog', 'cta', 'description', 'Join Bismillah Islamic Academy and walk the path of Quranic excellence today.') }}</p>
+                            <a href="{{ section('blog', 'cta', 'button_url', '/free-trial') }}" class="bbl-enroll-btn">{{ section('blog', 'cta', 'button_text', 'Enroll Now') }}</a>
                         </div>
                     </div>
 

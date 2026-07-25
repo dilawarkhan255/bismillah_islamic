@@ -43,11 +43,11 @@ Row 2: Logo left | Nav CENTER
 
             <div class="bia-vr"></div>
 
-             <a href="https://wa.me/{{ \App\Models\SiteSetting::get('whatsapp', '923141833216') }}" target="_blank" class="bia-info-chip" style="text-decoration:none;">
+             <a href="https://wa.me/{{ \App\Models\SiteSetting::get('whatsapp', '19295978179') }}" target="_blank" class="bia-info-chip" style="text-decoration:none;">
                 <div class="bia-info-icon"><i class="fab fa-whatsapp"></i></div>
                 <div>
-                    <span class="bia-info-label">🇵🇰 Pakistan</span>
-                    <span class="bia-info-val">{{ \App\Models\SiteSetting::get('phone', '+92 314 1833216') }}</span>
+                    <span class="bia-info-label">🇺🇸 USA</span>
+                    <span class="bia-info-val">{{ \App\Models\SiteSetting::get('phone', '+1 (929) 597-8179') }}</span>
                 </div>
             </a>
 
@@ -79,7 +79,7 @@ Row 2: Logo left | Nav CENTER
         <div class="bia-topbar-right">
             <button class="bia-enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal">
                 <span class="bia-enroll-icon"><i class="fa fa-graduation-cap"></i></span>
-                <span>Enroll Now</span>
+                <span>{{ \App\Models\SiteSetting::get('enroll_button_text', 'Enroll Now') }}</span>
                 <i class="fa fa-arrow-right bia-arrow"></i>
             </button>
         </div>

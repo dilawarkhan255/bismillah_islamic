@@ -11,6 +11,7 @@
 
 <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
 
     <div class="panel mb-4">
         <div class="panel-header">

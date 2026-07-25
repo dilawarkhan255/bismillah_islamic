@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', 'Admin') | Bismillah Academy</title>
+  <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
 
   <link rel="stylesheet" href="{{ asset('admin-assets/assets/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin-assets/assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
@@ -21,10 +22,10 @@
     <div class="sidebar-backdrop" data-sidebar-close></div>
 
     <aside class="admin-sidebar" id="adminSidebar" aria-label="Main navigation">
-      <div class="sidebar-header">
-        <a class="brand-mark" href="{{ route('admin.dashboard') }}" data-sidebar-close aria-label="Bismillah Academy dashboard">
-          <span class="brand-icon">
-            <img src="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('img/logo.png') }}" alt="Logo" style="width:100%;height:100%;object-fit:contain;">
+      <div class="sidebar-header" style="text-align:center;">
+        <a class="brand-mark" href="{{ route('admin.dashboard') }}" data-sidebar-close aria-label="Bismillah Academy dashboard" style="flex-direction:column;align-items:center;gap:6px;">
+          <span class="brand-icon" style="width:auto;height:auto;">
+            <img src="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('img/logo.png') }}" alt="Logo" style="height:48px;width:auto;">
           </span>
           <span class="brand-copy">
             <span class="brand-title">Bismillah Academy</span>
@@ -70,10 +71,6 @@
           <span class="nav-icon"><i class="bi bi-images" aria-hidden="true"></i></span>
           <span class="nav-text">Gallery</span>
         </a>
-        <a class="nav-link {{ request()->routeIs('admin.sections.*') ? 'active' : '' }}" href="{{ route('admin.sections.index') }}" data-sidebar-close>
-          <span class="nav-icon"><i class="bi bi-layers" aria-hidden="true"></i></span>
-          <span class="nav-text">Content Blocks</span>
-        </a>
         @endrole
 
         @role('admin')
@@ -108,6 +105,10 @@
         <a class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}" data-sidebar-close>
           <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
           <span class="nav-text">Users</span>
+        </a>
+        <a class="nav-link {{ request()->routeIs('admin.page-content.*') ? 'active' : '' }}" href="{{ route('admin.page-content.index') }}" data-sidebar-close>
+          <span class="nav-icon"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span>
+          <span class="nav-text">Page Content</span>
         </a>
         <a class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}" href="{{ route('admin.settings.index') }}" data-sidebar-close>
           <span class="nav-icon"><i class="bi bi-gear" aria-hidden="true"></i></span>

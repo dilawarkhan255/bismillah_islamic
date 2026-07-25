@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($enrollments as $enrollment)
+                    @foreach($enrollments as $enrollment)
                         <tr>
                             <td><strong>{{ $enrollment->student_name }}</strong></td>
                             <td>{{ $enrollment->parent_name }}</td>
@@ -45,11 +45,7 @@
                                 </div>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="7" class="text-center text-muted py-4">No enrollments found.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>

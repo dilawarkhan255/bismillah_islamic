@@ -36,7 +36,7 @@
         </tr>
       </thead>
       <tbody>
-        @forelse($courses as $course)
+        @foreach($courses as $course)
           <tr>
             <td>
               @if($course->image)
@@ -72,11 +72,7 @@
               </div>
             </td>
           </tr>
-        @empty
-          <tr>
-            <td colspan="6" class="text-center text-muted py-4">No courses found.</td>
-          </tr>
-        @endforelse
+        @endforeach
       </tbody>
     </table>
   </div>

@@ -19,6 +19,7 @@
         rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -724,36 +725,31 @@
     <a href="#" class="btn back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries — ORDER MATTERS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{ asset('lib/counterup/counterup.min.js') }}"></script>
-    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('lib/lightbox/js/lightbox.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="{{ asset('lib/wow/wow.min.js') }}" defer></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}" defer></script>
+    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}" defer></script>
+    <script src="{{ asset('lib/counterup/counterup.min.js') }}" defer></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}" defer></script>
+    <script src="{{ asset('lib/lightbox/js/lightbox.min.js') }}" defer></script>
 
     <!-- Template Javascript -->
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
 
-    {{-- ✅ SweetAlert2 CDN — sabse pehle load hoga taake Swal available ho --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- SweetAlert2 CDN --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
     <script>
         /* ===== Spinner ===== */
         window.addEventListener('load', function () {
             var spinner = document.getElementById('spinner');
-            var minTime = 800;
-            var loadTime = performance.now();
-            var remaining = minTime - loadTime;
-            setTimeout(function () {
-                spinner.classList.add('hide');
-            }, remaining > 0 ? remaining : 100);
+            if (spinner) spinner.classList.add('hide');
         });
         setTimeout(function () {
             var spinner = document.getElementById('spinner');
             if (spinner) spinner.classList.add('hide');
-        }, 4000);
+        }, 1500);
 
         /* ===== Back to top ===== */
         window.addEventListener('scroll', function () {
@@ -765,14 +761,16 @@
         });
 
         /* ===== WOW init ===== */
-        new WOW().init();
+        if (typeof WOW !== 'undefined') new WOW().init();
 
         /* ===== Counter Up ===== */
-        $(document).ready(function () {
-            setTimeout(function () {
-                $('[data-toggle="counter-up"]').counterUp({ delay: 10, time: 2000 });
-            }, 800);
-        });
+        if (typeof jQuery !== 'undefined') {
+            jQuery(document).ready(function () {
+                setTimeout(function () {
+                    jQuery('[data-toggle="counter-up"]').counterUp({ delay: 10, time: 2000 });
+                }, 800);
+            });
+        }
     </script>
 
     {{-- ✅ Page specific scripts --}}
@@ -787,22 +785,20 @@
     ════════════════════════════════════════════ --}}
     @if(session('success'))
         <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'JazakAllah Khair! ✦',
-                text: "{{ session('success') }}",
-                confirmButtonText: 'Close',
-                confirmButtonColor: '#AE8225',
-                background: '#0D1B2A',
-                color: '#ffffff',
-                iconColor: '#AE8225',
-                timer: 5000,
-                timerProgressBar: true,
-                customClass: {
-                    popup: 'swal-popup',
-                    title: 'swal-title',
-                    confirmButton: 'swal-btn',
-                    timerProgressBar: 'swal-timer',
+            document.addEventListener('DOMContentLoaded', function () {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'JazakAllah Khair!',
+                        text: "{{ session('success') }}",
+                        confirmButtonText: 'Close',
+                        confirmButtonColor: '#AE8225',
+                        background: '#0D1B2A',
+                        color: '#ffffff',
+                        iconColor: '#AE8225',
+                        timer: 5000,
+                        timerProgressBar: true,
+                    });
                 }
             });
         </script>
@@ -810,19 +806,18 @@
 
     @if(session('error'))
         <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Something Went Wrong!',
-                text: "{{ session('error') }}",
-                confirmButtonText: 'Try Again',
-                confirmButtonColor: '#AE8225',
-                background: '#0D1B2A',
-                color: '#ffffff',
-                iconColor: '#e74c3c',
-                customClass: {
-                    popup: 'swal-popup',
-                    title: 'swal-title',
-                    confirmButton: 'swal-btn',
+            document.addEventListener('DOMContentLoaded', function () {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Something Went Wrong!',
+                        text: "{{ session('error') }}",
+                        confirmButtonText: 'Try Again',
+                        confirmButtonColor: '#AE8225',
+                        background: '#0D1B2A',
+                        color: '#ffffff',
+                        iconColor: '#e74c3c',
+                    });
                 }
             });
         </script>
@@ -835,14 +830,11 @@
         (function () {
             function showModal() {
                 var modalEl = document.getElementById('enrollModal');
-                if (!modalEl) return;
+                if (!modalEl || typeof bootstrap === 'undefined') return;
                 var modal = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
                 modal.show();
             }
-
-            window.addEventListener('load', function () {
-                setTimeout(showModal, 3000);
-            });
+            setTimeout(showModal, 3000);
         })();
     </script>
 </body>

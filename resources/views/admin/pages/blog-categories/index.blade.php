@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($categories as $category)
+                    @foreach($categories as $category)
                         <tr>
                             <td><strong>{{ $category->name }}</strong></td>
                             <td><code>{{ $category->slug }}</code></td>
@@ -55,11 +55,7 @@
                                 </form>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="text-center text-muted py-4">No categories found.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>

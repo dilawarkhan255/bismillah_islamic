@@ -49,7 +49,7 @@
 
             <div class="text-center mb-5 g-scroll" data-dir="up">
                 <span class="g-label-tag">Photo Gallery</span>
-                <h2 class="g-section-h2" style="margin-top:12px; margin-bottom:14px;">Glimpses of Our Academy</h2>
+                <h2 class="g-section-h2" style="margin-top:12px; margin-bottom:14px;">{{ section('gallery', 'section_title', 'title', 'Glimpses of Our Academy') }}</h2>
                 <div style="width:50px; height:2px; background:var(--gold); margin:0 auto;"></div>
             </div>
 
@@ -84,13 +84,13 @@
         <div class="container text-center" style="position:relative; z-index:2;">
             <div class="g-cta-arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
             <h2 class="g-cta-title">
-                Be Part Of Our <span style="color:var(--gold-light);">Growing Community</span>
+                {!! section('gallery', 'cta', 'title', 'Be Part Of Our <span style="color:var(--gold-light);">Growing Community</span>') !!}
             </h2>
             <p class="g-cta-desc">
-                Join Bismillah Islamic Academy and create your own beautiful memories on the path of Quranic knowledge.
+                {{ section('gallery', 'cta', 'description', 'Join Bismillah Islamic Academy and create your own beautiful memories on the path of Quranic knowledge.') }}
             </p>
             <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-                <a href="{{ ('enroll') }}" class="g-btn-gold">Enroll Now</a>
+                <a href="{{ section('gallery', 'cta', 'button_url', '/free-trial') }}" class="g-btn-gold">{{ section('gallery', 'cta', 'button_text', 'Enroll Now') }}</a>
                 <a href="{{ route('contact') }}" class="g-btn-outline">Contact Us</a>
             </div>
         </div>

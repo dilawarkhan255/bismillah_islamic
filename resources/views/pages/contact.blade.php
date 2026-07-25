@@ -15,29 +15,26 @@
             <div class="row g-4">
 
                 @php
-                    $cards = [
-                        [
-                            'icon' => 'fa-map-marker-alt',
-                            'title' => 'Our Location',
-                            'lines' => ['JWFX+4HV, Jhangi Sayedan, Islamabad, Pakistan'],
+                    $contactCards = [];
+                    foreach(['info_location','info_phone','info_email'] as $ck) {
+                        $c = \App\Models\Section::where('page_name','contact')->where('section_key',$ck)->first();
+                        if($c) $contactCards[] = [
+                            'icon' => $c->subtitle,
+                            'title' => $c->title,
+                            'lines' => array_filter(array_merge([$c->description], $c->button_text ? [$c->button_text] : [])),
                             'gold' => false,
-                        ],
-                        [
-                            'icon' => 'fa-phone-alt',
-                            'title' => 'Call Us',
-                            'lines' => ['+92 314 1833216', 'Mon – Sat, 6:00 PM – 4:00 AM'],
-                            'gold' => false,
-                        ],
-                        [
-                            'icon' => 'fa-envelope',
-                            'title' => 'Email Us',
-                            'lines' => ['bismillahquranacademy2@gmail.com'],
-                            'gold' => false,
-                        ],
-                    ];
+                        ];
+                    }
+                    if(empty($contactCards)) {
+                        $contactCards = [
+                            ['icon' => 'fa-map-marker-alt', 'title' => 'Our Location', 'lines' => ['JWFX+4HV, Jhangi Sayedan, Islamabad, Pakistan'], 'gold' => false],
+                            ['icon' => 'fa-phone-alt', 'title' => 'Call Us', 'lines' => ['+92 314 1833216', 'Mon – Sat, 6:00 PM – 4:00 AM'], 'gold' => false],
+                            ['icon' => 'fa-envelope', 'title' => 'Email Us', 'lines' => ['bismillahquranacademy2@gmail.com'], 'gold' => false],
+                        ];
+                    }
                 @endphp
 
-                @foreach($cards as $ci => $card)
+                @foreach($contactCards as $ci => $card)
                     <div class="col-lg-4 col-md-6 cc-sr" data-dir="up" style="transition-delay:{{ $ci * 0.1 }}s;">
                         <div class="c-info-card {{ $card['gold'] ? 'c-info-card--gold' : '' }}">
                             <div class="c-info-icon">
@@ -71,10 +68,9 @@
                 <div class="col-lg-7 cc-sr" data-dir="left">
                     <div class="cc-form-wrap">
                         <div class="cc-form-header">
-                            <span class="cc-eyebrow">Send A Message</span>
-                            <h2 class="cc-form-title">Have a <span>Question?</span></h2>
-                            <p class="cc-form-sub">Fill in the form below and our team will respond within 24 hours, In sha
-                                Allah.</p>
+                            <span class="cc-eyebrow">{{ section('contact', 'form_header', 'subtitle', 'Send A Message') }}</span>
+                            <h2 class="cc-form-title">{!! section('contact', 'form_header', 'title', 'Have a <span>Question?</span>') !!}</h2>
+                            <p class="cc-form-sub">{{ section('contact', 'form_header', 'description', 'Fill in the form below and our team will respond within 24 hours, In sha Allah.') }}</p>
                             <div class="cc-form-divider"></div>
                         </div>
 
@@ -139,21 +135,20 @@
                 <div class="col-lg-5 cc-sr" data-dir="right">
 
                     {{-- Class Hours --}}
+                    @php $hours = \App\Models\Section::where('page_name','contact')->where('section_key','hours')->first(); @endphp
                     <div class="cc-sidebar-box cc-sidebar-box--light" style="margin-bottom:24px;">
-                        <div class="cc-sb-header"><i class="fas fa-clock"></i><span>Class Hours</span></div>
+                        <div class="cc-sb-header"><i class="fas fa-clock"></i><span>{{ $hours->title ?? 'Class Hours' }}</span></div>
                         <div class="cc-sb-body">
-                            <div class="cc-hour-row">
-                                <span class="cc-day">Monday – Saturday</span>
-                                <span class="cc-time cc-time--gold">6:00 PM – 4:00 AM</span>
-                            </div>
-                            <div class="cc-hour-row">
-                                <span class="cc-day">Sunday</span>
-                                <span class="cc-time">Off</span>
-                            </div>
-                            <div class="cc-hour-row" style="border:none;">
-                                <span class="cc-day">Online Classes</span>
-                                <span class="cc-time cc-time--gold">By Appointment</span>
-                            </div>
+                            @php
+                                $hourLines = $hours ? explode(',', $hours->description) : ['Monday – Saturday|6:00 PM – 4:00 AM','Sunday|Off','Online Classes|By Appointment'];
+                            @endphp
+                            @foreach($hourLines as $hi => $line)
+                                @php $parts = array_map('trim', explode('|', $line)); @endphp
+                                <div class="cc-hour-row" {{ $hi === count($hourLines)-1 ? 'style=border:none;' : '' }}>
+                                    <span class="cc-day">{{ $parts[0] }}</span>
+                                    <span class="cc-time {{ ($parts[1] ?? '') !== 'Off' ? 'cc-time--gold' : '' }}">{{ $parts[1] ?? '' }}</span>
+                                </div>
+                            @endforeach
                             <div class="cc-hours-note">
                                 <i class="fas fa-info-circle"></i>
                                 Trial class available — contact us to schedule
@@ -162,24 +157,34 @@
                     </div>
 
                     {{-- Social --}}
+                    @php $social = \App\Models\Section::where('page_name','contact')->where('section_key','social')->first(); @endphp
                     <div class="cc-sidebar-box cc-sidebar-box--dark" style="margin-bottom:24px;">
-                        <div class="cc-sb-header"><i class="fas fa-share-alt"></i><span>Connect With Us</span></div>
+                        <div class="cc-sb-header"><i class="fas fa-share-alt"></i><span>{{ $social->title ?? 'Connect With Us' }}</span></div>
                         <div class="cc-sb-body" style="padding:12px 22px;">
-                            <a href="https://www.facebook.com/share/1JPSiUdTG3/?mibextid=wwXIfr"  target="_blank" class="cc-social-row cc-social--fb">
-                                <div class="cc-social-icon"><i class="fab fa-facebook-f"></i></div>
-                                <span>Facebook Page</span>
-                                <i class="fas fa-chevron-right cc-social-arrow"></i>
-                            </a>
-                            <a href="https://www.instagram.com/bismillahislamicacademy?igsh=OWxiZHZwc2l5aXd6&utm_source=qr"  target="_blank" class="cc-social-row cc-social--ig">
-                                <div class="cc-social-icon"><i class="fab fa-instagram"></i></div>
-                                <span>Instagram</span>
-                                <i class="fas fa-chevron-right cc-social-arrow"></i>
-                            </a>
-                            <a href="https://wa.me/923141833216" target="_blank" class="cc-social-row cc-social--wa" style="border:none;">
-                                <div class="cc-social-icon"><i class="fab fa-whatsapp"></i></div>
-                                <span>WhatsApp</span>
-                                <i class="fas fa-chevron-right cc-social-arrow"></i>
-                            </a>
+                            @php
+                                $socialLinks = [];
+                                if($social && $social->description) {
+                                    foreach(explode(',', $social->description) as $sLink) {
+                                        $sParts = array_map('trim', explode('|', $sLink));
+                                        if(count($sParts) >= 3) $socialLinks[] = $sParts;
+                                    }
+                                }
+                                if(empty($socialLinks)) {
+                                    $socialLinks = [
+                                        ['Facebook Page','https://www.facebook.com/share/1JPSiUdTG3/?mibextid=wwXIfr','fa-facebook-f','fb'],
+                                        ['Instagram','https://www.instagram.com/bismillahislamicacademy?igsh=OWxiZHZwc2l5aXd6&utm_source=qr','fa-instagram','ig'],
+                                        ['WhatsApp','https://wa.me/923141833216','fa-whatsapp','wa'],
+                                    ];
+                                }
+                                $socialColors = ['fb' => 'fb', 'ig' => 'ig', 'wa' => 'wa'];
+                            @endphp
+                            @foreach($socialLinks as $si => $sLink)
+                                <a href="{{ $sLink[1] }}" target="_blank" class="cc-social-row cc-social--{{ $socialColors[$sLink[3] ?? 'fb'] ?? 'fb' }}" {{ $si === count($socialLinks)-1 ? 'style=border:none;' : '' }}>
+                                    <div class="cc-social-icon"><i class="fab {{ $sLink[2] }}"></i></div>
+                                    <span>{{ $sLink[0] }}</span>
+                                    <i class="fas fa-chevron-right cc-social-arrow"></i>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

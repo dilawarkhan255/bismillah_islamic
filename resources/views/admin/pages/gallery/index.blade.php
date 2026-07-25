@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        @forelse($items as $item)
+        @foreach($items as $item)
           <tr>
             <td>
               <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="product-thumb">
@@ -65,11 +65,7 @@
               </div>
             </td>
           </tr>
-        @empty
-          <tr>
-            <td colspan="5" class="text-center text-muted py-4">No gallery items found.</td>
-          </tr>
-        @endforelse
+        @endforeach
       </tbody>
     </table>
   </div>

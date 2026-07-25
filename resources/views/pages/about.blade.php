@@ -155,8 +155,8 @@
                     <div class="timeline-dot"><span>2026</span></div>
                     <div class="timeline-content">
                         <div class="tc-year">2026</div>
-                        <h5 class="tc-title">1500+ Students Strong</h5>
-                        <p class="tc-text">Today, Bismillah Islamic Academy proudly serves over 1,500 students globally with 25+ certified teachers, 9 structured courses, and hundreds of Hafiz graduates. The journey continues — with Allah's blessing.</p>
+                        <h5 class="tc-title">{{ section('about', 'story_2026', 'title', '1500+ Students Strong') }}</h5>
+                        <p class="tc-text">{{ section('about', 'story_2026', 'description', 'Today, Bismillah Islamic Academy proudly serves over 1,500 students globally with 25+ certified teachers, 9 structured courses, and hundreds of Hafiz graduates. The journey continues — with Allah\'s blessing.') }}</p>
                     </div>
                 </div>
 
@@ -171,45 +171,49 @@
         <div class="container">
             <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <span class="mv-label">Trust & Authority</span>
-                <h2 class="mv-heading">Accreditation & <span style="color:var(--gold);">Certifications</span></h2>
+                <h2 class="mv-heading">{!! section('about', 'cert_title', 'title', 'Accreditation & <span style="color:var(--gold);">Certifications</span>') !!}</h2>
                 <div class="mv-divider"></div>
-                <p style="color:var(--text-mid); max-width:520px; margin:16px auto 0; font-size:15px; line-height:1.9;">Our teachers are certified by recognized Islamic institutions — ensuring every lesson meets the highest standards of authenticity.</p>
+                <p style="color:var(--text-mid); max-width:520px; margin:16px auto 0; font-size:15px; line-height:1.9;">{{ section('about', 'cert_title', 'description', 'Our teachers are certified by recognized Islamic institutions — ensuring every lesson meets the highest standards of authenticity.') }}</p>
             </div>
 
             <div class="row g-4 justify-content-center mb-5">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                @php
+                    $certs = [];
+                    foreach(['cert_1','cert_2','cert_3'] as $ck) {
+                        $c = \App\Models\Section::where('page_name','about')->where('section_key',$ck)->first();
+                        if($c) $certs[] = $c;
+                    }
+                    if(empty($certs)) {
+                        $certs = [
+                            (object)['title'=>'Ijazah in Quran Recitation','description'=>'All our Quran teachers hold a certified Ijazah — an unbroken chain of authorization tracing back to the Prophet ﷺ — guaranteeing authentic transmission of the Quran.','subtitle'=>'Verified Ijazah'],
+                            (object)['title'=>'Wafaq ul Madaris Certified','description'=>'Our scholars are graduates of Wafaq ul Madaris Al-Arabia — Pakistan\'s largest and most respected Islamic seminary board — ensuring rigorous academic standards.','subtitle'=>'Wafaq ul Madaris'],
+                            (object)['title'=>'International Teaching Standard','description'=>'Our online teaching methodology follows internationally recognized standards for Islamic e-learning — with structured lesson plans, progress tracking, and regular assessments.','subtitle'=>'ISO Compliant'],
+                        ];
+                    }
+                    $certIcons = ['fa-certificate','fa-university','fa-shield-alt'];
+                @endphp
+                @foreach($certs as $ci => $cert)
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $ci + 1 }}s">
                     <div class="cert-card">
-                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
-                        <h5 class="cert-title">Ijazah in Quran Recitation</h5>
-                        <p class="cert-text">All our Quran teachers hold a certified Ijazah — an unbroken chain of authorization tracing back to the Prophet ﷺ — guaranteeing authentic transmission of the Quran.</p>
-                        <div class="cert-badge">Verified Ijazah</div>
+                        <div class="cert-icon"><i class="fas {{ $certIcons[$ci] ?? 'fa-certificate' }}"></i></div>
+                        <h5 class="cert-title">{{ $cert->title }}</h5>
+                        <p class="cert-text">{{ $cert->description }}</p>
+                        <div class="cert-badge">{{ $cert->subtitle }}</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="fas fa-university"></i></div>
-                        <h5 class="cert-title">Wafaq ul Madaris Certified</h5>
-                        <p class="cert-text">Our scholars are graduates of Wafaq ul Madaris Al-Arabia — Pakistan's largest and most respected Islamic seminary board — ensuring rigorous academic standards.</p>
-                        <div class="cert-badge">Wafaq ul Madaris</div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
-                        <h5 class="cert-title">International Teaching Standard</h5>
-                        <p class="cert-text">Our online teaching methodology follows internationally recognized standards for Islamic e-learning — with structured lesson plans, progress tracking, and regular assessments.</p>
-                        <div class="cert-badge">ISO Compliant</div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <!-- Trust badges row -->
+            @php
+                $trustRaw = section('about', 'trust_badges', 'title', '500+ Hafiz Graduates,1500+ Active Students,25+ Certified Scholars,Students in 15+ Countries,10 Years of Excellence');
+                $trustItems = array_map('trim', explode(',', $trustRaw));
+                $trustIcons = ['fa-star','fa-users','fa-chalkboard-teacher','fa-globe','fa-book-open'];
+            @endphp
             <div class="trust-row wow fadeInUp" data-wow-delay="0.4s">
-                <div class="trust-badge"><i class="fas fa-star"></i> 500+ Hafiz Graduates</div>
-                <div class="trust-badge"><i class="fas fa-users"></i> 1500+ Active Students</div>
-                <div class="trust-badge"><i class="fas fa-chalkboard-teacher"></i> 25+ Certified Scholars</div>
-                <div class="trust-badge"><i class="fas fa-globe"></i> Students in 15+ Countries</div>
-                <div class="trust-badge"><i class="fas fa-book-open"></i> 10 Years of Excellence</div>
+                @foreach($trustItems as $ti => $badge)
+                <div class="trust-badge"><i class="fas {{ $trustIcons[$ti] ?? 'fa-check' }}"></i> {{ $badge }}</div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -221,16 +225,15 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="display-6 text-white mb-3">
-                        Ready to Begin Your <span style="color:var(--gold-light);">Islamic Journey?</span>
+                        {!! section('about', 'cta', 'title', 'Ready to Begin Your <span style="color:var(--gold-light);">Islamic Journey?</span>') !!}
                     </h1>
                     <p class="mb-0" style="color:rgba(255,255,255,0.65); font-size:16px; max-width:580px;">
-                        Enroll today and give your child the gift of the Quran, authentic Deen, and lifelong Islamic
-                        knowledge. Seats are limited — join our growing family of 1,500+ students.
+                        {{ section('about', 'cta', 'description', 'Enroll today and give your child the gift of the Quran, authentic Deen, and lifelong Islamic knowledge. Seats are limited — join our growing family of 1,500+ students.') }}
                     </p>
                 </div>
                 <div class="col-lg-4 text-lg-end wow fadeInUp" data-wow-delay="0.3s">
-                    <a href="{{ route('contact') }}" class="btn rounded-pill py-3 px-5 me-3 mb-3"
-                        style="background:var(--gold);color:#fff;border:none;">Enroll Now</a>
+                    <a href="{{ section('about', 'cta', 'button_url', '/contact') }}" class="btn rounded-pill py-3 px-5 me-3 mb-3"
+                        style="background:var(--gold);color:#fff;border:none;">{{ section('about', 'cta', 'button_text', 'Enroll Now') }}</a>
                     <a href="{{ route('courses') }}" class="btn btn-outline-light rounded-pill py-3 px-5 mb-3">View
                         Courses</a>
                 </div>

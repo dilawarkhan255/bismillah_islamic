@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($users as $user)
+                @foreach($users as $user)
                 <tr>
                     <td>
                         <div class="rounded-circle d-inline-flex align-items-center justify-content-center"
@@ -84,11 +84,7 @@
                         </form>
                     </td>
                 </tr>
-                @empty
-                <tr>
-                    <td colspan="6" class="text-center text-muted py-4">No users found.</td>
-                </tr>
-                @endforelse
+                @endforeach
             </tbody>
         </table>
     </div>

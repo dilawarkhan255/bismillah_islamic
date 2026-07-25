@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($messages as $message)
+                    @foreach($messages as $message)
                         <tr>
                             <td><strong>{{ $message->name }}</strong></td>
                             <td>{{ $message->email }}</td>
@@ -45,11 +45,7 @@
                                 </form>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="text-center text-muted py-4">No messages found.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -36,7 +36,7 @@
         </tr>
       </thead>
       <tbody>
-        @forelse($testimonials as $testimonial)
+        @foreach($testimonials as $testimonial)
           <tr>
             <td>
               @if($testimonial->image)
@@ -75,11 +75,7 @@
               </div>
             </td>
           </tr>
-        @empty
-          <tr>
-            <td colspan="6" class="text-center text-muted py-4">No testimonials found.</td>
-          </tr>
-        @endforelse
+        @endforeach
       </tbody>
     </table>
   </div>

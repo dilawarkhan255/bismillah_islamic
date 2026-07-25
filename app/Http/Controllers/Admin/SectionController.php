@@ -24,12 +24,12 @@ class SectionController extends Controller
         $validated = $request->validate([
             'page_name' => 'required|string|max:255',
             'section_key' => 'required|string|max:255',
-            'title' => 'nullable|string|max:255',
-            'subtitle' => 'nullable|string|max:255',
+            'title' => 'nullable|string',
+            'subtitle' => 'nullable|string',
             'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
-            'button_text' => 'nullable|string|max:255',
-            'button_url' => 'nullable|string|max:255',
+            'button_text' => 'nullable|string',
+            'button_url' => 'nullable|string',
             'sort_order' => 'nullable|integer',
             'is_active' => 'nullable|boolean',
         ]);
@@ -56,12 +56,12 @@ class SectionController extends Controller
         $validated = $request->validate([
             'page_name' => 'required|string|max:255',
             'section_key' => 'required|string|max:255',
-            'title' => 'nullable|string|max:255',
-            'subtitle' => 'nullable|string|max:255',
+            'title' => 'nullable|string',
+            'subtitle' => 'nullable|string',
             'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
-            'button_text' => 'nullable|string|max:255',
-            'button_url' => 'nullable|string|max:255',
+            'button_text' => 'nullable|string',
+            'button_url' => 'nullable|string',
             'sort_order' => 'nullable|integer',
             'is_active' => 'nullable|boolean',
         ]);

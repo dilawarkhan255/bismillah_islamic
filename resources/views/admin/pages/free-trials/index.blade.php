@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($freeTrials as $trial)
+                    @foreach($freeTrials as $trial)
                         <tr>
                             <td><strong>{{ $trial->student_name }}</strong></td>
                             <td>{{ $trial->parent_name }}</td>
@@ -47,11 +47,7 @@
                                 </div>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8" class="text-center text-muted py-4">No free trial requests found.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>

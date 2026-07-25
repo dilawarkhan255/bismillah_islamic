@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\HeroSlideController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PricingController;
+use App\Http\Controllers\Admin\PageContentController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
@@ -70,5 +71,13 @@ Route::prefix('admin')
 
         // Settings
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
-        Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
+        Route::match(['post', 'put'], 'settings', [SettingController::class, 'update'])->name('settings.update');
+
+        // Page Content Management
+        Route::get('page-content', [PageContentController::class, 'index'])->name('page-content.index');
+        Route::get('page-content/{page}', [PageContentController::class, 'show'])->name('page-content.show');
+        Route::post('page-content/{page}/sections', [PageContentController::class, 'store'])->name('page-content.store');
+        Route::get('page-content/sections/{section}/edit', [PageContentController::class, 'edit'])->name('page-content.edit');
+        Route::put('page-content/sections/{section}', [PageContentController::class, 'update'])->name('page-content.update');
+        Route::delete('page-content/sections/{section}', [PageContentController::class, 'destroy'])->name('page-content.destroy');
     });

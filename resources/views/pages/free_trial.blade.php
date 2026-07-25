@@ -21,18 +21,15 @@
                 {!! section('free-trial', 'hero_title', 'title', 'Book Your <span style="color:var(--gold-light);">FREE</span> Trial Today') !!}</h1>
             <p style="color:rgba(255,255,255,.55);font-size:15px;max-width:520px;margin:0 auto 20px;line-height:1.8;">{{ section('free-trial', 'hero_title', 'description', 'Live one-on-one classes via Microsoft Teams. Certified scholars. Female teachers available. Completely free for 3 days.') }}</p>
             <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;">
+                @php
+                    $ftBadgesRaw = section('free-trial', 'hero_badges', 'title', '100% Free,No Credit Card,No Commitment,Female Teachers Available');
+                    $ftBadges = array_map('trim', explode(',', $ftBadgesRaw));
+                @endphp
+                @foreach($ftBadges as $badge)
                 <span
                     style="display:inline-flex;align-items:center;gap:6px;background:rgba(174,130,37,.12);border:1px solid rgba(174,130,37,.3);color:var(--gold-light);font-family:'Lato',sans-serif;font-size:11px;font-weight:700;padding:6px 14px;"><i
-                        class="fas fa-check-circle"></i> 100% Free</span>
-                <span
-                    style="display:inline-flex;align-items:center;gap:6px;background:rgba(174,130,37,.12);border:1px solid rgba(174,130,37,.3);color:var(--gold-light);font-family:'Lato',sans-serif;font-size:11px;font-weight:700;padding:6px 14px;"><i
-                        class="fas fa-check-circle"></i> No Credit Card</span>
-                <span
-                    style="display:inline-flex;align-items:center;gap:6px;background:rgba(174,130,37,.12);border:1px solid rgba(174,130,37,.3);color:var(--gold-light);font-family:'Lato',sans-serif;font-size:11px;font-weight:700;padding:6px 14px;"><i
-                        class="fas fa-check-circle"></i> No Commitment</span>
-                <span
-                    style="display:inline-flex;align-items:center;gap:6px;background:rgba(174,130,37,.12);border:1px solid rgba(174,130,37,.3);color:var(--gold-light);font-family:'Lato',sans-serif;font-size:11px;font-weight:700;padding:6px 14px;"><i
-                        class="fas fa-check-circle"></i> Female Teachers Available</span>
+                        class="fas fa-check-circle"></i> {{ $badge }}</span>
+                @endforeach
             </div>
             <!-- Quick Contact Buttons -->
             <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
@@ -80,26 +77,35 @@
             </div>
             <div class="row g-4 justify-content-center">
                 @php
-                    $steps = [
-                        ['num' => '01', 'icon' => 'fab fa-whatsapp', 'title' => 'Book Your Slot', 'desc' => 'Send a WhatsApp message or fill the form below. We reply within 2 hours to confirm your trial time.', 'col' => '#25D366'],
-                        ['num' => '02', 'icon' => 'fas fa-laptop', 'title' => 'Attend 3 Free Classes', 'desc' => 'Join live one-on-one sessions via Microsoft Teams. Your teacher assesses your level and guides you personally.', 'col' => 'var(--gold)'],
-                        ['num' => '03', 'icon' => 'fas fa-graduation-cap', 'title' => 'Choose a Plan', 'desc' => 'After the trial, select Plan A, B or C based on your schedule. No pressure — completely your choice.', 'col' => 'var(--gold-light)'],
-                    ];
+                    $ftSteps = [];
+                    foreach(['step_1','step_2','step_3'] as $ftsk) {
+                        $fts = \App\Models\Section::where('page_name','free-trial')->where('section_key',$ftsk)->first();
+                        if($fts) $ftSteps[] = $fts;
+                    }
+                    if(empty($ftSteps)) {
+                        $ftSteps = [
+                            (object)['title'=>'Book Your Slot','description'=>'Send a WhatsApp message or fill the form below. We reply within 2 hours to confirm your trial time.','subtitle'=>'fab fa-whatsapp'],
+                            (object)['title'=>'Attend 3 Free Classes','description'=>'Join live one-on-one sessions via Microsoft Teams. Your teacher assesses your level and guides you personally.','subtitle'=>'fas fa-laptop'],
+                            (object)['title'=>'Choose a Plan','description'=>'After the trial, select Plan A, B or C based on your schedule. No pressure — completely your choice.','subtitle'=>'fas fa-graduation-cap'],
+                        ];
+                    }
+                    $stepColors = ['#25D366', 'var(--gold)', 'var(--gold-light)'];
+                    $stepNums = ['01','02','03'];
                 @endphp
-                @foreach($steps as $s)
+                @foreach($ftSteps as $si => $step)
                     <div class="col-lg-4 col-md-6">
                         <div style="border:1px solid rgba(174,130,37,.15);padding:28px 24px;height:100%;text-align:center;border-bottom:3px solid transparent;transition:all .35s;position:relative;"
                             onmouseover="this.style.borderColor='var(--gold)';this.style.borderBottomColor='var(--gold)';this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 36px rgba(13,27,42,.1)';"
                             onmouseout="this.style.borderColor='rgba(174,130,37,.15)';this.style.borderBottomColor='transparent';this.style.transform='none';this.style.boxShadow='none';">
                             <div
                                 style="font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:rgba(174,130,37,.07);position:absolute;top:12px;right:16px;line-height:1;">
-                                {{ $s['num'] }}</div>
-                            <div style="font-size:2rem;color:{{ $s['col'] }};margin-bottom:14px;display:block;"><i
-                                    class="{{ $s['icon'] }}"></i></div>
+                                {{ $stepNums[$si] }}</div>
+                            <div style="font-size:2rem;color:{{ $stepColors[$si] }};margin-bottom:14px;display:block;"><i
+                                    class="{{ $step->subtitle }}"></i></div>
                             <h5
                                 style="font-family:'Cinzel',serif;color:var(--navy);font-size:14px;font-weight:700;margin-bottom:10px;">
-                                {{ $s['title'] }}</h5>
-                            <p style="color:#666;font-size:13px;line-height:1.8;margin:0;">{{ $s['desc'] }}</p>
+                                {{ $step->title }}</h5>
+                            <p style="color:#666;font-size:13px;line-height:1.8;margin:0;">{{ $step->description }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -114,19 +120,24 @@
             <div class="row g-5 align-items-start">
 
                 <!-- Left: Contact Info -->
+                @php $ftSidebar = \App\Models\Section::where('page_name','free-trial')->where('section_key','sidebar_title')->first(); @endphp
                 <div class="col-lg-4">
                     <span
                         style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px;">Get
                         Started</span>
                     <h2
                         style="font-family:'Cinzel',serif;color:var(--navy);font-size:clamp(20px,3vw,30px);font-weight:800;margin-bottom:12px;">
-                        Book Your FREE Trial</h2>
+                        {{ $ftSidebar->title ?? 'Book Your FREE Trial' }}</h2>
                     <div style="width:40px;height:2px;background:var(--gold);margin-bottom:20px;"></div>
-                    <p style="color:#666;font-size:14px;line-height:1.9;margin-bottom:28px;">Fill the form and we'll contact
-                        you within <strong>2 hours</strong> to confirm your slot. Or reach us directly:</p>
+                    <p style="color:#666;font-size:14px;line-height:1.9;margin-bottom:28px;">{{ $ftSidebar->description ?? 'Fill the form and we\'ll contact you within 2 hours to confirm your slot. Or reach us directly:' }}</p>
 
                     <div style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="https://wa.me/923141833216?text=Assalamu+Alaikum,+I+want+to+book+a+free+trial"
+                        @php
+                            $ftWhatsappPk = \App\Models\Section::where('page_name','free-trial')->where('section_key','whatsapp_pk')->first();
+                            $ftWhatsappUk = \App\Models\Section::where('page_name','free-trial')->where('section_key','whatsapp_uk')->first();
+                            $ftEmail = \App\Models\Section::where('page_name','free-trial')->where('section_key','email_contact')->first();
+                        @endphp
+                        <a href="{{ $ftWhatsappPk->button_url ?? 'https://wa.me/923141833216?text=Assalamu+Alaikum,+I+want+to+book+a+free+trial' }}"
                             target="_blank"
                             style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border:1px solid rgba(174,130,37,.15);text-decoration:none;transition:all .3s;"
                             onmouseover="this.style.borderColor='var(--gold)';this.style.transform='translateX(4px)';"
@@ -137,12 +148,12 @@
                             <div>
                                 <div
                                     style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;font-family:'Lato',sans-serif;">
-                                    WhatsApp — Pakistan</div>
+                                    {{ $ftWhatsappPk->title ?? 'WhatsApp — Pakistan' }}</div>
                                 <div style="font-family:'Cinzel',serif;color:var(--navy);font-size:13px;font-weight:700;">
-                                    +92 314 1833216</div>
+                                    {{ $ftWhatsappPk->description ?? '+92 314 1833216' }}</div>
                             </div>
                         </a>
-                        <a href="https://wa.me/447415770822?text=Assalamu+Alaikum,+I+want+to+book+a+free+trial"
+                        <a href="{{ $ftWhatsappUk->button_url ?? 'https://wa.me/447415770822?text=Assalamu+Alaikum,+I+want+to+book+a+free+trial' }}"
                             target="_blank"
                             style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border:1px solid rgba(174,130,37,.15);text-decoration:none;transition:all .3s;"
                             onmouseover="this.style.borderColor='var(--gold)';this.style.transform='translateX(4px)';"
@@ -153,12 +164,12 @@
                             <div>
                                 <div
                                     style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;font-family:'Lato',sans-serif;">
-                                    WhatsApp — United Kingdom</div>
+                                    {{ $ftWhatsappUk->title ?? 'WhatsApp — United Kingdom' }}</div>
                                 <div style="font-family:'Cinzel',serif;color:var(--navy);font-size:13px;font-weight:700;">
-                                    +44 7415 770822</div>
+                                    {{ $ftWhatsappUk->description ?? '+44 7415 770822' }}</div>
                             </div>
                         </a>
-                        <a href="mailto:bismillahquranacademy2@gmail.com"
+                        <a href="{{ $ftEmail->button_url ?? 'mailto:bismillahquranacademy2@gmail.com' }}"
                             style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border:1px solid rgba(174,130,37,.15);text-decoration:none;transition:all .3s;"
                             onmouseover="this.style.borderColor='var(--gold)';this.style.transform='translateX(4px)';"
                             onmouseout="this.style.borderColor='rgba(174,130,37,.15)';this.style.transform='none';">
@@ -168,24 +179,29 @@
                             <div>
                                 <div
                                     style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;font-family:'Lato',sans-serif;">
-                                    Email Us</div>
+                                    {{ $ftEmail->title ?? 'Email Us' }}</div>
                                 <div
                                     style="font-family:'Lato',sans-serif;color:var(--navy);font-size:12px;font-weight:700;word-break:break-all;">
-                                    bismillahquranacademy2@gmail.com</div>
+                                    {{ $ftEmail->description ?? 'bismillahquranacademy2@gmail.com' }}</div>
                             </div>
                         </a>
                     </div>
 
                     <!-- Class hours note -->
+                    @php $ftHours = \App\Models\Section::where('page_name','free-trial')->where('section_key','class_hours')->first(); @endphp
                     <div
                         style="margin-top:20px;padding:14px 16px;background:#fff;border-left:3px solid var(--gold);border:1px solid rgba(174,130,37,.15);border-left-width:3px;">
                         <div
                             style="font-family:'Cinzel',serif;font-size:11px;color:var(--navy);font-weight:700;margin-bottom:6px;">
-                            <i class="far fa-clock" style="color:var(--gold);margin-right:6px;"></i>Class Hours</div>
+                            <i class="far fa-clock" style="color:var(--gold);margin-right:6px;"></i>{{ $ftHours->title ?? 'Class Hours' }}</div>
                         <div style="font-size:12px;color:#666;font-family:'Lato',sans-serif;line-height:1.7;">
-                            🇵🇰 Pakistan: <strong>6:00 PM – 3:00 AM</strong><br>
-                            🇬🇧 UK: <strong>2:00 PM – 11:00 PM</strong><br>
-                            <span style="font-size:11px;color:#999;">Monday – Saturday (Sunday Off)</span>
+                            @php
+                                $hourLines = $ftHours ? explode(',', $ftHours->description) : ['🇵🇰 Pakistan: 6:00 PM – 3:00 AM','🇬🇧 UK: 2:00 PM – 11:00 PM'];
+                            @endphp
+                            @foreach($hourLines as $hl)
+                                {{ $hl }}<br>
+                            @endforeach
+                            <span style="font-size:11px;color:#999;">{{ $ftHours->button_text ?? 'Monday – Saturday (Sunday Off)' }}</span>
                         </div>
                     </div>
                 </div>

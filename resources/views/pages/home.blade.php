@@ -130,34 +130,30 @@
     <section class="stats-section">
         <div class="container">
             <div class="row g-0">
-                <div class="col-lg-3 col-md-6 col-6">
-                    <div class="stat-item">
-                        <i class="fa fa-certificate stat-icon"></i>
-                        <div class="stat-number" data-target="10">0</div>
-                        <div class="stat-label">Years Experience</div>
+                @php
+                    $statsKeys = ['stats_1','stats_2','stats_3','stats_4'];
+                    $statsDefaults = [
+                        ['icon' => 'fa fa-certificate', 'num' => '10', 'label' => 'Years Experience'],
+                        ['icon' => 'fa fa-users-cog', 'num' => '25', 'label' => 'Qualified Teachers'],
+                        ['icon' => 'fa fa-users', 'num' => '1500', 'label' => 'Satisfied Students'],
+                        ['icon' => 'fa fa-book-open', 'num' => '500', 'label' => 'Hafiz Graduates'],
+                    ];
+                @endphp
+                @foreach($statsKeys as $i => $statKey)
+                    @php
+                        $s = \App\Models\Section::where('page_name','home')->where('section_key',$statKey)->first();
+                        $icon = $s && $s->subtitle ? $s->subtitle : $statsDefaults[$i]['icon'];
+                        $num = $s && $s->description ? $s->description : $statsDefaults[$i]['num'];
+                        $label = $s && $s->title ? $s->title : $statsDefaults[$i]['label'];
+                    @endphp
+                    <div class="col-lg-3 col-md-6 col-6">
+                        <div class="stat-item">
+                            <i class="{{ $icon }} stat-icon"></i>
+                            <div class="stat-number" data-target="{{ $num }}">0</div>
+                            <div class="stat-label">{{ $label }}</div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6">
-                    <div class="stat-item">
-                        <i class="fa fa-users-cog stat-icon"></i>
-                        <div class="stat-number" data-target="25">0</div>
-                        <div class="stat-label">Qualified Teachers</div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6">
-                    <div class="stat-item">
-                        <i class="fa fa-users stat-icon"></i>
-                        <div class="stat-number" data-target="1500">0</div>
-                        <div class="stat-label">Satisfied Students</div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-6">
-                    <div class="stat-item">
-                        <i class="fa fa-book-open stat-icon"></i>
-                        <div class="stat-number" data-target="500">0</div>
-                        <div class="stat-label">Hafiz Graduates</div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -176,12 +172,13 @@
                         </p>
                         <div class="row g-4">
                             @php
-                                $skills = [
-                                    ['label' => 'Quran & Tajweed', 'val' => 99, 'delay' => '0s'],
-                                    ['label' => 'Islamic Studies', 'val' => 99, 'delay' => '0.2s'],
-                                    ['label' => 'Arabic Language', 'val' => 99, 'delay' => '0.4s'],
-                                    ['label' => 'Hifz Program', 'val' => 99, 'delay' => '0.6s'],
-                                ];
+                                $skillsData = \App\Models\Section::where('page_name','home')->where('section_key','skills')->first();
+                                $skillLabels = $skillsData ? explode(',', $skillsData->title) : ['Quran & Tajweed','Islamic Studies','Arabic Language','Hifz Program'];
+                                $skillVals = $skillsData ? explode(',', $skillsData->description) : [99,99,99,99];
+                                $skills = [];
+                                foreach($skillLabels as $i => $label) {
+                                    $skills[] = ['label' => trim($label), 'val' => (int)($skillVals[$i] ?? 99), 'delay' => ($i * 0.2) . 's'];
+                                }
                             @endphp
                             @foreach($skills as $skill)
                                 <div class="col-12">
@@ -245,9 +242,9 @@
                     </div>
                 @endforeach
                 <div class="text-center mt-5 wow fadeInUp" data-wow-delay="0.3s">
-                    <a href="{{ route('courses') }}" class="btn py-3 px-5"
+                    <a href="{{ section('home', 'courses_btn', 'button_url', '/courses') }}" class="btn py-3 px-5"
                         style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold);">
-                        View All Courses
+                        {{ section('home', 'courses_btn', 'title', 'View All Courses') }}
                     </a>
                 </div>
             </div>
@@ -293,11 +290,18 @@
                         {{ section('home', 'trial_title', 'description', 'Experience the quality of our teaching before you commit. Join our 3-day free trial and let your child learn directly from our qualified Quran teachers — completely free, no obligation.') }}
                     </p>
                     @php
-                        $trialFeatures = [
-                            ['icon' => 'fa-user-graduate', 'title' => 'One-on-One Session', 'desc' => 'Personal attention from a certified Quran teacher.'],
-                            ['icon' => 'fa-clock', 'title' => 'Flexible Timing', 'desc' => 'Choose class time that suits your schedule.'],
-                            ['icon' => 'fa-shield-alt', 'title' => 'No Commitment', 'desc' => 'Cancel anytime — zero pressure, zero cost.'],
-                        ];
+                        $trialFeatures = [];
+                        foreach(['trial_feat_1','trial_feat_2','trial_feat_3'] as $tfKey) {
+                            $tf = \App\Models\Section::where('page_name','home')->where('section_key',$tfKey)->first();
+                            if($tf) $trialFeatures[] = ['icon' => $tf->subtitle, 'title' => $tf->title, 'desc' => $tf->description];
+                        }
+                        if(empty($trialFeatures)) {
+                            $trialFeatures = [
+                                ['icon' => 'fa-user-graduate', 'title' => 'One-on-One Session', 'desc' => 'Personal attention from a certified Quran teacher.'],
+                                ['icon' => 'fa-clock', 'title' => 'Flexible Timing', 'desc' => 'Choose class time that suits your schedule.'],
+                                ['icon' => 'fa-shield-alt', 'title' => 'No Commitment', 'desc' => 'Cancel anytime — zero pressure, zero cost.'],
+                            ];
+                        }
                     @endphp
                     <div class="d-flex flex-column gap-3 mb-4">
                         @foreach($trialFeatures as $f)
@@ -353,16 +357,23 @@
 
             <div class="hiw-steps-row wow fadeInUp" data-wow-delay="0.2s">
                 @php
-                    $steps = [
-                        ['num' => '01', 'icon' => 'fa-user-plus', 'title' => 'Register Online', 'desc' => 'Fill out our simple enrollment form and create your student account in minutes.'],
-                        ['num' => '02', 'icon' => 'fa-calendar-check', 'title' => 'Book Free Trial', 'desc' => 'Schedule a free trial session with a qualified teacher at your preferred time.'],
-                        ['num' => '03', 'icon' => 'fa-book-open', 'title' => 'Choose Your Course', 'desc' => 'Pick from Norani Qaida, Tajweed, Hifz, Islamic Studies, Arabic & more.'],
-                        ['num' => '04', 'icon' => 'fa-chalkboard-teacher', 'title' => 'Start Learning', 'desc' => 'Attend live one-on-one classes via Microsoft Teams — our primary online classroom platform.'],
-                        ['num' => '05', 'icon' => 'fa-certificate', 'title' => 'Get Certified', 'desc' => 'Earn an official certificate from Bismillah Islamic Academy upon completion.'],
-                    ];
+                    $stepsData = [];
+                    foreach(['step_1','step_2','step_3','step_4','step_5'] as $i => $sk) {
+                        $sd = \App\Models\Section::where('page_name','home')->where('section_key',$sk)->first();
+                        if($sd) $stepsData[] = ['num' => str_pad($i+1, 2, '0', STR_PAD_LEFT), 'icon' => $sd->subtitle, 'title' => $sd->title, 'desc' => $sd->description];
+                    }
+                    if(empty($stepsData)) {
+                        $stepsData = [
+                            ['num' => '01', 'icon' => 'fa-user-plus', 'title' => 'Register Online', 'desc' => 'Fill out our simple enrollment form and create your student account in minutes.'],
+                            ['num' => '02', 'icon' => 'fa-calendar-check', 'title' => 'Book Free Trial', 'desc' => 'Schedule a free trial session with a qualified teacher at your preferred time.'],
+                            ['num' => '03', 'icon' => 'fa-book-open', 'title' => 'Choose Your Course', 'desc' => 'Pick from Norani Qaida, Tajweed, Hifz, Islamic Studies, Arabic & more.'],
+                            ['num' => '04', 'icon' => 'fa-chalkboard-teacher', 'title' => 'Start Learning', 'desc' => 'Attend live one-on-one classes via Microsoft Teams — our primary online classroom platform.'],
+                            ['num' => '05', 'icon' => 'fa-certificate', 'title' => 'Get Certified', 'desc' => 'Earn an official certificate from Bismillah Islamic Academy upon completion.'],
+                        ];
+                    }
                 @endphp
 
-                @foreach($steps as $step)
+                @foreach($stepsData as $step)
                     <div class="hiw-step-col">
                         @if(!$loop->last)
                             <div class="hiw-arrow">
@@ -421,15 +432,22 @@
         </div>
         <div class="lj-track">
             @php
-                $journey = [
-                    ['icon' => 'fa-graduation-cap', 'title' => 'Free Trial', 'desc' => 'Start your journey risk-free'],
-                    ['icon' => 'fa-book-open', 'title' => 'Norani Qaida', 'desc' => 'Build strong foundations'],
-                    ['icon' => 'fa-quran', 'title' => 'Quran Reading', 'desc' => 'Read fluently with confidence'],
-                    ['icon' => 'fa-microphone', 'title' => 'Tajweed', 'desc' => 'Perfect your pronunciation'],
-                    ['icon' => 'fa-trophy', 'title' => 'Hifz ul Quran', 'desc' => 'Achieve mastery & memorization'],
-                ];
+                $journeyData = [];
+                foreach(['journey_1','journey_2','journey_3','journey_4','journey_5'] as $jk) {
+                    $jd = \App\Models\Section::where('page_name','home')->where('section_key',$jk)->first();
+                    if($jd) $journeyData[] = ['icon' => $jd->subtitle, 'title' => $jd->title, 'desc' => $jd->description];
+                }
+                if(empty($journeyData)) {
+                    $journeyData = [
+                        ['icon' => 'fa-graduation-cap', 'title' => 'Free Trial', 'desc' => 'Start your journey risk-free'],
+                        ['icon' => 'fa-book-open', 'title' => 'Norani Qaida', 'desc' => 'Build strong foundations'],
+                        ['icon' => 'fa-quran', 'title' => 'Quran Reading', 'desc' => 'Read fluently with confidence'],
+                        ['icon' => 'fa-microphone', 'title' => 'Tajweed', 'desc' => 'Perfect your pronunciation'],
+                        ['icon' => 'fa-trophy', 'title' => 'Hifz ul Quran', 'desc' => 'Achieve mastery & memorization'],
+                    ];
+                }
             @endphp
-            @foreach($journey as $step)
+            @foreach($journeyData as $step)
             <div class="lj-step">
                 <div class="lj-circle">
                     <i class="fa {{ $step['icon'] }}"></i>
@@ -460,10 +478,10 @@
         </div>
         <div class="container ayah-body">
             <div class="ayah-ornament">﷽</div>
-            <p class="ayah-arabic">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</p>
+            <p class="ayah-arabic">{{ section('home', 'ayah', 'title', 'اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ') }}</p>
             <div class="ayah-rule"></div>
-            <p class="ayah-english">"Read in the name of your Lord who created"</p>
-            <span class="ayah-ref">Surah Al-Alaq · 96:1 · First Revelation of the Holy Quran</span>
+            <p class="ayah-english">{{ section('home', 'ayah', 'subtitle', '"Read in the name of your Lord who created"') }}</p>
+            <span class="ayah-ref">{{ section('home', 'ayah', 'description', 'Surah Al-Alaq · 96:1 · First Revelation of the Holy Quran') }}</span>
             <a href="{{ route('free_trial') }}" class="ayah-cta">
                 Start Your Free Trial &nbsp;<i class="fas fa-arrow-right"></i>
             </a>
@@ -480,21 +498,17 @@
     <!-- ====== COUNTRIES STRIP ====== -->
     <section class="countries-section wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
-            <p class="countries-label">Trusted by families across</p>
+            <p class="countries-label">{{ section('home', 'countries', 'title', 'Trusted by families across') }}</p>
             <div class="countries-row">
-                <div class="country-chip">🇵🇰 Pakistan</div>
-                <div class="country-divider"></div>
-                <div class="country-chip">🇬🇧 United Kingdom</div>
-                <div class="country-divider"></div>
-                <div class="country-chip">🇺🇸 United States</div>
-                <div class="country-divider"></div>
-                <div class="country-chip">🇨🇦 Canada</div>
-                <div class="country-divider"></div>
-                <div class="country-chip">🇦🇺 Australia</div>
-                <div class="country-divider"></div>
-                <div class="country-chip">🇸🇦 Saudi Arabia</div>
-                <div class="country-divider"></div>
-                <div class="country-chip">🇦🇪 UAE</div>
+                @php
+                    $countriesRaw = section('home', 'countries', 'description', 'Pakistan,United Kingdom,United States,Canada,Australia,Saudi Arabia,UAE');
+                    $countryFlags = ['Pakistan' => '🇵🇰', 'United Kingdom' => '🇬🇧', 'United States' => '🇺🇸', 'Canada' => '🇨🇦', 'Australia' => '🇦🇺', 'Saudi Arabia' => '🇸🇦', 'UAE' => '🇦🇪'];
+                    $countries = array_map('trim', explode(',', $countriesRaw));
+                @endphp
+                @foreach($countries as $ci => $country)
+                    @if($ci > 0)<div class="country-divider"></div>@endif
+                    <div class="country-chip">{{ $countryFlags[$country] ?? '🌍' }} {{ $country }}</div>
+                @endforeach
             </div>
         </div>
     </section>

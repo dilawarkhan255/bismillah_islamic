@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($slides as $slide)
+                    @foreach($slides as $slide)
                         <tr>
                             <td>
                                 @if($slide->image)
@@ -60,11 +60,7 @@
                                 </form>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-center text-muted py-4">No hero slides found.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>

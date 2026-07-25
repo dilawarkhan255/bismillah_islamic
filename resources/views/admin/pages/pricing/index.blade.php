@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <tbody>
-        @forelse($plans as $plan)
+        @foreach($plans as $plan)
           <tr>
             <td>
               <strong>{{ $plan->name }}</strong>
@@ -86,11 +86,7 @@
               </div>
             </td>
           </tr>
-        @empty
-          <tr>
-            <td colspan="8" class="text-center text-muted py-4">No pricing plans found.</td>
-          </tr>
-        @endforelse
+        @endforeach
       </tbody>
     </table>
   </div>

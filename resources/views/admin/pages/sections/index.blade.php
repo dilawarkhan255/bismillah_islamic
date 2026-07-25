@@ -46,7 +46,7 @@
         </tr>
       </thead>
       <tbody>
-        @forelse($sections as $section)
+        @foreach($sections as $section)
           <tr>
             <td><span class="badge" style="background:rgba(13,27,42,.08);color:var(--navy);text-transform:capitalize;">{{ str_replace('-', ' ', $section->page_name) }}</span></td>
             <td><code>{{ $section->section_key }}</code></td>
@@ -88,17 +88,7 @@
               </div>
             </td>
           </tr>
-        @empty
-          <tr>
-            <td colspan="8" class="text-center text-muted py-4">
-              @if($selected)
-                No blocks found for <strong>{{ ucwords(str_replace('-', ' ', $selected)) }}</strong> page.
-              @else
-                No blocks found. Select a page or create the first block.
-              @endif
-            </td>
-          </tr>
-        @endforelse
+        @endforeach
       </tbody>
     </table>
   </div>

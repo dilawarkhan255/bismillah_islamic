@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <tbody>
-        @forelse($posts as $post)
+        @foreach($posts as $post)
           <tr>
             <td>
               @if($post->image)
@@ -83,11 +83,7 @@
               </div>
             </td>
           </tr>
-        @empty
-          <tr>
-            <td colspan="8" class="text-center text-muted py-4">No blog posts found.</td>
-          </tr>
-        @endforelse
+        @endforeach
       </tbody>
     </table>
   </div>

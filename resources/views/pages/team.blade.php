@@ -62,15 +62,15 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="display-6 text-white mb-3">
-                        Learn From The <span style="color:var(--gold-light);">Best Scholars</span>
+                        {!! section('team', 'cta', 'title', 'Learn From The <span style="color:var(--gold-light);">Best Scholars</span>') !!}
                     </h1>
                     <p class="mb-0" style="color:rgba(255,255,255,0.65); font-size:16px; max-width:580px;">
-                        Enroll today and study under our qualified teachers — dedicated to guiding every student on the path of Quran and Sunnah.
+                        {{ section('team', 'cta', 'description', 'Enroll today and study under our qualified teachers — dedicated to guiding every student on the path of Quran and Sunnah.') }}
                     </p>
                 </div>
                 <div class="col-lg-4 text-lg-end wow fadeInUp" data-wow-delay="0.3s">
-                    <a href="{{ route('contact') }}" class="btn rounded-pill py-3 px-5 me-3 mb-3"
-                        style="background:var(--gold);color:#fff;border:none;">Enroll Now</a>
+                    <a href="{{ section('team', 'cta', 'button_url', '/contact') }}" class="btn rounded-pill py-3 px-5 me-3 mb-3"
+                        style="background:var(--gold);color:#fff;border:none;">{{ section('team', 'cta', 'button_text', 'Enroll Now') }}</a>
                     <a href="{{ route('courses') }}" class="btn btn-outline-light rounded-pill py-3 px-5 mb-3">View Courses</a>
                 </div>
             </div>
