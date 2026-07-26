@@ -10,7 +10,7 @@
 
         {{-- ── BG IMAGE (swap courses-hero.jpg with your generated image) ── --}}
         <div class="page-hero-bg">
-            <img src="{{ setting('img_courses_hero') ? asset('storage/' . setting('img_courses_hero')) : asset('img/courses-hero.jpg') }}" alt="Courses Hero Background">
+            <img src="{{ setting('img_courses_hero') ? asset('storage/' . setting('img_courses_hero')) : asset('storage/courses-hero.jpg') }}" alt="Courses Hero Background">
         </div>
 
         <div class="hero-pattern"></div>

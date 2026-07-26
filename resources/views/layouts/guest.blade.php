@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Bismillah Islamic Academy') }} — Admin</title>
-    <link rel="icon" type="image/png" href="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('img/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('storage/logo.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
@@ -238,7 +238,7 @@
 
     <div class="auth-left d-none d-md-flex">
         <div class="brand-logo">
-            <img src="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('img/logo.png') }}" alt="Logo">
+            <img src="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('storage/logo.png') }}" alt="Logo">
             <div class="brand-title">{{ setting('site_name', 'Bismillah Islamic Academy') }}</div>
             <div class="gold-line"></div>
             <div class="brand-subtitle">Admin Panel</div>

@@ -22,7 +22,7 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="img-border">
-                        <img class="img-fluid" src="{{ setting('img_about_hero') ? asset('storage/' . setting('img_about_hero')) : asset('img/teams-1.jpg') }}" alt="About Bismillah Islamic Academy">
+                        <img class="img-fluid" src="{{ setting('img_about_hero') ? asset('storage/' . setting('img_about_hero')) : asset('storage/teams-1.jpg') }}" alt="About Bismillah Islamic Academy">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -33,7 +33,7 @@
                             </p>
                             <p class="mb-4" style="color:var(--text-mid);"></p>
                         <div class="d-flex align-items-center mb-4 pb-2">
-                            <img class="flex-shrink-0 rounded-circle" src="{{ setting('img_about_team') ? asset('storage/' . setting('img_about_team')) : asset('img/team-1.jpg') }}" alt="Founder"
+                            <img class="flex-shrink-0 rounded-circle" src="{{ setting('img_about_team') ? asset('storage/' . setting('img_about_team')) : asset('storage/team-1.jpg') }}" alt="Founder"
                                 style="width:50px; height:50px; border:2px solid var(--gold); object-fit:cover;">
                             <div class="ps-4">
                                 <h6 style="margin:0; color:var(--navy);">{{ section('about', 'founder', 'title', 'Sheikh Abdullah') }}</h6>
@@ -251,7 +251,7 @@
         .page-header {
             background-image:
                 linear-gradient(rgba(13, 27, 42, 0.80), rgba(13, 27, 42, 0.80)),
-                    url('{{ setting('img_about_bg') ? asset("storage/" . setting('img_about_bg')) : asset("img/about-bg.jpg") }}');
+                    url('{{ setting('img_about_bg') ? asset("storage/" . setting('img_about_bg')) : asset("storage/about-bg.jpg") }}');
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: scroll;
@@ -267,7 +267,7 @@
         .cta-section {
             background-image:
                 linear-gradient(rgba(13, 27, 42, 0.88), rgba(13, 27, 42, 0.88)),
-                url('{{ setting('img_about_bg') ? asset("storage/" . setting('img_about_bg')) : asset("img/about-bg.jpg") }}');
+                url('{{ setting('img_about_bg') ? asset("storage/" . setting('img_about_bg')) : asset("storage/about-bg.jpg") }}');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;

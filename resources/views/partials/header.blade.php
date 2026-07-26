@@ -92,7 +92,7 @@ Row 2: Logo left | Nav CENTER
 {{-- ── ROW 2: Navbar ──────────────────────────────────────────── --}}
 <nav class="bia-navbar navbar navbar-expand-lg navbar-dark sticky-top">
     <a href="{{ route('home') }}" class="bia-brand ms-3 ms-lg-4">
-        <img src="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('img/logo.png') }}" alt="{{ \App\Models\SiteSetting::get('site_name', 'Bismillah Islamic Academy') }}">
+        <img src="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('storage/logo.png') }}" alt="{{ \App\Models\SiteSetting::get('site_name', 'Bismillah Islamic Academy') }}">
     </a>
 
     <button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#biaNav">

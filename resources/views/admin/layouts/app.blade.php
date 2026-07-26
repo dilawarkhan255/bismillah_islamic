@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', 'Admin') | Bismillah Academy</title>
-  <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('storage/logo.png') }}" type="image/png">
 
   <link rel="stylesheet" href="{{ asset('admin-assets/assets/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin-assets/assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
@@ -25,7 +25,7 @@
       <div class="sidebar-header" style="text-align:center;">
         <a class="brand-mark" href="{{ route('admin.dashboard') }}" data-sidebar-close aria-label="Bismillah Academy dashboard" style="flex-direction:column;align-items:center;gap:6px;">
           <span class="brand-icon" style="width:auto;height:auto;">
-            <img src="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('img/logo.png') }}" alt="Logo" style="height:48px;width:auto;">
+            <img src="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('storage/logo.png') }}" alt="Logo" style="height:48px;width:auto;">
           </span>
           <span class="brand-copy">
             <span class="brand-title">Bismillah Academy</span>

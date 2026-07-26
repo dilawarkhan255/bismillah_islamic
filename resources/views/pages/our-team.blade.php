@@ -130,7 +130,7 @@
         .page-header {
             background-image:
                 linear-gradient(rgba(13, 27, 42, 0.82), rgba(13, 27, 42, 0.82)),
-                url("{{ setting('img_home_feature') ? asset("storage/" . setting('img_home_feature')) : asset("img/feature.jpg") }}");
+                url("{{ setting('img_home_feature') ? asset("storage/" . setting('img_home_feature')) : asset("storage/feature.jpg") }}");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center 40% !important;
@@ -145,7 +145,7 @@
         .cta-section {
             background-image:
                 linear-gradient(rgba(13, 27, 42, 0.90), rgba(13, 27, 42, 0.90)),
-                url("{{ setting('img_home_feature') ? asset("storage/" . setting('img_home_feature')) : asset("img/feature.jpg") }}");
+                url("{{ setting('img_home_feature') ? asset("storage/" . setting('img_home_feature')) : asset("storage/feature.jpg") }}");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;

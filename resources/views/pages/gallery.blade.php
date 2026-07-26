@@ -5,7 +5,7 @@
     <!-- PAGE HEADER -->
     <div class="gallery-hero">
         <div class="gallery-hero-bg">
-            <img src="{{ setting('img_gallery_hero') ? asset('storage/' . setting('img_gallery_hero')) : asset('img/gallery-hero.jpg') }}" alt="Gallery Hero Background">
+            <img src="{{ setting('img_gallery_hero') ? asset('storage/' . setting('img_gallery_hero')) : asset('storage/gallery-hero.jpg') }}" alt="Gallery Hero Background">
         </div>
         <div class="gallery-hero-pattern"></div>
         <div class="gallery-hero-glow"></div>

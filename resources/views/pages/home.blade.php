@@ -37,19 +37,19 @@
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="active"
                         aria-current="true" aria-label="Slide 1">
-                        <img class="img-fluid" src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('img/slide-1.jpg') }}" alt="Slide 1">
+                        <img class="img-fluid" src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('storage/slide-1.jpg') }}" alt="Slide 1">
                     </button>
                     <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2">
-                        <img class="img-fluid" src="{{ setting('img_home_slide_2') ? asset('storage/' . setting('img_home_slide_2')) : asset('img/slide-2.jpg') }}" alt="Slide 2">
+                        <img class="img-fluid" src="{{ setting('img_home_slide_2') ? asset('storage/' . setting('img_home_slide_2')) : asset('storage/slide-2.jpg') }}" alt="Slide 2">
                     </button>
                     <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3">
-                        <img class="img-fluid" src="{{ setting('img_home_slide_3') ? asset('storage/' . setting('img_home_slide_3')) : asset('img/slide-3.jpg') }}" alt="Slide 3">
+                        <img class="img-fluid" src="{{ setting('img_home_slide_3') ? asset('storage/' . setting('img_home_slide_3')) : asset('storage/slide-3.jpg') }}" alt="Slide 3">
                     </button>
                 </div>
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('img/slide-1.jpg') }}" alt="Slide 1">
+                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('storage/slide-1.jpg') }}" alt="Slide 1">
                         <div class="carousel-caption">
                             <div class="slide-content-wrap">
                                 <div class="hero-badge animate__animated animate__fadeInDown">
@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="carousel-item">
-                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_2') ? asset('storage/' . setting('img_home_slide_2')) : asset('img/slide-2.jpg') }}" alt="Slide 2">
+                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_2') ? asset('storage/' . setting('img_home_slide_2')) : asset('storage/slide-2.jpg') }}" alt="Slide 2">
                         <div class="carousel-caption">
                             <div class="slide-content-wrap">
                                 <div class="hero-badge animate__animated animate__fadeInDown">
@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="carousel-item">
-                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_3') ? asset('storage/' . setting('img_home_slide_3')) : asset('img/slide-3.jpg') }}" alt="Slide 3">
+                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_3') ? asset('storage/' . setting('img_home_slide_3')) : asset('storage/slide-3.jpg') }}" alt="Slide 3">
                         <div class="carousel-caption">
                             <div class="slide-content-wrap">
                                 <div class="hero-badge animate__animated animate__fadeInDown">
@@ -205,7 +205,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="img-border">
-                        <img class="img-fluid" src="{{ setting('img_home_feature') ? asset('storage/' . setting('img_home_feature')) : asset('img/feature.jpg') }}" alt="Why Choose Us">
+                        <img class="img-fluid" src="{{ setting('img_home_feature') ? asset('storage/' . setting('img_home_feature')) : asset('storage/feature.jpg') }}" alt="Why Choose Us">
                     </div>
                 </div>
             </div>
@@ -258,7 +258,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                     <div class="position-relative">
-                        <img src="{{ setting('img_home_trial') ? asset('storage/' . setting('img_home_trial')) : asset('img/trial.jpg') }}" alt="Free Trial Class"
+                        <img src="{{ setting('img_home_trial') ? asset('storage/' . setting('img_home_trial')) : asset('storage/trial.jpg') }}" alt="Free Trial Class"
                             class="img-fluid w-100 rounded trial-img">
                         <div class="position-absolute"
                             style="top: 24px; left: -16px; background: var(--navy); border: 2px solid var(--gold); padding: 14px 20px; border-radius: 4px; box-shadow: 0 8px 32px rgba(13,27,42,0.25);">
@@ -342,7 +342,7 @@
     <!-- ===================== HOW IT WORKS ===================== -->
     <div class="hiw-section">
         <div class="hiw-bg-image">
-            <img src="{{ setting('img_how_to_learn') ? asset('storage/' . setting('img_how_to_learn')) : asset('img/how-to-learn.jpg') }}" alt="" aria-hidden="true">
+            <img src="{{ setting('img_how_to_learn') ? asset('storage/' . setting('img_how_to_learn')) : asset('storage/how-to-learn.jpg') }}" alt="" aria-hidden="true">
             <div class="hiw-bg-overlay"></div>
         </div>
         <div class="container" style="position:relative; z-index:2;">
@@ -473,7 +473,7 @@
     <!-- ====== AYAH BANNER ====== -->
     <section class="ayah-section wow fadeIn" data-wow-delay="0.1s">
         <div class="ayah-bg">
-            <img src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('img/slide-1.jpg') }}" alt="">
+            <img src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('storage/slide-1.jpg') }}" alt="">
             <div class="ayah-veil"></div>
         </div>
         <div class="container ayah-body">
@@ -523,7 +523,7 @@
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.2s">
                 <div class="position-relative overflow-hidden rounded">
-                    <img src="{{ setting('img_home_teams') ? asset('storage/' . setting('img_home_teams')) : asset('img/teams.jpg') }}" alt="Bismillah Islamic Academy Team"
+                    <img src="{{ setting('img_home_teams') ? asset('storage/' . setting('img_home_teams')) : asset('storage/teams.jpg') }}" alt="Bismillah Islamic Academy Team"
                         class="w-100 team-full-img">
                     <div class="position-absolute top-0 start-0 w-100 h-100"
                         style="background: linear-gradient(to top, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.1) 60%, transparent 100%);">
