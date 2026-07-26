@@ -22,19 +22,18 @@
         </div>
 
         <div class="container text-center" style="position:relative; z-index:5;">
-            <div class="g-hero-arabic  g-reveal" style="animation-delay:0s;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-            <div class="g-hero-tag    g-reveal" style="animation-delay:0.15s;">✦ Bismillah Islamic Academy ✦</div>
-            <h1 class="g-hero-title  g-reveal" style="animation-delay:0.3s;">
+            <div class="g-hero-arabic g-reveal" style="animation-delay:0s;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+            <div class="g-hero-tag g-reveal" style="animation-delay:0.15s;">✦ Bismillah Islamic Academy ✦</div>
+            <h1 class="g-hero-title g-reveal" style="animation-delay:0.3s;">
                 {!! section('gallery', 'hero', 'title', 'Academy <span style="color:var(--gold-light);">Gallery</span>') !!}
             </h1>
-            <p class="g-hero-sub    g-reveal" style="animation-delay:0.45s;">
+            <p class="g-hero-sub g-reveal" style="animation-delay:0.45s;">
                 {{ section('gallery', 'hero', 'subtitle', 'Cherished moments from our classes, ceremonies, and community events.') }}
             </p>
             <nav aria-label="breadcrumb" class="g-reveal" style="animation-delay:0.6s;">
                 <ol class="breadcrumb justify-content-center mb-0" style="background:transparent;">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('home') }}"
-                            style="color:rgba(255,255,255,0.5); text-decoration:none; font-family:'Lato',sans-serif; font-size:13px;">Home</a>
+                        <a href="{{ route('home') }}" style="color:rgba(255,255,255,0.5); text-decoration:none; font-family:'Lato',sans-serif; font-size:13px;">Home</a>
                     </li>
                     <li style="color:rgba(255,255,255,0.3); padding:0 8px; font-size:13px;">›</li>
                     <li style="color:var(--gold-light); font-family:'Lato',sans-serif; font-size:13px;">Gallery</li>
@@ -53,26 +52,31 @@
                 <div style="width:50px; height:2px; background:var(--gold); margin:0 auto;"></div>
             </div>
 
-            <div class="g-masonry" id="galleryGrid">
-                @foreach($gallery as $i => $item)
-                    <div class="g-item g-scroll" data-dir="up" style="transition-delay:{{ ($i % 4) * 0.09 }}s;">
-                        <div class="g-card">
-                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" loading="lazy">
-
-                            {{-- ✅ Dark overlay only — no text, just eye icon top right --}}
-                            <div class="g-card-overlay">
-                                <a href="{{ asset('storage/' . $item->image) }}"
-                                   class="g-card-zoom"
-                                   data-lightbox="gallery"
-                                   data-title="{{ $item->title }}"
-                                   aria-label="View image">
-                                    <i class="fas fa-eye"></i>
-                                </a>
+            @if($gallery->count())
+                <div class="g-masonry" id="galleryGrid">
+                    @foreach($gallery as $i => $item)
+                        <div class="g-item g-scroll" data-dir="up" style="transition-delay:{{ ($i % 4) * 0.09 }}s;">
+                            <div class="g-card">
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" loading="lazy">
+                                <div class="g-card-overlay">
+                                    <a href="{{ asset('storage/' . $item->image) }}"
+                                       class="g-card-zoom"
+                                       data-lightbox="gallery"
+                                       data-title="{{ $item->title }}"
+                                       aria-label="View image">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="text-center py-5">
+                    <i class="fas fa-images" style="font-size:48px; color:var(--gold); opacity:0.3;"></i>
+                    <p style="color:var(--text-muted); margin-top:16px; font-size:15px;">Gallery coming soon. Check back later!</p>
+                </div>
+            @endif
 
         </div>
     </section>
@@ -97,11 +101,6 @@
     </section>
 
 @endsection
-
-
-@push('styles')
-
-@endpush
 
 
 @push('scripts')
