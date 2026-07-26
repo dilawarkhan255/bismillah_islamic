@@ -96,13 +96,28 @@
                     Gallery
                 </h5>
                 <div class="row g-2">
-                    @for ($i = 1; $i <= 6; $i++)
+                    @php
+                        $footerGallery = \App\Models\GalleryItem::active()->take(6)->get();
+                    @endphp
+                    @forelse($footerGallery as $item)
                         <div class="col-4">
-                            <img class="img-fluid" src="{{ setting('img_footer_project_' . $i) ? asset('storage/' . setting('img_footer_project_' . $i)) : asset('storage/project-' . $i . '.jpg') }}" alt="Gallery Image"
-                                style="width: 100%; height: 68px; object-fit: cover; opacity: 0.6; transition: opacity 0.3s; border-radius: 2px;"
-                                onmouseover="this.style.opacity='1';" onmouseout="this.style.opacity='0.6';">
+                            <a href="{{ route('gallery') }}" style="text-decoration:none;">
+                                <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
+                                    style="width: 100%; height: 68px; object-fit: cover; opacity: 0.6; transition: opacity 0.3s; border-radius: 2px;"
+                                    onmouseover="this.style.opacity='1';" onmouseout="this.style.opacity='0.6';">
+                            </a>
                         </div>
-                    @endfor
+                    @empty
+                        @for ($i = 1; $i <= 6; $i++)
+                            <div class="col-4">
+                                <a href="{{ route('gallery') }}" style="text-decoration:none;">
+                                    <img class="img-fluid" src="{{ asset('storage/project-' . $i . '.jpg') }}" alt="Gallery Image"
+                                        style="width: 100%; height: 68px; object-fit: cover; opacity: 0.6; transition: opacity 0.3s; border-radius: 2px;"
+                                        onmouseover="this.style.opacity='1';" onmouseout="this.style.opacity='0.6';">
+                                </a>
+                            </div>
+                        @endfor
+                    @endforelse
                 </div>
             </div>
 
