@@ -58,7 +58,7 @@
             <td class="text-end">
               <div class="d-flex justify-content-end gap-2">
                 <a href="{{ route('admin.gallery.edit', $item) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></a>
-                <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="document.getElementById('deleteForm{{ $item->id }}').submit()"><i class="bi bi-trash"></i></button>
+                <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="confirmDeleteForm('deleteForm{{ $item->id }}', @js($item->title))"><i class="bi bi-trash"></i></button>
                 <form id="deleteForm{{ $item->id }}" action="{{ route('admin.gallery.destroy', $item) }}" method="POST" style="display:none;">
                   @csrf @method('DELETE')
                 </form>

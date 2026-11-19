@@ -77,7 +77,7 @@
                                     @endforeach
                                 </select>
                             </form>
-                            <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="document.getElementById('deleteForm{{ $user->id }}').submit()"><i class="bi bi-trash"></i></button>
+                            <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="confirmDeleteForm('deleteForm{{ $user->id }}', @js($user->name))"><i class="bi bi-trash"></i></button>
                         </div>
                         <form id="deleteForm{{ $user->id }}" action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:none;">
                             @csrf @method('DELETE')
@@ -103,16 +103,21 @@
         </div>
         <div class="mb-3">
             <label class="form-label fw-bold" style="font-size:0.85rem;color:var(--admin-muted);">Password</label>
-            <input type="password" name="password" class="form-control" required>
+            <input type="password" name="password" class="form-control" minlength="6" required autocomplete="new-password">
+        </div>
+        <div class="mb-3">
+            <label class="form-label fw-bold" style="font-size:0.85rem;color:var(--admin-muted);">Confirm Password</label>
+            <input type="password" name="password_confirmation" class="form-control" minlength="6" required autocomplete="new-password">
         </div>
         <div class="mb-3">
             <label class="form-label fw-bold" style="font-size:0.85rem;color:var(--admin-muted);">Role</label>
-            <select name="role_id" class="form-select" required>
+            <select name="role" class="form-select" required>
                 <option value="">Select a role</option>
                 @foreach($roles as $role)
-                    <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
+                    <option value="{{ $role->name }}" @selected(old('role') === $role->name)>{{ ucfirst($role->name) }}</option>
                 @endforeach
             </select>
+            <div class="form-text"><a href="{{ route('admin.roles.index') }}">What can each role do?</a></div>
         </div>
         <div class="text-end">
             <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</button>

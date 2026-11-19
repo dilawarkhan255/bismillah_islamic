@@ -3,13 +3,30 @@
 
 <head>
     <meta charset="utf-8">
-    <title>@yield('title', 'Bismillah Islamic Academy')</title>
+    @php
+        // @section content is already HTML-escaped by Blade, so these are printed with {!! !!} below.
+        $seoTitle = trim($__env->yieldContent('title')) ?: e('Bismillah Islamic Academy - Learn Quran & Islamic Studies');
+        $seoDescription = trim($__env->yieldContent('meta_description')) ?: e('Learn Quran online with qualified teachers: Norani Qaida, Nazra, Tajweed, Hifz, Islamic Studies and Arabic. Live one-on-one classes for kids and adults. Book a free trial.');
+        $seoImage = trim($__env->yieldContent('og_image')) ?: e(asset('storage/logo.png'));
+    @endphp
+    <title>{!! $seoTitle !!}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Islamic Academy, Quran, Islamic Education" name="keywords">
-    <meta content="Bismillah Islamic Academy - Learn Quran & Islamic Studies" name="description">
+    <meta name="description" content="{!! $seoDescription !!}">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Link previews (WhatsApp, Facebook, X) -->
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:site_name" content="Bismillah Islamic Academy">
+    <meta property="og:title" content="{!! $seoTitle !!}">
+    <meta property="og:description" content="{!! $seoDescription !!}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{!! $seoImage !!}">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Favicon -->
-    <link href="{{ asset('storage/logo.png') }}" rel="icon">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+    <link rel="icon" href="{{ asset('favicon-32.png') }}" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +38,6 @@
     <!-- Icon Font Stylesheet -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
@@ -33,14 +49,9 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/course.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/gallery.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pricing.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/team.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}?v={{ @filemtime(public_path('css/site.css')) }}">
+    {{-- Each page adds its own stylesheet here (same position as before, so the cascade is unchanged) --}}
+    @stack('page-css')
 
 
     <style>
@@ -710,6 +721,18 @@
             <div class="spinner-dot"></div>
         </div>
     </div>
+    <script>
+        /* Loading screen only on the first page of a visit; later pages open instantly. */
+        (function () {
+            var seen = false;
+            try { seen = !!sessionStorage.getItem('biaSeenLoader'); sessionStorage.setItem('biaSeenLoader', '1'); } catch (e) {}
+            if (seen) {
+                var s = document.getElementById('spinner');
+                s.style.transition = 'none';
+                s.classList.add('hide');
+            }
+        })();
+    </script>
     <!-- Spinner End -->
 
     {{-- Header --}}
@@ -722,11 +745,11 @@
     @include('partials.footer')
 
     <!-- Back to Top -->
-    <a href="#" class="btn back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
 
     <!-- JavaScript Libraries — ORDER MATTERS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="{{ asset('lib/wow/wow.min.js') }}" defer></script>
     <script src="{{ asset('lib/easing/easing.min.js') }}" defer></script>
     <script src="{{ asset('lib/waypoints/waypoints.min.js') }}" defer></script>
@@ -741,15 +764,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
     <script>
-        /* ===== Spinner ===== */
-        window.addEventListener('load', function () {
-            var spinner = document.getElementById('spinner');
-            if (spinner) spinner.classList.add('hide');
-        });
-        setTimeout(function () {
-            var spinner = document.getElementById('spinner');
-            if (spinner) spinner.classList.add('hide');
-        }, 1500);
+        /* ===== Spinner: hide as soon as the page is usable (max 1.2s on slow connections) ===== */
+        (function () {
+            function hideSpinner() {
+                var spinner = document.getElementById('spinner');
+                if (spinner) spinner.classList.add('hide');
+            }
+            if (document.readyState !== 'loading') hideSpinner();
+            else document.addEventListener('DOMContentLoaded', hideSpinner);
+            setTimeout(hideSpinner, 1200);
+        })();
 
         /* ===== Back to top ===== */
         window.addEventListener('scroll', function () {
@@ -825,18 +849,58 @@
 
     @include('partials.enroll_modal')
 
-    {{-- ═══ ENROLL MODAL AUTO OPEN — Har page par ═══ --}}
+    {{-- ═══ ENROLL MODAL AUTO POPUP — sirf home page par, browser mein pehli dafa site
+         khulne par. Kuch seconds dikh kar khud band ho jata hai (agar user form use
+         na kar raha ho). Baaki waqt modal sirf "Enroll" button click par khulta hai. ═══ --}}
+    @if (request()->routeIs('home'))
     <script>
         (function () {
-            function showModal() {
+            var KEY = 'enrollModalShown';
+            var SHOW_AFTER = 2000;  // site load ke 2 second baad khule
+            var HIDE_AFTER = 6000;  // 6 second dikh kar band ho jaye
+
+            try {
+                if (localStorage.getItem(KEY)) return;
+            } catch (e) {}
+
+            function popup() {
                 var modalEl = document.getElementById('enrollModal');
                 if (!modalEl || typeof bootstrap === 'undefined') return;
-                var modal = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
+                if (modalEl.classList.contains('show')) return; // user ne khud already khol liya
+
+                // Bootstrap 5.0.0 mein getOrCreateInstance nahi hai
+                var modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+                var box = modalEl.querySelector('.modal-dialog') || modalEl;
+                var userBusy = false;
+                function markBusy(e) {
+                    // Bootstrap khulte waqt modal ko khud focus karta hai — sirf form fields count karo
+                    if (e.type === 'focusin' && !e.target.matches('input, select, textarea')) return;
+                    userBusy = true;
+                }
+
+                // User modal box par mouse/touch kare ya form mein type kare to auto-band na ho
+                box.addEventListener('mouseenter', markBusy);
+                box.addEventListener('touchstart', markBusy, { passive: true });
+                box.addEventListener('focusin', markBusy);
+
                 modal.show();
+                try { localStorage.setItem(KEY, '1'); } catch (e) {}
+
+                setTimeout(function () {
+                    box.removeEventListener('mouseenter', markBusy);
+                    box.removeEventListener('touchstart', markBusy);
+                    box.removeEventListener('focusin', markBusy);
+                    if (!userBusy && modalEl.classList.contains('show')) modal.hide();
+                }, HIDE_AFTER);
             }
-            setTimeout(showModal, 3000);
+
+            // Bootstrap "defer" se load hota hai — poora page load hone ke baad timer shuru karo
+            function start() { setTimeout(popup, SHOW_AFTER); }
+            if (document.readyState === 'complete') start();
+            else window.addEventListener('load', start);
         })();
     </script>
+    @endif
 </body>
 
 </html>

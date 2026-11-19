@@ -28,6 +28,6 @@ class MessageController extends Controller
     {
         $message->delete();
 
-        return redirect()->back()->with('success', 'Message deleted successfully.');
+        return redirect()->route('admin.messages.index')->with('success', 'Message deleted successfully.');
     }
 }

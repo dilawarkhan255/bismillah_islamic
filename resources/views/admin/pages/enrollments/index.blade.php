@@ -3,9 +3,7 @@
 @section('title', 'Enrollments')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Enrollments</h4>
-</div>
+<x-admin.page-header title="Enrollments" icon="bi-person-plus" eyebrow="Manage" subtitle="Enrollment requests submitted from the website."></x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">
@@ -42,6 +40,7 @@
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-2">
                                     <a href="{{ route('admin.enrollments.show', $enrollment) }}" class="btn btn-sm btn-light"><i class="bi bi-eye"></i></a>
+                                    <x-admin.delete-button :action="route('admin.enrollments.destroy', $enrollment)" :name="$enrollment->student_name" />
                                 </div>
                             </td>
                         </tr>

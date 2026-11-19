@@ -13,6 +13,7 @@
     </div>
   </div>
   <div class="heading-actions">
+    <x-admin.delete-button :action="route('admin.team-members.destroy', $member)" :name="$member->name" label="Delete" />
     <a href="{{ route('admin.team-members.index') }}" class="btn btn-light"><i class="bi bi-arrow-left"></i> Back</a>
   </div>
 </div>

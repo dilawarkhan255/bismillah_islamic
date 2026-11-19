@@ -3,12 +3,7 @@
 @section('title', 'Add Pricing Plan')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Add Pricing Plan</h4>
-    <a href="{{ route('admin.pricing.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Add Pricing Plan" icon="bi-cash-stack" eyebrow="Pricing" :back="route('admin.pricing.index')"></x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">

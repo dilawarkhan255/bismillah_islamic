@@ -3,12 +3,9 @@
 @section('title', 'Enrollment Details')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Enrollment Details</h4>
-    <a href="{{ route('admin.enrollments.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Enrollment Details" icon="bi-person-plus" eyebrow="Enrollments" :back="route('admin.enrollments.index')">
+  <x-admin.delete-button :action="route('admin.enrollments.destroy', $enrollment)" :name="$enrollment->student_name" label="Delete" />
+</x-admin.page-header>
 
 <div class="row">
     <div class="col-lg-8">
@@ -83,6 +80,7 @@
             <div class="panel-body">
                 <form action="{{ route('admin.enrollments.status', $enrollment) }}" method="POST">
                     @csrf
+                    @method('PATCH')
                     <div class="mb-3">
                         <select name="status" class="form-select">
                             <option value="pending" {{ $enrollment->status === 'pending' ? 'selected' : '' }}>Pending</option>

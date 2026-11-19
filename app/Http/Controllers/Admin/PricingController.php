@@ -82,6 +82,6 @@ class PricingController extends Controller
     {
         $plan->delete();
 
-        return redirect()->back()->with('success', 'Pricing plan deleted successfully.');
+        return redirect()->route('admin.pricing.index')->with('success', 'Pricing plan deleted successfully.');
     }
 }

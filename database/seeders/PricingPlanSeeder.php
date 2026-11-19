@@ -41,7 +41,7 @@ class PricingPlanSeeder extends Seeder
             [
                 'name'              => 'Premium',
                 'badge'             => 'Premium',
-                'accent_color'      => '#7B5EA7',
+                'accent_color'      => '#1F8A70',
                 'days_per_week'     => '6',
                 'classes_per_month' => '24',
                 'courses_count'     => 'All',

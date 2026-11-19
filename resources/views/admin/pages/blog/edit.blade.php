@@ -3,12 +3,9 @@
 @section('title', 'Edit Blog Post')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Edit Blog Post</h4>
-    <a href="{{ route('admin.blog.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left me-1"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Edit Blog Post" icon="bi-journal-text" eyebrow="Blog Posts" :back="route('admin.blog.index')">
+  <x-admin.delete-button :action="route('admin.blog.destroy', $post)" :name="$post->title" label="Delete" />
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">

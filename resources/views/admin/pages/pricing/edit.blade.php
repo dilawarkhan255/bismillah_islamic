@@ -3,12 +3,9 @@
 @section('title', 'Edit Pricing Plan')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Edit Pricing Plan</h4>
-    <a href="{{ route('admin.pricing.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Edit Pricing Plan" icon="bi-cash-stack" eyebrow="Pricing" :back="route('admin.pricing.index')">
+  <x-admin.delete-button :action="route('admin.pricing.destroy', $plan)" :name="$plan->name" label="Delete" />
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">

@@ -3,12 +3,7 @@
 @section('title', 'Create Course')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Create Course</h4>
-    <a href="{{ route('admin.courses.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left me-1"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Create Course" icon="bi-book" eyebrow="Courses" :back="route('admin.courses.index')"></x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">

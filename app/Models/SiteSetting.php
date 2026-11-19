@@ -11,10 +11,19 @@ class SiteSetting extends Model
 
     protected $fillable = ['key', 'value', 'group'];
 
+    /** All settings as key => value, loaded once per request from the content cache. */
+    private static ?array $lookup = null;
+
     public static function get(string $key, $default = null)
     {
-        $setting = static::where('key', $key)->first();
-        return $setting ? $setting->value : $default;
+        static::$lookup ??= \App\Support\ContentCache::remember('settings.all', fn () => static::pluck('value', 'key')->all());
+
+        return array_key_exists($key, static::$lookup) ? static::$lookup[$key] : $default;
+    }
+
+    public static function clearLookup(): void
+    {
+        static::$lookup = null;
     }
 
     public static function set(string $key, $value, string $group = 'general')

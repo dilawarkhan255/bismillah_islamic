@@ -3,12 +3,11 @@
 @section('title', 'Hero Slides')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Hero Slides</h4>
-    <button class="btn btn-primary" onclick="openModal('addSlideModal')">
+<x-admin.page-header title="Hero Slides" icon="bi-easel" eyebrow="Manage" subtitle="Slides shown in the home page banner.">
+  <button class="btn btn-primary" onclick="openModal('addSlideModal')">
         <i class="bi bi-plus-lg"></i> Add Slide
     </button>
-</div>
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">
@@ -53,7 +52,7 @@
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-2">
                                     <a href="{{ route('admin.hero-slides.edit', $slide) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></a>
-                                    <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="document.getElementById('deleteForm{{ $slide->id }}').submit()"><i class="bi bi-trash"></i></button>
+                                    <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="confirmDeleteForm('deleteForm{{ $slide->id }}', @js($slide->title))"><i class="bi bi-trash"></i></button>
                                 </div>
                                 <form id="deleteForm{{ $slide->id }}" action="{{ route('admin.hero-slides.destroy', $slide) }}" method="POST" style="display:none;">
                                     @csrf @method('DELETE')

@@ -1,0 +1,355 @@
+/* Global site styles: loaded on every public page.
+   Page-specific styles live in home.css, course.css, blog.css ... and are loaded only by that page. */
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* ── Inner page header (about, teachers, team, profiles) ── */
+.page-header-inner {
+    width: 100%;
+    padding: 40px 15px;
+}
+
+@media (min-width: 992px) {
+    .page-header {
+        background-attachment: fixed;
+        background-position: center center;
+    }
+}
+
+.page-header .breadcrumb-item+.breadcrumb-item::before {
+    color: var(--gold);
+}
+
+/* ══════════════════════════════════════════════════
+       GLOBAL OVERFLOW FIX — horizontal scroll band karo
+       ══════════════════════════════════════════════════ */
+.hero-carousel,
+.stats-section,
+.hiw-section,
+.container-xxl {
+    max-width: 100%;
+}
+
+/* ── GLOBAL CURSOR ───────────────────────────────── */
+a,
+button,
+[role="button"],
+.btn,
+.nav-link,
+.dropdown-item,
+.carousel-control-prev,
+.carousel-control-next,
+.carousel-indicators button,
+.owl-prev,
+.owl-next,
+.back-to-top,
+.hiw-card,
+.bia-socials a,
+.bstrip-socials a,
+.team-social a,
+.hiw-cta-btn,
+.bia-enroll-btn,
+.bstrip-enroll {
+    cursor: pointer !important;
+}
+
+/* ── Hover effects (were inline onmouseover/onmouseout JavaScript) ── */
+.hv-1.hv-1 { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; font-family: 'Cinzel',serif; font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 14px 26px; border: 2px solid #25D366; text-decoration: none; transition: all .3s; }
+.hv-1.hv-1:hover, .hv-1.hv-1:focus-visible { background: transparent; color: #25D366; }
+.hv-2.hv-2 { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #fff; font-family: 'Cinzel',serif; font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 14px 24px; border: 2px solid var(--gold); text-decoration: none; transition: all .3s; }
+.hv-2.hv-2:hover, .hv-2.hv-2:focus-visible { background: transparent; color: var(--gold); }
+.hv-3.hv-3 { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: rgba(255,255,255,.8); font-family: 'Cinzel',serif; font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 14px 24px; border: 2px solid rgba(255,255,255,.3); text-decoration: none; transition: all .3s; }
+.hv-3.hv-3:hover, .hv-3.hv-3:focus-visible { border-color: var(--gold); color: var(--gold); }
+.hv-4.hv-4 { border: 1px solid rgba(174,130,37,.15); padding: 28px 24px; height: 100%; text-align: center; border-bottom: 3px solid transparent; transition: all .35s; position: relative; border-bottom-color: transparent; transform: none; box-shadow: none; }
+.hv-4.hv-4:hover, .hv-4.hv-4:focus-visible { border-color: var(--gold); border-bottom-color: var(--gold); transform: translateY(-5px); box-shadow: 0 16px 36px rgba(13,27,42,.1); }
+.hv-5.hv-5 { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid rgba(174,130,37,.15); text-decoration: none; transition: all .3s; transform: none; }
+.hv-5.hv-5:hover, .hv-5.hv-5:focus-visible { border-color: var(--gold); transform: translateX(4px); }
+.hv-6.hv-6 { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: var(--gold); color: #fff; font-family: 'Cinzel',serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; padding: 15px; border: 2px solid var(--gold); cursor: pointer; transition: all .3s; }
+.hv-6.hv-6:hover, .hv-6.hv-6:focus-visible { background: transparent; color: var(--gold); }
+.hv-7.hv-7 { background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); transition: all 0.3s; }
+.hv-7.hv-7:hover, .hv-7.hv-7:focus-visible { background: transparent; color: var(--gold); }
+.hv-8.hv-8 { background: transparent; color: var(--navy); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--navy); transition: all 0.3s; }
+.hv-8.hv-8:hover, .hv-8.hv-8:focus-visible { background: var(--navy); color: var(--white); }
+.hv-9.hv-9 { width: 34px; height: 34px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 13px; text-decoration: none; transition: all 0.3s; background: transparent; }
+.hv-9.hv-9:hover, .hv-9.hv-9:focus-visible { background: var(--gold); color: white; }
+.hv-10.hv-10 { display: inline-flex; align-items: center; gap: 10px; background: #AE8225; color: #fff; font-family: 'Cinzel',serif; font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 15px 36px; border: 2px solid #AE8225; text-decoration: none; transition: all .3s; }
+.hv-10.hv-10:hover, .hv-10.hv-10:focus-visible { background: transparent; color: #AE8225; }
+.hv-11.hv-11 { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; font-family: 'Cinzel',serif; font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 15px 32px; border: 2px solid #25D366; text-decoration: none; transition: all .3s; }
+.hv-11.hv-11:hover, .hv-11.hv-11:focus-visible { background: transparent; color: #25D366; }
+.hv-12.hv-12 { width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s; background: transparent; }
+.hv-12.hv-12:hover, .hv-12.hv-12:focus-visible { background: var(--gold); border-color: var(--gold); color: white; }
+.hv-13.hv-13 { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif; padding-left: 0; }
+.hv-13.hv-13:hover, .hv-13.hv-13:focus-visible { color: var(--gold-light); padding-left: 8px; }
+.hv-14.hv-14 { width: 100%; height: 68px; object-fit: cover; opacity: 0.6; transition: opacity 0.3s; border-radius: 2px; }
+.hv-14.hv-14:hover, .hv-14.hv-14:focus-visible { opacity: 1; }
+
+/* ── Enroll modal form (was repeated inline styles) ── */
+.em-label {
+    display: block;
+    margin-bottom: 7px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.em-input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    background: var(--off-white);
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    color: var(--text-dark);
+    outline: none;
+    transition: border 0.3s;
+}
+
+.em-input:focus {
+    border-color: var(--gold);
+}
+
+.em-select {
+    appearance: none;
+}
+
+.em-textarea {
+    resize: vertical;
+}
+
+
+/* ══════════════════════════════════════════════════
+   Page hero: one banner design for every inner page
+   (component: resources/views/components/page-hero.blade.php)
+   ══════════════════════════════════════════════════ */
+.ph {
+    position: relative;
+    overflow: hidden;
+    /* same heights as the home page slider (.carousel-img in home.css) */
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+    background: #0D1B2A;
+    border-bottom: 2px solid var(--gold);
+    text-align: center;
+}
+
+.ph-bg,
+.ph-overlay,
+.ph-pattern {
+    position: absolute;
+    inset: 0;
+}
+
+.ph-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* keep the upper part of photos (faces, heads) when the banner crops them */
+    object-position: center 22%;
+}
+
+.ph-overlay {
+    /* brand navy veil (~60%): photo stays visible with a navy tint, text stays crisp */
+    background: rgba(13, 27, 42, .6);
+}
+
+.ph-pattern {
+    opacity: .025;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Cpath d=%22M40 0L80 40L40 80L0 40Z%22 fill=%22none%22 stroke=%22%23AE8225%22 stroke-width=%221%22/%3E%3Cpath d=%22M40 10L70 40L40 70L10 40Z%22 fill=%22none%22 stroke=%22%23AE8225%22 stroke-width=%221%22/%3E%3C/svg%3E');
+}
+
+.ph-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+}
+
+.ph-line--l { left: 0; }
+.ph-line--r { right: 0; }
+
+.ph-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.ph-arabic {
+    margin-bottom: 14px;
+    font-family: 'Amiri', serif;
+    font-size: 22px;
+    color: #E2BE62;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .7);
+}
+
+.ph-tag {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 7px 22px;
+    border: 1px solid rgba(212, 168, 67, .6);
+    background: rgba(10, 21, 32, .45);
+    backdrop-filter: blur(2px);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+}
+
+.ph-title {
+    margin: 0 auto 14px;
+    max-width: 900px;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(30px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.12;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .55), 0 4px 24px rgba(0, 0, 0, .6);
+}
+
+/* gold accent word; overrides colours saved inside titles in Page Content */
+.ph-title span {
+    color: var(--gold-light) !important;
+}
+
+.ph-sub {
+    max-width: 580px;
+    margin: 0 auto 22px;
+    font-family: 'Lato', sans-serif;
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .8), 0 2px 14px rgba(0, 0, 0, .6);
+}
+
+.ph-extra {
+    margin-bottom: 22px;
+}
+
+.ph-crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+}
+
+.ph-crumbs li {
+    color: var(--gold-light);
+}
+
+.ph-crumbs li + li::before {
+    content: "›";
+    padding: 0 10px;
+    color: rgba(255, 255, 255, .35);
+}
+
+.ph-crumbs {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .8);
+}
+
+.ph-crumbs a {
+    color: rgba(255, 255, 255, .85);
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.ph-crumbs a:hover {
+    color: var(--gold-light);
+}
+
+.ph-rise {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: phRise .7s cubic-bezier(.25, .46, .45, .94) forwards;
+}
+
+@keyframes phRise {
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ph-rise { opacity: 1; transform: none; animation: none; }
+}
+
+@media (max-width: 991px) {
+    .ph { min-height: 500px; }
+}
+
+@media (max-width: 480px) {
+    .ph { min-height: 320px !important; }
+}
+
+@media (max-width: 767.98px) {
+    .ph { padding: 48px 0; min-height: 420px; }
+    .ph-arabic { font-size: 18px; }
+    .ph-tag { font-size: 9px; letter-spacing: 3px; padding: 6px 14px; }
+    .ph-sub { font-size: 14.5px; }
+}
+
+.ph-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border: 1px solid rgba(174, 130, 37, .35);
+    background: rgba(174, 130, 37, .1);
+    color: var(--gold-light);
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+}
+
+
+/* Page hero without a photo: navy with large faint Arabic letters (Norani Qaida pages) */
+.ph--decor {
+    min-height: 440px;
+    background:
+        radial-gradient(ellipse at 50% 40%, #1A3350 0%, #0D1B2A 60%, #08121D 100%);
+}
+
+.ph--decor .ph-overlay {
+    background: radial-gradient(ellipse at center, rgba(174, 130, 37, .10) 0%, transparent 60%);
+}
+
+.ph--decor .ph-pattern {
+    opacity: .06;
+}
+
+.ph-decor {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    direction: rtl;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: clamp(120px, 16vw, 240px);
+    letter-spacing: .12em;
+    color: rgba(212, 168, 67, .07);
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (max-width: 767.98px) {
+    .ph--decor { min-height: 340px; }
+}

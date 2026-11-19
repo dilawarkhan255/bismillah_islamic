@@ -3,9 +3,7 @@
 @section('title', 'Messages')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Messages</h4>
-</div>
+<x-admin.page-header title="Messages" icon="bi-envelope" eyebrow="Manage" subtitle="Contact form messages from visitors."></x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">
@@ -38,7 +36,7 @@
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-2">
                                     <a href="{{ route('admin.messages.show', $message) }}" class="btn btn-sm btn-light"><i class="bi bi-eye"></i></a>
-                                    <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="document.getElementById('deleteForm{{ $message->id }}').submit()"><i class="bi bi-trash"></i></button>
+                                    <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="confirmDeleteForm('deleteForm{{ $message->id }}', @js($message->name))"><i class="bi bi-trash"></i></button>
                                 </div>
                                 <form id="deleteForm{{ $message->id }}" action="{{ route('admin.messages.destroy', $message) }}" method="POST" style="display:none;">
                                     @csrf @method('DELETE')

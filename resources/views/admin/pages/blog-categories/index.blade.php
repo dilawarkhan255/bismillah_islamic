@@ -3,12 +3,11 @@
 @section('title', 'Blog Categories')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Blog Categories</h4>
-    <button class="btn btn-primary" onclick="openModal('addCategoryModal')">
+<x-admin.page-header title="Blog Categories" icon="bi-tags" eyebrow="Manage" subtitle="Organise blog posts into categories.">
+  <button class="btn btn-primary" onclick="openModal('addCategoryModal')">
         <i class="bi bi-plus-lg me-1"></i> Add Category
     </button>
-</div>
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">
@@ -48,7 +47,7 @@
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-2">
                                     <a href="{{ route('admin.blog-categories.edit', $category) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></a>
-                                    <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="document.getElementById('deleteForm{{ $category->id }}').submit()"><i class="bi bi-trash"></i></button>
+                                    <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="confirmDeleteForm('deleteForm{{ $category->id }}', @js($category->name))"><i class="bi bi-trash"></i></button>
                                 </div>
                                 <form id="deleteForm{{ $category->id }}" action="{{ route('admin.blog-categories.destroy', $category) }}" method="POST" style="display:none;">
                                     @csrf @method('DELETE')

@@ -3,9 +3,7 @@
 @section('title', 'Free Trials')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Free Trials</h4>
-</div>
+<x-admin.page-header title="Free Trials" icon="bi-calendar-check" eyebrow="Manage" subtitle="Free trial class requests submitted from the website."></x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">
@@ -44,6 +42,7 @@
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-2">
                                     <a href="{{ route('admin.free-trials.show', $trial) }}" class="btn btn-sm btn-light"><i class="bi bi-eye"></i></a>
+                                    <x-admin.delete-button :action="route('admin.free-trials.destroy', $trial)" :name="$trial->student_name" />
                                 </div>
                             </td>
                         </tr>

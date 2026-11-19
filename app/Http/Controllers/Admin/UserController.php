@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Support\AdminPermissions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -75,6 +76,10 @@ class UserController extends Controller
             $data['password'] = Hash::make($validated['password']);
         }
 
+        if ($error = $this->roleChangeError($user, $validated['role'])) {
+            return back()->with('error', $error);
+        }
+
         $user->update($data);
         $user->syncRoles([$validated['role']]);
 
@@ -92,6 +97,10 @@ class UserController extends Controller
             return back()->with('error', 'You cannot delete your own account.');
         }
 
+        if ($this->isLastAdmin($user)) {
+            return back()->with('error', 'This is the only admin. Make someone else admin first.');
+        }
+
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
     }
@@ -99,14 +108,54 @@ class UserController extends Controller
     public function updateRole(Request $request, User $user)
     {
         $request->validate(['role' => 'required|string|exists:roles,name']);
+
+        if ($error = $this->roleChangeError($user, $request->role)) {
+            return $request->wantsJson()
+                ? response()->json(['success' => false, 'message' => $error], 422)
+                : back()->with('error', $error);
+        }
+
         $user->syncRoles([$request->role]);
-        return response()->json(['success' => true, 'message' => 'Role updated.']);
+
+        return $request->wantsJson()
+            ? response()->json(['success' => true, 'message' => 'Role updated.'])
+            : back()->with('success', "{$user->name} is now " . ucfirst($request->role) . '.');
+    }
+
+    /** Stops an admin locking themselves (or everyone) out of the admin panel. */
+    private function roleChangeError(User $user, string $newRole): ?string
+    {
+        if ($user->hasRole($newRole)) {
+            return null;
+        }
+
+        if ($user->id === auth()->id()) {
+            return 'You cannot change your own role. Ask another admin.';
+        }
+
+        if ($newRole !== AdminPermissions::ADMIN_ROLE && $this->isLastAdmin($user)) {
+            return 'This is the only admin. Make someone else admin first.';
+        }
+
+        return null;
+    }
+
+    private function isLastAdmin(User $user): bool
+    {
+        return $user->hasRole(AdminPermissions::ADMIN_ROLE)
+            && User::role(AdminPermissions::ADMIN_ROLE)->count() <= 1;
     }
 
     public function getNotifications()
     {
-        $notifications = auth()->user()->unreadNotifications->limit(10)->get();
-        return response()->json($notifications);
+        $notifications = auth()->user()->unreadNotifications()->limit(10)->get()
+            ->map(fn ($n) => [
+                'message'    => $n->data['message'] ?? ($n->data['title'] ?? 'New notification'),
+                'url'        => $n->data['url'] ?? '#',
+                'created_at' => $n->created_at?->diffForHumans(),
+            ]);
+
+        return response()->json(['notifications' => $notifications]);
     }
 
     public function markNotificationsRead()

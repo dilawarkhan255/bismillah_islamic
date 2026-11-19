@@ -26,7 +26,9 @@ class SettingController extends Controller
             foreach ($request->file('images') as $key => $file) {
                 if ($file->isValid()) {
                     $path = $file->store('settings', 'public');
-                    SiteSetting::set('img_' . $key, $path, 'images');
+                    // form keys already look like "img_logo"; don't turn them into "img_img_logo"
+                    $settingKey = str_starts_with($key, 'img_') ? $key : 'img_' . $key;
+                    SiteSetting::set($settingKey, $path, 'images');
                 }
             }
         }

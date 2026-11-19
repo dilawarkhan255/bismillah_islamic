@@ -3,12 +3,9 @@
 @section('title', 'Edit Hero Slide')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Edit Hero Slide</h4>
-    <a href="{{ route('admin.hero-slides.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Edit Hero Slide" icon="bi-easel" eyebrow="Hero Slides" :back="route('admin.hero-slides.index')">
+  <x-admin.delete-button :action="route('admin.hero-slides.destroy', $slide)" :name="$slide->title" label="Delete" />
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">

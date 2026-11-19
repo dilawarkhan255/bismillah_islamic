@@ -3,12 +3,9 @@
 @section('title', 'Edit Course')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Edit Course</h4>
-    <a href="{{ route('admin.courses.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left me-1"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Edit Course" icon="bi-book" eyebrow="Courses" :back="route('admin.courses.index')">
+  <x-admin.delete-button :action="route('admin.courses.destroy', $course)" :name="$course->title" label="Delete" />
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">

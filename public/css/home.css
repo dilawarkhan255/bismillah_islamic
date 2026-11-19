@@ -1,37 +1,4 @@
 /* ══════════════════════════════════════════════════
-       GLOBAL OVERFLOW FIX — horizontal scroll band karo
-       ══════════════════════════════════════════════════ */
-.hero-carousel,
-.stats-section,
-.hiw-section,
-.container-xxl {
-    max-width: 100%;
-}
-
-/* ── GLOBAL CURSOR ───────────────────────────────── */
-a,
-button,
-[role="button"],
-.btn,
-.nav-link,
-.dropdown-item,
-.carousel-control-prev,
-.carousel-control-next,
-.carousel-indicators button,
-.owl-prev,
-.owl-next,
-.back-to-top,
-.hiw-card,
-.bia-socials a,
-.bstrip-socials a,
-.team-social a,
-.hiw-cta-btn,
-.bia-enroll-btn,
-.bstrip-enroll {
-    cursor: pointer !important;
-}
-
-/* ══════════════════════════════════════════════════
        HERO CAROUSEL — Responsive height via aspect-ratio
        ══════════════════════════════════════════════════ */
 
@@ -291,6 +258,10 @@ button,
     object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
+}
+
+.course-img:hover {
+    transform: scale(1.05);
 }
 
 @media (max-width: 575px) {

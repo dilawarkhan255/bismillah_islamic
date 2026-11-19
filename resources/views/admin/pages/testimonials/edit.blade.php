@@ -3,12 +3,9 @@
 @section('title', 'Edit Testimonial')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Edit Testimonial</h4>
-    <a href="{{ route('admin.testimonials.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Edit Testimonial" icon="bi-chat-quote" eyebrow="Testimonials" :back="route('admin.testimonials.index')">
+  <x-admin.delete-button :action="route('admin.testimonials.destroy', $testimonial)" :name="$testimonial->name" label="Delete" />
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">

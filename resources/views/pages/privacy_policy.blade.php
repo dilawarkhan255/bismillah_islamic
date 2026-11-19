@@ -1,21 +1,19 @@
 @extends('layouts.app')
 
 @section('title', 'Privacy Policy — Bismillah Islamic Academy')
+@section('meta_description', 'How Bismillah Islamic Academy collects, uses and protects your personal information.')
 
 @section('content')
 
-<section class="pp-hero">
-    <div class="pp-hero-bg"></div>
-    <div class="container text-center" style="position:relative;z-index:3;">
-        <div class="pp-arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-        <div class="pp-tag">✦ Bismillah Islamic Academy ✦</div>
-        <h1 class="pp-title">Privacy <span>Policy</span></h1>
-        <p class="pp-sub">{{ section('privacy-policy', 'subtitle', 'title', 'Your trust is our amanah. Here\'s how we protect your information.') }}</p>
-        <div class="pp-badge">
-            <i class="fas fa-shield-alt"></i> Last Updated: January 2026
-        </div>
-    </div>
-</section>
+<x-page-hero
+        :title="'Privacy <span>Policy</span>'"
+        :subtitle="section('privacy-policy', 'subtitle', 'title', 'Your trust is our amanah. Here\'s how we protect your information.')"
+        :image="setting('img_privacy_hero') ? asset('storage/' . setting('img_privacy_hero')) : asset('storage/about-bg.jpg')"
+        :crumbs="['Privacy Policy' => null]"
+    >
+        <span class="ph-note"><i class="fas fa-shield-alt"></i> Last updated: January 2026</span>
+    </x-page-hero>
+
 
 
 <section class="pp-main">
@@ -24,7 +22,7 @@
             <div class="col-lg-8">
 
                 <!-- Commitment Banner -->
-                @php $ppCommitment = \App\Models\Section::where('page_name','privacy-policy')->where('section_key','commitment')->first(); @endphp
+                @php $ppCommitment = \App\Models\Section::findCached('privacy-policy', 'commitment'); @endphp
                 <div class="pp-banner">
                     <div class="pp-banner-icon"><i class="fas fa-user-shield"></i></div>
                     <div>
@@ -39,7 +37,7 @@
                     @php
                     $ppSections = [];
                     foreach(['section_1','section_2','section_3','section_4','section_5','section_6','section_7','section_8','section_9','section_10'] as $sk) {
-                        $ps = \App\Models\Section::where('page_name','privacy-policy')->where('section_key',$sk)->first();
+                        $ps = \App\Models\Section::findCached('privacy-policy', $sk);
                         if($ps) $ppSections[] = [
                             'num'   => str_pad(count($ppSections)+1, 2, '0', STR_PAD_LEFT),
                             'icon'  => $ps->subtitle ?? 'fa-info-circle',
@@ -82,7 +80,7 @@
 
 
 <!-- CTA -->
-@php $ppCta = \App\Models\Section::where('page_name','privacy-policy')->where('section_key','cta')->first(); @endphp
+@php $ppCta = \App\Models\Section::findCached('privacy-policy', 'cta'); @endphp
 <section class="pp-cta">
     <div class="pp-cta-bg"></div>
     <div class="container text-center" style="position:relative;z-index:2;">

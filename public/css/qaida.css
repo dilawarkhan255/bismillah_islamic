@@ -1,0 +1,754 @@
+/* ══════════════════════════════════════════════════
+   Norani Qaida pages (/norani-qaida)
+   ══════════════════════════════════════════════════ */
+
+.qd-section {
+    padding: 70px 0 90px;
+    background: var(--off-white, #FAFAF7);
+}
+
+.qd-intro {
+    max-width: 640px;
+    margin: 0 auto 44px;
+    text-align: center;
+}
+
+.qd-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.qd-h2 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: clamp(26px, 3.5vw, 38px);
+}
+
+.qd-h2 span { color: var(--gold); }
+
+.qd-intro p {
+    margin-top: 12px;
+    color: var(--text-mid);
+    line-height: 1.8;
+}
+
+/* ---------- Lesson cards (index) ---------- */
+.qd-lesson-card {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid rgba(174, 130, 37, .15);
+    border-left: 3px solid var(--gold);
+    text-decoration: none;
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+
+.qd-lesson-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 16px 34px rgba(13, 27, 42, .1);
+}
+
+.qd-lesson-no {
+    flex: 0 0 auto;
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    background: var(--navy);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.qd-lesson-body {
+    min-width: 0;
+    flex: 1;
+    display: grid;
+    gap: 2px;
+}
+
+.qd-lesson-kicker {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.qd-lesson-title {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.qd-lesson-sub {
+    font-size: 13.5px;
+    color: var(--text-mid);
+}
+
+.qd-lesson-meta {
+    display: flex;
+    gap: 14px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text-muted, #7A8FA0);
+}
+
+.qd-has-audio { color: #1F8A70; font-weight: 700; }
+
+.qd-lesson-arrow {
+    color: var(--gold);
+    transition: transform .25s;
+}
+
+.qd-lesson-card:hover .qd-lesson-arrow { transform: translateX(4px); }
+
+.qd-empty {
+    text-align: center;
+    color: var(--text-mid);
+}
+
+.qd-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 50px;
+    padding: 28px 32px;
+    background: var(--navy);
+    border-top: 3px solid var(--gold);
+}
+
+.qd-cta h3 {
+    margin: 0 0 4px;
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    color: #fff;
+}
+
+.qd-cta p { margin: 0; color: rgba(255, 255, 255, .7); }
+
+.qd-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--gold);
+    border: 2px solid var(--gold);
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all .3s;
+}
+
+.qd-btn:hover { background: transparent; color: var(--gold-light); }
+
+/* ---------- Lesson page ---------- */
+.qd-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.qd-switcher a {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    background: #fff;
+    border: 1px solid rgba(174, 130, 37, .25);
+    color: var(--navy);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all .2s;
+}
+
+.qd-switcher a:hover { border-color: var(--gold); color: var(--gold); }
+
+.qd-switcher a.is-active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+}
+
+.qd-howto {
+    display: flex;
+    gap: 16px;
+    max-width: 860px;
+    margin: 0 auto 34px;
+    padding: 18px 22px;
+    background: #fff;
+    border: 1px solid rgba(174, 130, 37, .2);
+    border-left: 3px solid var(--gold);
+}
+
+.qd-howto > i {
+    margin-top: 3px;
+    color: var(--gold);
+    font-size: 18px;
+}
+
+.qd-howto strong {
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Cinzel', serif;
+    color: var(--navy);
+}
+
+.qd-howto p {
+    margin: 0;
+    color: var(--text-mid);
+    line-height: 1.75;
+}
+
+.qd-play-all {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: var(--navy);
+    border: 0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Letter / line cards */
+.qd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 14px;
+}
+
+.qd-grid--letters {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+.qd-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 130px;
+    padding: 18px 12px 14px;
+    background: #fff;
+    border: 1px solid rgba(174, 130, 37, .18);
+    font: inherit;
+    text-align: center;
+    color: inherit;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+
+button.qd-item { cursor: pointer; width: 100%; }
+
+.qd-item.has-audio:hover,
+.qd-item.has-audio:focus-visible {
+    border-color: var(--gold);
+    box-shadow: 0 10px 24px rgba(13, 27, 42, .08);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.qd-item.is-playing {
+    border-color: var(--gold);
+    background: #FFF9EA;
+    box-shadow: 0 0 0 3px rgba(174, 130, 37, .25);
+}
+
+.qd-arabic {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 40px;
+    line-height: 1.6;
+    color: var(--navy);
+    word-spacing: 10px;
+}
+
+.qd-grid--letters .qd-arabic { font-size: 54px; }
+
+.qd-translit {
+    font-family: 'Lato', sans-serif;
+    font-size: 12.5px;
+    letter-spacing: .5px;
+    color: var(--text-mid);
+}
+
+.qd-play-icon {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    color: var(--gold);
+    font-size: 13px;
+}
+
+.qd-item.is-playing .qd-play-icon { animation: qdPulse 1s ease-in-out infinite; }
+
+@keyframes qdPulse {
+    50% { opacity: .35; }
+}
+
+.qd-audio-note {
+    margin: 26px 0 0;
+    text-align: center;
+    color: var(--text-mid);
+    font-size: 14px;
+}
+
+.qd-audio-note i { color: var(--gold); }
+
+.qd-pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 44px;
+}
+
+.qd-pager-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 48%;
+    padding: 16px 20px;
+    background: #fff;
+    border: 1px solid rgba(174, 130, 37, .2);
+    color: var(--navy);
+    text-decoration: none;
+    transition: border-color .2s;
+}
+
+.qd-pager-link:hover { border-color: var(--gold); color: var(--navy); }
+
+.qd-pager-link i { color: var(--gold); }
+
+.qd-pager-link small {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.qd-pager-link span {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.qd-pager-link--next { margin-left: auto; text-align: right; }
+
+@media (max-width: 575.98px) {
+    .qd-grid { grid-template-columns: 1fr; }
+    .qd-grid--letters { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .qd-grid--letters .qd-arabic { font-size: 44px; }
+    .qd-item { min-height: 110px; }
+    .qd-arabic { font-size: 34px; }
+    .qd-pager { flex-direction: column; }
+    .qd-pager-link { max-width: 100%; }
+    .qd-cta { padding: 22px; }
+}
+
+/* ══════════════════════════════════════════════════
+   Takhti "book page" (lesson page)
+   ══════════════════════════════════════════════════ */
+.qd-book {
+    --qd-line: #D9C79A;
+    max-width: 1080px;
+    margin: 0 auto 34px;
+    padding: 14px;
+    background: #FFFDF5;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 0 6px #F3E9CF, 0 0 0 7px rgba(174, 130, 37, .5), 0 22px 50px rgba(13, 27, 42, .12);
+}
+
+.qd-book-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 22px;
+    background: linear-gradient(135deg, #0D1B2A, #1B3350);
+    color: #fff;
+}
+
+.qd-book-no,
+.qd-book-title,
+.qd-book-hidayat,
+.qd-hint,
+.qd-group-title strong {
+    font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+}
+
+.qd-book-no {
+    font-size: 20px;
+    line-height: 2;
+    color: var(--gold-light);
+    white-space: nowrap;
+}
+
+.qd-book-no span {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #0D1B2A;
+    font-family: 'Amiri', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.qd-book-bismillah {
+    text-align: center;
+    font-family: 'Amiri', serif;
+    font-size: clamp(20px, 2.6vw, 30px);
+    font-weight: 700;
+}
+
+.qd-book-title {
+    font-size: 24px;
+    line-height: 2;
+    font-weight: 700;
+    color: var(--gold-light);
+    white-space: nowrap;
+}
+
+.qd-book-hidayat {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin: 12px 0;
+    padding: 12px 18px;
+    background: #FBEFD9;
+    border: 1px solid var(--qd-line);
+    font-size: 16px;
+    line-height: 2.25;
+    color: #2B2B2B;
+}
+
+.qd-book-hidayat p { margin: 0; }
+
+.qd-hd-label {
+    flex: 0 0 auto;
+    padding: 0 12px;
+    background: #9B1C1C;
+    color: #fff;
+    font-weight: 700;
+}
+
+.qd-book-listen {
+    margin: 0 0 12px;
+    text-align: center;
+}
+
+/* Letter table: thin lines between cells, like the printed page */
+.qd-book-grid {
+    display: grid;
+    gap: 2px;
+    background: var(--qd-line);
+    border: 2px solid var(--qd-line);
+}
+
+.qd-book-grid.is-letters { grid-template-columns: repeat(6, 1fr); }
+.qd-book-grid.is-lines   { grid-template-columns: repeat(3, 1fr); }
+
+.qd-cell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 130px;
+    padding: 18px 8px 10px;
+    background: #FFFDF5;
+    border: 0;
+    font: inherit;
+    color: inherit;
+    text-align: center;
+    transition: background .2s, box-shadow .2s;
+}
+
+button.qd-cell { cursor: pointer; width: 100%; }
+
+.qd-cell.has-audio:hover,
+.qd-cell.has-audio:focus-visible {
+    background: #FFF5D9;
+    outline: none;
+}
+
+.qd-cell.is-playing {
+    background: #FFF0C2;
+    box-shadow: inset 0 0 0 3px var(--gold);
+}
+
+.qd-glyph {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-weight: 700;
+    line-height: 1.5;
+    word-spacing: 12px;
+}
+
+.is-letters .qd-glyph { font-size: clamp(56px, 6vw, 82px); }
+.is-lines   .qd-glyph { font-size: clamp(30px, 3vw, 40px); }
+
+/* the four ink colours of the printed Qaida */
+.qd-c0 .qd-glyph { color: #9B1C1C; }
+.qd-c1 .qd-glyph { color: #1F2937; }
+.qd-c2 .qd-glyph { color: #6D5BB0; }
+.qd-c3 .qd-glyph { color: #15803D; }
+
+.qd-hint {
+    position: absolute;
+    top: 4px;
+    left: 12px;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.9;
+    color: #6D5BB0;
+}
+
+.qd-cell-translit {
+    margin-top: 2px;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    letter-spacing: .4px;
+    color: #7A6A4A;
+}
+
+.qd-cell-audio {
+    position: absolute;
+    bottom: 6px;
+    right: 10px;
+    color: var(--gold);
+    font-size: 12px;
+}
+
+.qd-cell.is-playing .qd-cell-audio { animation: qdPulse 1s ease-in-out infinite; }
+
+/* Tajweed letter groups under the table */
+.qd-groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.qd-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--qd-line);
+    background: var(--qd-g-bg);
+}
+
+/* groups with several sets of letters (similar sounds, makharij) use the full width */
+.qd-group.is-wide {
+    grid-column: 1 / -1;
+}
+
+.qd-g0 { --qd-g-bg: #FCE7EF; --qd-g-ink: #9B1C1C; }
+.qd-g1 { --qd-g-bg: #E6F0FB; --qd-g-ink: #1D4E89; }
+.qd-g2 { --qd-g-bg: #EEF0EA; --qd-g-ink: #3F4A3C; }
+.qd-g3 { --qd-g-bg: #E5F5EA; --qd-g-ink: #15803D; }
+.qd-g4 { --qd-g-bg: #FFF4D6; --qd-g-ink: #8A5A00; }
+.qd-g5 { --qd-g-bg: #EFEAFB; --qd-g-ink: #5B3FA8; }
+
+.qd-group-title {
+    flex: 0 0 auto;
+    display: grid;
+    min-width: 120px;
+}
+
+.qd-group-title strong {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--qd-g-ink);
+}
+
+.qd-group-title small {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    color: #6B6B6B;
+}
+
+.qd-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.qd-chip {
+    padding: 0 12px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 8px;
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.6;
+    color: var(--qd-g-ink);
+    word-spacing: 6px;
+}
+
+@media (max-width: 991.98px) {
+    .qd-book-grid.is-letters { grid-template-columns: repeat(5, 1fr); }
+    .qd-book-grid.is-lines { grid-template-columns: repeat(2, 1fr); }
+    .qd-groups { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 575.98px) {
+    .qd-book { padding: 8px; box-shadow: 0 0 0 4px #F3E9CF, 0 12px 30px rgba(13, 27, 42, .1); }
+    .qd-book-head { grid-template-columns: 1fr 1fr; padding: 10px 14px; }
+    .qd-book-bismillah { grid-column: 1 / -1; grid-row: 2; }
+    .qd-book-title { text-align: left; font-size: 20px; }
+    .qd-book-no { font-size: 17px; }
+    .qd-book-hidayat { flex-direction: column; gap: 6px; font-size: 14.5px; }
+    .qd-book-grid.is-letters { grid-template-columns: repeat(3, 1fr); }
+    .qd-book-grid.is-lines { grid-template-columns: 1fr; }
+    .qd-cell { min-height: 110px; }
+    .qd-group { flex-direction: column; align-items: flex-start; }
+}
+
+/* ══════════════════════════════════════════════════
+   Qaida PDF reader
+   ══════════════════════════════════════════════════ */
+.qd-reader {
+    max-width: 980px;
+    margin: 0 auto 50px;
+    background: #fff;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 0 6px #F3E9CF, 0 0 0 7px rgba(174, 130, 37, .5), 0 22px 50px rgba(13, 27, 42, .12);
+}
+
+.qd-reader:fullscreen {
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    background: #0D1B2A;
+    border: 0;
+}
+
+.qd-reader-bar {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, #0D1B2A, #1B3350);
+    color: #fff;
+}
+
+.qd-reader-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qd-rbtn {
+    min-width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 10px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(212, 168, 67, .4);
+    color: var(--gold-light);
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.qd-rbtn:hover { background: var(--gold); color: #0D1B2A; }
+.qd-rbtn--text { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 13px; }
+
+.qd-reader-page {
+    padding: 0 6px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.qd-reader-input {
+    width: 56px;
+    height: 32px;
+    margin: 0 4px;
+    border: 1px solid rgba(212, 168, 67, .5);
+    background: rgba(255, 255, 255, .95);
+    color: #0D1B2A;
+    text-align: center;
+    font-weight: 700;
+}
+
+.qd-reader-stage {
+    position: relative;
+    min-height: 420px;
+    max-height: 1400px;
+    overflow: auto;
+    padding: 12px;
+    background: #EDE6D3;
+    text-align: center;
+}
+
+.qd-reader:fullscreen .qd-reader-stage {
+    flex: 1;
+    max-height: none;
+    background: #1B2A3B;
+}
+
+.qd-reader-canvas {
+    display: inline-block;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .18);
+}
+
+.qd-reader-loading,
+.qd-reader-error {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--text-mid);
+    font-size: 15px;
+}
+
+.qd-reader-loading[hidden],
+.qd-reader-error[hidden] { display: none; }
+
+.qd-reader-error a { color: var(--gold); font-weight: 700; margin-left: 6px; }
+
+@media (max-width: 575.98px) {
+    .qd-reader { box-shadow: 0 0 0 4px #F3E9CF; }
+    .qd-reader-bar { justify-content: center; }
+    .qd-rbtn--text span { display: none; }
+    .qd-reader-stage { padding: 6px; min-height: 300px; }
+}

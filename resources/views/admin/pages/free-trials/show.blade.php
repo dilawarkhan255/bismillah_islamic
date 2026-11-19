@@ -3,12 +3,9 @@
 @section('title', 'Free Trial Details')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Free Trial Details</h4>
-    <a href="{{ route('admin.free-trials.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Free Trial Details" icon="bi-calendar-check" eyebrow="Free Trials" :back="route('admin.free-trials.index')">
+  <x-admin.delete-button :action="route('admin.free-trials.destroy', $freeTrial)" :name="$freeTrial->student_name" label="Delete" />
+</x-admin.page-header>
 
 <div class="row">
     <div class="col-lg-8">

@@ -45,6 +45,52 @@ class FormController extends Controller
         }
     }
 
+    public function freeTrial(Request $request)
+    {
+        $validated = $request->validate([
+            'parent_name'    => 'required|string|max:100',
+            'student_name'   => 'required|string|max:100',
+            'email'          => 'required|email|max:100',
+            'whatsapp'       => 'required|string|max:20',
+            'age'            => 'required|in:4 – 7 years,8 – 12 years,13 – 17 years,18+ (Adult)',
+            'country'        => 'required|string|max:50',
+            'course'         => 'required|string|max:100',
+            'timing'         => 'required|string|max:50',
+            'teacher_gender' => 'nullable|in:Male Teacher,Female Teacher',
+            'message'        => 'nullable|string|max:1000',
+        ]);
+
+        try {
+            $freeTrial = FreeTrial::create([
+                'student_name'    => $validated['student_name'],
+                'parent_name'     => $validated['parent_name'],
+                'phone'           => $validated['whatsapp'],
+                'whatsapp_number' => $validated['whatsapp'],
+                'email'           => $validated['email'],
+                'country'         => $validated['country'],
+                'age_range'       => $validated['age'],
+                'course'          => $validated['course'],
+                'preferred_time'  => $validated['timing'],
+                'teacher_gender'  => $validated['teacher_gender'] ?? null,
+                'message'         => $validated['message'] ?? null,
+                'status'          => 'pending',
+            ]);
+        } catch (\Exception $e) {
+            report($e);
+            return back()->withInput()->with('error', 'Something went wrong. Please try again or contact us on WhatsApp.');
+        }
+
+        // The request is saved; a notification failure must not show the visitor an error.
+        try {
+            User::role('admin')->each(fn($admin) => $admin->notify(new NewFreeTrialNotification($freeTrial)));
+        } catch (\Exception $e) {
+            report($e);
+        }
+        try { event(new NewFreeTrialEvent($freeTrial)); } catch (\Exception $e) {}
+
+        return back()->with('success', 'Your free trial is booked! We will contact you on WhatsApp within 24 hours, In sha Allah.');
+    }
+
     public function contact(Request $request)
     {
         $validated = $request->validate([

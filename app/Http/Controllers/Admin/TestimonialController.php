@@ -84,6 +84,6 @@ class TestimonialController extends Controller
 
         $testimonial->delete();
 
-        return redirect()->back()->with('success', 'Testimonial deleted successfully.');
+        return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial deleted successfully.');
     }
 }

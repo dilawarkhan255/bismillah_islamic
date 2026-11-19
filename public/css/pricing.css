@@ -493,3 +493,22 @@
         padding: 4px 18px 22px;
     }
 }
+
+/* Plan header: monogram + name + optional tag (badge text can be any length) */
+.bia-plan-heading {
+    min-width: 0;
+    flex: 1;
+}
+
+.bia-plan-tag {
+    flex-shrink: 0;
+    align-self: flex-start;
+    padding: 4px 10px;
+    border: 1px solid;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}

@@ -12,6 +12,10 @@
       <p class="text-muted mb-0">Update teacher profile for <strong>{{ $teacher->name }}</strong>.</p>
     </div>
   </div>
+  <div class="heading-actions">
+    <x-admin.delete-button :action="route('admin.teachers.destroy', $teacher)" :name="$teacher->name" label="Delete" />
+    <a href="{{ route('admin.teachers.index') }}" class="btn btn-light"><i class="bi bi-arrow-left"></i> Back</a>
+  </div>
 </div>
 
 <div class="panel">

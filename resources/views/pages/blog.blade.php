@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
+@push('page-css')
+    <link rel="stylesheet" href="{{ asset('css/blog.css') }}?v={{ @filemtime(public_path('css/blog.css')) }}">
+@endpush
+
 @section('title', 'Articles & Blog — Bismillah Islamic Academy')
+@section('meta_description', 'Articles on Quran learning, Tajweed, Hifz tips and Islamic knowledge for students and parents.')
 
 @section('content')
 
@@ -11,7 +16,7 @@
     @if($featured)
     <section class="bbl-featured">
         <div class="bbl-featured-bg">
-            <img src="{{ asset('storage/' . $featured->image) }}" alt="{{ $featured->title }}">
+            <img src="{{ $featured->image_url }}" alt="{{ $featured->title }}">
             <div class="bbl-featured-scrim"></div>
         </div>
 
@@ -32,20 +37,26 @@
                         </ol>
                     </nav>
 
+                    @if($featured->category)
                     <div class="bbl-feat-cat-wrap">
                         <span class="bbl-feat-cat" style="background:{{ $featured->category->color }};">{{ $featured->category->name }}</span>
                     </div>
+                    @endif
                     <h1 class="bbl-feat-title bbl-reveal" style="animation-delay:.1s;">{{ $featured->title }}</h1>
                     <div class="bbl-feat-meta bbl-reveal justify-content-center" style="animation-delay:.25s;">
                         <span><i class="fas fa-user-circle"></i> {{ $featured->author }}</span>
-                        <span><i class="fas fa-calendar-alt"></i> {{ $featured->published_at->format('F j, Y') }}</span>
-                        <span><i class="far fa-clock"></i> {{ $featured->read_time }}</span>
+                        @if($featured->published_at)
+                            <span><i class="fas fa-calendar-alt"></i> {{ $featured->published_at->format('F j, Y') }}</span>
+                        @endif
+                        @if($featured->read_time_label)
+                            <span><i class="far fa-clock"></i> {{ $featured->read_time_label }}</span>
+                        @endif
                     </div>
                     <p class="bbl-feat-excerpt bbl-reveal" style="animation-delay:.4s;">
                         {{ $featured->excerpt }}
                     </p>
                     <div class="bbl-feat-btn-wrap bbl-reveal" style="animation-delay:.55s;">
-                        <a href="#" class="bbl-feat-btn">
+                        <a href="{{ route('blog.show', $featured->slug) }}" class="bbl-feat-btn">
                             Read Article <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -75,127 +86,99 @@
 
                     <div class="bbl-posts-heading bbl-sr" data-dir="up">
                         <div>
-                            <span class="bbl-eyebrow">{{ section('blog', 'latest_title', 'description', 'Islamic Knowledge') }}</span>
-                            <h2 class="bbl-h2">{!! section('blog', 'latest_title', 'title', 'Latest <span>Articles</span>') !!}</h2>
+                            @if($search !== '')
+                                <span class="bbl-eyebrow">Search results</span>
+                                <h2 class="bbl-h2">“{{ $search }}”</h2>
+                            @elseif($activeCategory)
+                                <span class="bbl-eyebrow">Category</span>
+                                <h2 class="bbl-h2">{{ $activeCategory->name }}</h2>
+                            @else
+                                <span class="bbl-eyebrow">{{ section('blog', 'latest_title', 'description', 'Islamic Knowledge') }}</span>
+                                <h2 class="bbl-h2">{!! section('blog', 'latest_title', 'title', 'Latest <span>Articles</span>') !!}</h2>
+                            @endif
                         </div>
                         <div class="bbl-gold-rule"></div>
                     </div>
 
-                    @foreach($posts as $pi => $post)
+                    @if($search !== '' || $activeCategory)
+                        <p class="bbl-filter-note">
+                            {{ $posts->total() }} {{ Str::plural('article', $posts->total()) }} found.
+                            <a href="{{ route('blog') }}">Show all articles <i class="fas fa-times"></i></a>
+                        </p>
+                    @endif
+
+                    @forelse($posts as $pi => $post)
                         <article class="bbl-card bbl-sr" data-dir="up" style="transition-delay:{{ ($pi % 3) * .1 }}s;">
 
                             {{-- Image --}}
-                            <div class="bbl-card-thumb">
-                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                            <a href="{{ route('blog.show', $post->slug) }}" class="bbl-card-thumb" tabindex="-1" aria-hidden="true">
+                                <img src="{{ $post->image_url }}" alt="{{ $post->title }}" loading="lazy">
                                 <div class="bbl-card-thumb-overlay"></div>
-                                <span class="bbl-card-badge"
-                                    style="background:{{ $post->category->color }};">{{ $post->category->name }}</span>
-                                <span class="bbl-card-read-badge">{{ $post->read_time }}</span>
-                            </div>
+                                @if($post->category)
+                                    <span class="bbl-card-badge"
+                                        style="background:{{ $post->category->color }};">{{ $post->category->name }}</span>
+                                @endif
+                                @if($post->read_time_label)
+                                    <span class="bbl-card-read-badge">{{ $post->read_time_label }}</span>
+                                @endif
+                            </a>
 
                             {{-- Body --}}
                             <div class="bbl-card-body">
                                 <div class="bbl-card-meta">
                                     <span><i class="fas fa-user-circle"></i> {{ $post->author }}</span>
-                                    <span><i class="fas fa-calendar-alt"></i> {{ $post->published_at->format('F j, Y') }}</span>
+                                    @if($post->published_at)
+                                        <span><i class="fas fa-calendar-alt"></i> {{ $post->published_at->format('F j, Y') }}</span>
+                                    @endif
                                 </div>
                                 <h3 class="bbl-card-title">
-                                    <a href="#" class="bbl-card-link">{{ $post->title }}</a>
+                                    <a href="{{ route('blog.show', $post->slug) }}" class="bbl-card-link">{{ $post->title }}</a>
                                 </h3>
                                 <p class="bbl-card-excerpt">{{ $post->excerpt }}</p>
                                 <div class="bbl-card-footer">
-                                    <a href="#" class="bbl-read-more">
+                                    <a href="{{ route('blog.show', $post->slug) }}" class="bbl-read-more">
                                         Read Article <i class="fas fa-long-arrow-alt-right"></i>
                                     </a>
                                     <div class="bbl-card-icons">
-                                        <button class="bbl-icon-btn" title="Bookmark"><i class="far fa-bookmark"></i></button>
-                                        <button class="bbl-icon-btn" title="Share"><i class="fas fa-share-alt"></i></button>
+                                        <button type="button" class="bbl-icon-btn js-share" title="Share"
+                                            data-url="{{ route('blog.show', $post->slug) }}" data-title="{{ $post->title }}">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="bbl-card-number">{{ str_pad($pi + 1, 2, '0', STR_PAD_LEFT) }}</div>
+                            <div class="bbl-card-number">{{ str_pad($posts->firstItem() + $pi, 2, '0', STR_PAD_LEFT) }}</div>
 
                         </article>
-                    @endforeach
+                    @empty
+                        <div class="bbl-empty">
+                            <i class="fas fa-book-open"></i>
+                            <h3>No articles found</h3>
+                            <p>Try a different search word or browse all articles.</p>
+                            <a href="{{ route('blog') }}" class="bbl-read-more">View all articles <i class="fas fa-long-arrow-alt-right"></i></a>
+                        </div>
+                    @endforelse
 
-                    <nav class="bbl-pagination bbl-sr d-flex justify-content-center gap-2 w-100" data-dir="up">
-                        <a href="#" class="bbl-pg bbl-pg--active">01</a>
-                        <a href="#" class="bbl-pg">02</a>
-                        <a href="#" class="bbl-pg">03</a>
-                        <span class="bbl-pg-dots">···</span>
-                        <a href="#" class="bbl-pg"><i class="fas fa-chevron-right"></i></a>
-                    </nav>
+                    @if($posts->hasPages())
+                        <nav class="bbl-pagination d-flex justify-content-center flex-wrap gap-2 w-100" aria-label="Blog pages">
+                            @if(!$posts->onFirstPage())
+                                <a href="{{ $posts->previousPageUrl() }}" class="bbl-pg" aria-label="Previous page"><i class="fas fa-chevron-left"></i></a>
+                            @endif
+                            @foreach($posts->getUrlRange(1, $posts->lastPage()) as $num => $url)
+                                <a href="{{ $url }}" class="bbl-pg {{ $num === $posts->currentPage() ? 'bbl-pg--active' : '' }}"
+                                   @if($num === $posts->currentPage()) aria-current="page" @endif>{{ str_pad($num, 2, '0', STR_PAD_LEFT) }}</a>
+                            @endforeach
+                            @if($posts->hasMorePages())
+                                <a href="{{ $posts->nextPageUrl() }}" class="bbl-pg" aria-label="Next page"><i class="fas fa-chevron-right"></i></a>
+                            @endif
+                        </nav>
+                    @endif
 
                 </div>
 
                 {{-- SIDEBAR --}}
-                <aside class="col-lg-4 bbl-sr" data-dir="right">
-
-                    <div class="bbl-widget bbl-widget--search">
-                        <div class="bbl-widget-hd"><i class="fas fa-search"></i> Search</div>
-                        <div class="bbl-widget-bd">
-                            <div class="bbl-search">
-                                <input type="text" placeholder="Search articles…">
-                                <button><i class="fas fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bbl-verse">
-                        <div class="bbl-verse-bg"></div>
-                        <div class="bbl-verse-inner">
-                            <div class="bbl-verse-arabic">{{ section('blog', 'verse', 'title', 'اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ') }}</div>
-                            <div class="bbl-verse-line"></div>
-                            <p class="bbl-verse-trans">{{ section('blog', 'verse', 'subtitle', '"Read in the name of your Lord who created"') }}</p>
-                            <span class="bbl-verse-ref">{{ section('blog', 'verse', 'description', 'Surah Al-Alaq — 96:1') }}</span>
-                        </div>
-                    </div>
-
-                    <div class="bbl-widget">
-                        <div class="bbl-widget-hd"><i class="fas fa-layer-group"></i> {{ section('blog', 'widget_categories', 'title', 'Categories') }}</div>
-                        <div class="bbl-widget-bd bbl-widget-bd--flush">
-                            @foreach($categories as $cat)
-                                <a href="#" class="bbl-cat">
-                                    <span class="bbl-cat-dot" style="background:{{ $cat->color }};"></span>
-                                    <span class="bbl-cat-name">{{ $cat->name }}</span>
-                                    <span class="bbl-cat-count"
-                                        style="color:{{ $cat->color }}; border-color:{{ $cat->color }}33;">{{ $cat->posts_count }}</span>
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="bbl-widget">
-                        <div class="bbl-widget-hd"><i class="fas fa-history"></i> {{ section('blog', 'widget_recent', 'title', 'Recent Articles') }}</div>
-                        <div class="bbl-widget-bd bbl-widget-bd--flush">
-                            @foreach($recent as $ri => $r)
-                                <a href="#" class="bbl-recent {{ $ri < count($recent) - 1 ? 'bbl-recent--sep' : '' }}">
-                                    <div class="bbl-recent-thumb">
-                                        <img src="{{ asset('storage/' . $r->image) }}" alt="">
-                                        <div class="bbl-recent-overlay"></div>
-                                    </div>
-                                    <div class="bbl-recent-text">
-                                        <p class="bbl-recent-title">{{ $r->title }}</p>
-                                        <span class="bbl-recent-date"><i class="fas fa-calendar-alt"></i>
-                                            {{ $r->published_at->format('M j, Y') }}</span>
-                                    </div>
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="bbl-enroll-cta">
-                        <div class="bbl-enroll-bg"></div>
-                        <div class="bbl-enroll-inner">
-                            <div class="bbl-enroll-icon"><i class="fas fa-quran"></i></div>
-                            <h5 class="bbl-enroll-title">{{ section('blog', 'cta', 'title', 'Begin Your Journey') }}</h5>
-                            <p class="bbl-enroll-text">{{ section('blog', 'cta', 'description', 'Join Bismillah Islamic Academy and walk the path of Quranic excellence today.') }}</p>
-                            <a href="{{ section('blog', 'cta', 'button_url', '/free-trial') }}" class="bbl-enroll-btn">{{ section('blog', 'cta', 'button_text', 'Enroll Now') }}</a>
-                        </div>
-                    </div>
-
-                </aside>
+                @include('partials.blog-sidebar')
             </div>
         </div>
     </section>
@@ -228,4 +211,5 @@
             });
         })();
     </script>
+    @include('partials.blog-share-script')
 @endpush

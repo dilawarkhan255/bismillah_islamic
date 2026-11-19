@@ -5,9 +5,7 @@
 @php use App\Models\SiteSetting; @endphp
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Site Settings</h4>
-</div>
+<x-admin.page-header title="Site Settings" icon="bi-gear" eyebrow="Manage" subtitle="Contact details, social links, logo and site images."></x-admin.page-header>
 
 <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -92,6 +90,11 @@
                     'img_about_bg' => ['label' => 'About Background', 'desc' => 'About page parallax background'],
                     'img_courses_hero' => ['label' => 'Courses Hero', 'desc' => 'Courses page top banner'],
                     'img_gallery_hero' => ['label' => 'Gallery Hero', 'desc' => 'Gallery page top banner'],
+                    'img_teachers_hero' => ['label' => 'Teachers Banner', 'desc' => 'Our Teachers, Our Team and profile pages'],
+                    'img_pricing_hero' => ['label' => 'Pricing Banner', 'desc' => 'Pricing page top banner'],
+                    'img_free_trial_hero' => ['label' => 'Free Trial Banner', 'desc' => 'Free Trial page top banner'],
+                    'img_contact_hero' => ['label' => 'Contact Banner', 'desc' => 'Contact page top banner'],
+                    'img_privacy_hero' => ['label' => 'Privacy Banner', 'desc' => 'Privacy Policy page top banner'],
                 ];
             @endphp
 

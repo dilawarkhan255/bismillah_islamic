@@ -3,12 +3,9 @@
 @section('title', 'Message Details')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Message Details</h4>
-    <a href="{{ route('admin.messages.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Message Details" icon="bi-envelope" eyebrow="Messages" :back="route('admin.messages.index')">
+  <x-admin.delete-button :action="route('admin.messages.destroy', $message)" :name="$message->name" label="Delete" />
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-header">

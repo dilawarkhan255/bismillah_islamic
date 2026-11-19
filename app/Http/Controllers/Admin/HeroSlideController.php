@@ -90,6 +90,6 @@ class HeroSlideController extends Controller
 
         $heroSlide->delete();
 
-        return redirect()->back()->with('success', 'Hero slide deleted successfully.');
+        return redirect()->route('admin.hero-slides.index')->with('success', 'Hero slide deleted successfully.');
     }
 }

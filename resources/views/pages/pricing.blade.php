@@ -1,23 +1,22 @@
 @extends('layouts.app')
 
+@push('page-css')
+    <link rel="stylesheet" href="{{ asset('css/pricing.css') }}?v={{ @filemtime(public_path('css/pricing.css')) }}">
+@endpush
+
 @section('title', 'Pricing — Bismillah Islamic Academy')
+@section('meta_description', 'Simple monthly fee plans for online Quran and Islamic Studies classes. Choose classes per week that suit your family.')
 
 @section('content')
 
-    <!-- ── HERO ──────────────────────────────────────── -->
-    <section style="background:linear-gradient(160deg,#0A1520 0%,#0D1B2A 55%,#101F2E 100%);padding:88px 0 72px;border-bottom:2px solid #AE8225;position:relative;overflow:hidden;">
-        <div style="position:absolute;inset:0;opacity:.035;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2264%22%3E%3Cpath d=%22M32 4L60 32L32 60L4 32Z%22 fill=%22none%22 stroke=%22%23AE8225%22 stroke-width=%221%22/%3E%3C/svg%3E');"></div>
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#AE8225 30%,#D4A843 50%,#AE8225 70%,transparent);"></div>
-        <div class="container text-center" style="position:relative;z-index:2;">
-            <div style="font-family:'Amiri',serif;font-size:20px;color:rgba(174,130,37,.65);letter-spacing:3px;margin-bottom:16px;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-            <div style="display:inline-block;font-family:'Cinzel',serif;font-size:9px;color:#D4A843;letter-spacing:5px;text-transform:uppercase;padding:7px 22px;border:1px solid rgba(174,130,37,.4);margin-bottom:22px;">✦ {{ section('pricing', 'hero_eyebrow', 'title', 'Transparent Pricing') }} ✦</div>
-            <h1 style="font-family:'Cinzel',serif;color:#fff;font-size:clamp(28px,4.5vw,54px);font-weight:900;line-height:1.1;margin-bottom:16px;">
-                {!! section('pricing', 'hero_title', 'title', 'Choose Your <span style="color:#D4A843;">Learning Plan</span>') !!}
-            </h1>
-            <p style="color:rgba(255,255,255,.5);font-family:'Lato',sans-serif;font-size:15px;max-width:480px;margin:0 auto 30px;line-height:1.85;">
-                {{ section('pricing', 'hero_title', 'description', 'All plans are 30-minute live one-on-one sessions via Microsoft Teams. Every plan includes a 3-day free trial.') }}
-            </p>
-            <!-- 4 trust badges -->
+    <x-page-hero
+        :title="section('pricing', 'hero_title', 'title', 'Choose Your <span>Learning Plan</span>')"
+        :tag="'Transparent Pricing'"
+        :subtitle="section('pricing', 'hero_title', 'description', 'All plans are 30-minute live one-on-one sessions via Microsoft Teams. Every plan includes a 3-day free trial.')"
+        :image="setting('img_pricing_hero') ? asset('storage/' . setting('img_pricing_hero')) : asset('storage/how-to-learn.jpg')"
+        :crumbs="['Pricing' => null]"
+    >
+        <!-- 4 trust badges -->
             @php
                 $pricingBadgesRaw = section('pricing', 'trust_badges', 'title', '3-Day Free Trial,One-on-One Classes,Female Teachers Available,Cancel Anytime');
                 $pricingBadges = array_map('trim', explode(',', $pricingBadgesRaw));
@@ -29,8 +28,8 @@
                     </span>
                 @endforeach
             </div>
-        </div>
-    </section>
+    </x-page-hero>
+
 
 
     <!-- ── PLANS ──────────────────────────────────────── -->
@@ -50,11 +49,15 @@
 
                             <!-- Top: Badge + Name -->
                             <div class="bia-plan-top">
-                                <div class="bia-plan-letter" style="color:{{ $plan->accent_color }};">{{ $plan->badge }}</div>
-                                <div>
-                                    <div class="bia-plan-name">Plan {{ $plan->badge }} — {{ $plan->name }}</div>
-                                    <div class="bia-plan-tagline">{{ $plan->name }}</div>
+                                {{-- First letter of the plan name as a monogram (works whatever text is saved in "badge") --}}
+                                <div class="bia-plan-letter" style="color:{{ $plan->accent_color }};">{{ mb_strtoupper(mb_substr($plan->name, 0, 1)) }}</div>
+                                <div class="bia-plan-heading">
+                                    <div class="bia-plan-name">{{ $plan->name }} Plan</div>
+                                    <div class="bia-plan-tagline">{{ $plan->days_per_week }} days a week</div>
                                 </div>
+                                @if($plan->badge && !$plan->is_popular)
+                                    <span class="bia-plan-tag" style="color:{{ $plan->accent_color }}; border-color:{{ $plan->accent_color }};">{{ $plan->badge }}</span>
+                                @endif
                             </div>
 
                             <!-- Day dots visual -->
@@ -79,7 +82,7 @@
                                 </div>
                                 <div class="bia-stat-divider"></div>
                                 <div class="bia-stat">
-                                    <span class="bia-stat-val">{{ $plan->courses_count === 'all' ? 'All courses' : $plan->courses_count . ' course' }}</span>
+                                    <span class="bia-stat-val">{{ strcasecmp((string) $plan->courses_count, 'all') === 0 ? 'All courses' : $plan->courses_count . ' ' . Str::plural('course', (int) $plan->courses_count) }}</span>
                                     <span class="bia-stat-lbl">Available</span>
                                 </div>
                             </div>
@@ -239,10 +242,10 @@
             </h2>
             <p style="font-family:'Lato',sans-serif;color:rgba(255,255,255,.5);font-size:15px;max-width:440px;margin:0 auto 30px;line-height:1.85;">{{ section('pricing', 'cta', 'description', 'No payment. No commitment. Just 3 live classes with a certified teacher.') }}</p>
             <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-                <a href="{{ section('pricing', 'cta', 'button_url', '/free-trial') }}" style="display:inline-flex;align-items:center;gap:10px;background:#AE8225;color:#fff;font-family:'Cinzel',serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:15px 36px;border:2px solid #AE8225;text-decoration:none;transition:all .3s;" onmouseover="this.style.background='transparent';this.style.color='#AE8225';" onmouseout="this.style.background='#AE8225';this.style.color='#fff';">
+                <a class="hv-10" href="{{ section('pricing', 'cta', 'button_url', '/free-trial') }}">
                     <i class="fas fa-play-circle"></i> {{ section('pricing', 'cta', 'button_text', 'Book Free Trial') }}
                 </a>
-                <a href="https://wa.me/923141833216?text=Assalamu+Alaikum,+I+want+to+know+more+about+pricing" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:'Cinzel',serif;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:15px 32px;border:2px solid #25D366;text-decoration:none;transition:all .3s;" onmouseover="this.style.background='transparent';this.style.color='#25D366';" onmouseout="this.style.background='#25D366';this.style.color='#fff';">
+                <a class="hv-11" href="https://wa.me/923141833216?text=Assalamu+Alaikum,+I+want+to+know+more+about+pricing" target="_blank">
                     <i class="fab fa-whatsapp" style="font-size:15px;"></i> Ask on WhatsApp
                 </a>
             </div>

@@ -77,6 +77,6 @@ class GalleryController extends Controller
 
         $item->delete();
 
-        return redirect()->back()->with('success', 'Gallery item deleted successfully.');
+        return redirect()->route('admin.gallery.index')->with('success', 'Gallery item deleted successfully.');
     }
 }

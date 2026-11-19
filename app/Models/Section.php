@@ -37,9 +37,25 @@ class Section extends Model
         return $query->where('page_name', $page);
     }
 
+    /** All sections keyed by "page|key", loaded once per request from the content cache. */
+    private static ?\Illuminate\Support\Collection $lookup = null;
+
+    public static function findCached(string $page, string $key): ?self
+    {
+        static::$lookup ??= \App\Support\ContentCache::remember('sections.all', fn () => static::all()
+            ->keyBy(fn ($s) => $s->page_name . '|' . $s->section_key));
+
+        return static::$lookup->get($page . '|' . $key);
+    }
+
+    public static function clearLookup(): void
+    {
+        static::$lookup = null;
+    }
+
     public static function getSection(string $page, string $key, string $field = 'title', $default = null)
     {
-        $section = static::where('page_name', $page)->where('section_key', $key)->first();
+        $section = static::findCached($page, $key);
         return $section && $section->{$field} ? $section->{$field} : $default;
     }
 }

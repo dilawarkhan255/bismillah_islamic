@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
+@push('page-css')
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}?v={{ @filemtime(public_path('css/home.css')) }}">
+@endpush
+
 @section('title', 'Bismillah Islamic Academy - Learn Quran & Islamic Studies')
+@section('meta_description', 'Learn Quran online with qualified male and female teachers. Norani Qaida, Nazra, Tajweed, Hifz, Islamic Studies and Arabic, live one-on-one on Microsoft Teams. Book a free trial.')
 
 @section('content')
 
@@ -130,21 +135,11 @@
     <section class="stats-section">
         <div class="container">
             <div class="row g-0">
-                @php
-                    $statsKeys = ['stats_1','stats_2','stats_3','stats_4'];
-                    $statsDefaults = [
-                        ['icon' => 'fa fa-certificate', 'num' => '10', 'label' => 'Years Experience'],
-                        ['icon' => 'fa fa-users-cog', 'num' => '25', 'label' => 'Qualified Teachers'],
-                        ['icon' => 'fa fa-users', 'num' => '1500', 'label' => 'Satisfied Students'],
-                        ['icon' => 'fa fa-book-open', 'num' => '500', 'label' => 'Hafiz Graduates'],
-                    ];
-                @endphp
-                @foreach($statsKeys as $i => $statKey)
+                @foreach($sections['stats'] as $stat)
                     @php
-                        $s = \App\Models\Section::where('page_name','home')->where('section_key',$statKey)->first();
-                        $icon = $s && $s->subtitle ? $s->subtitle : $statsDefaults[$i]['icon'];
-                        $num = $s && $s->description ? $s->description : $statsDefaults[$i]['num'];
-                        $label = $s && $s->title ? $s->title : $statsDefaults[$i]['label'];
+                        $icon = $stat['icon'];
+                        $num = $stat['num'];
+                        $label = $stat['label'];
                     @endphp
                     <div class="col-lg-3 col-md-6 col-6">
                         <div class="stat-item">
@@ -171,16 +166,7 @@
                             {{ section('home', 'why_title', 'description', 'Our academy combines traditional Islamic teaching methods with modern pedagogy. Every teacher is a qualified scholar committed to nurturing the next generation of Muslims.') }}
                         </p>
                         <div class="row g-4">
-                            @php
-                                $skillsData = \App\Models\Section::where('page_name','home')->where('section_key','skills')->first();
-                                $skillLabels = $skillsData ? explode(',', $skillsData->title) : ['Quran & Tajweed','Islamic Studies','Arabic Language','Hifz Program'];
-                                $skillVals = $skillsData ? explode(',', $skillsData->description) : [99,99,99,99];
-                                $skills = [];
-                                foreach($skillLabels as $i => $label) {
-                                    $skills[] = ['label' => trim($label), 'val' => (int)($skillVals[$i] ?? 99), 'delay' => ($i * 0.2) . 's'];
-                                }
-                            @endphp
-                            @foreach($skills as $skill)
+                            @foreach($sections['skills'] as $skill)
                                 <div class="col-12">
                                     <div class="skill">
                                         <div class="d-flex justify-content-between">
@@ -205,7 +191,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="img-border">
-                        <img class="img-fluid" src="{{ setting('img_home_feature') ? asset('storage/' . setting('img_home_feature')) : asset('storage/feature.jpg') }}" alt="Why Choose Us">
+                        <img loading="lazy" decoding="async" class="img-fluid" src="{{ setting('img_home_feature') ? asset('storage/' . setting('img_home_feature')) : asset('storage/feature.jpg') }}" alt="Why Choose Us">
                     </div>
                 </div>
             </div>
@@ -226,9 +212,8 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
                         <a href="{{ route('courses') }}" class="text-decoration-none d-block">
                             <div class="position-relative overflow-hidden rounded">
-                                <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}"
-                                    class="img-fluid w-100 course-img" onmouseover="this.style.transform='scale(1.05)'"
-                                    onmouseout="this.style.transform='scale(1)'">
+                                <img loading="lazy" decoding="async" src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}"
+                                    class="img-fluid w-100 course-img">
                                 <div class="position-absolute bottom-0 start-0 end-0"
                                     style="background: linear-gradient(to top, rgba(13,27,42,0.90) 0%, rgba(13,27,42,0.4) 50%, transparent 100%); padding: 40px 16px 18px;">
                                     <h4 class="mb-0 text-white text-center"
@@ -258,7 +243,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                     <div class="position-relative">
-                        <img src="{{ setting('img_home_trial') ? asset('storage/' . setting('img_home_trial')) : asset('storage/trial.jpg') }}" alt="Free Trial Class"
+                        <img loading="lazy" decoding="async" src="{{ setting('img_home_trial') ? asset('storage/' . setting('img_home_trial')) : asset('storage/trial.jpg') }}" alt="Free Trial Class"
                             class="img-fluid w-100 rounded trial-img">
                         <div class="position-absolute"
                             style="top: 24px; left: -16px; background: var(--navy); border: 2px solid var(--gold); padding: 14px 20px; border-radius: 4px; box-shadow: 0 8px 32px rgba(13,27,42,0.25);">
@@ -289,22 +274,8 @@
                     <p class="mb-4" style="color: var(--text-mid); line-height: 1.9; font-size: 15px;">
                         {{ section('home', 'trial_title', 'description', 'Experience the quality of our teaching before you commit. Join our 3-day free trial and let your child learn directly from our qualified Quran teachers — completely free, no obligation.') }}
                     </p>
-                    @php
-                        $trialFeatures = [];
-                        foreach(['trial_feat_1','trial_feat_2','trial_feat_3'] as $tfKey) {
-                            $tf = \App\Models\Section::where('page_name','home')->where('section_key',$tfKey)->first();
-                            if($tf) $trialFeatures[] = ['icon' => $tf->subtitle, 'title' => $tf->title, 'desc' => $tf->description];
-                        }
-                        if(empty($trialFeatures)) {
-                            $trialFeatures = [
-                                ['icon' => 'fa-user-graduate', 'title' => 'One-on-One Session', 'desc' => 'Personal attention from a certified Quran teacher.'],
-                                ['icon' => 'fa-clock', 'title' => 'Flexible Timing', 'desc' => 'Choose class time that suits your schedule.'],
-                                ['icon' => 'fa-shield-alt', 'title' => 'No Commitment', 'desc' => 'Cancel anytime — zero pressure, zero cost.'],
-                            ];
-                        }
-                    @endphp
                     <div class="d-flex flex-column gap-3 mb-4">
-                        @foreach($trialFeatures as $f)
+                        @foreach($sections['trial_features'] as $f)
                             <div class="d-flex align-items-start gap-3">
                                 <div class="flex-shrink-0 d-flex align-items-center justify-content-center"
                                     style="width: 44px; height: 44px; border-radius: 50%; background: var(--navy); border: 2px solid var(--gold);">
@@ -320,16 +291,10 @@
                         @endforeach
                     </div>
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="{{ route('free_trial') }}" class="btn py-3 px-5"
-                            style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold); transition: all 0.3s;"
-                            onmouseover="this.style.background='transparent'; this.style.color='var(--gold)';"
-                            onmouseout="this.style.background='var(--gold)'; this.style.color='var(--white)';">
+                        <a href="{{ route('free_trial') }}" class="btn py-3 px-5 hv-7">
                             Book Free Trial
                         </a>
-                        <a href="{{ route('contact') }}" class="btn py-3 px-5"
-                            style="background: transparent; color: var(--navy); font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--navy); transition: all 0.3s;"
-                            onmouseover="this.style.background='var(--navy)'; this.style.color='var(--white)';"
-                            onmouseout="this.style.background='transparent'; this.style.color='var(--navy)';">
+                        <a href="{{ route('contact') }}" class="btn py-3 px-5 hv-8">
                             Ask a Question
                         </a>
                     </div>
@@ -342,7 +307,7 @@
     <!-- ===================== HOW IT WORKS ===================== -->
     <div class="hiw-section">
         <div class="hiw-bg-image">
-            <img src="{{ setting('img_how_to_learn') ? asset('storage/' . setting('img_how_to_learn')) : asset('storage/how-to-learn.jpg') }}" alt="" aria-hidden="true">
+            <img loading="lazy" decoding="async" src="{{ setting('img_how_to_learn') ? asset('storage/' . setting('img_how_to_learn')) : asset('storage/how-to-learn.jpg') }}" alt="" aria-hidden="true">
             <div class="hiw-bg-overlay"></div>
         </div>
         <div class="container" style="position:relative; z-index:2;">
@@ -356,24 +321,7 @@
             </div>
 
             <div class="hiw-steps-row wow fadeInUp" data-wow-delay="0.2s">
-                @php
-                    $stepsData = [];
-                    foreach(['step_1','step_2','step_3','step_4','step_5'] as $i => $sk) {
-                        $sd = \App\Models\Section::where('page_name','home')->where('section_key',$sk)->first();
-                        if($sd) $stepsData[] = ['num' => str_pad($i+1, 2, '0', STR_PAD_LEFT), 'icon' => $sd->subtitle, 'title' => $sd->title, 'desc' => $sd->description];
-                    }
-                    if(empty($stepsData)) {
-                        $stepsData = [
-                            ['num' => '01', 'icon' => 'fa-user-plus', 'title' => 'Register Online', 'desc' => 'Fill out our simple enrollment form and create your student account in minutes.'],
-                            ['num' => '02', 'icon' => 'fa-calendar-check', 'title' => 'Book Free Trial', 'desc' => 'Schedule a free trial session with a qualified teacher at your preferred time.'],
-                            ['num' => '03', 'icon' => 'fa-book-open', 'title' => 'Choose Your Course', 'desc' => 'Pick from Norani Qaida, Tajweed, Hifz, Islamic Studies, Arabic & more.'],
-                            ['num' => '04', 'icon' => 'fa-chalkboard-teacher', 'title' => 'Start Learning', 'desc' => 'Attend live one-on-one classes via Microsoft Teams — our primary online classroom platform.'],
-                            ['num' => '05', 'icon' => 'fa-certificate', 'title' => 'Get Certified', 'desc' => 'Earn an official certificate from Bismillah Islamic Academy upon completion.'],
-                        ];
-                    }
-                @endphp
-
-                @foreach($stepsData as $step)
+                @foreach($sections['steps'] as $step)
                     <div class="hiw-step-col">
                         @if(!$loop->last)
                             <div class="hiw-arrow">
@@ -431,23 +379,7 @@
             <h2 class="lj-heading">Your Learning Journey</h2>
         </div>
         <div class="lj-track">
-            @php
-                $journeyData = [];
-                foreach(['journey_1','journey_2','journey_3','journey_4','journey_5'] as $jk) {
-                    $jd = \App\Models\Section::where('page_name','home')->where('section_key',$jk)->first();
-                    if($jd) $journeyData[] = ['icon' => $jd->subtitle, 'title' => $jd->title, 'desc' => $jd->description];
-                }
-                if(empty($journeyData)) {
-                    $journeyData = [
-                        ['icon' => 'fa-graduation-cap', 'title' => 'Free Trial', 'desc' => 'Start your journey risk-free'],
-                        ['icon' => 'fa-book-open', 'title' => 'Norani Qaida', 'desc' => 'Build strong foundations'],
-                        ['icon' => 'fa-quran', 'title' => 'Quran Reading', 'desc' => 'Read fluently with confidence'],
-                        ['icon' => 'fa-microphone', 'title' => 'Tajweed', 'desc' => 'Perfect your pronunciation'],
-                        ['icon' => 'fa-trophy', 'title' => 'Hifz ul Quran', 'desc' => 'Achieve mastery & memorization'],
-                    ];
-                }
-            @endphp
-            @foreach($journeyData as $step)
+            @foreach($sections['journey'] as $step)
             <div class="lj-step">
                 <div class="lj-circle">
                     <i class="fa {{ $step['icon'] }}"></i>
@@ -473,7 +405,7 @@
     <!-- ====== AYAH BANNER ====== -->
     <section class="ayah-section wow fadeIn" data-wow-delay="0.1s">
         <div class="ayah-bg">
-            <img src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('storage/slide-1.jpg') }}" alt="">
+            <img loading="lazy" decoding="async" src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('storage/slide-1.jpg') }}" alt="">
             <div class="ayah-veil"></div>
         </div>
         <div class="container ayah-body">
@@ -523,7 +455,7 @@
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.2s">
                 <div class="position-relative overflow-hidden rounded">
-                    <img src="{{ setting('img_home_teams') ? asset('storage/' . setting('img_home_teams')) : asset('storage/teams.jpg') }}" alt="Bismillah Islamic Academy Team"
+                    <img loading="lazy" decoding="async" src="{{ setting('img_home_teams') ? asset('storage/' . setting('img_home_teams')) : asset('storage/teams.jpg') }}" alt="Bismillah Islamic Academy Team"
                         class="w-100 team-full-img">
                     <div class="position-absolute top-0 start-0 w-100 h-100"
                         style="background: linear-gradient(to top, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.1) 60%, transparent 100%);">
@@ -547,7 +479,7 @@
                         <a href="{{ route('teacher.profile', $teacher) }}" class="text-decoration-none d-block">
                             <div class="team-item text-center p-4"
                                 style="background: var(--off-white); border: 1px solid rgba(174,130,37,0.15); transition: all 0.4s;">
-                                <img src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->name }}"
+                                <img loading="lazy" decoding="async" src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->name }}"
                                     style="width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; display: block; margin: 0 auto 20px; padding: 4px; background: var(--white);">
                                 <div class="team-text">
                                     <div class="team-title">
@@ -560,31 +492,19 @@
                                     <div class="team-social"
                                         style="display: flex; justify-content: center; gap: 8px; margin-top: 14px;">
                                         @if($teacher->facebook_url)
-                                            <a href="{{ $teacher->facebook_url }}"
-                                                style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
-                                                onmouseover="this.style.background='var(--gold)';this.style.color='white';"
-                                                onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
+                                            <a class="hv-9" href="{{ $teacher->facebook_url }}"><i
                                                     class="fab fa-facebook-f"></i></a>
                                         @endif
                                         @if($teacher->twitter_url)
-                                            <a href="{{ $teacher->twitter_url }}"
-                                                style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
-                                                onmouseover="this.style.background='var(--gold)';this.style.color='white';"
-                                                onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
+                                            <a class="hv-9" href="{{ $teacher->twitter_url }}"><i
                                                     class="fab fa-twitter"></i></a>
                                         @endif
                                         @if($teacher->instagram_url)
-                                            <a href="{{ $teacher->instagram_url }}"
-                                                style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
-                                                onmouseover="this.style.background='var(--gold)';this.style.color='white';"
-                                                onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
+                                            <a class="hv-9" href="{{ $teacher->instagram_url }}"><i
                                                     class="fab fa-instagram"></i></a>
                                         @endif
                                         @if($teacher->linkedin_url)
-                                            <a href="{{ $teacher->linkedin_url }}"
-                                                style="width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;text-decoration:none;transition:all 0.3s;"
-                                                onmouseover="this.style.background='var(--gold)';this.style.color='white';"
-                                                onmouseout="this.style.background='transparent';this.style.color='var(--gold)';"><i
+                                            <a class="hv-9" href="{{ $teacher->linkedin_url }}"><i
                                                     class="fab fa-linkedin-in"></i></a>
                                         @endif
                                     </div>
@@ -611,7 +531,7 @@
                     <div class="testimonial-item rounded p-4"
                         style="background: var(--white); border: 1px solid rgba(174,130,37,0.15); position: relative; box-shadow: 0 4px 20px rgba(13,27,42,0.07);">
                         <div class="d-flex align-items-center mb-4">
-                            <img class="flex-shrink-0 rounded-circle border p-1" src="{{ asset('storage/' . $t->image) }}"
+                            <img loading="lazy" decoding="async" class="flex-shrink-0 rounded-circle border p-1" src="{{ asset('storage/' . $t->image) }}"
                                 alt="{{ $t->name }}"
                                 style="width:62px;height:62px;border-color:var(--gold)!important;object-fit:cover;">
                             <div class="ms-4">

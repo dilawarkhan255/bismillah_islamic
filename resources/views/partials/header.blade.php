@@ -37,7 +37,7 @@ Row 2: Logo left | Nav CENTER
                 <div class="bia-info-icon"><i class="far fa-clock"></i></div>
                 <div>
                     <span class="bia-info-label">Class Hours</span>
-                    <span class="bia-info-val">{{ \App\Models\SiteSetting::get('class_hours', 'Mon–Sat &nbsp;24/7 - Hours') }}</span>
+                    <span class="bia-info-val">{{ \App\Models\SiteSetting::get('class_hours', 'Mon–Sat 24/7 - Hours') }}</span>
                 </div>
             </div>
 
@@ -107,18 +107,33 @@ Row 2: Logo left | Nav CENTER
                 class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About Us</a>
             <a href="{{ route('courses') }}"
                 class="nav-item nav-link {{ request()->routeIs('courses') ? 'active' : '' }}">Courses</a>
+            <a href="{{ route('qaida') }}"
+                class="nav-item nav-link {{ request()->routeIs('qaida', 'qaida.show') ? 'active' : '' }}">Norani Qaida</a>
             <a href="{{ route('gallery') }}"
                 class="nav-item nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</a>
-            <a href="{{ route('team') }}" class="nav-item nav-link {{ request()->routeIs('team') ? 'active' : '' }}">Our Teachers</a>
-            <a href="{{ route('our-team') }}" class="nav-item nav-link {{ request()->routeIs('our-team') ? 'active' : '' }}">Our Team</a>
+            <a href="{{ route('team') }}" class="nav-item nav-link {{ request()->routeIs('team', 'teacher.profile') ? 'active' : '' }}">Our Teachers</a>
 
             <a href="{{ route('contact') }}"
                 class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
+            @php
+                $hasTeamMembers = \App\Support\ContentCache::remember('team-members.any', fn () => \App\Models\TeamMember::active()->exists());
+                $moreActive = request()->routeIs('blog', 'blog.show', 'pricing', 'free_trial', 'our-team', 'team-member.profile', 'privacy_policy');
+            @endphp
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">More</a>
+                <a href="#" class="nav-link dropdown-toggle {{ $moreActive ? 'active' : '' }}" data-bs-toggle="dropdown" role="button" aria-expanded="false">More</a>
                 <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
                     <a href="{{ route('blog') }}"
-                        class="dropdown-item {{ request()->routeIs('blog') ? 'active' : '' }}">Blog</a>
+                        class="dropdown-item {{ request()->routeIs('blog', 'blog.show') ? 'active' : '' }}">Blog</a>
+                    <a href="{{ route('pricing') }}"
+                        class="dropdown-item {{ request()->routeIs('pricing') ? 'active' : '' }}">Pricing</a>
+                    <a href="{{ route('free_trial') }}"
+                        class="dropdown-item {{ request()->routeIs('free_trial') ? 'active' : '' }}">Free Trial</a>
+                    @if($hasTeamMembers)
+                        <a href="{{ route('our-team') }}"
+                            class="dropdown-item {{ request()->routeIs('our-team', 'team-member.profile') ? 'active' : '' }}">Our Team</a>
+                    @endif
+                    <a href="{{ route('privacy_policy') }}"
+                        class="dropdown-item {{ request()->routeIs('privacy_policy') ? 'active' : '' }}">Privacy Policy</a>
                 </div>
             </div>
         </div>
@@ -559,6 +574,30 @@ a.bia-info-chip .bia-info-val {
 /* ============================================================
    MOBILE (max 991px)
    ============================================================ */
+/* Laptop widths: tighten the menu so all 8 items stay on one line */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+    .bia-navbar .navbar-nav .nav-link {
+        padding: 22px 11px !important;
+        letter-spacing: 1px;
+    }
+
+    .bia-brand img {
+        height: 86px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .bia-navbar .navbar-nav .nav-link {
+        padding: 22px 7px !important;
+        font-size: 10px !important;
+        letter-spacing: .6px;
+    }
+
+    .bia-brand img {
+        height: 72px;
+    }
+}
+
 @media (max-width: 991px) {
     .bia-brand img {
         height: 50px;

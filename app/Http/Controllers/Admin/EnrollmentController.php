@@ -30,4 +30,11 @@ class EnrollmentController extends Controller
 
         return redirect()->back()->with('success', 'Enrollment status updated successfully.');
     }
+
+    public function destroy(Enrollment $enrollment)
+    {
+        $enrollment->delete();
+
+        return redirect()->route('admin.enrollments.index')->with('success', 'Enrollment deleted successfully.');
+    }
 }

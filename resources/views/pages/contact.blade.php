@@ -1,10 +1,21 @@
 @extends('layouts.app')
 
+@push('page-css')
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}?v={{ @filemtime(public_path('css/contact.css')) }}">
+@endpush
+
 @section('title', 'Contact Us — Bismillah Islamic Academy')
+@section('meta_description', 'Contact Bismillah Islamic Academy by WhatsApp, phone or email. We reply within 24 hours, In sha Allah.')
 
 @section('content')
 
-
+    <x-page-hero
+        :title="section('contact', 'hero', 'title', 'Get In <span>Touch</span>')"
+        :tag="section('contact', 'hero', 'subtitle', 'We are here to help')"
+        :subtitle="section('contact', 'hero', 'description', 'Questions about courses, timings or fees? Message us and our team will reply within 24 hours, In sha Allah.')"
+        :image="setting('img_contact_hero') ? asset('storage/' . setting('img_contact_hero')) : asset('storage/cdd.jpg')"
+        :crumbs="['Contact' => null]"
+    ></x-page-hero>
 
 
     {{-- ═══════════════════════════════════════════════════
@@ -17,7 +28,7 @@
                 @php
                     $contactCards = [];
                     foreach(['info_location','info_phone','info_email'] as $ck) {
-                        $c = \App\Models\Section::where('page_name','contact')->where('section_key',$ck)->first();
+                        $c = \App\Models\Section::findCached('contact', $ck);
                         if($c) $contactCards[] = [
                             'icon' => $c->subtitle,
                             'title' => $c->title,
@@ -76,6 +87,7 @@
 
                         <form action="{{ route('contact.submit') }}" method="POST" class="cc-form">
                             @csrf
+                            <x-honeypot />
                             <div class="row g-4">
                                 <div class="col-md-6">
                                     <div class="cc-field">
@@ -135,7 +147,7 @@
                 <div class="col-lg-5 cc-sr" data-dir="right">
 
                     {{-- Class Hours --}}
-                    @php $hours = \App\Models\Section::where('page_name','contact')->where('section_key','hours')->first(); @endphp
+                    @php $hours = \App\Models\Section::findCached('contact', 'hours'); @endphp
                     <div class="cc-sidebar-box cc-sidebar-box--light" style="margin-bottom:24px;">
                         <div class="cc-sb-header"><i class="fas fa-clock"></i><span>{{ $hours->title ?? 'Class Hours' }}</span></div>
                         <div class="cc-sb-body">
@@ -157,7 +169,7 @@
                     </div>
 
                     {{-- Social --}}
-                    @php $social = \App\Models\Section::where('page_name','contact')->where('section_key','social')->first(); @endphp
+                    @php $social = \App\Models\Section::findCached('contact', 'social'); @endphp
                     <div class="cc-sidebar-box cc-sidebar-box--dark" style="margin-bottom:24px;">
                         <div class="cc-sb-header"><i class="fas fa-share-alt"></i><span>{{ $social->title ?? 'Connect With Us' }}</span></div>
                         <div class="cc-sb-body" style="padding:12px 22px;">

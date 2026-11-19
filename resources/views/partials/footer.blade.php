@@ -38,10 +38,7 @@
                             $icon = $parts[2] ?? '';
                         @endphp
                         @if($url && $icon)
-                        <a href="{{ $url }}" target="_blank"
-                            style="width: 36px; height: 36px; border: 1px solid rgba(174,130,37,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; transition: all 0.3s;"
-                            onmouseover="this.style.background='var(--gold)'; this.style.borderColor='var(--gold)'; this.style.color='white';"
-                            onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(174,130,37,0.3)'; this.style.color='rgba(255,255,255,0.5)';">
+                        <a class="hv-12" href="{{ $url }}" target="_blank">
                             <i class="{{ faIcon($icon) }}"></i>
                         </a>
                         @endif
@@ -55,36 +52,22 @@
                     style="font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
                     Quick Links
                 </h5>
+                {{-- Only the key pages here; the rest live in the navbar "More" menu --}}
                 <div class="footer-links">
-                    <a href="{{ route('about') }}"
-                        style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
-                        onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
-                        onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
-                        <span style="color: var(--gold);">› </span>About Us
-                    </a>
-                    <a href="{{ route('contact') }}"
-                        style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
-                        onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
-                        onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
-                        <span style="color: var(--gold);">› </span>Contact Us
-                    </a>
-                    <a href="{{ route('courses') }}"
-                        style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
-                        onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
-                        onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
+                    <a class="hv-13" href="{{ route('courses') }}">
                         <span style="color: var(--gold);">› </span>Our Courses
                     </a>
-                    <a href="{{ route('pricing') }}"
-                        style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
-                        onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
-                        onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
+                    <a class="hv-13" href="{{ route('free_trial') }}">
+                        <span style="color: var(--gold);">› </span>Free Trial
+                    </a>
+                    <a class="hv-13" href="{{ route('pricing') }}">
                         <span style="color: var(--gold);">› </span>Pricing
                     </a>
-                      <a href="{{ route('privacy_policy') }}"
-                        style="display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(174,130,37,0.06); transition: all 0.3s; font-family: 'Lato', sans-serif;"
-                        onmouseover="this.style.color='var(--gold-light)'; this.style.paddingLeft='8px';"
-                        onmouseout="this.style.color='rgba(255,255,255,0.5)'; this.style.paddingLeft='0';">
-                        <span style="color: var(--gold);">› </span>Privacy Policy
+                    <a class="hv-13" href="{{ route('about') }}">
+                        <span style="color: var(--gold);">› </span>About Us
+                    </a>
+                    <a class="hv-13" href="{{ route('contact') }}">
+                        <span style="color: var(--gold);">› </span>Contact Us
                     </a>
                 </div>
             </div>
@@ -97,23 +80,19 @@
                 </h5>
                 <div class="row g-2">
                     @php
-                        $footerGallery = \App\Models\GalleryItem::active()->take(6)->get();
+                        $footerGallery = \App\Support\ContentCache::remember('gallery.footer', fn () => \App\Models\GalleryItem::active()->take(6)->get());
                     @endphp
                     @forelse($footerGallery as $item)
                         <div class="col-4">
                             <a href="{{ route('gallery') }}" style="text-decoration:none;">
-                                <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
-                                    style="width: 100%; height: 68px; object-fit: cover; opacity: 0.6; transition: opacity 0.3s; border-radius: 2px;"
-                                    onmouseover="this.style.opacity='1';" onmouseout="this.style.opacity='0.6';">
+                                <img loading="lazy" decoding="async" class="img-fluid hv-14" src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}">
                             </a>
                         </div>
                     @empty
                         @for ($i = 1; $i <= 6; $i++)
                             <div class="col-4">
                                 <a href="{{ route('gallery') }}" style="text-decoration:none;">
-                                    <img class="img-fluid" src="{{ asset('storage/project-' . $i . '.jpg') }}" alt="Gallery Image"
-                                        style="width: 100%; height: 68px; object-fit: cover; opacity: 0.6; transition: opacity 0.3s; border-radius: 2px;"
-                                        onmouseover="this.style.opacity='1';" onmouseout="this.style.opacity='0.6';">
+                                    <img loading="lazy" decoding="async" class="img-fluid hv-14" src="{{ asset('storage/project-' . $i . '.jpg') }}" alt="Gallery Image">
                                 </a>
                             </div>
                         @endfor
@@ -125,10 +104,10 @@
             <div class="col-lg-3 col-md-6">
                 <h5
                     style="font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
-                    {{ section('footer', 'newsletter', 'title', 'Newsletter') }}
+                    {{ section('footer', 'newsletter', 'title', 'Start Learning') }}
                 </h5>
                 <p style="font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 18px;">
-                    {{ section('footer', 'newsletter', 'description', 'Subscribe to receive updates on new courses and Islamic events.') }}
+                    {{ section('footer', 'newsletter', 'description', 'Book 3 free trial classes with a qualified teacher. No payment, no commitment.') }}
                 </p>
                   <button class="bia-enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal">
                     <span>{{ section('footer', 'newsletter', 'button_text', 'Enroll Now') }}</span>
@@ -145,7 +124,8 @@
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     <span style="font-size: 12px; color: rgba(255,255,255,0.3);">
-                        {{ section('footer', 'copyright', 'title', '© 2026 Bismillah Islamic Academy. All Rights Reserved.') }}
+                        {{-- Year always current, whatever year is saved in Page Content --}}
+                        {{ preg_replace('/©\s*\d{4}/u', '© ' . date('Y'), section('footer', 'copyright', 'title', '© ' . date('Y') . ' Bismillah Islamic Academy. All Rights Reserved.')) }}
                     </span>
                 </div>
             </div>

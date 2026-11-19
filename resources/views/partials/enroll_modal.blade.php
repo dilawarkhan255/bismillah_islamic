@@ -25,54 +25,55 @@
             <div class="modal-body" style="background:var(--white); padding: 35px;">
                <form action="{{ route('enroll') }}" method="POST" id="enrollForm">
                     @csrf
+                    <x-honeypot />
                     <div class="row g-3">
 
                         <!-- Student Name -->
                         <div class="col-md-6">
-                            <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:7px;">Student Name *</label>
+                            <label class="em-label">Student Name *</label>
                             <input type="text" name="student_name" placeholder="Full name" required
-                                style="width:100%; padding:11px 14px; border:1px solid var(--border); background:var(--off-white); font-family:'Lato',sans-serif; font-size:13px; color:var(--text-dark); outline:none; border-radius:0; transition:border 0.3s;"
-                                class="enroll-input">
+                                class="em-input enroll-input"
+                                >
                         </div>
 
                         <!-- Parent Name -->
                         <div class="col-md-6">
-                            <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:7px;">Parent / Guardian Name *</label>
+                            <label class="em-label">Parent / Guardian Name *</label>
                             <input type="text" name="parent_name" placeholder="Parent's full name" required
-                                style="width:100%; padding:11px 14px; border:1px solid var(--border); background:var(--off-white); font-family:'Lato',sans-serif; font-size:13px; color:var(--text-dark); outline:none; border-radius:0; transition:border 0.3s;"
-                                class="enroll-input">
+                                class="em-input enroll-input"
+                                >
                         </div>
 
                         <!-- Phone -->
                         <div class="col-md-6">
-                            <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:7px;">Phone Number *</label>
+                            <label class="em-label">Phone Number *</label>
                             <input type="tel" name="phone" placeholder="+92 300 0000000" required
-                                style="width:100%; padding:11px 14px; border:1px solid var(--border); background:var(--off-white); font-family:'Lato',sans-serif; font-size:13px; color:var(--text-dark); outline:none; border-radius:0; transition:border 0.3s;"
-                                class="enroll-input">
+                                class="em-input enroll-input"
+                                >
                         </div>
 
                         <!-- Email -->
                         <div class="col-md-6">
-                            <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:7px;">Email Address</label>
+                            <label class="em-label">Email Address</label>
                             <input type="email" name="email" placeholder="email@example.com"
-                                style="width:100%; padding:11px 14px; border:1px solid var(--border); background:var(--off-white); font-family:'Lato',sans-serif; font-size:13px; color:var(--text-dark); outline:none; border-radius:0; transition:border 0.3s;"
-                                class="enroll-input">
+                                class="em-input enroll-input"
+                                >
                         </div>
 
                         <!-- Age -->
                         <div class="col-md-4">
-                            <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:7px;">Student Age *</label>
+                            <label class="em-label">Student Age *</label>
                             <input type="number" name="age" placeholder="e.g. 10" min="4" max="60" required
-                                style="width:100%; padding:11px 14px; border:1px solid var(--border); background:var(--off-white); font-family:'Lato',sans-serif; font-size:13px; color:var(--text-dark); outline:none; border-radius:0; transition:border 0.3s;"
-                                class="enroll-input">
+                                class="em-input enroll-input"
+                                >
                         </div>
 
                         <!-- Gender -->
                         <div class="col-md-4">
-                            <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:7px;">Gender *</label>
+                            <label class="em-label">Gender *</label>
                             <select name="gender" required
-                                style="width:100%; padding:11px 14px; border:1px solid var(--border); background:var(--off-white); font-family:'Lato',sans-serif; font-size:13px; color:var(--text-dark); outline:none; border-radius:0; transition:border 0.3s; appearance:none;"
-                                class="enroll-input">
+                                class="em-input em-select enroll-input"
+                                >
                                 <option value="">Select</option>
                                 <option>Male</option>
                                 <option>Female</option>
@@ -81,12 +82,12 @@
 
                         <!-- Course -->
                         <div class="col-md-4">
-                            <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:7px;">Course *</label>
+                            <label class="em-label">Course *</label>
                             <select name="course" required
-                                style="width:100%; padding:11px 14px; border:1px solid var(--border); background:var(--off-white); font-family:'Lato',sans-serif; font-size:13px; color:var(--text-dark); outline:none; border-radius:0; transition:border 0.3s; appearance:none;"
-                                class="enroll-input">
+                                class="em-input em-select enroll-input"
+                                >
                                 <option value="">Select Course</option>
-                                @foreach(\App\Models\Course::active()->get() as $course)
+                                @foreach(\App\Support\ContentCache::remember('courses.active', fn () => \App\Models\Course::active()->get()) as $course)
                                 <option>{{ $course->title }}</option>
                                 @endforeach
                             </select>
@@ -97,7 +98,7 @@
                             <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:10px;">Preferred Class Type *</label>
                             <div style="display:flex; gap:15px; flex-wrap:wrap;">
                                 @php
-                                $types = ['Online (Microsot Teams)'];
+                                $types = ['Online (Microsoft Teams)'];
                                 @endphp
                                 @foreach($types as $type)
                                 <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-family:'Lato',sans-serif; font-size:13px; color:var(--text-mid);">
@@ -110,10 +111,10 @@
 
                         <!-- Message -->
                         <div class="col-12">
-                            <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:7px;">Additional Message</label>
+                            <label class="em-label">Additional Message</label>
                             <textarea name="message" rows="3" placeholder="Any special requirements or questions..."
-                                style="width:100%; padding:11px 14px; border:1px solid var(--border); background:var(--off-white); font-family:'Lato',sans-serif; font-size:13px; color:var(--text-dark); outline:none; border-radius:0; transition:border 0.3s; resize:vertical;"
-                                class="enroll-input"></textarea>
+                                class="em-input em-textarea enroll-input"
+                                ></textarea>
                         </div>
 
                         <!-- Submit -->

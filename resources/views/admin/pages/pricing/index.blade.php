@@ -79,7 +79,7 @@
             <td class="text-end">
               <div class="d-flex justify-content-end gap-2">
                 <a href="{{ route('admin.pricing.edit', $plan) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></a>
-                <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="document.getElementById('deleteForm{{ $plan->id }}').submit()"><i class="bi bi-trash"></i></button>
+                <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="confirmDeleteForm('deleteForm{{ $plan->id }}', @js($plan->name))"><i class="bi bi-trash"></i></button>
                 <form id="deleteForm{{ $plan->id }}" action="{{ route('admin.pricing.destroy', $plan) }}" method="POST" style="display:none;">
                   @csrf @method('DELETE')
                 </form>

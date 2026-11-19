@@ -58,7 +58,7 @@
           <td class="text-end">
             <div class="d-flex justify-content-end gap-2">
               <a href="{{ route('admin.teachers.edit', $teacher) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="document.getElementById('deleteForm{{ $teacher->id }}').submit()"><i class="bi bi-trash"></i></button>
+              <button class="btn btn-sm btn-light" style="color:var(--admin-danger);" onclick="confirmDeleteForm('deleteForm{{ $teacher->id }}', @js($teacher->name))"><i class="bi bi-trash"></i></button>
               <form id="deleteForm{{ $teacher->id }}" action="{{ route('admin.teachers.destroy', $teacher) }}" method="POST" style="display:none;">
                 @csrf @method('DELETE')
               </form>

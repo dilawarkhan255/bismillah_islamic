@@ -1,20 +1,21 @@
 @extends('layouts.app')
 
+@push('page-css')
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}?v={{ @filemtime(public_path('css/about.css')) }}">
+@endpush
+
+@section('title', 'About Us — Bismillah Islamic Academy')
+@section('meta_description', 'Who we are: an online Islamic academy teaching Quran, Tajweed and Islamic Studies to children and adults worldwide with qualified, caring teachers.')
+
 @section('content')
 
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container text-center py-5">
-            <h1 class="display-4 text-white animated slideInDown mb-3">{{ section('about', 'hero', 'title', 'About Us') }}</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page" style="color:var(--gold-light);">About</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-    <!-- Page Header End -->
+    <x-page-hero
+        :title="section('about', 'hero', 'title', 'About Us')"
+        :subtitle="section('about', 'hero', 'subtitle', 'Authentic Islamic education with care, excellence and devotion.')"
+        :image="setting('img_about_bg') ? asset('storage/' . setting('img_about_bg')) : asset('storage/about-bg.jpg')"
+        :crumbs="['About Us' => null]"
+    ></x-page-hero>
+
 
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -33,7 +34,7 @@
                             </p>
                             <p class="mb-4" style="color:var(--text-mid);"></p>
                         <div class="d-flex align-items-center mb-4 pb-2">
-                            <img class="flex-shrink-0 rounded-circle" src="{{ setting('img_about_team') ? asset('storage/' . setting('img_about_team')) : asset('storage/team-1.jpg') }}" alt="Founder"
+                            <img loading="lazy" decoding="async" class="flex-shrink-0 rounded-circle" src="{{ setting('img_about_team') ? asset('storage/' . setting('img_about_team')) : asset('storage/team-1.jpg') }}" alt="Founder"
                                 style="width:50px; height:50px; border:2px solid var(--gold); object-fit:cover;">
                             <div class="ps-4">
                                 <h6 style="margin:0; color:var(--navy);">{{ section('about', 'founder', 'title', 'Sheikh Abdullah') }}</h6>
@@ -180,7 +181,7 @@
                 @php
                     $certs = [];
                     foreach(['cert_1','cert_2','cert_3'] as $ck) {
-                        $c = \App\Models\Section::where('page_name','about')->where('section_key',$ck)->first();
+                        $c = \App\Models\Section::findCached('about', $ck);
                         if($c) $certs[] = $c;
                     }
                     if(empty($certs)) {

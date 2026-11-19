@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
+@push('page-css')
+    <link rel="stylesheet" href="{{ asset('css/team.css') }}?v={{ @filemtime(public_path('css/team.css')) }}">
+@endpush
+
 @section('title', $teacher->name . ' — Bismillah Islamic Academy')
+@section('meta_description'){{ Str::limit(strip_tags((string) $teacher->bio) ?: ($teacher->name . ' — ' . $teacher->role . ' at Bismillah Islamic Academy.'), 155) }}@endsection
+@section('og_image'){{ $teacher->image ? asset('storage/' . $teacher->image) : '' }}@endsection
 
 @section('content')
 
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
-        <div class="container text-center page-header-inner">
-            <h1 class="display-4 text-white animated slideInDown mb-3">{{ $teacher->name }}</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="{{ route('team') }}">Our Teachers</a></li>
-                    <li class="breadcrumb-item active" aria-current="page" style="color:var(--gold-light);">{{ $teacher->name }}</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-    <!-- Page Header End -->
+    <x-page-hero
+        :title="e($teacher->name)"
+        :tag="'Our Teachers'"
+        :subtitle="$teacher->role"
+        :image="setting('img_teachers_hero') ? asset('storage/' . setting('img_teachers_hero')) : asset('storage/feature.jpg')"
+        :crumbs="['Our Teachers' => route('team'), $teacher->name => null]"
+    ></x-page-hero>
+
 
 
     <!-- Teacher Profile Start -->

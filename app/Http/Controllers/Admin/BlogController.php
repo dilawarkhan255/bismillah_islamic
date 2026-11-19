@@ -97,6 +97,6 @@ class BlogController extends Controller
 
         $post->delete();
 
-        return redirect()->back()->with('success', 'Blog post deleted successfully.');
+        return redirect()->route('admin.blog.index')->with('success', 'Blog post deleted successfully.');
     }
 }

@@ -62,6 +62,6 @@ class BlogCategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->back()->with('success', 'Blog category deleted successfully.');
+        return redirect()->route('admin.blog-categories.index')->with('success', 'Blog category deleted successfully.');
     }
 }

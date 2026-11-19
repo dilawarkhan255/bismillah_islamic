@@ -240,7 +240,7 @@
     fetch('/admin/sections/' + id + '/edit')
       .then(function(r) { return r.json(); })
       .then(function(d) {
-        document.getElementById('editSectionForm').action = '/admin/sections/' + id;
+        document.getElementById('editSectionForm').action = '{{ url("admin/sections") }}/' + id;
         document.getElementById('edit_page_name').value = d.page_name;
         document.getElementById('edit_section_key').value = d.section_key;
         document.getElementById('edit_title').value = d.title || '';

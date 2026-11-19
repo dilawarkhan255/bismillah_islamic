@@ -3,12 +3,7 @@
 @section('title', 'Add Gallery Image')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">Add Gallery Image</h4>
-    <a href="{{ route('admin.gallery.index') }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Back
-    </a>
-</div>
+<x-admin.page-header title="Add Gallery Image" icon="bi-images" eyebrow="Gallery" :back="route('admin.gallery.index')"></x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">

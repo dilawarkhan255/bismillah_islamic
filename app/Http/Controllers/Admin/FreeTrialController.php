@@ -30,4 +30,11 @@ class FreeTrialController extends Controller
 
         return redirect()->back()->with('success', 'Free trial status updated successfully.');
     }
+
+    public function destroy(FreeTrial $freeTrial)
+    {
+        $freeTrial->delete();
+
+        return redirect()->route('admin.free-trials.index')->with('success', 'Free trial request deleted successfully.');
+    }
 }

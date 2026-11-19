@@ -36,6 +36,9 @@ class AdminController extends Controller
             'free_trials_pending'=> FreeTrial::pending()->count(),
         ];
 
-        return view('admin.pages.dashboard', compact('stats'));
+        $recentEnrollments = Enrollment::latest()->limit(5)->get(['id', 'student_name', 'course', 'status', 'created_at']);
+        $recentTrials = FreeTrial::latest()->limit(5)->get(['id', 'student_name', 'course', 'country', 'status', 'created_at']);
+
+        return view('admin.pages.dashboard', compact('stats', 'recentEnrollments', 'recentTrials'));
     }
 }

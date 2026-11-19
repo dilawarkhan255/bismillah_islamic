@@ -1,59 +1,59 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Models\Teacher;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SeoController;
+use App\Http\Controllers\QaidaController;
 use App\Models\Course;
-use App\Models\Testimonial;
-use App\Models\HeroSlide;
-use App\Models\BlogPost;
-use App\Models\BlogCategory;
-use App\Models\PricingPlan;
 use App\Models\GalleryItem;
+use App\Models\PricingPlan;
+use App\Models\Teacher;
 use App\Models\TeamMember;
-use App\Models\SiteSetting;
+use App\Support\ContentCache;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/enroll', [\App\Http\Controllers\FormController::class, 'enroll'])->name('enroll');
-Route::post('/contact', [\App\Http\Controllers\FormController::class, 'contact'])->name('contact.submit');
+// Public forms: rate limited per IP + honeypot spam trap (see AppServiceProvider / BlockSpamBots)
+Route::middleware(['throttle:public-forms', 'honeypot'])->group(function () {
+    Route::post('/enroll', [FormController::class, 'enroll'])->name('enroll');
+    Route::post('/contact', [FormController::class, 'contact'])->name('contact.submit');
+    Route::post('/free_trial', [FormController::class, 'freeTrial'])->name('free_trial.submit');
+});
 
-Route::get('/', function () {
-    $slides = HeroSlide::active()->get();
-    $courses = Course::active()->get();
-    $teachers = Teacher::active()->limit(3)->get();
-    $testimonials = Testimonial::active()->get();
-    return view('pages.home', compact('slides', 'courses', 'teachers', 'testimonials'));
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('sitemap');
+Route::get('/robots.txt', [SeoController::class, 'robots'])->name('robots');
+Route::get('/home/clear-cache', [HomeController::class, 'clearCache'])->name('home.clear-cache')->middleware('auth', 'role:admin');
 
 Route::get('/about', function () {
-    $teachers = Teacher::active()->get();
+    $teachers = ContentCache::remember('teachers.active', fn () => Teacher::active()->get());
     return view('pages.about', compact('teachers'));
 })->name('about');
 
 Route::get('/courses', function () {
-    $courses = Course::active()->get();
+    $courses = ContentCache::remember('courses.active', fn () => Course::active()->get());
     return view('pages.courses', compact('courses'));
 })->name('courses');
 
 Route::get('/gallery', function () {
-    $gallery = GalleryItem::active()->get();
+    $gallery = ContentCache::remember('gallery.active', fn () => GalleryItem::active()->get());
     return view('pages.gallery', compact('gallery'));
 })->name('gallery');
 
-Route::get('/blog', function () {
-    $posts = BlogPost::active()->with('category')->get();
-    $categories = BlogCategory::active()->withCount('posts')->get();
-    $featured = BlogPost::active()->where('is_featured', true)->first();
-    $recent = BlogPost::active()->limit(3)->get();
-    return view('pages.blog', compact('posts', 'categories', 'featured', 'recent'));
-})->name('blog');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+Route::get('/norani-qaida', [QaidaController::class, 'index'])->name('qaida');
+Route::get('/norani-qaida/{slug}', [QaidaController::class, 'show'])->name('qaida.show');
 
 Route::get('/team', function () {
-    $teachers = Teacher::active()->get();
+    $teachers = ContentCache::remember('teachers.active', fn () => Teacher::active()->get());
     return view('pages.team', compact('teachers'));
 })->name('team');
 
 Route::get('/our-team', function () {
-    $members = TeamMember::active()->get();
+    $members = ContentCache::remember('team-members.active', fn () => TeamMember::active()->get());
     return view('pages.our-team', compact('members'));
 })->name('our-team');
 
@@ -66,17 +66,20 @@ Route::get('/team/{teacher}', function (Teacher $teacher) {
 })->name('teacher.profile');
 
 Route::get('/contact', function () {
-    $courses = Course::active()->pluck('title');
+    $courses = ContentCache::remember('courses.titles', fn () => Course::active()->pluck('title'));
     return view('pages.contact', compact('courses'));
 })->name('contact');
 
 Route::get('/free_trial', function () {
-    $courses = Course::active()->pluck('title');
+    $courses = ContentCache::remember('courses.titles', fn () => Course::active()->pluck('title'));
     return view('pages.free_trial', compact('courses'));
 })->name('free_trial');
 
+// Old links (hero slides, page CTAs saved in the DB) used /free-trial
+Route::redirect('/free-trial', '/free_trial', 301);
+
 Route::get('/pricing', function () {
-    $plans = PricingPlan::active()->get();
+    $plans = ContentCache::remember('pricing.active', fn () => PricingPlan::active()->get());
     return view('pages.pricing', compact('plans'));
 })->name('pricing');
 
@@ -84,11 +87,13 @@ Route::get('/privacy_policy', function () {
     return view('pages.privacy_policy');
 })->name('privacy_policy');
 
+// After login: send each person to the first admin page their permissions allow.
 Route::get('/dashboard', function () {
-    if (auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('editor'))) {
-        return redirect()->route('admin.dashboard');
-    }
-    return redirect()->route('home');
+    $url = \App\Support\AdminPermissions::homeUrlFor(auth()->user());
+
+    return $url
+        ? redirect()->to($url)
+        : redirect()->route('home')->with('error', 'Your account does not have access to the admin panel.');
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

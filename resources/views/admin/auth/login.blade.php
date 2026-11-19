@@ -54,10 +54,6 @@
         </button>
     </form>
 
-    <div class="text-center mt-4" style="font-size:13px;color:#888;">
-        Don't have an account?
-        <a href="{{ route('register') }}" class="auth-link">Register</a>
-    </div>
 
     <a href="{{ route('home') }}" class="back-link">
         <i class="bi bi-arrow-left"></i> Back to Website

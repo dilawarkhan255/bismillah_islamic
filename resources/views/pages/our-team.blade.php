@@ -1,22 +1,21 @@
 @extends('layouts.app')
 
+@push('page-css')
+    <link rel="stylesheet" href="{{ asset('css/team.css') }}?v={{ @filemtime(public_path('css/team.css')) }}">
+@endpush
+
 @section('title', 'Our Team — Bismillah Islamic Academy')
+@section('meta_description', 'Meet the team behind Bismillah Islamic Academy.')
 
 @section('content')
 
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
-        <div class="container text-center page-header-inner">
-            <h1 class="display-4 text-white animated slideInDown mb-3">{{ section('our-team', 'hero', 'title', 'Meet Our Dedicated Team') }}</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page" style="color:var(--gold-light);">Our Team</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-    <!-- Page Header End -->
+    <x-page-hero
+        :title="section('our-team', 'hero', 'title', 'Meet Our Dedicated Team')"
+        :subtitle="section('our-team', 'hero', 'subtitle', 'The people behind Bismillah Islamic Academy.')"
+        :image="setting('img_teachers_hero') ? asset('storage/' . setting('img_teachers_hero')) : asset('storage/feature.jpg')"
+        :crumbs="['Our Team' => null]"
+    ></x-page-hero>
+
 
 
     <!-- Team Start -->
@@ -37,7 +36,7 @@
                             <a href="{{ route('team-member.profile', $member) }}" class="text-decoration-none">
                                 <div class="ot-img-wrap">
                                     @if($member->image)
-                                        <img src="{{ asset('storage/' . $member->image) }}" alt="{{ $member->name }}" class="ot-img">
+                                        <img loading="lazy" decoding="async" src="{{ asset('storage/' . $member->image) }}" alt="{{ $member->name }}" class="ot-img">
                                     @else
                                         <div class="ot-img ot-placeholder">
                                             <i class="fas fa-user"></i>
@@ -88,7 +87,7 @@
 
                 @if($members->isEmpty())
                     <div class="col-12 text-center py-5">
-                        <i class="bi bi-people" style="font-size:48px;color:var(--gold);opacity:0.3;"></i>
+                        <i class="fas fa-users" style="font-size:48px;color:var(--gold);opacity:0.3;"></i>
                         <p class="mt-3" style="color:var(--text-mid);">Team members coming soon. Stay tuned!</p>
                     </div>
                 @endif
@@ -125,7 +124,7 @@
 
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/our-team.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/our-team.css') }}?v={{ @filemtime(public_path('css/our-team.css')) }}">
     <style>
         .page-header {
             background-image:

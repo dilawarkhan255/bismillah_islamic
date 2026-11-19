@@ -956,3 +956,203 @@
     background: transparent;
     color: var(--gold-light);
 }
+
+/* ==========================================================================
+   Blog: filters, empty state, single article page
+   ========================================================================== */
+
+.bbl-cat--active {
+    background: rgba(174, 130, 37, .08);
+    padding-left: 26px;
+    box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.bbl-cat--active .bbl-cat-name {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.bbl-filter-note {
+    margin: -8px 0 24px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: var(--text-mid);
+}
+
+.bbl-filter-note a {
+    margin-left: 8px;
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.bbl-empty {
+    padding: 56px 24px;
+    text-align: center;
+    background: var(--white);
+    border: 1px dashed rgba(174, 130, 37, .35);
+}
+
+.bbl-empty > i {
+    font-size: 40px;
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+
+.bbl-empty h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    color: var(--navy);
+}
+
+.bbl-empty p {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+}
+
+/* Single article */
+.bbl-featured--article {
+    min-height: 440px;
+}
+
+.bbl-breadcrumb {
+    margin-bottom: 22px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+}
+
+.bbl-breadcrumb a {
+    color: rgba(255, 255, 255, .6);
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.bbl-breadcrumb a:hover,
+.bbl-breadcrumb a:last-child {
+    color: var(--gold-light);
+}
+
+.bbl-breadcrumb span {
+    color: rgba(255, 255, 255, .3);
+    padding: 0 8px;
+}
+
+.bbl-article {
+    background: var(--white);
+    border: 1px solid rgba(174, 130, 37, .12);
+    border-top: 3px solid var(--gold);
+    padding: 40px 44px;
+}
+
+.bbl-article-lead {
+    font-family: 'Lato', sans-serif;
+    font-size: 19px;
+    line-height: 1.75;
+    color: var(--navy);
+    font-weight: 700;
+    padding-bottom: 22px;
+    margin-bottom: 26px;
+    border-bottom: 1px solid rgba(174, 130, 37, .15);
+}
+
+.bbl-article-body p {
+    font-family: 'Lato', sans-serif;
+    font-size: 16.5px;
+    line-height: 1.95;
+    color: var(--text-dark);
+    margin-bottom: 1.4em;
+}
+
+.bbl-article-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(174, 130, 37, .15);
+}
+
+.bbl-share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.bbl-share-btn:hover {
+    background: var(--gold);
+    color: #fff;
+}
+
+.bbl-related {
+    margin-top: 56px;
+}
+
+.bbl-related-card {
+    display: block;
+    height: 100%;
+    background: var(--white);
+    border: 1px solid rgba(174, 130, 37, .12);
+    text-decoration: none;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.bbl-related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(13, 27, 42, .1);
+}
+
+.bbl-related-thumb {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+}
+
+.bbl-related-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s;
+}
+
+.bbl-related-card:hover .bbl-related-thumb img {
+    transform: scale(1.06);
+}
+
+.bbl-related-body {
+    padding: 16px 18px 20px;
+}
+
+.bbl-related-body h3 {
+    margin: 8px 0 0;
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--navy);
+}
+
+@media (max-width: 575.98px) {
+    .bbl-article {
+        padding: 26px 20px;
+    }
+
+    .bbl-article-lead {
+        font-size: 17px;
+    }
+
+    .bbl-featured--article {
+        min-height: 360px;
+    }
+}

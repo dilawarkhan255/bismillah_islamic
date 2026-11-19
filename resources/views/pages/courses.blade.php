@@ -1,50 +1,23 @@
 @extends('layouts.app')
 
+@push('page-css')
+    <link rel="stylesheet" href="{{ asset('css/course.css') }}?v={{ @filemtime(public_path('css/course.css')) }}">
+@endpush
+
+@section('title', 'Online Quran Courses — Bismillah Islamic Academy')
+@section('meta_description', 'Our courses: Norani Qaida, Quran Nazra, Tajweed, Hifz ul Quran, Islamic Studies, Arabic Language, Hadith & Seerah, Namaz and Duas. For kids and adults.')
+
 @section('content')
 
     @php $totalCourses = count($courses); @endphp
 
 
-    <!-- ===================== PAGE HEADER ===================== -->
-    <div class="page-hero">
-
-        {{-- ── BG IMAGE (swap courses-hero.jpg with your generated image) ── --}}
-        <div class="page-hero-bg">
-            <img src="{{ setting('img_courses_hero') ? asset('storage/' . setting('img_courses_hero')) : asset('storage/courses-hero.jpg') }}" alt="Courses Hero Background">
-        </div>
-
-        <div class="hero-pattern"></div>
-        <div class="hero-glow"></div>
-        <div class="hero-line-left"></div>
-        <div class="hero-line-right"></div>
-        <div class="hero-line-bottom"></div>
-
-        <!-- Floating particles -->
-        <div class="particles-wrap">
-            @for($p = 1; $p <= 10; $p++)
-                <div class="particle"
-                    style="left:{{ rand(5, 95) }}%; animation-delay:{{ $p * 0.6 }}s; animation-duration:{{ 4 + ($p % 3) }}s;">
-                </div>
-            @endfor
-        </div>
-
-        <div class="container text-center" style="position:relative; z-index:5;">
-            <div class="hero-arabic  reveal-up" style="animation-delay:0s;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-            <div class="hero-tag    reveal-up" style="animation-delay:0.15s;">✦ Bismillah Islamic Academy ✦</div>
-            <h1 class="hero-title  reveal-up" style="animation-delay:0.3s;">{!! section('courses', 'hero', 'title', 'Our Islamic <span style="color:var(--gold-light);">Courses</span>') !!}</h1>
-            <p class="hero-sub    reveal-up" style="animation-delay:0.45s;">{{ section('courses', 'hero', 'subtitle', 'From the first Arabic letter to complete Quran memorization — a structured path for every student.') }}</p>
-            <nav aria-label="breadcrumb" class="reveal-up" style="animation-delay:0.6s;">
-                <ol class="breadcrumb justify-content-center mb-0" style="background:transparent;">
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('home') }}"
-                            style="color:rgba(255,255,255,0.5); text-decoration:none; font-family:'Lato',sans-serif; font-size:13px;">Home</a>
-                    </li>
-                    <li style="color:rgba(255,255,255,0.3); padding:0 8px; font-size:13px;">›</li>
-                    <li style="color:var(--gold-light); font-family:'Lato',sans-serif; font-size:13px;">Courses</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
+    <x-page-hero
+        :title="section('courses', 'hero', 'title', 'Our Islamic <span>Courses</span>')"
+        :subtitle="section('courses', 'hero', 'subtitle', 'From the first Arabic letter to complete Quran memorization — a structured path for every student.')"
+        :image="setting('img_courses_hero') ? asset('storage/' . setting('img_courses_hero')) : asset('storage/courses-hero.jpg')"
+        :crumbs="['Courses' => null]"
+    ></x-page-hero>
 
 
     <!-- ===================== INTRO ===================== -->
@@ -113,7 +86,7 @@
                             <div class="card-shimmer-line"></div>
 
                             <div class="card-img-wrap">
-                                <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}">
+                                <img loading="lazy" decoding="async" src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}">
                                 <div class="card-img-overlay"></div>
                                 <span class="course-badge"
                                     style="background:{{ $course->badge_color }};">{{ $course->badge }}</span>

@@ -36,6 +36,26 @@ class BlogPost extends Model
         return $this->belongsTo(BlogCategory::class, 'category_id');
     }
 
+    /** Site images used when a post has no image of its own (picked per post, so cards don't all look the same). */
+    private const FALLBACK_IMAGES = ['how-to-learn.jpg', 'feature.jpg', 'about-1.jpg', 'courses-hero.jpg'];
+
+    public function getImageUrlAttribute(): string
+    {
+        $file = $this->image ?: self::FALLBACK_IMAGES[($this->id ?? 0) % count(self::FALLBACK_IMAGES)];
+
+        return asset('storage/' . $file);
+    }
+
+    /** "5" -> "5 min read"; free text (e.g. "5 min") is shown as-is. */
+    public function getReadTimeLabelAttribute(): ?string
+    {
+        if ($this->read_time === null || $this->read_time === '') {
+            return null;
+        }
+
+        return is_numeric($this->read_time) ? $this->read_time . ' min read' : (string) $this->read_time;
+    }
+
     public function scopeActive($query)
     {
         return $query->where('is_active', true)->latest('published_at');
