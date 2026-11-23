@@ -30,7 +30,7 @@ class StudentController extends Controller
 
     public function create(Request $request)
     {
-        $student = new Student(['status' => 'active', 'timezone' => Timezones::ACADEMY]);
+        $student = new Student(['status' => 'active', 'timezone' => Timezones::ACADEMY, 'fee_currency' => 'PKR', 'fee_due_day' => 5]);
 
         return view('admin.pages.students.form', $this->formData($student));
     }
@@ -45,7 +45,12 @@ class StudentController extends Controller
 
     public function edit(Student $student)
     {
-        $student->load(['classes' => fn ($q) => $q->with('teacher')->orderBy('start_time')]);
+        $student->load([
+            'classes' => fn ($q) => $q->with('teacher')->orderBy('start_time'),
+            'progress' => fn ($q) => $q->limit(15),
+            'payments' => fn ($q) => $q->limit(12),
+            'certificates',
+        ]);
 
         return view('admin.pages.students.form', $this->formData($student));
     }
@@ -106,7 +111,7 @@ class StudentController extends Controller
 
     private function validated(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'name'        => 'required|string|max:100',
             'parent_name' => 'nullable|string|max:100',
             'whatsapp'    => 'nullable|string|max:30',
@@ -117,7 +122,15 @@ class StudentController extends Controller
             'status'      => ['required', Rule::in(array_keys(Student::STATUSES))],
             'start_date'  => 'nullable|date',
             'notes'       => 'nullable|string|max:2000',
+            'fee_amount'   => 'nullable|numeric|min:0|max:9999999',
+            'fee_currency' => ['nullable', Rule::in(array_keys(Student::CURRENCIES))],
+            'fee_due_day'  => 'nullable|integer|min:1|max:28',
         ]);
+
+        $data['fee_currency'] = $data['fee_currency'] ?? 'PKR';
+        $data['fee_due_day'] = $data['fee_due_day'] ?? 5;
+
+        return $data;
     }
 
     private function formData(Student $student): array

@@ -2,9 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Certificate;
 use App\Models\ClassSchedule;
+use App\Models\FeePayment;
 use App\Models\Student;
+use App\Models\StudentProgress;
 use App\Models\Teacher;
+use App\Support\Timezones;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Seeder;
 
 /**
@@ -51,7 +56,9 @@ class StudentSeeder extends Seeder
         foreach (self::STUDENTS as $i => $row) {
             [$name, $parent, $country, $tz, $course, $status] = $row;
 
-            if (Student::where('name', $name)->where('notes', Student::DEMO_NOTE)->exists()) {
+            if ($existing = Student::where('name', $name)->where('notes', Student::DEMO_NOTE)->first()) {
+                $this->records($existing, $i);   // older demo students: add the new demo data
+
                 continue;
             }
 
@@ -79,6 +86,77 @@ class StudentSeeder extends Seeder
                     'status'           => $status === 'paused' ? 'paused' : 'active',
                 ]);
             }
+
+            $this->records($student, $i);
+        }
+    }
+
+    /** Demo fee, payments, class reports, level and a certificate for one student. */
+    private function records(Student $student, int $i): void
+    {
+        if ($student->progress()->exists()) {
+            return;
+        }
+
+        $fees = ['Europe/London' => [40, 'GBP'], 'Europe/Dublin' => [45, 'EUR'], 'Europe/Berlin' => [45, 'EUR'],
+            'America/New_York' => [50, 'USD'], 'America/Chicago' => [50, 'USD'], 'America/Los_Angeles' => [50, 'USD'],
+            'Australia/Sydney' => [70, 'AUD'], 'Asia/Dubai' => [180, 'AED'], 'Asia/Riyadh' => [180, 'SAR']];
+        [$amount, $currency] = $fees[$student->timezone] ?? [6000, 'PKR'];
+
+        $levels = [
+            'Norani Qaida' => ['Qaida – Takhti 4', 'Qaida – Takhti 9', 'Qaida – Takhti 14', 'Qaida – Takhti 17'],
+            'Hifz ul Quran' => ['Para 2', 'Para 5', 'Para 11', 'Para 19'],
+            'Quran Recitation (Nazra)' => ['Para 3', 'Para 8', 'Para 15', 'Para 26'],
+        ];
+        $levelList = $levels[$student->course] ?? ['Lesson 3', 'Lesson 7', 'Lesson 12', 'Lesson 18'];
+        $step = $i % 4;
+
+        $student->update([
+            'fee_amount'       => $amount,
+            'fee_currency'     => $currency,
+            'fee_due_day'      => [1, 5, 10, 15][$i % 4],
+            'current_level'    => $levelList[$step],
+            'progress_percent' => [20, 45, 70, 95][$step],
+        ]);
+
+        // payments: last 3 months paid; this month paid for about half
+        $month = CarbonImmutable::now(Timezones::ACADEMY)->startOfMonth();
+        foreach ([3, 2, 1, 0] as $back) {
+            if ($back === 0 && $i % 2 === 1) {
+                continue;
+            }
+            FeePayment::create([
+                'student_id' => $student->id,
+                'month'      => $month->subMonths($back)->toDateString(),
+                'amount'     => $amount,
+                'currency'   => $currency,
+                'paid_on'    => $month->subMonths($back)->addDays(2 + $i % 5)->toDateString(),
+                'method'     => FeePayment::METHODS[$i % 5],
+            ]);
+        }
+
+        // class reports for the last few weeks
+        $lessons = ['Revised the previous lesson', 'New letters with harakat', 'Tajweed: makharij practice', 'Read 2 pages fluently', 'Memorised 5 new lines'];
+        $notes = ['Very good effort today, MashaAllah.', 'Please practise 10 minutes at home.', 'Pronunciation improving well.', null, 'Was a little tired, but finished the lesson.'];
+        foreach (range(1, 8) as $n) {
+            $attendance = ($n + $i) % 9 === 0 ? 'absent' : (($n + $i) % 7 === 0 ? 'late' : 'present');
+            StudentProgress::create([
+                'student_id' => $student->id,
+                'date'       => now()->subDays($n * 3 + $i % 3)->toDateString(),
+                'attendance' => $attendance,
+                'lesson'     => $attendance === 'absent' ? null : $levelList[$step] . ' — ' . $lessons[($n + $i) % 5],
+                'note'       => $attendance === 'absent' ? 'Missed class, make-up arranged.' : $notes[($n + $i) % 5],
+            ]);
+        }
+
+        if ($step === 3 && ! $student->certificates()->exists()) {
+            Certificate::create([
+                'student_id'   => $student->id,
+                'title'        => 'Completion of ' . ($student->course ?: 'Norani Qaida'),
+                'course'       => $student->course,
+                'teacher_name' => $student->classes()->with('teacher')->first()?->teacher?->name,
+                'issued_on'    => now()->subDays(5)->toDateString(),
+            ]);
         }
     }
 

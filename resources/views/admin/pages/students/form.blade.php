@@ -75,6 +75,22 @@
               <label class="form-label fw-bold">Started</label>
               <input type="date" name="start_date" class="form-control" value="{{ old('start_date', $student->start_date?->format('Y-m-d')) }}">
             </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Monthly fee</label>
+              <input type="number" step="0.01" min="0" name="fee_amount" class="form-control" value="{{ old('fee_amount', $student->fee_amount !== null ? rtrim(rtrim((string) $student->fee_amount, '0'), '.') : '') }}" placeholder="e.g. 40">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Currency</label>
+              <select name="fee_currency" class="form-select">
+                @foreach(\App\Models\Student::CURRENCIES as $code => $symbol)
+                  <option value="{{ $code }}" @selected(old('fee_currency', $student->fee_currency) === $code)>{{ $code }} ({{ $symbol }})</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Due on day</label>
+              <input type="number" min="1" max="28" name="fee_due_day" class="form-control" value="{{ old('fee_due_day', $student->fee_due_day ?: 5) }}">
+            </div>
             <div class="col-12">
               <label class="form-label fw-bold">Notes</label>
               <textarea name="notes" class="form-control" rows="3">{{ old('notes', $student->notes) }}</textarea>
@@ -139,6 +155,10 @@
   </div>
   @endif
 </div>
+
+@if($student->exists)
+  @include('admin.pages.students._records')
+@endif
 @endsection
 
 @push('styles')

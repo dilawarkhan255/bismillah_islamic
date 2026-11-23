@@ -54,6 +54,44 @@
         </div>
     </div>
 
+    @php $trialDays = array_map('intval', explode(',', (string) SiteSetting::get('trial_days', '1,2,3,4,5,6'))); @endphp
+    <div class="panel mb-4">
+        <div class="panel-header">
+            <h5 class="mb-0"><i class="bi bi-calendar-check"></i> Free trial times</h5>
+        </div>
+        <div class="panel-body">
+            <p class="text-muted small">Visitors pick from these times on the Free Trial page, shown in their own timezone. Enter Pakistan time. "Until" can be after midnight, e.g. 6 PM until 3 AM.</p>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label class="form-label d-block">Days</label>
+                    <input type="hidden" name="settings[trial_days][]" value="0">
+                    @foreach(\App\Models\ClassSchedule::DAYS as $num => $label)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="settings[trial_days][]" value="{{ $num }}" id="trialDay{{ $num }}" @checked(in_array($num, $trialDays, true))>
+                            <label class="form-check-label" for="trialDay{{ $num }}">{{ $label }}</label>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">From (PK time)</label>
+                    <input type="time" name="settings[trial_hours_from]" class="form-control" value="{{ SiteSetting::get('trial_hours_from', '18:00') }}">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Until (PK time)</label>
+                    <input type="time" name="settings[trial_hours_to]" class="form-control" value="{{ SiteSetting::get('trial_hours_to', '03:00') }}">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Every</label>
+                    <select name="settings[trial_slot_minutes]" class="form-select">
+                        @foreach([30, 45, 60] as $m)
+                            <option value="{{ $m }}" @selected((int) SiteSetting::get('trial_slot_minutes', 30) === $m)>{{ $m }} minutes</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="panel mb-4">
         <div class="panel-header">
             <h5 class="mb-0"><i class="bi bi-share"></i> Social Media</h5>

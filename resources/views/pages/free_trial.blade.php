@@ -243,7 +243,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="ft-label">Preferred Timing *</label>
-                                    <select name="timing" required class="ft-input">
+                                    <select name="timing" required class="ft-input" id="ftTiming">
                                         <option value="" disabled selected>Select time slot</option>
                                         <option @selected(old('timing') === 'Morning (6AM–12PM PKT)')>Morning (6AM–12PM PKT)</option>
                                         <option @selected(old('timing') === 'Afternoon (12PM–5PM PKT)')>Afternoon (12PM–5PM PKT)</option>
@@ -258,6 +258,7 @@
                                         <option @selected(old('teacher_gender') === 'Female Teacher')>Female Teacher</option>
                                     </select>
                                 </div>
+                                @include('partials.trial-slots')
                                 <div class="col-12">
                                     <label class="ft-label">Additional Message</label>
                                     <textarea name="message" rows="3" placeholder="Any questions or special requirements..."

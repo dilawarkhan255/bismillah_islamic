@@ -13,6 +13,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="description" content="{!! $seoDescription !!}">
     <link rel="canonical" href="{{ url()->current() }}">
+    @hasSection('robots')<meta name="robots" content="@yield('robots')">@endif
 
     <!-- Link previews (WhatsApp, Facebook, X) -->
     <meta property="og:type" content="@yield('og_type', 'website')">

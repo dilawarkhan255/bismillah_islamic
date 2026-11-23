@@ -125,6 +125,14 @@ class ClassSchedule extends Model
         };
     }
 
+    /** The student's clock time only ("5:30 PM"), for use next to local_days_label. */
+    public function getLocalClockLabelAttribute(): ?string
+    {
+        $tz = $this->student?->timezone;
+
+        return $tz && $tz !== Timezones::ACADEMY ? $this->startOn($this->firstDay())->setTimezone($tz)->format('g:i A') : null;
+    }
+
     /** Local days, e.g. "Sun, Tue, Thu" when the time falls on the day before. */
     public function getLocalDaysLabelAttribute(): ?string
     {

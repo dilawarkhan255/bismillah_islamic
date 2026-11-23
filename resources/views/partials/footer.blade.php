@@ -1,4 +1,5 @@
 <!-- Footer Start -->
+@include('partials.prayer-times')
 <div class="footer wow fadeIn" data-wow-delay="0.1s"
     style="background: var(--navy); border-top: 2px solid var(--gold);">
     <div class="container py-5">

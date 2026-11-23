@@ -6,6 +6,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\QaidaController;
+use App\Http\Controllers\StudentPortalController;
 use App\Models\Course;
 use App\Models\GalleryItem;
 use App\Models\PricingPlan;
@@ -43,6 +44,10 @@ Route::get('/gallery', function () {
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+// Student portal: private progress link for parents, and certificate check
+Route::get('/progress/{token}', [StudentPortalController::class, 'progress'])->where('token', '[A-Za-z0-9]{32}')->name('progress.show');
+Route::get('/certificate/{certificate}', [StudentPortalController::class, 'certificate'])->name('certificate.show');
 
 Route::get('/norani-qaida', [QaidaController::class, 'index'])->name('qaida');
 Route::get('/norani-qaida/{slug}', [QaidaController::class, 'show'])->name('qaida.show');

@@ -62,7 +62,7 @@ class FormController extends Controller
             'age'            => 'required|in:4 – 7 years,8 – 12 years,13 – 17 years,18+ (Adult)',
             'country'        => 'required|string|max:50',
             'course'         => 'required|string|max:100',
-            'timing'         => 'required|string|max:50',
+            'timing'         => 'required|string|max:150',
             'teacher_gender' => 'nullable|in:Male Teacher,Female Teacher',
             'message'        => 'nullable|string|max:1000',
         ]);

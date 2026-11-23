@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ClassScheduleController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EnrollmentController;
+use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\FreeTrialController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\HeroSlideController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\StudentImportController;
+use App\Http\Controllers\Admin\StudentRecordController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -77,6 +79,16 @@ Route::prefix('admin')
             Route::get('students/import/template', [StudentImportController::class, 'template'])->name('students.import.template');
             Route::post('students/from-free-trial/{freeTrial}', [StudentController::class, 'fromFreeTrial'])->name('students.from-free-trial');
             Route::resource('students', StudentController::class)->except(['show']);
+
+            Route::post('students/{student}/progress', [StudentRecordController::class, 'storeProgress'])->name('students.progress.store');
+            Route::put('students/{student}/level', [StudentRecordController::class, 'updateLevel'])->name('students.level');
+            Route::post('students/{student}/reset-link', [StudentRecordController::class, 'resetLink'])->name('students.reset-link');
+            Route::delete('progress/{progress}', [StudentRecordController::class, 'destroyProgress'])->name('progress.destroy');
+            Route::post('students/{student}/payments', [StudentRecordController::class, 'storePayment'])->name('students.payments.store');
+            Route::delete('payments/{payment}', [StudentRecordController::class, 'destroyPayment'])->name('payments.destroy');
+            Route::post('students/{student}/certificates', [StudentRecordController::class, 'storeCertificate'])->name('students.certificates.store');
+            Route::delete('certificates/{certificate}', [StudentRecordController::class, 'destroyCertificate'])->name('certificates.destroy');
+            Route::get('fees', [FeeController::class, 'index'])->name('fees.index');
 
             Route::get('classes', [ClassScheduleController::class, 'index'])->name('classes.index');
             Route::get('classes/print', [ClassScheduleController::class, 'print'])->name('classes.print');

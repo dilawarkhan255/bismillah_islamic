@@ -19,6 +19,9 @@ class SettingController extends Controller
         $data = $request->input('settings', []);
 
         foreach ($data as $key => $value) {
+            if (is_array($value)) { // checkbox lists, e.g. trial_days
+                $value = implode(',', array_filter($value, fn ($v) => $v !== '' && $v !== '0'));
+            }
             SiteSetting::set($key, $value, $request->input('group', 'general'));
         }
 

@@ -56,6 +56,10 @@
           <span class="nav-icon"><i class="bi bi-mortarboard" aria-hidden="true"></i></span>
           <span class="nav-text">Students</span>
         </a>
+        <a class="nav-link {{ request()->routeIs('admin.fees.*') ? 'active' : '' }}" href="{{ route('admin.fees.index') }}" data-sidebar-close>
+          <span class="nav-icon"><i class="bi bi-cash-coin" aria-hidden="true"></i></span>
+          <span class="nav-text">Fees</span>
+        </a>
         @endrole
 
         @canany(['manage enrollments', 'manage free trials', 'manage messages'])
