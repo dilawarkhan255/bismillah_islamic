@@ -22,12 +22,13 @@ class QaidaLessonController extends Controller
             ->orderBy('sort_order')->orderBy('number')->get();
 
         $pdf = SiteSetting::get('qaida_pdf');
-        $pdfInfo = $pdf && Storage::disk('public')->exists($pdf)
+        $pdfMissing = $pdf && ! Storage::disk('public')->exists($pdf);
+        $pdfInfo = $pdf && ! $pdfMissing
             ? ['path' => $pdf, 'name' => SiteSetting::get('qaida_pdf_name', basename($pdf)), 'size' => Storage::disk('public')->size($pdf)]
             : null;
         $display = SiteSetting::get('qaida_display', 'lessons');
 
-        return view('admin.pages.qaida.index', compact('lessons', 'pdfInfo', 'display'));
+        return view('admin.pages.qaida.index', compact('lessons', 'pdfInfo', 'pdfMissing', 'display'));
     }
 
     /** Upload (or replace) the Norani Qaida PDF shown on /norani-qaida */
@@ -45,12 +46,12 @@ class QaidaLessonController extends Controller
         if ($old && $old !== $path) {
             Storage::disk('public')->delete($old);
         }
-        // first upload: start showing the PDF on the website
+        // first upload: show the PDF on top but keep the takhtiyan visible below (admin can change this)
         if (SiteSetting::get('qaida_display', 'lessons') === 'lessons') {
-            SiteSetting::set('qaida_display', 'pdf', 'qaida');
+            SiteSetting::set('qaida_display', 'both', 'qaida');
         }
 
-        return redirect()->route('admin.qaida.index')->with('success', 'PDF uploaded. It is now shown on the Norani Qaida page.');
+        return redirect()->route('admin.qaida.index')->with('success', 'PDF uploaded and shown on the Norani Qaida page (PDF + takhtiyan). You can change this below.');
     }
 
     public function deletePdf()
@@ -69,7 +70,8 @@ class QaidaLessonController extends Controller
     public function updateDisplay(Request $request)
     {
         $data = $request->validate(['display' => 'required|in:pdf,lessons,both']);
-        if ($data['display'] !== 'lessons' && ! SiteSetting::get('qaida_pdf')) {
+        $pdf = SiteSetting::get('qaida_pdf');
+        if ($data['display'] !== 'lessons' && ! ($pdf && Storage::disk('public')->exists($pdf))) {
             return back()->with('error', 'Upload a PDF first.');
         }
         SiteSetting::set('qaida_display', $data['display'], 'qaida');
@@ -81,6 +83,9 @@ class QaidaLessonController extends Controller
     {
         $data = $this->validateLesson($request);
         $data['sort_order'] = (QaidaLesson::max('sort_order') ?? 0) + 1;
+        if ($request->hasFile('audio')) {
+            $data['audio'] = $request->file('audio')->store('qaida', 'public');
+        }
         $lesson = QaidaLesson::create($data);
 
         return redirect()->route('admin.qaida.edit', $lesson)->with('success', 'Takhti created. Now add its letters / lines below.');

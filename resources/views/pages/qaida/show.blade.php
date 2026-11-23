@@ -119,7 +119,7 @@
                 </div>
             @endif
 
-            @unless($lesson->items->contains(fn ($i) => $i->audio))
+            @unless($lesson->audio || $lesson->items->contains(fn ($i) => $i->audio))
                 <p class="qd-audio-note"><i class="fas fa-info-circle"></i> Audio for this takhti is being recorded by our teachers and will be added soon, In sha Allah.</p>
             @endunless
 

@@ -37,6 +37,8 @@
           </div>
           <x-admin.delete-button :action="route('admin.qaida.pdf.delete')" name="the Qaida PDF" />
         </div>
+      @elseif($pdfMissing)
+        <div class="alert alert-warning mb-3"><i class="bi bi-exclamation-triangle"></i> The PDF file is missing from storage, so the website is showing the takhtiyan. Please upload it again.</div>
       @else
         <p class="text-muted mb-3">No PDF uploaded. Upload one to show the whole Qaida as a book on the website.</p>
       @endif
@@ -86,7 +88,7 @@
       </thead>
       <tbody>
         @forelse($lessons as $lesson)
-          @php $pct = $lesson->items_count ? round($lesson->audio_count / $lesson->items_count * 100) : 0; @endphp
+          @php $pct = $lesson->items_count ? round($lesson->audio_count / $lesson->items_count * 100) : ($lesson->audio ? 100 : 0); @endphp
           <tr>
             <td><span class="qa-no">{{ $lesson->number }}</span></td>
             <td>
@@ -101,6 +103,9 @@
                 </div>
                 <small class="text-muted" style="white-space:nowrap;">{{ $lesson->audio_count }}/{{ $lesson->items_count }}</small>
               </div>
+              @if($lesson->audio)
+                <small class="d-block mt-1" style="color:var(--admin-success);"><i class="bi bi-music-note-beamed"></i> Whole-takhti audio</small>
+              @endif
             </td>
             <td>
               @if($lesson->is_active)
@@ -125,7 +130,7 @@
 </div>
 
 <x-admin.modal id="addLessonModal" title="Add Takhti" size="md">
-  <form action="{{ route('admin.qaida.store') }}" method="POST">
+  <form action="{{ route('admin.qaida.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
       <div class="col-4 mb-3">
@@ -144,6 +149,10 @@
     <div class="mb-3">
       <label class="form-label">How to read (shown to students)</label>
       <textarea name="description" class="form-control" rows="3">{{ old('description') }}</textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Audio of the whole takhti <span class="text-muted fw-normal">(optional, max 10 MB)</span></label>
+      <input type="file" name="audio" class="form-control" accept="audio/*">
     </div>
     <div class="form-check form-switch mb-3">
       <input type="checkbox" name="is_active" value="1" class="form-check-input" id="newActive" checked>

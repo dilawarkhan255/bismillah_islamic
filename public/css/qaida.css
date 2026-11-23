@@ -709,9 +709,8 @@ button.qd-cell { cursor: pointer; width: 100%; }
 
 .qd-reader-stage {
     position: relative;
-    min-height: 420px;
-    max-height: 1400px;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding: 12px;
     background: #EDE6D3;
     text-align: center;
@@ -719,7 +718,8 @@ button.qd-cell { cursor: pointer; width: 100%; }
 
 .qd-reader:fullscreen .qd-reader-stage {
     flex: 1;
-    max-height: none;
+    min-height: 0;
+    overflow: auto;
     background: #1B2A3B;
 }
 
@@ -750,5 +750,5 @@ button.qd-cell { cursor: pointer; width: 100%; }
     .qd-reader { box-shadow: 0 0 0 4px #F3E9CF; }
     .qd-reader-bar { justify-content: center; }
     .qd-rbtn--text span { display: none; }
-    .qd-reader-stage { padding: 6px; min-height: 300px; }
+    .qd-reader-stage { padding: 6px; }
 }

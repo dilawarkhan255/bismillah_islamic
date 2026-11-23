@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\QaidaLesson;
 use App\Support\ContentCache;
+use Illuminate\Support\Facades\Storage;
 
 class QaidaController extends Controller
 {
@@ -16,6 +17,9 @@ class QaidaController extends Controller
 
         // Admin > Norani Qaida decides: uploaded PDF, the takhtiyan, or both
         $pdf = setting('qaida_pdf');
+        if ($pdf && ! Storage::disk('public')->exists($pdf)) {   // file missing from storage: don't show a broken reader
+            $pdf = null;
+        }
         $display = setting('qaida_display', 'lessons');
         $pdfUrl = ($pdf && $display !== 'lessons') ? asset('storage/' . $pdf) : null;
         $showLessons = ! $pdfUrl || $display === 'both';
@@ -32,7 +36,14 @@ class QaidaController extends Controller
             ->where('slug', $slug)
             ->with('items')
             ->first());
-        abort_unless($lesson, 404);
+
+        if (! $lesson) {
+            // an old link (title / number was changed in admin): send it to the current URL
+            $moved = QaidaLesson::active()->whereJsonContains('old_slugs', $slug)->first(['id', 'slug']);
+            abort_unless($moved, 404);
+
+            return redirect()->route('qaida.show', $moved->slug, 301);
+        }
 
         $pos = $lessons->search(fn ($l) => $l->id === $lesson->id);
         $prev = $pos > 0 ? $lessons[$pos - 1] : null;
