@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\StudentImportController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -71,6 +72,9 @@ Route::prefix('admin')
         // Students & timetable (admin only)
         Route::middleware('role:' . AdminPermissions::ADMIN_ROLE)->group(function () {
             Route::delete('students', [StudentController::class, 'bulkDestroy'])->name('students.bulk-destroy');
+            Route::get('students/import', [StudentImportController::class, 'create'])->name('students.import');
+            Route::post('students/import', [StudentImportController::class, 'store'])->name('students.import.store');
+            Route::get('students/import/template', [StudentImportController::class, 'template'])->name('students.import.template');
             Route::post('students/from-free-trial/{freeTrial}', [StudentController::class, 'fromFreeTrial'])->name('students.from-free-trial');
             Route::resource('students', StudentController::class)->except(['show']);
 

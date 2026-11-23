@@ -11,6 +11,9 @@ class Student extends Model
 {
     public const STATUSES = ['active' => 'Active', 'paused' => 'Paused', 'left' => 'Left'];
 
+    /** Marks the made-up students from Database\Seeders\StudentSeeder */
+    public const DEMO_NOTE = 'Demo student (StudentSeeder)';
+
     protected $fillable = [
         'name', 'parent_name', 'whatsapp', 'email', 'country', 'timezone',
         'course', 'status', 'start_date', 'notes', 'free_trial_id',

@@ -7,6 +7,7 @@
   <button type="button" class="btn btn-danger-soft js-bulk-delete" data-table="#studentsTable" data-form="bulkDeleteForm" disabled>
     <i class="bi bi-trash"></i> Delete selected <span class="js-bulk-count"></span>
   </button>
+  <a href="{{ route('admin.students.import') }}" class="btn btn-light"><i class="bi bi-file-earmark-arrow-up"></i> Import Excel</a>
   <a href="{{ route('admin.classes.index') }}" class="btn btn-light"><i class="bi bi-calendar-week"></i> Timetable</a>
   <a href="{{ route('admin.students.create') }}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Student</a>
 </x-admin.page-header>

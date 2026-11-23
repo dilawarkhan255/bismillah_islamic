@@ -54,16 +54,34 @@ class ClassSchedule extends Model
     /** "Mon, Wed, Fri" */
     public function getDaysLabelAttribute(): string
     {
-        $days = collect($this->days ?? [])->map(fn ($d) => (int) $d)->sort()->values();
+        return self::formatDays($this->days ?? []);
+    }
 
-        if ($days->all() === [1, 2, 3, 4, 5]) {
-            return 'Mon – Fri';
-        }
-        if ($days->count() === 7) {
+    /** [1, 3, 5] => "Mon, Wed, Fri"; [1..6] => "Mon – Sat"; [7, 1, 2, 3, 4] => "Sun – Thu" */
+    public static function formatDays(array $days): string
+    {
+        $days = collect($days)->map(fn ($d) => (int) $d)->filter(fn ($d) => isset(self::DAYS[$d]))->unique()->sort()->values()->all();
+
+        if (count($days) === 7) {
             return 'Every day';
         }
 
-        return $days->map(fn ($d) => self::DAYS[$d] ?? '')->filter()->implode(', ');
+        // three or more days in a row (the week wraps: Sat, Sun, Mon) read better as a range
+        if (count($days) >= 3) {
+            foreach ($days as $start) {
+                $run = [];
+                for ($d = $start, $i = 0; $i < count($days); $d = $d % 7 + 1, $i++) {
+                    $run[] = $d;
+                }
+                $sortedRun = $run;
+                sort($sortedRun);
+                if ($sortedRun === $days) {
+                    return self::DAYS[$start] . ' – ' . self::DAYS[end($run)];
+                }
+            }
+        }
+
+        return implode(', ', array_map(fn ($d) => self::DAYS[$d], $days));
     }
 
     /** Start of this class on a weekday of the current week, in Pakistan time. */
@@ -115,9 +133,9 @@ class ClassSchedule extends Model
             return null;
         }
 
-        return collect($this->days ?? [])->map(fn ($d) => (int) $d)->sort()
-            ->map(fn ($d) => $this->startOn($d)->setTimezone($tz)->format('D'))
-            ->unique()->implode(', ');
+        return self::formatDays(collect($this->days ?? [])
+            ->map(fn ($d) => $this->startOn((int) $d)->setTimezone($tz)->isoWeekday())
+            ->all());
     }
 
     /** Minutes from midnight (Pakistan time), for sorting and clash checks. */

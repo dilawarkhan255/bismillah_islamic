@@ -12,6 +12,7 @@
 <x-admin.page-header title="Timetable" icon="bi-calendar-week" eyebrow="Classes" subtitle="All class times in Pakistan time, with each student's own time.">
   <a href="{{ route('admin.classes.print', $query) }}" target="_blank" class="btn btn-light"><i class="bi bi-printer"></i> Print</a>
   <a href="{{ route('admin.classes.export', $query) }}" class="btn btn-light"><i class="bi bi-file-earmark-spreadsheet"></i> Excel</a>
+  <a href="{{ route('admin.students.import') }}" class="btn btn-light"><i class="bi bi-file-earmark-arrow-up"></i> Import</a>
   <a href="{{ route('admin.students.create') }}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Student</a>
 </x-admin.page-header>
 
