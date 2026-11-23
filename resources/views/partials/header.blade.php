@@ -77,22 +77,6 @@ Row 2: Logo left | Nav CENTER
 
         {{-- Right: Enroll CTA --}}
         <div class="bia-topbar-right">
-            @auth
-                @role(\App\Support\AdminPermissions::ADMIN_ROLE)
-                    {{-- Admin-only shortcuts; visitors and students never see this --}}
-                    <div class="dropdown bia-admin-menu">
-                        <button class="bia-admin-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-lock"></i> Admin
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <a class="dropdown-item" href="{{ route('progress.index') }}"><i class="fas fa-chart-line me-2"></i>Student Progress Pages</a>
-                            <a class="dropdown-item" href="{{ route('certificates.index') }}"><i class="fas fa-award me-2"></i>Certificates</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class="fas fa-gauge me-2"></i>Admin Panel</a>
-                        </div>
-                    </div>
-                @endrole
-            @endauth
             <button class="bia-enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal">
                 <span class="bia-enroll-icon"><i class="fa fa-graduation-cap"></i></span>
                 <span>{{ \App\Models\SiteSetting::get('enroll_button_text', 'Enroll Now') }}</span>
@@ -146,7 +130,7 @@ Row 2: Logo left | Nav CENTER
             </div>
             {{-- Explore: reading and information --}}
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('blog', 'blog.show', 'our-team', 'team-member.profile', 'privacy_policy') ? 'active' : '' }}" data-bs-toggle="dropdown" role="button" aria-expanded="false">Explore</a>
+                <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('blog', 'blog.show', 'our-team', 'team-member.profile', 'privacy_policy', 'progress.index', 'certificates.index') ? 'active' : '' }}" data-bs-toggle="dropdown" role="button" aria-expanded="false">Explore</a>
                 <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
                     <a href="{{ route('blog') }}"
                         class="dropdown-item {{ request()->routeIs('blog', 'blog.show') ? 'active' : '' }}">Blog</a>
@@ -156,23 +140,18 @@ Row 2: Logo left | Nav CENTER
                     @endif
                     <a href="{{ route('privacy_policy') }}"
                         class="dropdown-item {{ request()->routeIs('privacy_policy') ? 'active' : '' }}">Privacy Policy</a>
-                </div>
-            </div>
-            @auth
-                @role(\App\Support\AdminPermissions::ADMIN_ROLE)
-                    {{-- Only a logged-in admin sees this menu; visitors and students never do --}}
-                    <div class="nav-item dropdown d-lg-none">
-                        <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('progress.index', 'certificates.index') ? 'active' : '' }}" data-bs-toggle="dropdown" role="button" aria-expanded="false"><i class="fas fa-lock" style="font-size:10px;margin-right:4px;"></i>Admin</a>
-                        <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                    @auth
+                        @role(\App\Support\AdminPermissions::ADMIN_ROLE)
+                            {{-- Only a logged-in admin sees these; visitors and students never do --}}
+                            <div class="dropdown-divider"></div>
                             <a href="{{ route('progress.index') }}"
                                 class="dropdown-item {{ request()->routeIs('progress.index') ? 'active' : '' }}">Student Progress Pages</a>
                             <a href="{{ route('certificates.index') }}"
                                 class="dropdown-item {{ request()->routeIs('certificates.index') ? 'active' : '' }}">Certificates</a>
-                            <a href="{{ route('admin.dashboard') }}" class="dropdown-item">Admin Panel</a>
-                        </div>
-                    </div>
-                @endrole
-            @endauth
+                        @endrole
+                    @endauth
+                </div>
+            </div>
         </div>
     </div>
 </nav>
@@ -611,18 +590,6 @@ a.bia-info-chip .bia-info-val {
 /* ============================================================
    MOBILE (max 991px)
    ============================================================ */
-/* Admin-only menu in the top bar */
-.bia-topbar-right { display: flex; align-items: center; gap: 10px; }
-.bia-admin-btn {
-    background: transparent; border: 1px solid rgba(212,168,67,.45); color: #D4A843;
-    font: 700 11px 'Cinzel', serif; letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 9px 14px; cursor: pointer;
-}
-.bia-admin-btn i { font-size: 10px; margin-right: 4px; }
-.bia-admin-btn:hover, .bia-admin-menu.show .bia-admin-btn { background: rgba(212,168,67,.12); }
-.bia-admin-menu .dropdown-menu { border-radius: 0; border: 1px solid rgba(174,130,37,.25); font-size: 13px; z-index: 1100; }
-.bia-admin-menu .dropdown-item i { color: var(--gold); width: 16px; }
-
 /* Laptop widths: tighten the menu so all 8 items stay on one line */
 @media (min-width: 992px) and (max-width: 1399.98px) {
     .bia-navbar .navbar-nav .nav-link {
