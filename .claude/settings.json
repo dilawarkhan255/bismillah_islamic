@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ssh -i ~/.ssh/hostinger -p 65002 u395162289@77.37.37.212:*)"
+    ]
+  }
+}
