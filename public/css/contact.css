@@ -627,23 +627,16 @@
     flex-shrink: 0;
 }
 
-.cc-social--fb .cc-social-icon {
-    background: #1877f2;
-    color: #fff;
+/* Same gold style as the other icons on the page (was each network's brand colour) */
+.cc-social-icon {
+    background: rgba(174, 130, 37, 0.12);
+    border: 1px solid rgba(174, 130, 37, 0.45);
+    color: var(--gold-light);
 }
 
-.cc-social--ig .cc-social-icon {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    color: #fff;
-}
-
-.cc-social--yt .cc-social-icon {
-    background: #ff0000;
-    color: #fff;
-}
-
-.cc-social--wa .cc-social-icon {
-    background: #25d366;
+.cc-social-row:hover .cc-social-icon {
+    background: var(--gold);
+    border-color: var(--gold);
     color: #fff;
 }
 

@@ -113,7 +113,7 @@
                         <a class="hv-5" href="{{ $ftWhatsappPk->button_url ?? 'https://wa.me/923141833216?text=Assalamu+Alaikum,+I+want+to+book+a+free+trial' }}"
                             target="_blank">
                             <div
-                                style="width:40px;height:40px;flex-shrink:0;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);display:flex;align-items:center;justify-content:center;color:#25D366;font-size:18px;">
+                                style="width:40px;height:40px;flex-shrink:0;background:rgba(174,130,37,.1);border:1px solid rgba(174,130,37,.25);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;">
                                 <i class="fab fa-whatsapp"></i></div>
                             <div>
                                 <div
@@ -126,7 +126,7 @@
                         <a class="hv-5" href="{{ $ftWhatsappUk->button_url ?? 'https://wa.me/447415770822?text=Assalamu+Alaikum,+I+want+to+book+a+free+trial' }}"
                             target="_blank">
                             <div
-                                style="width:40px;height:40px;flex-shrink:0;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);display:flex;align-items:center;justify-content:center;color:#25D366;font-size:18px;">
+                                style="width:40px;height:40px;flex-shrink:0;background:rgba(174,130,37,.1);border:1px solid rgba(174,130,37,.25);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;">
                                 <i class="fab fa-whatsapp"></i></div>
                             <div>
                                 <div

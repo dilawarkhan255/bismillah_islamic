@@ -331,8 +331,6 @@
     background:var(--navy); display:flex; align-items:center;
     justify-content:center; color:var(--gold); font-size:17px; transition:transform .25s;
 }
-.pp-ci--wa { background:#25d366; color:#fff; }
-.pp-ci--uk { background:#1565c0; color:#fff; }
 .pp-contact:hover .pp-ci { transform:scale(1.08); }
 .pp-contact strong { font-family:'Cinzel',serif; font-size:12px; color:var(--navy); display:block; margin-bottom:2px; }
 .pp-contact span { font-family:'Lato',sans-serif; font-size:12px; color:#666; }
