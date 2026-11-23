@@ -479,7 +479,7 @@
                         <a href="{{ route('teacher.profile', $teacher) }}" class="text-decoration-none d-block">
                             <div class="team-item text-center p-4"
                                 style="background: var(--off-white); border: 1px solid rgba(174,130,37,0.15); transition: all 0.4s;">
-                                <img loading="lazy" decoding="async" src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->name }}"
+                                <img loading="lazy" decoding="async" src="{{ person_image($teacher->image) }}" alt="{{ $teacher->name }}"
                                     style="width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; display: block; margin: 0 auto 20px; padding: 4px; background: var(--white);">
                                 <div class="team-text">
                                     <div class="team-title">
@@ -531,7 +531,7 @@
                     <div class="testimonial-item rounded p-4"
                         style="background: var(--white); border: 1px solid rgba(174,130,37,0.15); position: relative; box-shadow: 0 4px 20px rgba(13,27,42,0.07);">
                         <div class="d-flex align-items-center mb-4">
-                            <img loading="lazy" decoding="async" class="flex-shrink-0 rounded-circle border p-1" src="{{ asset('storage/' . $t->image) }}"
+                            <img loading="lazy" decoding="async" class="flex-shrink-0 rounded-circle border p-1" src="{{ person_image($t->image) }}"
                                 alt="{{ $t->name }}"
                                 style="width:62px;height:62px;border-color:var(--gold)!important;object-fit:cover;">
                             <div class="ms-4">

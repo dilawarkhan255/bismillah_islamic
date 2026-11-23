@@ -36,7 +36,7 @@
                             <a href="{{ route('team-member.profile', $member) }}" class="text-decoration-none">
                                 <div class="ot-img-wrap">
                                     @if($member->image)
-                                        <img loading="lazy" decoding="async" src="{{ asset('storage/' . $member->image) }}" alt="{{ $member->name }}" class="ot-img">
+                                        <img loading="lazy" decoding="async" src="{{ person_image($member->image) }}" alt="{{ $member->name }}" class="ot-img">
                                     @else
                                         <div class="ot-img ot-placeholder">
                                             <i class="fas fa-user"></i>

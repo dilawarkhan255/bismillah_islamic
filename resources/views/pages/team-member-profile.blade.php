@@ -29,7 +29,7 @@
                 <div class="col-lg-4 text-center wow fadeInUp" data-wow-delay="0.1s">
                     <div class="tmp-profile-wrap mb-4">
                         @if($member->image)
-                            <img src="{{ asset('storage/' . $member->image) }}" alt="{{ $member->name }}" class="tmp-profile-img">
+                            <img src="{{ person_image($member->image) }}" alt="{{ $member->name }}" class="tmp-profile-img">
                         @else
                             <div class="tmp-profile-img tmp-profile-placeholder">
                                 <i class="fas fa-user" style="font-size:64px;color:var(--gold);"></i>

@@ -35,7 +35,7 @@
                             <div class="bia-team-card">
                                 <div class="bia-team-bar"></div>
                                 <div class="bia-team-img-wrap">
-                                    <img loading="lazy" decoding="async" src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->name }}" class="bia-team-img">
+                                    <img loading="lazy" decoding="async" src="{{ person_image($teacher->image) }}" alt="{{ $teacher->name }}" class="bia-team-img">
                                     <div class="bia-team-ring"></div>
                                 </div>
                                 <div class="bia-team-body">

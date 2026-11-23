@@ -28,7 +28,7 @@
                 <!-- Profile Image -->
                 <div class="col-lg-4 text-center wow fadeInUp" data-wow-delay="0.1s">
                     <div class="teacher-profile-img-wrap mx-auto">
-                        <img src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->name }}" class="teacher-profile-img">
+                        <img src="{{ person_image($teacher->image) }}" alt="{{ $teacher->name }}" class="teacher-profile-img">
                     </div>
                 </div>
 

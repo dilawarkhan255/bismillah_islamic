@@ -45,3 +45,11 @@ if (!function_exists('faIcon')) {
         return 'fas ' . $class;
     }
 }
+
+if (!function_exists('person_image')) {
+    /** Photo of a teacher / team member / testimonial, or a neutral avatar when none was uploaded. */
+    function person_image(?string $path): string
+    {
+        return $path ? asset('storage/' . $path) : asset('img/avatar-placeholder.svg');
+    }
+}

@@ -77,6 +77,7 @@ Route::get('/free_trial', function () {
 
 // Old links (hero slides, page CTAs saved in the DB) used /free-trial
 Route::redirect('/free-trial', '/free_trial', 301);
+Route::redirect('/teachers', '/team', 301);
 
 Route::get('/pricing', function () {
     $plans = ContentCache::remember('pricing.active', fn () => PricingPlan::active()->get());
