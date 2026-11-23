@@ -61,7 +61,7 @@ class ClassesTest extends TestCase
         $this->actingAs($this->admin)->post(route('admin.classes.store'), [
             'student_id' => $student->id, 'teacher_id' => $this->teacher->id, 'days' => [5, 1, 3],
             'start_time' => '16:00', 'duration_minutes' => 30, 'status' => 'active',
-        ])->assertRedirect(route('admin.students.edit', $student));
+        ])->assertRedirect(route('admin.students.edit', $student) . '#classes');
 
         $class = ClassSchedule::firstOrFail();
         $this->assertSame([1, 3, 5], $class->days);

@@ -7,6 +7,18 @@
 @section('content')
 <section class="pg-wrap">
   <div class="container">
+    @auth
+      @role(\App\Support\AdminPermissions::ADMIN_ROLE)
+        {{-- Only the admin sees this bar; parents see the page without it --}}
+        <div class="pg-adminbar">
+          <span><i class="fas fa-lock"></i> Admin view — this is exactly what the parents see.</span>
+          <span class="d-flex gap-3">
+            <a href="{{ url()->previous() !== url()->current() ? url()->previous() : route('progress.index') }}">&larr; Back</a>
+            <a href="{{ route('admin.students.edit', $student) }}#progress">Edit student</a>
+          </span>
+        </div>
+      @endrole
+    @endauth
 
     <div class="pg-head">
       <div>
@@ -63,7 +75,7 @@
           <div class="pg-card">
             <h2 class="pg-h2">Certificates</h2>
             @foreach($student->certificates as $cert)
-              <a class="pg-cert" href="{{ route('certificate.show', $cert) }}" target="_blank">
+              <a class="pg-cert" href="{{ route('certificate.show', $cert) }}">
                 <i class="fas fa-award"></i> <span>{{ $cert->title }}<small>{{ $cert->issued_on->format('d M Y') }}</small></span>
               </a>
             @endforeach
@@ -103,6 +115,9 @@
 </section>
 
 <style>
+  .pg-adminbar { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; padding:10px 14px; margin-bottom:22px; background:#0D1B2A; color:#e9e4d8; font-size:13px; }
+  .pg-adminbar i { color: var(--gold); margin-right: 4px; }
+  .pg-adminbar a { color: var(--gold-light, #e8c97a); font-weight:700; text-decoration:none; }
   .pg-wrap { padding: 48px 0 64px; background: var(--light-bg, #faf7f0); }
   .pg-head { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:28px; }
   .pg-eyebrow { color: var(--gold); font: 700 11px/1 'Lato', sans-serif; letter-spacing: 2px; text-transform: uppercase; }

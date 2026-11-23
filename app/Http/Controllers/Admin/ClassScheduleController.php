@@ -93,7 +93,7 @@ class ClassScheduleController extends Controller
 
         return $request->input('return') === 'timetable'
             ? redirect()->route('admin.classes.index')->with('success', 'Class deleted.')
-            : redirect()->route('admin.students.edit', $student)->with('success', 'Class deleted.');
+            : redirect()->to(route('admin.students.edit', $student) . '#classes')->with('success', 'Class deleted.');
     }
 
     /** @return array{0: Collection<int, ClassSchedule>, 1: array} */
@@ -150,7 +150,7 @@ class ClassScheduleController extends Controller
 
     private function backToStudent(ClassSchedule $class, string $message)
     {
-        $redirect = redirect()->route('admin.students.edit', $class->student_id)->with('success', $message);
+        $redirect = redirect()->to(route('admin.students.edit', $class->student_id) . '#classes')->with('success', $message);
 
         $clashes = $class->clashes();
         if ($clashes->isNotEmpty()) {

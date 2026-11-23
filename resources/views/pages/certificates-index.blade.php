@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="ai-links">
-              <a href="{{ route('certificate.show', $c) }}" target="_blank"><i class="fas fa-print"></i> Open / Print</a>
+              <a href="{{ route('certificate.show', $c) }}"><i class="fas fa-print"></i> Open / Print</a>
               @if($c->student->whatsappLink())
                 <a href="{{ $c->student->whatsappLink('Assalamu Alaikum! Congratulations — here is ' . $c->student->name . "'s certificate: " . route('certificate.show', $c)) }}" target="_blank" rel="noopener" class="wa"><i class="fab fa-whatsapp"></i> Send</a>
               @endif

@@ -11,7 +11,8 @@
   * { box-sizing: border-box; }
   body { margin: 0; background: #e9e4d8; font-family: 'Lato', sans-serif; color: #0D1B2A; }
   .bar { max-width: 297mm; margin: 16px auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 8px; flex-wrap: wrap; }
-  .verified { color: #0f766e; font-weight: 700; font-size: 14px; }
+  .verified { color: #0f766e; font-weight: 700; font-size: 14px; margin-right: auto; }
+  .back { color: #AE8225; font-weight: 700; font-size: 14px; text-decoration: none; }
   .bar button { font: 700 14px 'Lato', sans-serif; padding: 9px 18px; border: 0; background: #AE8225; color: #fff; cursor: pointer; border-radius: 6px; }
   .sheet { width: 297mm; height: 210mm; margin: 0 auto 24px; background: #fffdf7; position: relative; padding: 14mm; box-shadow: 0 10px 40px rgba(0,0,0,.18); }
   .frame { position: absolute; inset: 9mm; border: 2.5px solid #AE8225; }
@@ -42,6 +43,7 @@
 </head>
 <body>
   <div class="bar">
+    <a class="back" href="javascript:history.back()" hidden>&larr; Back</a>
     <span class="verified">✔ Genuine certificate issued by {{ setting('site_name', 'Bismillah Islamic Academy') }}</span>
     <button type="button" onclick="window.print()">Print / Save as PDF</button>
   </div>
@@ -67,5 +69,9 @@
     </div>
     <div class="serial">Certificate no. {{ $certificate->serial }} · Check at {{ route('certificate.show', $certificate) }}</div>
   </div>
+<script>
+  // "Back" only when the visitor came from another page of this site (e.g. the admin)
+  if (document.referrer && document.referrer.indexOf(location.origin) === 0) document.querySelector('.back').hidden = false;
+</script>
 </body>
 </html>

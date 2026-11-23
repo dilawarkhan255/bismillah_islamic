@@ -39,8 +39,8 @@ class StudentController extends Controller
     {
         $student = Student::create($this->validated($request));
 
-        return redirect()->route('admin.students.edit', $student)
-            ->with('success', 'Student added. Now add their class times below.');
+        return redirect()->to(route('admin.students.edit', $student) . '#classes')
+            ->with('success', 'Student added. Now add their class times.');
     }
 
     public function edit(Student $student)
@@ -105,7 +105,7 @@ class StudentController extends Controller
             $freeTrial->update(['status' => 'approved']);
         }
 
-        return redirect()->route('admin.students.edit', $student)
+        return redirect()->to(route('admin.students.edit', $student) . '#classes')
             ->with('success', 'Student created from the free trial. Check the timezone, then add their class times.');
     }
 

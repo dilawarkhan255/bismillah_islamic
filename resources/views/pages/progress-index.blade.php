@@ -34,7 +34,7 @@
             <div class="ai-bar"><span style="width:{{ $s->progress_percent }}%"></span></div>
             <small class="text-muted">{{ $s->current_level ?: 'No level set' }} · {{ $s->progress_percent }}% · {{ $s->progress_count }} {{ Str::plural('report', $s->progress_count) }}</small>
             <div class="ai-links">
-              <a href="{{ $s->progress_url }}" target="_blank"><i class="fas fa-eye"></i> Open page</a>
+              <a href="{{ $s->progress_url }}"><i class="fas fa-eye"></i> Open page</a>
               @if($s->whatsappLink())
                 <a href="{{ $s->whatsappLink('Assalamu Alaikum! Here is ' . $s->name . "'s progress page at Bismillah Islamic Academy: " . $s->progress_url) }}" target="_blank" rel="noopener" class="wa"><i class="fab fa-whatsapp"></i> Send to parent</a>
               @endif

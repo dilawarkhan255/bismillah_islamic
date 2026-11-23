@@ -3,171 +3,111 @@
 @section('title', $student->exists ? $student->name : 'Add Student')
 
 @section('content')
-<x-admin.page-header :title="$student->exists ? $student->name : 'Add Student'" icon="bi-mortarboard" eyebrow="Students" :back="route('admin.students.index')">
+<x-admin.page-header :title="$student->exists ? $student->name : 'Add Student'" icon="bi-mortarboard" eyebrow="Students"
+  :subtitle="$student->exists ? trim(($student->parent_name ? 'Parent: ' . $student->parent_name . ' · ' : '') . ($student->country ?: $student->timezone_label)) : 'Fill in the details, then add class times.'"
+  :back="route('admin.students.index')">
   @if($student->exists)
     @if($student->whatsapp_url)
       <a href="{{ $student->whatsapp_url }}" target="_blank" rel="noopener" class="btn btn-light"><i class="bi bi-whatsapp" style="color:#25D366;"></i> WhatsApp</a>
     @endif
+    <a href="{{ $student->progress_url }}" class="btn btn-light"><i class="bi bi-eye"></i> Parent page</a>
     <x-admin.delete-button :action="route('admin.students.destroy', $student)" :name="$student->name" label="Delete" />
   @endif
 </x-admin.page-header>
 
-<div class="row g-4">
-  {{-- ═══ Student details ═══ --}}
-  <div class="{{ $student->exists ? 'col-xl-5' : 'col-xl-8' }}">
-    <div class="panel">
-      <div class="panel-header"><h5 class="mb-0"><i class="bi bi-person"></i> Student details</h5></div>
-      <div class="panel-body">
-        <form action="{{ $student->exists ? route('admin.students.update', $student) : route('admin.students.store') }}" method="POST">
-          @csrf
-          @if($student->exists) @method('PUT') @endif
+@if(! $student->exists)
+  <div class="panel" style="max-width:980px;">
+    <div class="panel-body">@include('admin.pages.students._details-form')</div>
+  </div>
+@else
+  @php
+    $thisMonth = \Carbon\CarbonImmutable::now(\App\Support\Timezones::ACADEMY)->startOfMonth();
+    $paidThisMonth = $student->paidFor($thisMonth);
+    $activeClasses = $student->classes->where('status', 'active')->count();
+  @endphp
 
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label class="form-label fw-bold">Student name <span class="text-danger">*</span></label>
-              <input type="text" name="name" class="form-control" value="{{ old('name', $student->name) }}" required>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold">Parent name</label>
-              <input type="text" name="parent_name" class="form-control" value="{{ old('parent_name', $student->parent_name) }}">
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold">WhatsApp</label>
-              <input type="text" name="whatsapp" class="form-control" value="{{ old('whatsapp', $student->whatsapp) }}" placeholder="+44 7400 000000">
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold">Email</label>
-              <input type="email" name="email" class="form-control" value="{{ old('email', $student->email) }}">
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold">Country</label>
-              <input type="text" name="country" class="form-control" value="{{ old('country', $student->country) }}">
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold">Student's timezone <span class="text-danger">*</span></label>
-              <select name="timezone" class="form-select" required>
-                @foreach(\App\Support\Timezones::OPTIONS as $group => $zones)
-                  <optgroup label="{{ $group }}">
-                    @foreach($zones as $zone => $label)
-                      <option value="{{ $zone }}" @selected(old('timezone', $student->timezone) === $zone)>{{ $label }}</option>
-                    @endforeach
-                  </optgroup>
-                @endforeach
-              </select>
-              <small class="text-muted">Used to show the class in the student's own time.</small>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-bold">Course</label>
-              <input type="text" name="course" class="form-control" list="courseList" value="{{ old('course', $student->course) }}">
-              <datalist id="courseList">
-                @foreach($courses as $c)<option value="{{ $c }}">@endforeach
-              </datalist>
-            </div>
-            <div class="col-md-3">
-              <label class="form-label fw-bold">Status</label>
-              <select name="status" class="form-select">
-                @foreach(\App\Models\Student::STATUSES as $value => $label)
-                  <option value="{{ $value }}" @selected(old('status', $student->status) === $value)>{{ $label }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label class="form-label fw-bold">Started</label>
-              <input type="date" name="start_date" class="form-control" value="{{ old('start_date', $student->start_date?->format('Y-m-d')) }}">
-            </div>
-            <div class="col-md-4">
-              <label class="form-label fw-bold">Monthly fee</label>
-              <input type="number" step="0.01" min="0" name="fee_amount" class="form-control" value="{{ old('fee_amount', $student->fee_amount !== null ? rtrim(rtrim((string) $student->fee_amount, '0'), '.') : '') }}" placeholder="e.g. 40">
-            </div>
-            <div class="col-md-4">
-              <label class="form-label fw-bold">Currency</label>
-              <select name="fee_currency" class="form-select">
-                @foreach(\App\Models\Student::CURRENCIES as $code => $symbol)
-                  <option value="{{ $code }}" @selected(old('fee_currency', $student->fee_currency) === $code)>{{ $code }} ({{ $symbol }})</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label fw-bold">Due on day</label>
-              <input type="number" min="1" max="28" name="fee_due_day" class="form-control" value="{{ old('fee_due_day', $student->fee_due_day ?: 5) }}">
-            </div>
-            <div class="col-12">
-              <label class="form-label fw-bold">Notes</label>
-              <textarea name="notes" class="form-control" rows="3">{{ old('notes', $student->notes) }}</textarea>
-            </div>
-          </div>
-
-          <div class="text-end mt-4">
-            <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> {{ $student->exists ? 'Save student' : 'Add student' }}</button>
-          </div>
-        </form>
-      </div>
+  {{-- At a glance --}}
+  <div class="st-glance mb-3">
+    <div><span>Status</span>@include('admin.pages.students._status', ['status' => $student->status])</div>
+    <div><span>Course</span><strong>{{ $student->course ?: '—' }}</strong></div>
+    <div><span>Level</span><strong>{{ $student->current_level ?: '—' }}</strong> <small>{{ $student->progress_percent }}%</small></div>
+    <div><span>Classes</span><strong>{{ $activeClasses }}</strong> <small>{{ $activeClasses === 1 ? 'class' : 'classes' }}</small></div>
+    <div><span>{{ $thisMonth->format('F') }} fee</span>
+      @if(! $student->fee_amount)<strong class="text-muted">Not set</strong>
+      @elseif($paidThisMonth)<strong style="color:var(--admin-success);">Paid</strong>
+      @else<strong style="color:var(--admin-danger);">Not paid</strong>@endif
     </div>
   </div>
 
-  @if($student->exists)
-  {{-- ═══ Classes ═══ --}}
-  <div class="col-xl-7">
-    <div class="panel mb-4">
-      <div class="panel-header"><h5 class="mb-0"><i class="bi bi-calendar-week"></i> Classes</h5></div>
-      <div class="panel-body">
-        @forelse($student->classes as $class)
-          <div class="cls-row">
-            <div class="cls-time">
-              <strong>{{ $class->time_label }}</strong>
-              <small>{{ $class->duration_minutes }} min · PK</small>
-            </div>
-            <div class="flex-grow-1 min-w-0">
-              <div class="fw-bold">{{ $class->days_label }} <span class="text-muted fw-normal">· {{ $class->teacher?->name ?? 'No teacher' }}</span></div>
-              <small class="text-muted">
-                {{ $class->course ?: $student->course }}
-                @if($class->local_time_label)
-                  · <i class="bi bi-globe2"></i> Student's time: {{ $class->local_days_label }} {{ $class->local_time_label }}
-                @endif
-                @if($class->status !== 'active') · <span style="color:#AE8225;">Paused</span> @endif
-              </small>
-              @if($class->notes)<br><small class="text-muted"><i class="bi bi-sticky"></i> {{ $class->notes }}</small>@endif
-            </div>
-            <div class="d-flex gap-2">
-              <a href="{{ route('admin.classes.edit', $class) }}" class="btn btn-sm btn-action" title="Edit"><i class="bi bi-pencil"></i></a>
-              <x-admin.delete-button :action="route('admin.classes.destroy', $class)" :name="'this class'" />
-            </div>
-          </div>
-        @empty
-          <p class="text-muted mb-0">No class times yet. Add the first one below.</p>
-        @endforelse
-      </div>
-    </div>
+  {{-- Tabs --}}
+  <ul class="nav st-tabs mb-3" role="tablist">
+    @foreach([
+      'details' => ['bi-person', 'Details', null],
+      'classes' => ['bi-calendar-week', 'Classes', $student->classes->count()],
+      'progress' => ['bi-graph-up-arrow', 'Progress', $student->progress->count() ?: null],
+      'fees' => ['bi-cash-coin', 'Fees', null],
+      'certificates' => ['bi-award', 'Certificates', $student->certificates->count() ?: null],
+    ] as $key => [$icon, $label, $count])
+      <li class="nav-item" role="presentation">
+        <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="tab-{{ $key }}" data-bs-toggle="tab" data-bs-target="#pane-{{ $key }}" data-hash="{{ $key }}" type="button" role="tab">
+          <i class="bi {{ $icon }}"></i> {{ $label }} @if($count)<span class="st-count">{{ $count }}</span>@endif
+        </button>
+      </li>
+    @endforeach
+  </ul>
 
-    <div class="panel">
-      <div class="panel-header"><h5 class="mb-0"><i class="bi bi-plus-circle"></i> Add a class</h5></div>
-      <div class="panel-body">
-        <form action="{{ route('admin.classes.store') }}" method="POST">
-          @csrf
-          <input type="hidden" name="student_id" value="{{ $student->id }}">
-          @include('admin.pages.classes._fields', ['class' => new \App\Models\ClassSchedule(['status' => 'active', 'duration_minutes' => 30]), 'defaultCourse' => $student->course])
-          <div class="text-end mt-4">
-            <button type="submit" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add class</button>
-          </div>
-        </form>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="pane-details" role="tabpanel">
+      <div class="panel">
+        <div class="panel-body">@include('admin.pages.students._details-form')</div>
       </div>
     </div>
+    <div class="tab-pane fade" id="pane-classes" role="tabpanel">@include('admin.pages.students._tab-classes')</div>
+    <div class="tab-pane fade" id="pane-progress" role="tabpanel">@include('admin.pages.students._tab-progress')</div>
+    <div class="tab-pane fade" id="pane-fees" role="tabpanel">@include('admin.pages.students._tab-fees', ['thisMonth' => $thisMonth, 'paidThisMonth' => $paidThisMonth])</div>
+    <div class="tab-pane fade" id="pane-certificates" role="tabpanel">@include('admin.pages.students._tab-certificates')</div>
   </div>
-  @endif
-</div>
-
-@if($student->exists)
-  @include('admin.pages.students._records')
 @endif
 @endsection
 
 @push('styles')
 <style>
-  .cls-row { display:flex; align-items:center; gap:1rem; padding:.85rem 0; border-bottom:1px solid var(--admin-border); }
-  .cls-row:last-child { border-bottom:0; padding-bottom:0; }
-  .cls-row:first-child { padding-top:0; }
+  .st-glance { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:.75rem; }
+  .st-glance > div { padding:.75rem 1rem; border:1px solid var(--admin-border); border-radius:12px; background:var(--admin-surface); }
+  .st-glance > div > span:first-child { display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--admin-muted); margin-bottom:.2rem; }
+  .st-glance strong { color:var(--admin-text); }
+  .st-glance small { color:var(--admin-muted); }
+  .st-tabs { gap:.35rem; border-bottom:1px solid var(--admin-border); flex-wrap:nowrap; overflow-x:auto; }
+  .st-tabs .nav-link { border:0; border-bottom:3px solid transparent; border-radius:0; color:var(--admin-muted); font-weight:700; padding:.75rem 1rem; white-space:nowrap; background:none; }
+  .st-tabs .nav-link:hover { color:var(--admin-text); }
+  .st-tabs .nav-link.active { color:var(--admin-primary); border-bottom-color:var(--admin-primary); }
+  .st-count { display:inline-block; min-width:20px; padding:0 6px; margin-left:4px; border-radius:10px; background:rgba(174,130,37,.15); color:var(--admin-primary); font-size:.72rem; }
+  .cls-row, .rec-row { display:flex; align-items:center; gap:.85rem; padding:.75rem 0; border-top:1px solid var(--admin-border); }
+  .cls-row:first-child, .rec-row:first-child { border-top:0; padding-top:0; }
   .cls-time { min-width:92px; text-align:center; padding:.45rem .6rem; border-radius:10px; background:rgba(174,130,37,.1); }
   .cls-time strong { display:block; color:var(--admin-primary); }
   .cls-time small { color:var(--admin-muted); font-size:.72rem; }
+  .rec-badge { font-size:.72rem; font-weight:700; padding:.3rem .55rem; border-radius:8px; white-space:nowrap; min-width:64px; text-align:center; }
+  .rec-fee { display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.9rem 1rem; border-radius:12px; border:1px solid rgba(220,38,38,.35); background:rgba(220,38,38,.06); }
+  .rec-fee.is-paid { border-color:rgba(15,118,110,.35); background:rgba(15,118,110,.07); }
 </style>
+@endpush
+
+@push('scripts')
+<script>
+  // Open the tab named in the URL (#classes, #fees …) and keep the URL in step,
+  // so after saving the page comes back to the same tab.
+  (function () {
+    var open = function (hash) {
+      var btn = document.querySelector('.st-tabs [data-hash="' + hash + '"]');
+      if (btn) bootstrap.Tab.getOrCreateInstance(btn).show();
+    };
+    document.addEventListener('DOMContentLoaded', function () {
+      if (location.hash) open(location.hash.slice(1));
+      document.querySelectorAll('.st-tabs [data-hash]').forEach(function (btn) {
+        btn.addEventListener('shown.bs.tab', function () { history.replaceState(null, '', '#' + btn.dataset.hash); });
+      });
+    });
+  })();
+</script>
 @endpush

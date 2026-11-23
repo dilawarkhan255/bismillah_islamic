@@ -7,7 +7,8 @@
 <style>
   * { box-sizing: border-box; }
   body { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; margin: 0; padding: 24px; background: #fff; font-size: 13px; }
-  .toolbar { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px; }
+  .toolbar { display: flex; gap: 8px; justify-content: flex-end; align-items: center; margin-bottom: 16px; }
+  .toolbar .back { margin-right: auto; color: #AE8225; font-weight: bold; text-decoration: none; }
   .toolbar button { font: inherit; padding: 8px 16px; border: 1px solid #AE8225; background: #AE8225; color: #fff; cursor: pointer; border-radius: 6px; }
   .toolbar button.secondary { background: #fff; color: #AE8225; }
   header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid #AE8225; padding-bottom: 10px; margin-bottom: 18px; }
@@ -34,6 +35,7 @@
 </head>
 <body class="{{ request('per_page') ? 'per-teacher' : '' }}">
   <div class="toolbar">
+    <a class="back" href="{{ route('admin.classes.index', request()->only(['teacher', 'day', 'status'])) }}">&larr; Back to timetable</a>
     <button class="secondary" type="button" onclick="document.body.classList.toggle('per-teacher')">Toggle: each teacher on a new page</button>
     <button type="button" onclick="window.print()">Print</button>
   </div>

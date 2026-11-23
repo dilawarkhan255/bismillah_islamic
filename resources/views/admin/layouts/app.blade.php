@@ -60,13 +60,13 @@
           <span class="nav-icon"><i class="bi bi-cash-coin" aria-hidden="true"></i></span>
           <span class="nav-text">Fees</span>
         </a>
-        <a class="nav-link" href="{{ route('progress.index') }}" target="_blank" data-sidebar-close>
+        <a class="nav-link" href="{{ route('progress.index') }}" data-sidebar-close>
           <span class="nav-icon"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i></span>
-          <span class="nav-text">Parent Pages <i class="bi bi-box-arrow-up-right small opacity-50"></i></span>
+          <span class="nav-text">Parent Pages</span>
         </a>
-        <a class="nav-link" href="{{ route('certificates.index') }}" target="_blank" data-sidebar-close>
+        <a class="nav-link" href="{{ route('certificates.index') }}" data-sidebar-close>
           <span class="nav-icon"><i class="bi bi-award" aria-hidden="true"></i></span>
-          <span class="nav-text">Certificates <i class="bi bi-box-arrow-up-right small opacity-50"></i></span>
+          <span class="nav-text">Certificates</span>
         </a>
         @endrole
 
