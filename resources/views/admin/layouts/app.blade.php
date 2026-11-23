@@ -408,6 +408,48 @@
       askDelete(name).then(function (ok) { if (ok) document.getElementById(formId).submit(); });
     }
 
+    // ── Bulk delete for DataTables lists ──
+    // Rows need <input type="checkbox" class="js-row-check" value="{id}">, the header
+    // a .js-select-all checkbox, and the page a .js-bulk-delete button plus a hidden
+    // form whose id is in the button's data-form. Works across every table page.
+    function initBulkDelete(dt, noun) {
+      var $table = $(dt.table().node());
+      var $btn = $('.js-bulk-delete[data-table="#' + $table.attr('id') + '"]');
+      var form = document.getElementById($btn.data('form'));
+      var $all = $table.find('.js-select-all');
+
+      function checked() { return dt.$('.js-row-check:checked'); }
+
+      function refresh() {
+        var n = checked().length;
+        $btn.prop('disabled', n === 0).find('.js-bulk-count').text(n ? '(' + n + ')' : '');
+        var $visible = $(dt.rows({ search: 'applied' }).nodes()).find('.js-row-check');
+        var on = $visible.filter(':checked').length;
+        $all.prop('checked', $visible.length > 0 && on === $visible.length)
+            .prop('indeterminate', on > 0 && on < $visible.length);
+      }
+
+      $all.on('change', function () {
+        $(dt.rows({ search: 'applied' }).nodes()).find('.js-row-check').prop('checked', this.checked);
+        refresh();
+      });
+      $table.on('change', '.js-row-check', refresh);
+      dt.on('draw', refresh);
+
+      $btn.on('click', function () {
+        var $rows = checked();
+        if (!$rows.length) return;
+        askDelete($rows.length + ' ' + noun + ($rows.length === 1 ? '' : 's')).then(function (ok) {
+          if (!ok) return;
+          $(form).find('input[name="ids[]"]').remove();
+          $rows.each(function () { $('<input type="hidden" name="ids[]">').val(this.value).appendTo(form); });
+          form.submit();
+        });
+      });
+
+      refresh();
+    }
+
     // Collapsed sidebar shows icons only: give every link a tooltip with its name
     document.querySelectorAll('.sidebar-nav .nav-link').forEach(function (a) {
       var t = a.querySelector('.nav-text');

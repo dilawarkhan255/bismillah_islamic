@@ -73,6 +73,7 @@ Route::prefix('admin')
         // Inbox
         Route::middleware('permission:manage enrollments')->group(function () {
             Route::get('enrollments', [EnrollmentController::class, 'index'])->name('enrollments.index');
+            Route::delete('enrollments', [EnrollmentController::class, 'bulkDestroy'])->name('enrollments.bulk-destroy');
             Route::get('enrollments/{enrollment}', [EnrollmentController::class, 'show'])->name('enrollments.show');
             Route::patch('enrollments/{enrollment}/status', [EnrollmentController::class, 'updateStatus'])->name('enrollments.status');
             Route::delete('enrollments/{enrollment}', [EnrollmentController::class, 'destroy'])->name('enrollments.destroy');
@@ -87,6 +88,7 @@ Route::prefix('admin')
 
         Route::middleware('permission:manage messages')->group(function () {
             Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
+            Route::delete('messages', [MessageController::class, 'bulkDestroy'])->name('messages.bulk-destroy');
             Route::get('messages/{message}', [MessageController::class, 'show'])->name('messages.show');
             Route::delete('messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
         });

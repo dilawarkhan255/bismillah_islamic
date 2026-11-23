@@ -3,7 +3,11 @@
 @section('title', 'Enrollments')
 
 @section('content')
-<x-admin.page-header title="Enrollments" icon="bi-person-plus" eyebrow="Manage" subtitle="Enrollment requests submitted from the website."></x-admin.page-header>
+<x-admin.page-header title="Enrollments" icon="bi-person-plus" eyebrow="Manage" subtitle="Enrollment requests submitted from the website.">
+  <button type="button" class="btn btn-danger-soft js-bulk-delete" data-table="#enrollmentsTable" data-form="bulkDeleteForm" disabled>
+    <i class="bi bi-trash"></i> Delete selected <span class="js-bulk-count"></span>
+  </button>
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">
@@ -11,6 +15,7 @@
             <table class="table align-middle mb-0" id="enrollmentsTable">
                 <thead>
                     <tr>
+                        <th style="width:36px;"><input type="checkbox" class="form-check-input js-select-all" aria-label="Select all"></th>
                         <th>Student Name</th>
                         <th>Parent</th>
                         <th>Phone</th>
@@ -23,6 +28,7 @@
                 <tbody>
                     @foreach($enrollments as $enrollment)
                         <tr>
+                            <td><input type="checkbox" class="form-check-input js-row-check" value="{{ $enrollment->id }}" aria-label="Select"></td>
                             <td><strong>{{ $enrollment->student_name }}</strong></td>
                             <td>{{ $enrollment->parent_name }}</td>
                             <td>{{ $enrollment->phone }}</td>
@@ -50,10 +56,17 @@
         </div>
     </div>
 </div>
+
+<form id="bulkDeleteForm" action="{{ route('admin.enrollments.bulk-destroy') }}" method="POST" style="display:none;">
+    @csrf @method('DELETE')
+</form>
 @endsection
 
 @push('scripts')
 <script>
-$(function() { initDatatables('#enrollmentsTable'); });
+$(function() {
+    var dt = initDatatables('#enrollmentsTable', { order: [], columnDefs: [{ targets: 0, orderable: false, searchable: false }] });
+    initBulkDelete(dt, 'enrollment');
+});
 </script>
 @endpush

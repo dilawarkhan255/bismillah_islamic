@@ -37,4 +37,17 @@ class EnrollmentController extends Controller
 
         return redirect()->route('admin.enrollments.index')->with('success', 'Enrollment deleted successfully.');
     }
+
+    public function bulkDestroy(Request $request)
+    {
+        $validated = $request->validate([
+            'ids'   => 'required|array|min:1',
+            'ids.*' => 'integer',
+        ]);
+
+        $count = Enrollment::whereIn('id', $validated['ids'])->delete();
+
+        return redirect()->route('admin.enrollments.index')
+            ->with('success', $count . ' ' . str('enrollment')->plural($count) . ' deleted successfully.');
+    }
 }

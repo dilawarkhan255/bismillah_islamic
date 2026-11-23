@@ -3,7 +3,11 @@
 @section('title', 'Messages')
 
 @section('content')
-<x-admin.page-header title="Messages" icon="bi-envelope" eyebrow="Manage" subtitle="Contact form messages from visitors."></x-admin.page-header>
+<x-admin.page-header title="Messages" icon="bi-envelope" eyebrow="Manage" subtitle="Contact form messages from visitors.">
+  <button type="button" class="btn btn-danger-soft js-bulk-delete" data-table="#messagesTable" data-form="bulkDeleteForm" disabled>
+    <i class="bi bi-trash"></i> Delete selected <span class="js-bulk-count"></span>
+  </button>
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">
@@ -11,6 +15,7 @@
             <table class="table align-middle mb-0" id="messagesTable">
                 <thead>
                     <tr>
+                        <th style="width:36px;"><input type="checkbox" class="form-check-input js-select-all" aria-label="Select all"></th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Inquiry</th>
@@ -22,6 +27,7 @@
                 <tbody>
                     @foreach($messages as $message)
                         <tr>
+                            <td><input type="checkbox" class="form-check-input js-row-check" value="{{ $message->id }}" aria-label="Select"></td>
                             <td><strong>{{ $message->name }}</strong></td>
                             <td>{{ $message->email }}</td>
                             <td>{{ $message->inquiry }}</td>
@@ -49,10 +55,17 @@
         </div>
     </div>
 </div>
+
+<form id="bulkDeleteForm" action="{{ route('admin.messages.bulk-destroy') }}" method="POST" style="display:none;">
+    @csrf @method('DELETE')
+</form>
 @endsection
 
 @push('scripts')
 <script>
-$(function() { initDatatables('#messagesTable'); });
+$(function() {
+    var dt = initDatatables('#messagesTable', { order: [], columnDefs: [{ targets: 0, orderable: false, searchable: false }] });
+    initBulkDelete(dt, 'message');
+});
 </script>
 @endpush

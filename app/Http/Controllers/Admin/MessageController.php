@@ -30,4 +30,17 @@ class MessageController extends Controller
 
         return redirect()->route('admin.messages.index')->with('success', 'Message deleted successfully.');
     }
+
+    public function bulkDestroy(Request $request)
+    {
+        $validated = $request->validate([
+            'ids'   => 'required|array|min:1',
+            'ids.*' => 'integer',
+        ]);
+
+        $count = Message::whereIn('id', $validated['ids'])->delete();
+
+        return redirect()->route('admin.messages.index')
+            ->with('success', $count . ' ' . str('message')->plural($count) . ' deleted successfully.');
+    }
 }

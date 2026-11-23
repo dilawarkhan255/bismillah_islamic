@@ -43,7 +43,7 @@
             </div>
             <div class="col-12 mb-3">
                 <label class="text-muted small d-block">Message</label>
-                <div class="border rounded p-3 bg-light">
+                <div class="border rounded p-3 message-body">
                     {!! nl2br(e($message->message)) !!}
                 </div>
             </div>

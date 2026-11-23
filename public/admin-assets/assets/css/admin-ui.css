@@ -1076,3 +1076,16 @@ html[data-theme="dark"] .dash-badge--wait { color: #fbbf24; }
   .dash-hero-title { font-size: 1.25rem; }
   .dash-row-time { display: none; }
 }
+
+/* ---------- Message text on the message details page ---------- */
+.message-body {
+  background: var(--admin-head-bg);
+  color: var(--admin-text);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+html[data-theme="dark"] .message-body {
+  background: transparent;
+  color: #fff;
+}
