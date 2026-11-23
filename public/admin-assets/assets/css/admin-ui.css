@@ -1089,3 +1089,33 @@ html[data-theme="dark"] .message-body {
   background: transparent;
   color: #fff;
 }
+
+/* ---------- Page title card: same navy + gold glow as the dashboard welcome card ---------- */
+.page-heading {
+  border: 0;
+  background:
+    radial-gradient(circle at 92% 20%, rgba(212, 168, 67, 0.28), transparent 45%),
+    linear-gradient(135deg, #0D1B2A 0%, #18324a 100%);
+  box-shadow: var(--admin-shadow);
+  color: #ffffff;
+}
+.page-heading::before { background: linear-gradient(180deg, #D4A843, #AE8225); }
+.page-heading h1 { color: #ffffff; }
+.page-heading .eyebrow { color: #D4A843; }
+.page-heading .text-muted { color: rgba(255, 255, 255, 0.7) !important; }
+.page-heading .page-icon { background: rgba(212, 168, 67, 0.16); color: #D4A843; border-color: rgba(212, 168, 67, 0.3); }
+
+/* buttons on the dark card */
+.page-heading .btn-light {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+.page-heading .btn-light:hover { background: rgba(255, 255, 255, 0.16); color: #ffffff; }
+.page-heading .btn-danger-soft {
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: #fca5a5;
+}
+.page-heading .btn-danger-soft:hover:not(:disabled) { background: #dc2626; border-color: #dc2626; color: #ffffff; }
+.page-heading .btn-danger-soft:disabled { opacity: 0.45; }
