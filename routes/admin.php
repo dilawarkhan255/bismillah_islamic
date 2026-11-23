@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\ClassScheduleController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EnrollmentController;
 use App\Http\Controllers\Admin\FreeTrialController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\QaidaController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -64,6 +66,21 @@ Route::prefix('admin')
         Route::middleware('permission:manage settings')->group(function () {
             Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
             Route::match(['post', 'put'], 'settings', [SettingController::class, 'update'])->name('settings.update');
+        });
+
+        // Students & timetable (admin only)
+        Route::middleware('role:' . AdminPermissions::ADMIN_ROLE)->group(function () {
+            Route::delete('students', [StudentController::class, 'bulkDestroy'])->name('students.bulk-destroy');
+            Route::post('students/from-free-trial/{freeTrial}', [StudentController::class, 'fromFreeTrial'])->name('students.from-free-trial');
+            Route::resource('students', StudentController::class)->except(['show']);
+
+            Route::get('classes', [ClassScheduleController::class, 'index'])->name('classes.index');
+            Route::get('classes/print', [ClassScheduleController::class, 'print'])->name('classes.print');
+            Route::get('classes/export', [ClassScheduleController::class, 'export'])->name('classes.export');
+            Route::post('classes', [ClassScheduleController::class, 'store'])->name('classes.store');
+            Route::get('classes/{class}/edit', [ClassScheduleController::class, 'edit'])->name('classes.edit');
+            Route::put('classes/{class}', [ClassScheduleController::class, 'update'])->name('classes.update');
+            Route::delete('classes/{class}', [ClassScheduleController::class, 'destroy'])->name('classes.destroy');
         });
 
         // Inbox

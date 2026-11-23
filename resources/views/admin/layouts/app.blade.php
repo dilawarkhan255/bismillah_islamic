@@ -46,6 +46,18 @@
         </a>
         @endcan
 
+        @role(\App\Support\AdminPermissions::ADMIN_ROLE)
+        <div class="nav-section-label">Classes</div>
+        <a class="nav-link {{ request()->routeIs('admin.classes.*') ? 'active' : '' }}" href="{{ route('admin.classes.index') }}" data-sidebar-close>
+          <span class="nav-icon"><i class="bi bi-calendar-week" aria-hidden="true"></i></span>
+          <span class="nav-text">Timetable</span>
+        </a>
+        <a class="nav-link {{ request()->routeIs('admin.students.*') ? 'active' : '' }}" href="{{ route('admin.students.index') }}" data-sidebar-close>
+          <span class="nav-icon"><i class="bi bi-mortarboard" aria-hidden="true"></i></span>
+          <span class="nav-text">Students</span>
+        </a>
+        @endrole
+
         @canany(['manage enrollments', 'manage free trials', 'manage messages'])
         <div class="nav-section-label">Inbox</div>
         @endcanany
@@ -284,6 +296,9 @@
         <div class="container-fluid px-3 px-lg-4 py-4">
           @if(session('success'))
             <script>document.addEventListener('DOMContentLoaded',function(){Swal.fire({icon:'success',title:'Success!',text:'{{ session("success") }}',timer:4000,timerProgressBar:true,showConfirmButton:false,toast:true,position:'top-end'});});</script>
+          @endif
+          @if(session('warning'))
+            <script>document.addEventListener('DOMContentLoaded',function(){Swal.fire({icon:'warning',title:'Please check',text:@js(session('warning'))});});</script>
           @endif
           @if($errors->any())
             <script>document.addEventListener('DOMContentLoaded',function(){Swal.fire({icon:'error',title:'Please fix the following',html:@js('<ul style="text-align:left;margin:0;padding-left:1.2rem;">' . collect($errors->all())->map(fn ($e) => '<li>' . e($e) . '</li>')->implode('') . '</ul>')});});</script>

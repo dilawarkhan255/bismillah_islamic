@@ -4,6 +4,17 @@
 
 @section('content')
 <x-admin.page-header title="Free Trial Details" icon="bi-calendar-check" eyebrow="Free Trials" :back="route('admin.free-trials.index')">
+  @role(\App\Support\AdminPermissions::ADMIN_ROLE)
+    @php $trialStudent = \App\Models\Student::where('free_trial_id', $freeTrial->id)->first(); @endphp
+    @if($trialStudent)
+      <a href="{{ route('admin.students.edit', $trialStudent) }}" class="btn btn-light"><i class="bi bi-mortarboard"></i> Open student</a>
+    @else
+      <form action="{{ route('admin.students.from-free-trial', $freeTrial) }}" method="POST" class="d-inline">
+        @csrf
+        <button type="submit" class="btn btn-primary"><i class="bi bi-mortarboard"></i> Make student</button>
+      </form>
+    @endif
+  @endrole
   <x-admin.delete-button :action="route('admin.free-trials.destroy', $freeTrial)" :name="$freeTrial->student_name" label="Delete" />
 </x-admin.page-header>
 
