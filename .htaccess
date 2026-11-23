@@ -1,0 +1,11 @@
+# Hosting where the whole repo is deployed into the web root (e.g. Hostinger Git deploy into public_html).
+# Sends every request into /public, so the site works and .env, vendor, storage etc. can never be opened directly.
+<IfModule mod_rewrite.c>
+    Options -Indexes
+    RewriteEngine On
+    RewriteRule ^(?!public/)(.*)$ public/$1 [L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    Require all denied
+</IfModule>
