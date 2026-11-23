@@ -38,6 +38,11 @@
                     <input type="text" name="settings[whatsapp_uk]" class="form-control" value="{{ SiteSetting::get('whatsapp_uk') }}">
                 </div>
                 <div class="col-md-6 mb-3">
+                    <label class="form-label">Floating WhatsApp button</label>
+                    <input type="text" name="settings[whatsapp_float]" class="form-control" placeholder="923141833216" value="{{ SiteSetting::get('whatsapp_float', '923141833216') }}">
+                    <small class="text-muted">Number with country code, e.g. 923141833216. Leave empty to hide the button.</small>
+                </div>
+                <div class="col-md-6 mb-3">
                     <label class="form-label">Class Hours</label>
                     <input type="text" name="settings[class_hours]" class="form-control" value="{{ SiteSetting::get('class_hours') }}">
                 </div>

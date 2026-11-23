@@ -744,6 +744,8 @@
     {{-- Footer --}}
     @include('partials.footer')
 
+    @include('partials.whatsapp-float')
+
     <!-- Back to Top -->
     <a href="#" class="btn back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
 
