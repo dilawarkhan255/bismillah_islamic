@@ -4,14 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Models\Certificate;
 use App\Models\Student;
+use App\Support\AdminPermissions;
 
 /** Public pages that need no login: a student's progress (private link) and certificate check. */
 class StudentPortalController extends Controller
 {
+    /** /progress (admin only): every student's parent page in one list. */
+    public function progressIndex()
+    {
+        $students = Student::withCount('progress')->orderByRaw("status = 'left'")->orderBy('name')->get();
+
+        return response()->view('pages.progress-index', compact('students'))->header('X-Robots-Tag', 'noindex, nofollow');
+    }
+
+    /** /certificates (admin only): every certificate issued. */
+    public function certificateIndex()
+    {
+        $certificates = Certificate::with('student')->orderByDesc('issued_on')->orderByDesc('id')->get();
+
+        return response()->view('pages.certificates-index', compact('certificates'))->header('X-Robots-Tag', 'noindex, nofollow');
+    }
+
     /** /progress/{token}: what parents see. Only someone with the link can open it. */
     public function progress(string $token)
     {
-        $student = Student::where('progress_token', $token)->where('status', '!=', 'left')->firstOrFail();
+        $isAdmin = auth()->user()?->hasRole(AdminPermissions::ADMIN_ROLE) ?? false;
+
+        // a student who left: the link stops working for parents, the admin can still open it
+        $student = Student::where('progress_token', $token)
+            ->when(! $isAdmin, fn ($q) => $q->where('status', '!=', 'left'))
+            ->firstOrFail();
 
         $student->load([
             'classes' => fn ($q) => $q->active()->with('teacher')->orderBy('start_time'),

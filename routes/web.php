@@ -46,6 +46,11 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 // Student portal: private progress link for parents, and certificate check
+// Lists of every progress page and certificate: admin only (students and visitors never see them)
+Route::middleware(['auth', 'role:' . \App\Support\AdminPermissions::ADMIN_ROLE])->group(function () {
+    Route::get('/progress', [StudentPortalController::class, 'progressIndex'])->name('progress.index');
+    Route::get('/certificates', [StudentPortalController::class, 'certificateIndex'])->name('certificates.index');
+});
 Route::get('/progress/{token}', [StudentPortalController::class, 'progress'])->where('token', '[A-Za-z0-9]{32}')->name('progress.show');
 Route::get('/certificate/{certificate}', [StudentPortalController::class, 'certificate'])->name('certificate.show');
 

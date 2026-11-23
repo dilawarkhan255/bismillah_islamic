@@ -62,6 +62,7 @@
               <td>@include('admin.pages.students._status', ['status' => $student->status])</td>
               <td class="text-end">
                 <div class="d-flex justify-content-end gap-2">
+                  <a href="{{ $student->progress_url }}" target="_blank" class="btn btn-sm btn-action" title="Parent page"><i class="bi bi-eye"></i></a>
                   <a href="{{ route('admin.students.edit', $student) }}" class="btn btn-sm btn-action" title="Edit"><i class="bi bi-pencil"></i></a>
                   <x-admin.delete-button :action="route('admin.students.destroy', $student)" :name="$student->name" />
                 </div>

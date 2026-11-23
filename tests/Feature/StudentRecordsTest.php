@@ -113,6 +113,29 @@ class StudentRecordsTest extends TestCase
         $this->get(route('free_trial'))->assertOk()->assertSee('id="trialSlots"', false)->assertSee('"days":[1,3,5]', false);
     }
 
+    public function test_admin_sees_every_page_visitors_do_not(): void
+    {
+        $this->student->certificates()->create(['title' => 'Completion of Norani Qaida', 'issued_on' => '2026-11-20']);
+        $left = Student::create(['name' => 'Gone Student', 'timezone' => 'Asia/Karachi', 'status' => 'left']);
+
+        // admin: menu links, both lists, and even a left student's page
+        $this->actingAs($this->admin)->get(route('home'))->assertSee('Student Progress Pages')->assertSee(route('certificates.index'), false);
+        $this->actingAs($this->admin)->get(route('progress.index'))->assertOk()->assertSee('Ali Khan')->assertSee('Gone Student')->assertSee($this->student->progress_url, false);
+        $this->actingAs($this->admin)->get(route('certificates.index'))->assertOk()->assertSee('Completion of Norani Qaida');
+        $this->actingAs($this->admin)->get($left->progress_url)->assertOk();
+
+        // other logged-in users: no menu links, lists forbidden
+        $editor = User::factory()->create();
+        $this->actingAs($editor)->get(route('home'))->assertDontSee('Student Progress Pages');
+        $this->actingAs($editor)->get(route('progress.index'))->assertForbidden();
+
+        // visitors: no menu links, lists need a login, a left student's link is gone
+        auth()->logout();
+        $this->get(route('home'))->assertDontSee('Student Progress Pages');
+        $this->get(route('certificates.index'))->assertRedirect(route('login'));
+        $this->get($left->progress_url)->assertNotFound();
+    }
+
     public function test_admin_only(): void
     {
         $editor = User::factory()->create();

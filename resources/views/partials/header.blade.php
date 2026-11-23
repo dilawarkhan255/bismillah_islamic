@@ -117,7 +117,7 @@ Row 2: Logo left | Nav CENTER
                 class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
             @php
                 $hasTeamMembers = \App\Support\ContentCache::remember('team-members.any', fn () => \App\Models\TeamMember::active()->exists());
-                $moreActive = request()->routeIs('blog', 'blog.show', 'pricing', 'free_trial', 'our-team', 'team-member.profile', 'privacy_policy');
+                $moreActive = request()->routeIs('blog', 'blog.show', 'pricing', 'free_trial', 'our-team', 'team-member.profile', 'privacy_policy', 'progress.index', 'certificates.index');
             @endphp
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle {{ $moreActive ? 'active' : '' }}" data-bs-toggle="dropdown" role="button" aria-expanded="false">More</a>
@@ -134,6 +134,18 @@ Row 2: Logo left | Nav CENTER
                     @endif
                     <a href="{{ route('privacy_policy') }}"
                         class="dropdown-item {{ request()->routeIs('privacy_policy') ? 'active' : '' }}">Privacy Policy</a>
+                    @auth
+                        @role(\App\Support\AdminPermissions::ADMIN_ROLE)
+                            {{-- Only the admin sees these; visitors and students never do --}}
+                            <div class="dropdown-divider"></div>
+                            <span class="dropdown-item-text small text-muted px-3" style="font-size:11px;letter-spacing:1px;text-transform:uppercase;">Admin only</span>
+                            <a href="{{ route('progress.index') }}"
+                                class="dropdown-item {{ request()->routeIs('progress.index', 'progress.show') ? 'active' : '' }}">Student Progress Pages</a>
+                            <a href="{{ route('certificates.index') }}"
+                                class="dropdown-item {{ request()->routeIs('certificates.index', 'certificate.show') ? 'active' : '' }}">Certificates</a>
+                            <a href="{{ route('admin.dashboard') }}" class="dropdown-item">Admin Panel</a>
+                        @endrole
+                    @endauth
                 </div>
             </div>
         </div>
