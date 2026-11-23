@@ -30,7 +30,7 @@ class AdminPermissions
             'manage testimonials' => ['Testimonials', 'admin.testimonials.index'],
             'manage gallery'      => ['Gallery', 'admin.gallery.index'],
             'manage sections'     => ['Page blocks (Sections)', 'admin.sections.index'],
-            'manage qaida'        => ['Norani Qaida lessons', 'admin.qaida.index'],
+            'manage qaida'        => ['Norani Qaida PDF', 'admin.qaida.index'],
         ],
         'Site setup' => [
             'manage hero slides'   => ['Hero slides', 'admin.hero-slides.index'],

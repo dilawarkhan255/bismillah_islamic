@@ -8,8 +8,6 @@ use App\Models\Course;
 use App\Models\GalleryItem;
 use App\Models\HeroSlide;
 use App\Models\PricingPlan;
-use App\Models\QaidaItem;
-use App\Models\QaidaLesson;
 use App\Models\Section;
 use App\Models\SiteSetting;
 use App\Models\Teacher;
@@ -60,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
 
         $contentModels = [
             BlogCategory::class, BlogPost::class, Course::class, GalleryItem::class,
-            HeroSlide::class, PricingPlan::class, QaidaItem::class, QaidaLesson::class, Section::class, SiteSetting::class,
+            HeroSlide::class, PricingPlan::class, Section::class, SiteSetting::class,
             Teacher::class, TeamMember::class, Testimonial::class,
         ];
 

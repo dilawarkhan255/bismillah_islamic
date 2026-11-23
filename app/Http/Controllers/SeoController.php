@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
-use App\Models\QaidaLesson;
 use App\Models\Teacher;
 use App\Models\TeamMember;
 use App\Support\ContentCache;
@@ -28,9 +27,6 @@ class SeoController extends Controller
                 $add(route('our-team'));
             }
             $add(route('qaida'), null, '0.8');
-            foreach (QaidaLesson::active()->get(['slug', 'updated_at']) as $lesson) {
-                $add(route('qaida.show', $lesson->slug), $lesson->updated_at, '0.6');
-            }
             $add(route('privacy_policy'), null, '0.3');
 
             foreach (BlogPost::active()->get(['slug', 'updated_at']) as $post) {

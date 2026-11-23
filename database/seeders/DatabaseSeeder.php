@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             PricingPlanSeeder::class,
             GalleryItemSeeder::class,
             SectionSeeder::class,
-            QaidaSeeder::class,
         ]);
     }
 }

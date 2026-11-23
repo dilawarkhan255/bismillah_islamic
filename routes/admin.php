@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\HeroSlideController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PageContentController;
 use App\Http\Controllers\Admin\PricingController;
-use App\Http\Controllers\Admin\QaidaLessonController;
+use App\Http\Controllers\Admin\QaidaController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SettingController;
@@ -43,13 +43,9 @@ Route::prefix('admin')
         Route::resource('gallery', GalleryController::class)->except(['show'])->parameters(['gallery' => 'item'])->names('gallery')->middleware('permission:manage gallery');
         Route::resource('sections', SectionController::class)->except(['show'])->names('sections')->middleware('permission:manage sections');
         Route::middleware('permission:manage qaida')->group(function () {
-            Route::resource('qaida', QaidaLessonController::class)->except(['show', 'create'])->parameters(['qaida' => 'lesson'])->names('qaida');
-            Route::post('qaida-pdf', [QaidaLessonController::class, 'uploadPdf'])->name('qaida.pdf.upload');
-            Route::delete('qaida-pdf', [QaidaLessonController::class, 'deletePdf'])->name('qaida.pdf.delete');
-            Route::put('qaida-display', [QaidaLessonController::class, 'updateDisplay'])->name('qaida.display');
-            Route::post('qaida/{lesson}/items', [QaidaLessonController::class, 'storeItems'])->name('qaida.items.store');
-            Route::put('qaida-items/{item}', [QaidaLessonController::class, 'updateItem'])->name('qaida.items.update');
-            Route::delete('qaida-items/{item}', [QaidaLessonController::class, 'destroyItem'])->name('qaida.items.destroy');
+            Route::get('qaida', [QaidaController::class, 'index'])->name('qaida.index');
+            Route::post('qaida-pdf', [QaidaController::class, 'uploadPdf'])->name('qaida.pdf.upload');
+            Route::delete('qaida-pdf', [QaidaController::class, 'deletePdf'])->name('qaida.pdf.delete');
         });
 
         // Site setup
