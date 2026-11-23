@@ -3,7 +3,11 @@
 @section('title', 'Free Trials')
 
 @section('content')
-<x-admin.page-header title="Free Trials" icon="bi-calendar-check" eyebrow="Manage" subtitle="Free trial class requests submitted from the website."></x-admin.page-header>
+<x-admin.page-header title="Free Trials" icon="bi-calendar-check" eyebrow="Manage" subtitle="Free trial class requests submitted from the website.">
+  <button type="button" class="btn btn-danger-soft js-bulk-delete" data-table="#freeTrialsTable" data-form="bulkDeleteForm" disabled>
+    <i class="bi bi-trash"></i> Delete selected <span class="js-bulk-count"></span>
+  </button>
+</x-admin.page-header>
 
 <div class="panel">
     <div class="panel-body">
@@ -11,6 +15,7 @@
             <table class="table align-middle mb-0" id="freeTrialsTable">
                 <thead>
                     <tr>
+                        <th style="width:36px;"><input type="checkbox" class="form-check-input js-select-all" aria-label="Select all"></th>
                         <th>Student</th>
                         <th>Parent</th>
                         <th>Phone</th>
@@ -24,6 +29,7 @@
                 <tbody>
                     @foreach($freeTrials as $trial)
                         <tr>
+                            <td><input type="checkbox" class="form-check-input js-row-check" value="{{ $trial->id }}" aria-label="Select"></td>
                             <td><strong>{{ $trial->student_name }}</strong></td>
                             <td>{{ $trial->parent_name }}</td>
                             <td>{{ $trial->phone }}</td>
@@ -52,10 +58,17 @@
         </div>
     </div>
 </div>
+
+<form id="bulkDeleteForm" action="{{ route('admin.free-trials.bulk-destroy') }}" method="POST" style="display:none;">
+    @csrf @method('DELETE')
+</form>
 @endsection
 
 @push('scripts')
 <script>
-$(function() { initDatatables('#freeTrialsTable'); });
+$(function() {
+    var dt = initDatatables('#freeTrialsTable', { order: [], columnDefs: [{ targets: 0, orderable: false, searchable: false }] });
+    initBulkDelete(dt, 'free trial request');
+});
 </script>
 @endpush

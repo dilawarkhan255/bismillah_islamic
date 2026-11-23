@@ -77,6 +77,7 @@ Route::prefix('admin')
 
         Route::middleware('permission:manage free trials')->group(function () {
             Route::get('free-trials', [FreeTrialController::class, 'index'])->name('free-trials.index');
+            Route::delete('free-trials', [FreeTrialController::class, 'bulkDestroy'])->name('free-trials.bulk-destroy');
             Route::get('free-trials/{freeTrial}', [FreeTrialController::class, 'show'])->name('free-trials.show');
             Route::post('free-trials/{freeTrial}/status', [FreeTrialController::class, 'updateStatus'])->name('free-trials.status');
             Route::delete('free-trials/{freeTrial}', [FreeTrialController::class, 'destroy'])->name('free-trials.destroy');

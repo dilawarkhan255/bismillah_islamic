@@ -37,4 +37,17 @@ class FreeTrialController extends Controller
 
         return redirect()->route('admin.free-trials.index')->with('success', 'Free trial request deleted successfully.');
     }
+
+    public function bulkDestroy(Request $request)
+    {
+        $validated = $request->validate([
+            'ids'   => 'required|array|min:1',
+            'ids.*' => 'integer',
+        ]);
+
+        $count = FreeTrial::whereIn('id', $validated['ids'])->delete();
+
+        return redirect()->route('admin.free-trials.index')
+            ->with('success', $count . ' free trial ' . str('request')->plural($count) . ' deleted successfully.');
+    }
 }

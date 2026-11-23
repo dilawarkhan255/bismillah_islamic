@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Mail\EnrollmentMail;
 use App\Mail\ContactMail;
+use App\Mail\VisitorConfirmationMail;
 use App\Models\Enrollment;
 use App\Models\Message;
 use App\Models\FreeTrial;
@@ -39,6 +40,12 @@ class FormController extends Controller
             Mail::to(config('services.email.admin_email'))->send(new EnrollmentMail($validated));
             User::role('admin')->each(fn($admin) => $admin->notify(new NewEnrollmentNotification($enrollment)));
             try { event(new NewEnrollmentEvent($enrollment)); } catch (\Exception $e) {}
+            $this->sendConfirmation($validated['email'] ?? null, 'enrollment', $validated['parent_name'], [
+                'Student'    => $validated['student_name'],
+                'Course'     => $validated['course'],
+                'Class type' => $validated['class_type'],
+                'Phone'      => $validated['phone'],
+            ]);
             return back()->with('success', 'Enrollment request submitted! We will contact you soon, In sha Allah.');
         } catch (\Exception $e) {
             return back()->with('error', 'Something went wrong. Please try again or call us directly.');
@@ -87,6 +94,12 @@ class FormController extends Controller
             report($e);
         }
         try { event(new NewFreeTrialEvent($freeTrial)); } catch (\Exception $e) {}
+        $this->sendConfirmation($validated['email'], 'free_trial', $validated['parent_name'], [
+            'Student'        => $validated['student_name'],
+            'Course'         => $validated['course'],
+            'Preferred time' => $validated['timing'],
+            'WhatsApp'       => $validated['whatsapp'],
+        ]);
 
         return back()->with('success', 'Your free trial is booked! We will contact you on WhatsApp within 24 hours, In sha Allah.');
     }
@@ -106,9 +119,26 @@ class FormController extends Controller
             Mail::to(config('services.email.admin_email'))->send(new ContactMail($validated));
             User::role('admin')->each(fn($admin) => $admin->notify(new NewMessageNotification($message)));
             try { event(new NewMessageEvent($message)); } catch (\Exception $e) {}
+            $this->sendConfirmation($validated['email'], 'contact', $validated['name'], [
+                'Subject' => $validated['inquiry'],
+            ]);
             return back()->with('success', 'Message received! We will respond within 24 hours, In sha Allah.');
         } catch (\Exception $e) {
             return back()->with('error', 'Something went wrong. Please try again or call us directly.');
+        }
+    }
+
+    /** "We received your request" email to the visitor. A mail failure never affects the form. */
+    private function sendConfirmation(?string $email, string $type, string $name, array $details): void
+    {
+        if (! $email) {
+            return;
+        }
+
+        try {
+            Mail::to($email)->send(new VisitorConfirmationMail($type, $name, $details));
+        } catch (\Throwable $e) {
+            report($e);
         }
     }
 }
