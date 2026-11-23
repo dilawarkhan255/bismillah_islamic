@@ -1,60 +1,58 @@
 name: Deploy to Hostinger
 
+# Hostinger's own Git auto-deploy pulls the code into public_html and runs
+# composer install. This workflow only finishes the job: it waits until the
+# server has the pushed commit, then runs migrations and rebuilds the caches.
+# .env lives only on the server and is never touched here.
+
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install NPM dependencies
-        run: npm install
-
-      - name: Build Vite assets
-        run: npm run build
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-
-      - name: Install Composer dependencies
-        run: composer install --optimize-autoloader --no-dev
-
-      - name: Deploy via SSH
+      - name: Migrate and optimize on server
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
+          command_timeout: 15m
           script: |
-            cd ~/domains/bismillahislamicacademy.com/bismillah_app/bismillah/bismillah_islamic
-            git pull origin main
-            composer install --optimize-autoloader --no-dev
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-            php artisan migrate --force
+            set -e
+            cd ~/domains/bismillahislamicacademy.com/public_html
 
-      - name: Copy build files
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          source: "public/build/*"
-          target: "~/domains/bismillahislamicacademy.com/public_html/build/"
-          strip_components: 2
+            # Wait (up to 10 min) for Hostinger to check out this commit.
+            for i in $(seq 1 60); do
+              [ "$(git rev-parse HEAD)" = "${{ github.sha }}" ] && break
+              sleep 10
+            done
+            if [ "$(git rev-parse HEAD)" != "${{ github.sha }}" ]; then
+              echo "Server is still on $(git rev-parse --short HEAD), expected ${{ github.sha }}."
+              echo "Check the Git auto-deployment in hPanel."
+              exit 1
+            fi
+
+            # Give Hostinger's composer install time to finish.
+            sleep 30
+
+            [ -f .env ] || { echo ".env is missing on the server"; exit 1; }
+            [ -e public/storage ] || ln -s ../storage/app/public public/storage
+
+            php artisan migrate --force
+            php artisan optimize:clear
+            php artisan optimize
+
+            code=$(curl -s -o /dev/null -w '%{http_code}' https://bismillahislamicacademy.com)
+            echo "Homepage returned HTTP $code"
+            [ "$code" = "200" ]
