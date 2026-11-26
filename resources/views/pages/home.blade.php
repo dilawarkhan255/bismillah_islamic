@@ -10,122 +10,70 @@
 @section('content')
 
     <!-- ===================== HERO CAROUSEL ===================== -->
-    <section class="hero-carousel wow fadeIn" data-wow-delay="0.1s">
-        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-
-            @if($slides->isNotEmpty())
-                <div class="carousel-inner">
-                    @foreach($slides as $index => $slide)
-                        <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
-                            <img class="w-100 carousel-img" src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}">
-                            <div class="carousel-caption">
-                                <div class="slide-content-wrap">
-                                    <div class="hero-badge animate__animated animate__fadeInDown">
-                                        ✦ {{ $slide->badge }} ✦
-                                    </div>
-                                    <h1 class="slide-title animated zoomIn">
-                                        {!! $slide->title !!}
-                                    </h1>
-                                    <p class="slide-sub animated fadeInUp">
-                                        {{ $slide->subtitle }}
-                                    </p>
-                                    <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
-                                        <a href="{{ $slide->btn1_url }}" class="slide-btn-gold">{{ $slide->btn1_text }}</a>
-                                        <a href="{{ $slide->btn2_url }}" class="slide-btn-outline">{{ $slide->btn2_text }}</a>
-                                    </div>
+    @php
+        // Slides from Admin > Hero Slides; the three built-in slides when none are set up
+        $heroSlides = $slides->isNotEmpty()
+            ? $slides->map(fn ($sl) => [
+                'image' => asset('storage/' . $sl->image), 'badge' => $sl->badge, 'title' => $sl->title, 'sub' => $sl->subtitle,
+                'btn1' => [$sl->btn1_text, $sl->btn1_url], 'btn2' => [$sl->btn2_text, $sl->btn2_url],
+            ])->values()
+            : collect([
+                ['image' => setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('storage/slide-1.jpg'),
+                 'badge' => 'Bismillah Islamic Academy', 'title' => 'Learn The Holy <span style="color: var(--gold-light);">Quran</span>',
+                 'sub' => '"Read in the name of your Lord who created"', 'btn1' => ['Free Trial', route('free_trial')], 'btn2' => ['Learn More', route('about')]],
+                ['image' => setting('img_home_slide_2') ? asset('storage/' . setting('img_home_slide_2')) : asset('storage/slide-2.jpg'),
+                 'badge' => 'Join Our Community', 'title' => 'Islamic <span style="color: var(--gold-light);">Education</span><br>For Every Age',
+                 'sub' => 'Quran, Tajweed, Hadith, Islamic Studies & Arabic Language', 'btn1' => ['View Courses', route('courses')], 'btn2' => ['Contact Us', route('contact')]],
+                ['image' => setting('img_home_slide_3') ? asset('storage/' . setting('img_home_slide_3')) : asset('storage/slide-3.jpg'),
+                 'badge' => 'Expert Teachers', 'title' => 'Certified <span style="color: var(--gold-light);">Scholars</span><br>& Hafiz-e-Quran',
+                 'sub' => 'Learn from qualified Islamic scholars', 'btn1' => ['Meet Our Teachers', route('team')], 'btn2' => ['Enroll Now', route('free_trial')]],
+            ]);
+        // Trust points under the buttons (Admin > Sections: home / hero_trust, separated by |)
+        $heroTrust = array_filter(array_map('trim', explode('|', (string) section('home', 'hero_trust', 'description', '3 Free Trial Classes|Male & Female Teachers|UK, USA & Pakistan Timings'))));
+    @endphp
+    <section class="hero-carousel">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="7000" data-bs-pause="hover" data-bs-touch="true">
+            <div class="carousel-inner">
+                @foreach($heroSlides as $slide)
+                    <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
+                        <img class="w-100 carousel-img" src="{{ $slide['image'] }}" alt="{{ strip_tags($slide['title']) }}"
+                            @if($loop->first) fetchpriority="high" @else loading="lazy" @endif>
+                        <div class="carousel-caption">
+                            <div class="slide-content-wrap">
+                                @if($slide['badge'])<div class="hero-badge">✦ {{ $slide['badge'] }} ✦</div>@endif
+                                <h1 class="slide-title">{!! $slide['title'] !!}</h1>
+                                @if($slide['sub'])<p class="slide-sub">{{ $slide['sub'] }}</p>@endif
+                                <div class="slide-btns">
+                                    @if($slide['btn1'][0])<a href="{{ $slide['btn1'][1] }}" class="slide-btn-gold">{{ $slide['btn1'][0] }}</a>@endif
+                                    @if($slide['btn2'][0])<a href="{{ $slide['btn2'][1] }}" class="slide-btn-outline">{{ $slide['btn2'][0] }}</a>@endif
                                 </div>
+                                @if($heroTrust)
+                                    <ul class="hero-trust">
+                                        @foreach($heroTrust as $point)<li><i class="fas fa-check"></i> {{ $point }}</li>@endforeach
+                                    </ul>
+                                @endif
                             </div>
                         </div>
+                    </div>
+                @endforeach
+            </div>
+
+            @if($heroSlides->count() > 1)
+                <div class="hero-progress" role="tablist" aria-label="Slides">
+                    @foreach($heroSlides as $i => $slide)
+                        <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="{{ $i }}"
+                            class="{{ $loop->first ? 'active' : '' }}" @if($loop->first) aria-current="true" @endif
+                            aria-label="Slide {{ $i + 1 }}"><span></span></button>
                     @endforeach
                 </div>
-            @else
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1">
-                        <img class="img-fluid" src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('storage/slide-1.jpg') }}" alt="Slide 1">
-                    </button>
-                    <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2">
-                        <img class="img-fluid" src="{{ setting('img_home_slide_2') ? asset('storage/' . setting('img_home_slide_2')) : asset('storage/slide-2.jpg') }}" alt="Slide 2">
-                    </button>
-                    <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3">
-                        <img class="img-fluid" src="{{ setting('img_home_slide_3') ? asset('storage/' . setting('img_home_slide_3')) : asset('storage/slide-3.jpg') }}" alt="Slide 3">
-                    </button>
-                </div>
 
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_1') ? asset('storage/' . setting('img_home_slide_1')) : asset('storage/slide-1.jpg') }}" alt="Slide 1">
-                        <div class="carousel-caption">
-                            <div class="slide-content-wrap">
-                                <div class="hero-badge animate__animated animate__fadeInDown">
-                                    ✦ Bismillah Islamic Academy ✦
-                                </div>
-                                <h1 class="slide-title animated zoomIn">
-                                    Learn The Holy <span style="color: var(--gold-light);">Quran</span>
-                                </h1>
-                                <p class="slide-sub animated fadeInUp">
-                                    "Read in the name of your Lord who created"
-                                </p>
-                                <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
-                                    <a href="{{ route('free_trial') }}" class="slide-btn-gold">Free Trial</a>
-                                    <a href="{{ route('about') }}" class="slide-btn-outline">Learn More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_2') ? asset('storage/' . setting('img_home_slide_2')) : asset('storage/slide-2.jpg') }}" alt="Slide 2">
-                        <div class="carousel-caption">
-                            <div class="slide-content-wrap">
-                                <div class="hero-badge animate__animated animate__fadeInDown">
-                                    ✦ Join Our Community ✦
-                                </div>
-                                <h1 class="slide-title animated zoomIn">
-                                    Islamic <span style="color: var(--gold-light);">Education</span><br>For Every Age
-                                </h1>
-                                <p class="slide-sub animated fadeInUp">
-                                    Quran, Tajweed, Hadith, Islamic Studies & Arabic Language
-                                </p>
-                                <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
-                                    <a href="{{ route('courses') }}" class="slide-btn-gold">View Courses</a>
-                                    <a href="{{ route('contact') }}" class="slide-btn-outline">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <img class="w-100 carousel-img" src="{{ setting('img_home_slide_3') ? asset('storage/' . setting('img_home_slide_3')) : asset('storage/slide-3.jpg') }}" alt="Slide 3">
-                        <div class="carousel-caption">
-                            <div class="slide-content-wrap">
-                                <div class="hero-badge animate__animated animate__fadeInDown">
-                                    ✦ Expert Teachers ✦
-                                </div>
-                                <h1 class="slide-title animated zoomIn">
-                                    Certified <span style="color: var(--gold-light);">Scholars</span><br>& Hafiz-e-Quran
-                                </h1>
-                                <p class="slide-sub animated fadeInUp">
-                                    Learn from qualified Islamic scholars
-                                </p>
-                                <div class="slide-btns animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
-                                    <a href="{{ route('team') }}" class="slide-btn-gold">Meet Our Teachers</a>
-                                    <a href="{{ route('free_trial') }}" class="slide-btn-outline">Enroll Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button class="carousel-control-prev hero-arrow" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i><span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next hero-arrow" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i><span class="visually-hidden">Next</span>
+                </button>
             @endif
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </section>
     <!-- Carousel End -->
@@ -528,31 +476,28 @@
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 @foreach($testimonials->filter(fn($t) => $t->is_active) as $t)
-                    <div class="testimonial-item rounded p-4"
-                        style="background: var(--white); border: 1px solid rgba(174,130,37,0.15); position: relative; box-shadow: 0 4px 20px rgba(13,27,42,0.07);">
-                        <div class="d-flex align-items-center mb-4">
-                            <img loading="lazy" decoding="async" class="flex-shrink-0 rounded-circle border p-1" src="{{ person_image($t->image) }}"
-                                alt="{{ $t->name }}"
-                                style="width:62px;height:62px;border-color:var(--gold)!important;object-fit:cover;">
-                            <div class="ms-4">
-                                <h5 class="mb-1" style="font-family:'Inter',sans-serif;color:var(--navy);font-size:14px;">
-                                    {{ $t->name }}</h5>
-                                <span
-                                    style="color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;">{{ $t->role }}</span>
-                                <div style="color:var(--gold);font-size:12px;margin-top:3px;">★★★★★</div>
+                    @php $stars = max(1, min(5, (int) ($t->rating ?: 5))); @endphp
+                    <div class="tst-card">
+                        <div class="tst-top">
+                            <i class="fas fa-quote-left tst-quote" aria-hidden="true"></i>
+                            <span class="tst-stars" aria-label="{{ $stars }} out of 5 stars">{!! str_repeat('<i class="fas fa-star"></i>', $stars) . str_repeat('<i class="far fa-star"></i>', 5 - $stars) !!}</span>
+                        </div>
+                        <p class="tst-text">{{ $t->text }}</p>
+                        <div class="tst-person">
+                            <img loading="lazy" decoding="async" src="{{ person_image($t->image) }}" alt="{{ $t->name }}">
+                            <div class="min-w-0">
+                                <strong>{{ $t->name }}</strong>
+                                <span>{{ collect([$t->role, $t->country])->filter()->implode(' · ') }}</span>
+                                @if($t->course)<small>{{ $t->course }}</small>@endif
                             </div>
                         </div>
-                        <div style="height:1px;background:rgba(174,130,37,0.12);margin-bottom:16px;"></div>
-                        <p class="mb-0"
-                            style="font-family:'Inter', sans-serif;font-size:16px;font-style:italic;color:var(--text-mid);line-height:1.85;">
-                            {{ $t->text }}</p>
                     </div>
                 @endforeach
             </div>
         </div>
     </div>
 
-     <!-- ===================== QUICK CONTACT ===================== -->
+    <!-- ===================== QUICK CONTACT ===================== -->
     <div class="container-xxl py-5 wow fadeIn" data-wow-delay="0.1s" style="background:#fff;">
     <div class="container">
 

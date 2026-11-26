@@ -26,6 +26,17 @@
 
             <div class="row">
                 <div class="col-md-6 mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" name="country" id="country" class="form-control" placeholder="e.g. United Kingdom" value="{{ old('country') }}">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="course" class="form-label">Course</label>
+                    <input type="text" name="course" id="course" class="form-control" placeholder="e.g. Norani Qaida" value="{{ old('course') }}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
                     <label for="image" class="form-label">Image</label>
                     <input type="file" name="image" id="image" class="form-control" accept="image/*">
                     @error('image') <div class="text-danger small">{{ $message }}</div> @enderror

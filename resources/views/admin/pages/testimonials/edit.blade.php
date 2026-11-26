@@ -29,6 +29,17 @@
 
             <div class="row">
                 <div class="col-md-6 mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" name="country" id="country" class="form-control" placeholder="e.g. United Kingdom" value="{{ old('country', $testimonial->country) }}">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="course" class="form-label">Course</label>
+                    <input type="text" name="course" id="course" class="form-control" placeholder="e.g. Norani Qaida" value="{{ old('course', $testimonial->course) }}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
                     <label for="image" class="form-label">Image</label>
                     @if($testimonial->image)
                         <div class="mb-2">

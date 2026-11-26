@@ -413,13 +413,6 @@
     transition: .5s;
 }
 
-.testimonial-carousel .owl-item.center .testimonial-item {
-    background: var(--primary) !important;
-}
-
-.testimonial-carousel .owl-item.center .testimonial-item * {
-    color: #FFFFFF !important;
-}
 
 .testimonial-carousel .owl-nav {
     margin-top: 30px;
