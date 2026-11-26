@@ -1,13 +1,13 @@
 {{-- Norani Qaida PDF, shown page by page with PDF.js (works on phones too, unlike an <iframe>). Needs: $pdfUrl --}}
 <div class="qd-reader" id="qdReader" data-src="{{ $pdfUrl }}">
     <div class="qd-reader-bar">
-        {{-- The Qaida is read right-to-left like the Quran: next page is on the left, previous on the right --}}
+        {{-- Left button = previous page, right button = next page --}}
         <div class="qd-reader-group">
-            <button type="button" class="qd-rbtn" data-act="next" aria-label="Next page" title="Next page"><i class="fas fa-chevron-left"></i></button>
+            <button type="button" class="qd-rbtn" data-act="prev" aria-label="Previous page" title="Previous page"><i class="fas fa-chevron-left"></i></button>
             <span class="qd-reader-page">
                 Page <input type="number" min="1" value="1" class="qd-reader-input" aria-label="Page number"> of <span class="qd-reader-total">…</span>
             </span>
-            <button type="button" class="qd-rbtn" data-act="prev" aria-label="Previous page" title="Previous page"><i class="fas fa-chevron-right"></i></button>
+            <button type="button" class="qd-rbtn" data-act="next" aria-label="Next page" title="Next page"><i class="fas fa-chevron-right"></i></button>
         </div>
         <div class="qd-reader-group">
             <button type="button" class="qd-rbtn" data-act="zoom-out" aria-label="Zoom out"><i class="fas fa-search-minus"></i></button>
@@ -110,8 +110,8 @@
 
     document.addEventListener('keydown', function (e) {
         if (e.target.matches('input, textarea')) return;
-        if (e.key === 'ArrowLeft') go(page + 1);                     // right-to-left book
-        if (e.key === 'ArrowRight') go(page - 1);
+        if (e.key === 'ArrowRight') go(page + 1);                    // → next page
+        if (e.key === 'ArrowLeft') go(page - 1);                     // ← previous page
     });
 
     // swipe on phones
@@ -120,7 +120,7 @@
     stage.addEventListener('touchend', function (e) {
         if (sx === null || zoom > 1) return;
         var dx = e.changedTouches[0].clientX - sx;
-        if (Math.abs(dx) > 60) go(page + (dx > 0 ? 1 : -1));        // swipe right = next page (right-to-left book)
+        if (Math.abs(dx) > 60) go(page + (dx < 0 ? 1 : -1));        // swipe left = next page, swipe right = previous
         sx = null;
     }, { passive: true });
 
