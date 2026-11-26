@@ -45,7 +45,7 @@
     .wa-float-label {
         background: #fff;
         color: var(--navy, #0D1B2A);
-        font-family: 'Lato', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 13px;
         font-weight: 700;
         padding: 8px 14px;

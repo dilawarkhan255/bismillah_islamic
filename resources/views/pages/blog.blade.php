@@ -28,11 +28,11 @@
                         <ol class="breadcrumb mb-0 justify-content-center" style="background:transparent; padding:0;">
                             <li class="breadcrumb-item">
                                 <a href="{{ route('home') }}"
-                                    style="color:rgba(255,255,255,0.5); text-decoration:none; font-family:'Lato',sans-serif; font-size:13px;">Home</a>
+                                    style="color:rgba(255,255,255,0.5); text-decoration:none; font-family:'Inter',sans-serif; font-size:13px;">Home</a>
                             </li>
                             <li style="color:rgba(255,255,255,0.3); padding:0 8px; font-size:13px; list-style:none;">›</li>
                             <li
-                                style="color:var(--gold-light); font-family:'Lato',sans-serif; font-size:13px; list-style:none;">
+                                style="color:var(--gold-light); font-family:'Inter',sans-serif; font-size:13px; list-style:none;">
                                 Blog</li>
                         </ol>
                     </nav>

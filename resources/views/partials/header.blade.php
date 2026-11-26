@@ -118,16 +118,6 @@ Row 2: Logo left | Nav CENTER
             @php
                 $hasTeamMembers = \App\Support\ContentCache::remember('team-members.any', fn () => \App\Models\TeamMember::active()->exists());
             @endphp
-            {{-- Admissions: everything needed to join --}}
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('free_trial', 'pricing') ? 'active' : '' }}" data-bs-toggle="dropdown" role="button" aria-expanded="false">Admissions</a>
-                <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                    <a href="{{ route('free_trial') }}"
-                        class="dropdown-item {{ request()->routeIs('free_trial') ? 'active' : '' }}">Free Trial</a>
-                    <a href="{{ route('pricing') }}"
-                        class="dropdown-item {{ request()->routeIs('pricing') ? 'active' : '' }}">Pricing</a>
-                </div>
-            </div>
             {{-- Explore: reading and information --}}
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('blog', 'blog.show', 'our-team', 'team-member.profile', 'privacy_policy', 'progress.index', 'certificates.index') ? 'active' : '' }}" data-bs-toggle="dropdown" role="button" aria-expanded="false">Explore</a>
@@ -206,7 +196,7 @@ Row 2: Logo left | Nav CENTER
 }
 
 .bia-topbar-tagline {
-    font-family: 'Amiri', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     color: rgba(255, 255, 255, 0.48);
     letter-spacing: 1.5px;
@@ -336,7 +326,7 @@ Row 2: Logo left | Nav CENTER
     color: rgba(255, 255, 255, 0.32);
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     cursor: pointer;
     white-space: nowrap;
 }
@@ -347,7 +337,7 @@ Row 2: Logo left | Nav CENTER
     font-weight: 600;
     white-space: nowrap;
     transition: color .25s;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     cursor: pointer;
 }
 
@@ -370,7 +360,7 @@ a.bia-info-chip .bia-info-val {
     gap: 8px;
     background: transparent;
     color: var(--gold-light, #D4A843);
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -454,7 +444,7 @@ a.bia-info-chip .bia-info-val {
 }
 
 .bia-navbar .navbar-nav .nav-link {
-    font-family: 'Cinzel', serif !important;
+    font-family: 'Inter', sans-serif !important;
     font-size: 10.5px !important;
     font-weight: 600 !important;
     color: #0F1D2A !important;
@@ -483,7 +473,7 @@ a.bia-info-chip .bia-info-val {
 }
 
 .bia-navbar .dropdown-item {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: #0F1D2A;
     font-size: 13px;
     padding: 10px 22px;

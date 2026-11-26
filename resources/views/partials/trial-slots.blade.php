@@ -35,17 +35,17 @@
 @push('styles')
 <style>
     .ts-box { border: 1px solid rgba(174,130,37,.3); background: rgba(174,130,37,.04); padding: 16px; }
-    .ts-head { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px; font-family:'Cinzel',serif; color:var(--navy); font-size:14px; font-weight:700; }
+    .ts-head { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px; font-family:'Inter',sans-serif; color:var(--navy); font-size:14px; font-weight:700; }
     .ts-head i { color: var(--gold); margin-right: 6px; }
-    .ts-tz { font-family:'Lato',sans-serif; font-weight:400; color:#888; font-size:12px; }
+    .ts-tz { font-family:'Inter',sans-serif; font-weight:400; color:#888; font-size:12px; }
     .ts-days { display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; margin-bottom:10px; }
-    .ts-day { flex:0 0 auto; min-width:68px; padding:8px 6px; text-align:center; border:1px solid rgba(174,130,37,.3); background:#fff; cursor:pointer; font-family:'Lato',sans-serif; color:var(--navy); }
+    .ts-day { flex:0 0 auto; min-width:68px; padding:8px 6px; text-align:center; border:1px solid rgba(174,130,37,.3); background:#fff; cursor:pointer; font-family:'Inter',sans-serif; color:var(--navy); }
     .ts-day strong { display:block; font-size:16px; }
     .ts-day small { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#888; }
     .ts-day.is-on { background: var(--gold); border-color: var(--gold); color:#fff; }
     .ts-day.is-on small { color: rgba(255,255,255,.85); }
     .ts-times { display:flex; flex-wrap:wrap; gap:8px; }
-    .ts-time { padding:7px 12px; border:1px solid rgba(174,130,37,.3); background:#fff; cursor:pointer; font:600 13px 'Lato',sans-serif; color:var(--navy); }
+    .ts-time { padding:7px 12px; border:1px solid rgba(174,130,37,.3); background:#fff; cursor:pointer; font:600 13px 'Inter',sans-serif; color:var(--navy); }
     .ts-time.is-on { background: var(--navy); border-color: var(--navy); color: var(--gold-light, #e8c97a); }
     .ts-picked { margin-top:12px; color:#0f766e; font-weight:700; font-size:14px; }
     [data-theme="dark"] .ts-day, [data-theme="dark"] .ts-time { background: transparent; color: #f0efe8; }

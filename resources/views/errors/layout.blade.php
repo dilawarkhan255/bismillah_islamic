@@ -30,13 +30,13 @@
 <style>
     .err-page { padding: 110px 0 120px; background: linear-gradient(180deg, var(--off-white, #FAFAF7), #fff); }
     .err-card { max-width: 620px; margin: 0 auto; text-align: center; padding: 56px 32px; background: #fff; border: 1px solid rgba(174,130,37,.15); border-top: 3px solid var(--gold); box-shadow: 0 20px 50px rgba(13,27,42,.06); }
-    .err-code { font-family: 'Cinzel', serif; font-size: clamp(64px, 14vw, 110px); font-weight: 700; line-height: 1; color: var(--gold); letter-spacing: 6px; }
+    .err-code { font-family: 'Inter', sans-serif; font-size: clamp(64px, 14vw, 110px); font-weight: 700; line-height: 1; color: var(--gold); letter-spacing: 6px; }
     .err-divider { margin: 18px auto 22px; display: flex; align-items: center; gap: 12px; max-width: 200px; color: var(--gold); }
     .err-divider::before, .err-divider::after { content: ""; flex: 1; height: 1px; background: rgba(174,130,37,.35); }
-    .err-title { font-family: 'Cinzel', serif; font-size: 24px; color: var(--navy); margin-bottom: 12px; }
-    .err-text { font-family: 'Lato', sans-serif; font-size: 15px; line-height: 1.8; color: var(--text-mid); margin: 0 auto 30px; max-width: 460px; }
+    .err-title { font-family: 'Inter', sans-serif; font-size: 24px; color: var(--navy); margin-bottom: 12px; }
+    .err-text { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.8; color: var(--text-mid); margin: 0 auto 30px; max-width: 460px; }
     .err-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-    .err-btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border: 2px solid var(--gold); color: var(--gold); font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all .3s; }
+    .err-btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border: 2px solid var(--gold); color: var(--gold); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all .3s; }
     .err-btn:hover, .err-btn--solid { background: var(--gold); color: #fff; }
     .err-btn--solid:hover { background: transparent; color: var(--gold); }
 </style>

@@ -80,7 +80,7 @@
 .bbl-feat-cat {
     display: inline-block;
     color: #fff;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 2.5px;
@@ -89,7 +89,7 @@
 }
 
 .bbl-feat-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(22px, 3.5vw, 46px);
     font-weight: 900;
     color: #fff;
@@ -107,7 +107,7 @@
 }
 
 .bbl-feat-meta span {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     color: rgba(255, 255, 255, 0.55);
     display: flex;
@@ -120,7 +120,7 @@
 }
 
 .bbl-feat-excerpt {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.65);
     line-height: 1.85;
@@ -143,7 +143,7 @@
     gap: 10px;
     background: var(--gold);
     color: #fff;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -264,7 +264,7 @@
 }
 
 .bbl-eyebrow {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -274,7 +274,7 @@
 }
 
 .bbl-h2 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(22px, 3vw, 32px);
     color: var(--navy);
     font-weight: 800;
@@ -388,7 +388,7 @@
     top: 0;
     left: 0;
     color: #fff;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: 2px;
@@ -403,7 +403,7 @@
     right: 12px;
     background: rgba(13, 27, 42, .8);
     color: var(--gold-light);
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -434,7 +434,7 @@
 }
 
 .bbl-card-meta span {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     color: var(--text-muted);
     display: flex;
@@ -448,7 +448,7 @@
 }
 
 .bbl-card-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-weight: 700;
     color: var(--navy);
@@ -494,7 +494,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -546,7 +546,7 @@
     position: absolute;
     bottom: -10px;
     right: 14px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 70px;
     font-weight: 900;
     line-height: 1;
@@ -574,7 +574,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -611,7 +611,7 @@
 .bbl-widget-hd {
     background: var(--navy);
     padding: 14px 20px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2.5px;
@@ -650,7 +650,7 @@
     border: 1px solid rgba(174, 130, 37, .2);
     border-right: none;
     background: var(--off-white);
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 13px;
     color: var(--text-dark);
     outline: none;
@@ -716,7 +716,7 @@
 }
 
 .bbl-verse-trans {
-    font-family: 'Amiri', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     color: rgba(255, 255, 255, .65);
     font-style: italic;
@@ -725,7 +725,7 @@
 }
 
 .bbl-verse-ref {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
     color: var(--gold);
     letter-spacing: 2px;
@@ -765,7 +765,7 @@
 }
 
 .bbl-cat-name {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 13px;
     color: var(--text-mid);
     flex: 1;
@@ -777,7 +777,7 @@
 }
 
 .bbl-cat-count {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 700;
     padding: 2px 9px;
@@ -833,7 +833,7 @@
 }
 
 .bbl-recent-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     color: var(--navy);
     margin: 0 0 5px;
@@ -846,7 +846,7 @@
 }
 
 .bbl-recent-date {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     color: var(--gold);
     display: flex;
@@ -921,7 +921,7 @@
 }
 
 .bbl-enroll-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     color: #fff;
     font-size: 16px;
     font-weight: 700;
@@ -930,7 +930,7 @@
 }
 
 .bbl-enroll-text {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 13px;
     color: rgba(255, 255, 255, .6);
     line-height: 1.75;
@@ -941,7 +941,7 @@
     display: inline-block;
     background: var(--gold);
     color: #fff;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -974,7 +974,7 @@
 
 .bbl-filter-note {
     margin: -8px 0 24px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     color: var(--text-mid);
 }
@@ -1000,13 +1000,13 @@
 }
 
 .bbl-empty h3 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     color: var(--navy);
 }
 
 .bbl-empty p {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--text-mid);
     margin-bottom: 18px;
 }
@@ -1018,7 +1018,7 @@
 
 .bbl-breadcrumb {
     margin-bottom: 22px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 13px;
 }
 
@@ -1046,7 +1046,7 @@
 }
 
 .bbl-article-lead {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 19px;
     line-height: 1.75;
     color: var(--navy);
@@ -1057,7 +1057,7 @@
 }
 
 .bbl-article-body p {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16.5px;
     line-height: 1.95;
     color: var(--text-dark);
@@ -1083,7 +1083,7 @@
     background: transparent;
     border: 1px solid var(--gold);
     color: var(--gold);
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -1137,7 +1137,7 @@
 
 .bbl-related-body h3 {
     margin: 8px 0 0;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     line-height: 1.45;
     color: var(--navy);

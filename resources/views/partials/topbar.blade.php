@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 d-flex align-items-center" style="gap:12px;">
-                <span style="color:var(--gold-light);font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:1px;">Bismillah Islamic Academy</span>
+                <span style="color:var(--gold-light);font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;">Bismillah Islamic Academy</span>
                 <div class="social-links d-inline-flex align-items-center" style="gap:5px;">
                     @if(\App\Models\SiteSetting::get('facebook'))
                         <a href="{{ \App\Models\SiteSetting::get('facebook') }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>

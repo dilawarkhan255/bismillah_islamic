@@ -8,7 +8,7 @@
             {{-- Address --}}
             <div class="col-lg-3 col-md-6">
                 <h5
-                    style="font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
+                    style="font-family: 'Inter', sans-serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
                     {{ section('footer', 'address', 'title', 'Address') }}
                 </h5>
                 <p class="mb-2" style="font-size: 14px; color: rgba(255,255,255,0.5);">
@@ -50,7 +50,7 @@
             {{-- Quick Links --}}
             <div class="col-lg-3 col-md-6">
                 <h5
-                    style="font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
+                    style="font-family: 'Inter', sans-serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
                     Quick Links
                 </h5>
                 {{-- Only the key pages here; the rest live in the navbar "More" menu --}}
@@ -76,7 +76,7 @@
             {{-- Gallery --}}
             <div class="col-lg-3 col-md-6">
                 <h5
-                    style="font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
+                    style="font-family: 'Inter', sans-serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
                     Gallery
                 </h5>
                 <div class="row g-2">
@@ -104,7 +104,7 @@
             {{-- Newsletter --}}
             <div class="col-lg-3 col-md-6">
                 <h5
-                    style="font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
+                    style="font-family: 'Inter', sans-serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
                     {{ section('footer', 'newsletter', 'title', 'Start Learning') }}
                 </h5>
                 <p style="font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 18px;">

@@ -16,7 +16,7 @@
 .qd-eyebrow {
     display: block;
     margin-bottom: 8px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -24,7 +24,7 @@
 }
 
 .qd-h2 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     color: var(--navy);
     font-size: clamp(26px, 3.5vw, 38px);
@@ -66,7 +66,7 @@
     place-items: center;
     background: var(--navy);
     color: var(--gold-light);
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 24px;
     font-weight: 700;
 }
@@ -86,7 +86,7 @@
 }
 
 .qd-lesson-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 17px;
     font-weight: 700;
     color: var(--navy);
@@ -133,7 +133,7 @@
 
 .qd-cta h3 {
     margin: 0 0 4px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 20px;
     color: #fff;
 }
@@ -148,7 +148,7 @@
     background: var(--gold);
     border: 2px solid var(--gold);
     color: #fff;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -176,7 +176,7 @@
     background: #fff;
     border: 1px solid rgba(174, 130, 37, .25);
     color: var(--navy);
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     text-decoration: none;
     transition: all .2s;
@@ -210,7 +210,7 @@
 .qd-howto strong {
     display: block;
     margin-bottom: 4px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     color: var(--navy);
 }
 
@@ -285,7 +285,7 @@ button.qd-item { cursor: pointer; width: 100%; }
 .qd-grid--letters .qd-arabic { font-size: 54px; }
 
 .qd-translit {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12.5px;
     letter-spacing: .5px;
     color: var(--text-mid);
@@ -347,7 +347,7 @@ button.qd-item { cursor: pointer; width: 100%; }
 }
 
 .qd-pager-link span {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 14px;
 }
@@ -529,7 +529,7 @@ button.qd-cell { cursor: pointer; width: 100%; }
 
 .qd-cell-translit {
     margin-top: 2px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     letter-spacing: .4px;
     color: #7A6A4A;
@@ -587,7 +587,7 @@ button.qd-cell { cursor: pointer; width: 100%; }
 }
 
 .qd-group-title small {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     color: #6B6B6B;
 }
@@ -687,11 +687,11 @@ button.qd-cell { cursor: pointer; width: 100%; }
 }
 
 .qd-rbtn:hover { background: var(--gold); color: #0D1B2A; }
-.qd-rbtn--text { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 13px; }
+.qd-rbtn--text { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; }
 
 .qd-reader-page {
     padding: 0 6px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     white-space: nowrap;
 }

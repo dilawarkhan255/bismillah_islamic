@@ -14,8 +14,8 @@
                 "></div>
                 <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between;">
                     <div>
-                        <div style="font-family:'Amiri',serif; font-size:13px; color:var(--gold-light); letter-spacing:3px; text-transform:uppercase; margin-bottom:6px;">✦ Join Us ✦</div>
-                        <h4 style="font-family:'Cinzel',serif; color:var(--white); font-size:22px; font-weight:700; margin:0;">Enroll At {{ \App\Models\SiteSetting::get('site_name', 'Bismillah Islamic Academy') }}</h4>
+                        <div style="font-family:'Inter', sans-serif; font-size:13px; color:var(--gold-light); letter-spacing:3px; text-transform:uppercase; margin-bottom:6px;">✦ Join Us ✦</div>
+                        <h4 style="font-family:'Inter',sans-serif; color:var(--white); font-size:22px; font-weight:700; margin:0;">Enroll At {{ \App\Models\SiteSetting::get('site_name', 'Bismillah Islamic Academy') }}</h4>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" style="opacity:0.6;"></button>
                 </div>
@@ -95,13 +95,13 @@
 
                         <!-- Class Type -->
                         <div class="col-12">
-                            <label style="font-family:'Lato',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:10px;">Preferred Class Type *</label>
+                            <label style="font-family:'Inter',sans-serif; font-size:11px; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:10px;">Preferred Class Type *</label>
                             <div style="display:flex; gap:15px; flex-wrap:wrap;">
                                 @php
                                 $types = ['Online (Microsoft Teams)'];
                                 @endphp
                                 @foreach($types as $type)
-                                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-family:'Lato',sans-serif; font-size:13px; color:var(--text-mid);">
+                                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-family:'Inter',sans-serif; font-size:13px; color:var(--text-mid);">
                                     <input type="radio" name="class_type" value="{{ $type }}" style="accent-color:var(--gold); width:15px; height:15px;">
                                     {{ $type }}
                                 </label>
@@ -120,11 +120,11 @@
                         <!-- Submit -->
                         <div class="col-12 d-flex gap-3 justify-content-end" style="padding-top:5px; border-top:1px solid var(--border-soft); margin-top:5px;">
                             <button type="button" data-bs-dismiss="modal"
-                                style="font-family:'Cinzel',serif; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:11px 25px; border:1px solid var(--border); background:transparent; color:var(--text-mid); cursor:pointer; transition:all 0.3s;">
+                                style="font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:11px 25px; border:1px solid var(--border); background:transparent; color:var(--text-mid); cursor:pointer; transition:all 0.3s;">
                                 Cancel
                             </button>
                             <button type="submit"
-                                style="font-family:'Cinzel',serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:11px 30px; border:none; background:var(--gold); color:var(--white); cursor:pointer; transition:all 0.3s;">
+                                style="font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:11px 30px; border:none; background:var(--gold); color:var(--white); cursor:pointer; transition:all 0.3s;">
                                 <i class="fa fa-paper-plane me-2"></i> Submit Enrollment
                             </button>
                         </div>

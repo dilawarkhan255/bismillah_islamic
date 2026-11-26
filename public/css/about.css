@@ -1,6 +1,6 @@
 /* ══ SHARED ════════════════════════════════════════════ */
 .mv-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -9,7 +9,7 @@
     margin-bottom: 10px;
 }
 .mv-heading {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(24px, 3vw, 36px);
     font-weight: 800;
     color: var(--navy);
@@ -64,7 +64,7 @@
     color: var(--navy);
 }
 .mv-card-tag {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 9px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -73,7 +73,7 @@
 }
 .mv-tag-vision { color: var(--navy); }
 .mv-card-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 18px;
     color: var(--navy);
     font-weight: 700;
@@ -150,7 +150,7 @@
     z-index: 2;
 }
 .timeline-dot span {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 8px;
     color: var(--gold);
     letter-spacing: 0.5px;
@@ -173,14 +173,14 @@
     transform: translateY(-3px);
 }
 .tc-year {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     color: var(--gold);
     letter-spacing: 2px;
     margin-bottom: 6px;
 }
 .tc-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     color: var(--navy);
     font-weight: 700;
@@ -241,7 +241,7 @@
     margin: 0 auto 18px;
 }
 .cert-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 15px; color: var(--navy);
     font-weight: 700; margin-bottom: 12px;
 }
@@ -255,7 +255,7 @@
     background: rgba(174,130,37,.1);
     color: var(--gold-dark);
     border: 1px solid rgba(174,130,37,.3);
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 10px; font-weight: 700;
     letter-spacing: 2px; text-transform: uppercase;
     padding: 5px 16px;
@@ -271,7 +271,7 @@
     background: var(--white);
     border: 1px solid rgba(174,130,37,.2);
     color: var(--navy);
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px; font-weight: 700;
     letter-spacing: 1px;
     padding: 10px 20px;

@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Bismillah Islamic Academy') }} — Admin</title>
     <link rel="icon" type="image/png" href="{{ setting('img_logo') ? asset('storage/' . setting('img_logo')) : asset('storage/logo.png') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -18,7 +18,7 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
             background: var(--navy);
@@ -55,7 +55,7 @@
             filter: drop-shadow(0 4px 20px rgba(174, 130, 37, 0.3));
         }
         .auth-left .brand-title {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             color: #fff;
             font-size: clamp(22px, 3vw, 34px);
             font-weight: 800;
@@ -63,7 +63,7 @@
             margin-bottom: 8px;
         }
         .auth-left .brand-subtitle {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             color: var(--gold-light);
             font-size: 12px;
             letter-spacing: 4px;
@@ -123,7 +123,7 @@
             background: rgba(174, 130, 37, 0.08);
             border: 1px solid rgba(174, 130, 37, 0.25);
             color: var(--gold);
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 9px;
             font-weight: 700;
             letter-spacing: 2px;
@@ -133,7 +133,7 @@
         }
 
         .auth-form-wrap h2 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             color: var(--navy);
             font-size: 24px;
             font-weight: 800;
@@ -146,7 +146,7 @@
         }
 
         .form-label {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 1.5px;
@@ -178,7 +178,7 @@
             background: var(--gold);
             color: #fff;
             border: 2px solid var(--gold);
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 700;
             font-size: 12px;
             letter-spacing: 2px;

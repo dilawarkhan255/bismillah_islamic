@@ -6,7 +6,7 @@
 <title>Timetable — {{ \App\Models\SiteSetting::get('site_name', 'Bismillah Islamic Academy') }}</title>
 <style>
   * { box-sizing: border-box; }
-  body { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; margin: 0; padding: 24px; background: #fff; font-size: 13px; }
+  body { font-family: 'Inter', Arial, Helvetica, sans-serif; color: #1a1a1a; margin: 0; padding: 24px; background: #fff; font-size: 13px; }
   .toolbar { display: flex; gap: 8px; justify-content: flex-end; align-items: center; margin-bottom: 16px; }
   .toolbar .back { margin-right: auto; color: #AE8225; font-weight: bold; text-decoration: none; }
   .toolbar button { font: inherit; padding: 8px 16px; border: 1px solid #AE8225; background: #AE8225; color: #fff; cursor: pointer; border-radius: 6px; }

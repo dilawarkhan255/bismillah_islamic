@@ -2,7 +2,7 @@
 <html>
 <head>
 <style>
-    body { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; padding:0; }
+    body { font-family: 'Inter', Arial, sans-serif; background:#f4f4f4; margin:0; padding:0; }
     .wrap { max-width:600px; margin:30px auto; background:#fff; border-top:4px solid #AE8225; }
     .header { background:#0D1B2A; padding:28px 32px; }
     .header h2 { color:#AE8225; font-size:20px; margin:0; }

@@ -17,11 +17,11 @@
 </div>
 
 <style>
-    .pt-bar { background: #0a1622; border-top: 2px solid var(--gold); color: #e9e4d8; font-family: 'Lato', sans-serif; }
+    .pt-bar { background: #0a1622; border-top: 2px solid var(--gold); color: #e9e4d8; font-family: 'Inter', sans-serif; }
     .pt-inner { display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap; padding: 14px 0; }
     .pt-date { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
     .pt-date i { color: var(--gold); }
-    .pt-hijri { font-family: 'Cinzel', serif; color: var(--gold-light, #e8c97a); font-size: 15px; font-weight: 700; }
+    .pt-hijri { font-family: 'Inter', sans-serif; color: var(--gold-light, #e8c97a); font-size: 15px; font-weight: 700; }
     .pt-city { color: rgba(255,255,255,.5); font-size: 12px; }
     .pt-list { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
     .pt-list li { padding: 5px 12px; border: 1px solid rgba(174,130,37,.3); font-size: 13px; text-align: center; min-width: 74px; }

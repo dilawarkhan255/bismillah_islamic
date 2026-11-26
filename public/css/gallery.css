@@ -118,7 +118,7 @@
 }
 
 .g-hero-tag {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -127,7 +127,7 @@
 }
 
 .g-hero-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(28px, 4vw, 44px);
     font-weight: 800;
     color: var(--white);
@@ -135,7 +135,7 @@
 }
 
 .g-hero-sub {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.6);
     max-width: 540px;
@@ -168,7 +168,7 @@
 
 /* ── SECTION HEADER ──────────────────────────────────── */
 .g-label-tag {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -177,7 +177,7 @@
 }
 
 .g-section-h2 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(22px, 3vw, 32px);
     font-weight: 800;
     color: var(--navy);
@@ -298,7 +298,7 @@
 }
 
 .g-filter-btn {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -358,7 +358,7 @@
 }
 
 .g-cta-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: clamp(22px, 3vw, 34px);
     font-weight: 800;
     color: var(--white);
@@ -366,7 +366,7 @@
 }
 
 .g-cta-desc {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.6);
     max-width: 560px;
@@ -377,7 +377,7 @@
 /* ── BUTTONS ─────────────────────────────────────────── */
 .g-btn-gold {
     display: inline-block;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -400,7 +400,7 @@
 
 .g-btn-outline {
     display: inline-block;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;

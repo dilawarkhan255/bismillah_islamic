@@ -120,14 +120,14 @@
   .pg-adminbar a { color: var(--gold-light, #e8c97a); font-weight:700; text-decoration:none; }
   .pg-wrap { padding: 48px 0 64px; background: var(--light-bg, #faf7f0); }
   .pg-head { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:28px; }
-  .pg-eyebrow { color: var(--gold); font: 700 11px/1 'Lato', sans-serif; letter-spacing: 2px; text-transform: uppercase; }
-  .pg-name { font-family: 'Cinzel', serif; color: var(--navy); font-size: clamp(26px, 4vw, 38px); margin: 8px 0 4px; }
+  .pg-eyebrow { color: var(--gold); font: 700 11px/1 'Inter', sans-serif; letter-spacing: 2px; text-transform: uppercase; }
+  .pg-name { font-family: 'Inter', sans-serif; color: var(--navy); font-size: clamp(26px, 4vw, 38px); margin: 8px 0 4px; }
   .pg-sub { color: var(--text-mid, #555); margin: 0; }
   .pg-chip { padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; }
   .pg-chip--paused { background: rgba(174,130,37,.12); color: var(--gold); }
   .pg-card { background: #fff; border: 1px solid rgba(174,130,37,.18); padding: 22px; margin-bottom: 20px; box-shadow: 0 4px 18px rgba(13,27,42,.05); }
-  .pg-h2 { font-family: 'Cinzel', serif; color: var(--navy); font-size: 16px; margin: 0 0 14px; }
-  .pg-h2 small { font-family: 'Lato', sans-serif; color: #888; font-size: 12px; }
+  .pg-h2 { font-family: 'Inter', sans-serif; color: var(--navy); font-size: 16px; margin: 0 0 14px; }
+  .pg-h2 small { font-family: 'Inter', sans-serif; color: #888; font-size: 12px; }
   .pg-level { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
   .pg-bar { height: 10px; background: rgba(174,130,37,.15); border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
   .pg-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), #d4a843); border-radius: 10px; }

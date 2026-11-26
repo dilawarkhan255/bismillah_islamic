@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:wght@300;400;700&family=Amiri:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap"
         rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
@@ -93,7 +93,7 @@
         }
 
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--white);
             color: var(--text-dark);
             max-width: 100vw;
@@ -138,7 +138,7 @@
         h4,
         h5,
         h6 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
         }
 
         a,
@@ -242,7 +242,7 @@
         }
 
         .spinner-text {
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             color: rgba(255, 255, 255, 0.85);
             font-size: 11px;
             letter-spacing: 5px;
@@ -400,7 +400,7 @@
 
         .header-contact-text h6 {
             margin: 0;
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
             color: var(--navy);
             font-weight: 700;
@@ -413,7 +413,7 @@
         }
 
         .navbar-dark .navbar-nav .nav-link {
-            font-family: 'Cinzel', serif !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 11px !important;
             font-weight: 600 !important;
             color: rgba(255, 255, 255, 0.85) !important;
@@ -439,7 +439,7 @@
         }
 
         .navbar-dark .dropdown-item {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: rgba(255, 255, 255, 0.7);
             font-size: 13px;
             padding: 10px 20px;
@@ -455,7 +455,7 @@
         .btn-enroll {
             background: var(--gold) !important;
             color: var(--white) !important;
-            font-family: 'Cinzel', serif !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 11px !important;
             font-weight: 700 !important;
             letter-spacing: 2px;
@@ -553,17 +553,17 @@
             border: 1px solid rgba(174, 130, 37, 0.4) !important;
             border-top: 4px solid #AE8225 !important;
             border-radius: 0 !important;
-            font-family: 'Lato', sans-serif !important;
+            font-family: 'Inter', sans-serif !important;
         }
 
         .swal-title {
-            font-family: 'Cinzel', serif !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 17px !important;
             color: #AE8225 !important;
         }
 
         .swal-btn {
-            font-family: 'Cinzel', serif !important;
+            font-family: 'Inter', sans-serif !important;
             font-size: 11px !important;
             letter-spacing: 2px !important;
             text-transform: uppercase !important;
@@ -658,7 +658,7 @@
             background: transparent;
             border: 1.5px solid rgba(174, 130, 37, 0.45);
             color: #D4A843;
-            font-family: 'Cinzel', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 9.5px;
             font-weight: 700;
             letter-spacing: 1.8px;

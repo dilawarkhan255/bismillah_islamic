@@ -34,7 +34,7 @@
 
                 <!-- Profile Info -->
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.2s">
-                    <h1 class="display-6 mb-2" style="font-family:'Cinzel',serif;">{{ $teacher->name }}</h1>
+                    <h1 class="display-6 mb-2" style="font-family:'Inter',sans-serif;">{{ $teacher->name }}</h1>
                     @if($teacher->role)
                         <p class="teacher-profile-role mb-4">{{ $teacher->role }}</p>
                     @endif
@@ -47,7 +47,7 @@
 
                     @if($teacher->qualifications)
                         <div class="mb-4">
-                            <h5 class="mb-3" style="font-family:'Cinzel',serif; color:var(--navy);">Qualifications</h5>
+                            <h5 class="mb-3" style="font-family:'Inter',sans-serif; color:var(--navy);">Qualifications</h5>
                             <div style="color:var(--text-mid); font-size:16px; line-height:1.8;">
                                 {!! $teacher->qualifications !!}
                             </div>

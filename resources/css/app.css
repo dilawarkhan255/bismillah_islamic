@@ -1,1 +1,4 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+/* One global typeface for the whole site. Arabic/Urdu script fonts stay untouched. */
+body { font-family: 'Inter', sans-serif; }

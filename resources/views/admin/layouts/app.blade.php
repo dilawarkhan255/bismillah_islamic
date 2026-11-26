@@ -7,6 +7,9 @@
   <title>@yield('title', 'Admin') | Bismillah Academy</title>
   <link rel="icon" href="{{ asset('storage/logo.png') }}" type="image/png">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('admin-assets/assets/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin-assets/assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
   <link rel="stylesheet" href="{{ asset('admin-assets/assets/css/style.css') }}">

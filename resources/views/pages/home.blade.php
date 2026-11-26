@@ -161,7 +161,7 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="h-100">
                         <h6 class="section-title bg-white text-start pe-3" style="color: var(--gold);">Why Choose Us</h6>
-                        <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">{{ section('home', 'why_title', 'title', 'Why Parents Trust Us For Their Children') }}</h1>
+                        <h1 class="display-6 mb-4" style="font-family: 'Inter', sans-serif; color: var(--navy);">{{ section('home', 'why_title', 'title', 'Why Parents Trust Us For Their Children') }}</h1>
                         <p class="mb-4" style="color: var(--text-mid); line-height: 1.9;">
                             {{ section('home', 'why_title', 'description', 'Our academy combines traditional Islamic teaching methods with modern pedagogy. Every teacher is a qualified scholar committed to nurturing the next generation of Muslims.') }}
                         </p>
@@ -205,7 +205,7 @@
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h6 class="section-title text-center px-3" style="background: var(--light-bg); color: var(--gold);">Our
                     Courses</h6>
-                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">{{ section('home', 'courses_title', 'title', 'We Focus On Authentic Islamic Education') }}</h1>
+                <h1 class="display-6 mb-4" style="font-family: 'Inter', sans-serif; color: var(--navy);">{{ section('home', 'courses_title', 'title', 'We Focus On Authentic Islamic Education') }}</h1>
             </div>
             <div class="row g-4">
                 @foreach($courses as $course)
@@ -217,7 +217,7 @@
                                 <div class="position-absolute bottom-0 start-0 end-0"
                                     style="background: linear-gradient(to top, rgba(13,27,42,0.90) 0%, rgba(13,27,42,0.4) 50%, transparent 100%); padding: 40px 16px 18px;">
                                     <h4 class="mb-0 text-white text-center"
-                                        style="font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 1px;">
+                                        style="font-family: 'Inter', sans-serif; font-size: 15px; letter-spacing: 1px;">
                                         {{ $course->title }}
                                     </h4>
                                     <div class="mx-auto mt-2" style="width: 40px; height: 2px; background: var(--gold);"></div>
@@ -228,7 +228,7 @@
                 @endforeach
                 <div class="text-center mt-5 wow fadeInUp" data-wow-delay="0.3s">
                     <a href="{{ section('home', 'courses_btn', 'button_url', '/courses') }}" class="btn py-3 px-5"
-                        style="background: var(--gold); color: var(--white); font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold);">
+                        style="background: var(--gold); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 0; border: 2px solid var(--gold);">
                         {{ section('home', 'courses_btn', 'title', 'View All Courses') }}
                     </a>
                 </div>
@@ -248,10 +248,10 @@
                         <div class="position-absolute"
                             style="top: 24px; left: -16px; background: var(--navy); border: 2px solid var(--gold); padding: 14px 20px; border-radius: 4px; box-shadow: 0 8px 32px rgba(13,27,42,0.25);">
                             <div
-                                style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 28px; font-weight: 700; line-height: 1;">
+                                style="font-family: 'Inter', sans-serif; color: var(--gold); font-size: 28px; font-weight: 700; line-height: 1;">
                                 3</div>
                             <div
-                                style="font-family: 'Cinzel', serif; color: var(--white); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px;">
+                                style="font-family: 'Inter', sans-serif; color: var(--white); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px;">
                                 Days Free</div>
                         </div>
                         <div class="position-absolute bottom-0 start-0 end-0"
@@ -259,7 +259,7 @@
                             <div style="display: flex; align-items: center; gap: 10px;">
                                 <div style="width: 36px; height: 2px; background: var(--gold);"></div>
                                 <span
-                                    style="font-family: 'Amiri', serif; color: rgba(255,255,255,0.75); font-size: 15px; font-style: italic;">No
+                                    style="font-family:'Inter', sans-serif; color: rgba(255,255,255,0.75); font-size: 15px; font-style: italic;">No
                                     commitment required</span>
                             </div>
                         </div>
@@ -268,7 +268,7 @@
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
                     <h6 class="section-title bg-white text-start pe-3"
                         style="color: var(--gold); background: var(--off-white) !important;">Free Trial</h6>
-                    <h1 class="display-6 mb-3" style="font-family: 'Cinzel', serif; color: var(--navy);">
+                    <h1 class="display-6 mb-3" style="font-family: 'Inter', sans-serif; color: var(--navy);">
                         {!! section('home', 'trial_title', 'title', 'Start Your <span style="color: var(--gold);">3 Days</span><br>Free Trial Classes') !!}
                     </h1>
                     <p class="mb-4" style="color: var(--text-mid); line-height: 1.9; font-size: 15px;">
@@ -282,7 +282,7 @@
                                     <i class="fa {{ $f['icon'] }}" style="color: var(--gold); font-size: 15px;"></i>
                                 </div>
                                 <div>
-                                    <h6 class="mb-1" style="font-family: 'Cinzel', serif; color: var(--navy); font-size: 13px;">
+                                    <h6 class="mb-1" style="font-family: 'Inter', sans-serif; color: var(--navy); font-size: 13px;">
                                         {{ $f['title'] }}</h6>
                                     <p class="mb-0" style="font-size: 13px; color: var(--text-mid); line-height: 1.7;">
                                         {{ $f['desc'] }}</p>
@@ -451,7 +451,7 @@
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h6 class="section-title text-center px-3" style="background: var(--light-bg); color: var(--gold);">Our
                     Academy</h6>
-                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">Meet Our Team</h1>
+                <h1 class="display-6 mb-4" style="font-family: 'Inter', sans-serif; color: var(--navy);">Meet Our Team</h1>
             </div>
             <div class="wow fadeInUp" data-wow-delay="0.2s">
                 <div class="position-relative overflow-hidden rounded">
@@ -471,7 +471,7 @@
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h6 class="section-title bg-white text-center px-3" style="color: var(--gold);">Our Teachers</h6>
-                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">{{ section('home', 'team_title', 'title', 'Meet Our Qualified Scholars') }}</h1>
+                <h1 class="display-6 mb-4" style="font-family: 'Inter', sans-serif; color: var(--navy);">{{ section('home', 'team_title', 'title', 'Meet Our Qualified Scholars') }}</h1>
             </div>
             <div class="row g-4">
                 @foreach($teachers->filter(fn($t) => $t->is_active) as $index => $teacher)
@@ -484,10 +484,10 @@
                                 <div class="team-text">
                                     <div class="team-title">
                                         <h5
-                                            style="font-family: 'Cinzel', serif; color: var(--navy); font-size: 16px; margin-bottom: 4px;">
+                                            style="font-family: 'Inter', sans-serif; color: var(--navy); font-size: 16px; margin-bottom: 4px;">
                                             {{ $teacher->name }}</h5>
                                         <span
-                                            style="color: var(--gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Lato', sans-serif; display: block; margin-bottom: 14px;">{{ $teacher->role }}</span>
+                                            style="color: var(--gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-family: 'Inter', sans-serif; display: block; margin-bottom: 14px;">{{ $teacher->role }}</span>
                                     </div>
                                     <div class="team-social"
                                         style="display: flex; justify-content: center; gap: 8px; margin-top: 14px;">
@@ -524,7 +524,7 @@
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h6 class="section-title text-center px-3" style="background: var(--light-bg); color: var(--gold);">
                     Testimonials</h6>
-                <h1 class="display-6 mb-4" style="font-family: 'Cinzel', serif; color: var(--navy);">{{ section('home', 'testimonials_title', 'title', 'What Our Students & Parents Say') }}</h1>
+                <h1 class="display-6 mb-4" style="font-family: 'Inter', sans-serif; color: var(--navy);">{{ section('home', 'testimonials_title', 'title', 'What Our Students & Parents Say') }}</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 @foreach($testimonials->filter(fn($t) => $t->is_active) as $t)
@@ -535,7 +535,7 @@
                                 alt="{{ $t->name }}"
                                 style="width:62px;height:62px;border-color:var(--gold)!important;object-fit:cover;">
                             <div class="ms-4">
-                                <h5 class="mb-1" style="font-family:'Cinzel',serif;color:var(--navy);font-size:14px;">
+                                <h5 class="mb-1" style="font-family:'Inter',sans-serif;color:var(--navy);font-size:14px;">
                                     {{ $t->name }}</h5>
                                 <span
                                     style="color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;">{{ $t->role }}</span>
@@ -544,7 +544,7 @@
                         </div>
                         <div style="height:1px;background:rgba(174,130,37,0.12);margin-bottom:16px;"></div>
                         <p class="mb-0"
-                            style="font-family:'Amiri',serif;font-size:16px;font-style:italic;color:var(--text-mid);line-height:1.85;">
+                            style="font-family:'Inter', sans-serif;font-size:16px;font-style:italic;color:var(--text-mid);line-height:1.85;">
                             {{ $t->text }}</p>
                     </div>
                 @endforeach
@@ -557,11 +557,11 @@
     <div class="container">
 
         <div class="text-center mx-auto mb-5" style="max-width:600px;">
-            <span style="font-size:11px;color:#AE8225;letter-spacing:3px;text-transform:uppercase;font-family:'Lato',sans-serif;display:block;margin-bottom:12px;">✦ Get In Touch ✦</span>
-            <h2 style="font-family:'Cinzel',serif;color:var(--navy);font-size:30px;font-weight:400;margin:0 0 10px;">
+            <span style="font-size:11px;color:#AE8225;letter-spacing:3px;text-transform:uppercase;font-family:'Inter',sans-serif;display:block;margin-bottom:12px;">✦ Get In Touch ✦</span>
+            <h2 style="font-family:'Inter',sans-serif;color:var(--navy);font-size:30px;font-weight:400;margin:0 0 10px;">
                 {!! section('home', 'contact_title', 'title', 'Have a <span style="color:#D4A843;">Question?</span> We\'re Here') !!}
             </h2>
-            <p style="font-size:14px;color:var(--text-mid);font-family:'Lato',sans-serif;margin:0;line-height:1.8;">
+            <p style="font-size:14px;color:var(--text-mid);font-family:'Inter',sans-serif;margin:0;line-height:1.8;">
                 {{ section('home', 'contact_title', 'description', 'Fill the form and our team will respond within 24 hours, In sha Allah.') }}
             </p>
         </div>
@@ -609,7 +609,7 @@
     border: 1.5px solid #ccc;
     border-radius: 6px;
     color: #0d1b2a;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     box-shadow: none !important;
     outline: none !important;
@@ -635,7 +635,7 @@
     background: #AE8225;
     color: #fff;
     border: 2px solid #AE8225;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;

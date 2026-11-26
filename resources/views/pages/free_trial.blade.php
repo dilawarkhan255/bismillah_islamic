@@ -19,7 +19,7 @@
                 @endphp
                 @foreach($ftBadges as $badge)
                 <span
-                    style="display:inline-flex;align-items:center;gap:6px;background:rgba(174,130,37,.12);border:1px solid rgba(174,130,37,.3);color:var(--gold-light);font-family:'Lato',sans-serif;font-size:11px;font-weight:700;padding:6px 14px;"><i
+                    style="display:inline-flex;align-items:center;gap:6px;background:rgba(174,130,37,.12);border:1px solid rgba(174,130,37,.3);color:var(--gold-light);font-family:'Inter',sans-serif;font-size:11px;font-weight:700;padding:6px 14px;"><i
                         class="fas fa-check-circle"></i> {{ $badge }}</span>
                 @endforeach
             </div>
@@ -44,9 +44,9 @@
         <div class="container">
             <div class="text-center mb-4">
                 <span
-                    style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px;">Simple
+                    style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px;">Simple
                     Process</span>
-                <h2 style="font-family:'Cinzel',serif;color:var(--navy);font-size:clamp(20px,3vw,30px);font-weight:800;">How
+                <h2 style="font-family:'Inter',sans-serif;color:var(--navy);font-size:clamp(20px,3vw,30px);font-weight:800;">How
                     It Works</h2>
                 <div style="width:40px;height:2px;background:var(--gold);margin:12px auto 0;"></div>
             </div>
@@ -71,12 +71,12 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="hv-4">
                             <div
-                                style="font-family:'Cinzel',serif;font-size:42px;font-weight:900;color:rgba(174,130,37,.07);position:absolute;top:12px;right:16px;line-height:1;">
+                                style="font-family:'Inter',sans-serif;font-size:42px;font-weight:900;color:rgba(174,130,37,.07);position:absolute;top:12px;right:16px;line-height:1;">
                                 {{ $stepNums[$si] }}</div>
                             <div style="font-size:2rem;color:{{ $stepColors[$si] }};margin-bottom:14px;display:block;"><i
                                     class="{{ $step->subtitle }}"></i></div>
                             <h5
-                                style="font-family:'Cinzel',serif;color:var(--navy);font-size:14px;font-weight:700;margin-bottom:10px;">
+                                style="font-family:'Inter',sans-serif;color:var(--navy);font-size:14px;font-weight:700;margin-bottom:10px;">
                                 {{ $step->title }}</h5>
                             <p style="color:#666;font-size:13px;line-height:1.8;margin:0;">{{ $step->description }}</p>
                         </div>
@@ -96,10 +96,10 @@
                 @php $ftSidebar = \App\Models\Section::findCached('free-trial', 'sidebar_title'); @endphp
                 <div class="col-lg-4">
                     <span
-                        style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px;">Get
+                        style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px;">Get
                         Started</span>
                     <h2
-                        style="font-family:'Cinzel',serif;color:var(--navy);font-size:clamp(20px,3vw,30px);font-weight:800;margin-bottom:12px;">
+                        style="font-family:'Inter',sans-serif;color:var(--navy);font-size:clamp(20px,3vw,30px);font-weight:800;margin-bottom:12px;">
                         {{ $ftSidebar->title ?? 'Book Your FREE Trial' }}</h2>
                     <div style="width:40px;height:2px;background:var(--gold);margin-bottom:20px;"></div>
                     <p style="color:#666;font-size:14px;line-height:1.9;margin-bottom:28px;">{{ $ftSidebar->description ?? 'Fill the form and we\'ll contact you within 2 hours to confirm your slot. Or reach us directly:' }}</p>
@@ -117,9 +117,9 @@
                                 <i class="fab fa-whatsapp"></i></div>
                             <div>
                                 <div
-                                    style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;font-family:'Lato',sans-serif;">
+                                    style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;font-family:'Inter',sans-serif;">
                                     {{ $ftWhatsappPk->title ?? 'WhatsApp — Pakistan' }}</div>
-                                <div style="font-family:'Cinzel',serif;color:var(--navy);font-size:13px;font-weight:700;">
+                                <div style="font-family:'Inter',sans-serif;color:var(--navy);font-size:13px;font-weight:700;">
                                     {{ $ftWhatsappPk->description ?? '+92 314 1833216' }}</div>
                             </div>
                         </a>
@@ -130,9 +130,9 @@
                                 <i class="fab fa-whatsapp"></i></div>
                             <div>
                                 <div
-                                    style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;font-family:'Lato',sans-serif;">
+                                    style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;font-family:'Inter',sans-serif;">
                                     {{ $ftWhatsappUk->title ?? 'WhatsApp — United Kingdom' }}</div>
-                                <div style="font-family:'Cinzel',serif;color:var(--navy);font-size:13px;font-weight:700;">
+                                <div style="font-family:'Inter',sans-serif;color:var(--navy);font-size:13px;font-weight:700;">
                                     {{ $ftWhatsappUk->description ?? '+44 7415 770822' }}</div>
                             </div>
                         </a>
@@ -142,10 +142,10 @@
                                 <i class="fas fa-envelope"></i></div>
                             <div>
                                 <div
-                                    style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;font-family:'Lato',sans-serif;">
+                                    style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;font-family:'Inter',sans-serif;">
                                     {{ $ftEmail->title ?? 'Email Us' }}</div>
                                 <div
-                                    style="font-family:'Lato',sans-serif;color:var(--navy);font-size:12px;font-weight:700;word-break:break-all;">
+                                    style="font-family:'Inter',sans-serif;color:var(--navy);font-size:12px;font-weight:700;word-break:break-all;">
                                     {{ $ftEmail->description ?? 'bismillahquranacademy2@gmail.com' }}</div>
                             </div>
                         </a>
@@ -156,9 +156,9 @@
                     <div
                         style="margin-top:20px;padding:14px 16px;background:#fff;border-left:3px solid var(--gold);border:1px solid rgba(174,130,37,.15);border-left-width:3px;">
                         <div
-                            style="font-family:'Cinzel',serif;font-size:11px;color:var(--navy);font-weight:700;margin-bottom:6px;">
+                            style="font-family:'Inter',sans-serif;font-size:11px;color:var(--navy);font-weight:700;margin-bottom:6px;">
                             <i class="far fa-clock" style="color:var(--gold);margin-right:6px;"></i>{{ $ftHours->title ?? 'Class Hours' }}</div>
-                        <div style="font-size:12px;color:#666;font-family:'Lato',sans-serif;line-height:1.7;">
+                        <div style="font-size:12px;color:#666;font-family:'Inter',sans-serif;line-height:1.7;">
                             @php
                                 $hourLines = $ftHours ? explode(',', $ftHours->description) : ['🇵🇰 Pakistan: 6:00 PM – 3:00 AM','🇬🇧 UK: 2:00 PM – 11:00 PM'];
                             @endphp
@@ -175,15 +175,15 @@
                     <div style="background:#fff;border:1px solid rgba(174,130,37,.15);border-top:3px solid var(--gold);">
                         <div
                             style="padding:20px 26px;background:linear-gradient(135deg,#0D1B2A,#18232F);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-                            <h4 style="font-family:'Cinzel',serif;color:#fff;font-size:16px;margin:0;">Enrollment Form</h4>
-                            <span style="color:rgba(255,255,255,.4);font-size:11px;font-family:'Lato',sans-serif;">Fields
+                            <h4 style="font-family:'Inter',sans-serif;color:#fff;font-size:16px;margin:0;">Enrollment Form</h4>
+                            <span style="color:rgba(255,255,255,.4);font-size:11px;font-family:'Inter',sans-serif;">Fields
                                 marked * are required</span>
                         </div>
                         <form action="{{ route('free_trial.submit') }}" method="POST" style="padding:26px;">
                             @csrf
                             <x-honeypot />
                             @if ($errors->any())
-                                <div style="background:#fdecec;border-left:3px solid #dc2626;color:#991b1b;padding:12px 16px;margin-bottom:18px;font-family:'Lato',sans-serif;font-size:13px;">
+                                <div style="background:#fdecec;border-left:3px solid #dc2626;color:#991b1b;padding:12px 16px;margin-bottom:18px;font-family:'Inter',sans-serif;font-size:13px;">
                                     <strong>Please fix the following:</strong>
                                     <ul style="margin:6px 0 0;padding-left:18px;">
                                         @foreach ($errors->all() as $error)
@@ -284,7 +284,7 @@
 @push('styles')
     <style>
         .ft-label {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 11px;
             font-weight: 700;
             color: var(--navy);
@@ -297,7 +297,7 @@
         .ft-input {
             border: 1px solid rgba(174, 130, 37, .2);
             padding: 11px 14px;
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 13px;
             color: var(--navy);
             background: #fff;

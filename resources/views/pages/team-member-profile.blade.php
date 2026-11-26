@@ -38,7 +38,7 @@
                     </div>
 
                     @if($member->role)
-                        <h4 style="font-family:'Cinzel',serif;color:var(--navy);font-weight:800;">{{ $member->name }}</h4>
+                        <h4 style="font-family:'Inter',sans-serif;color:var(--navy);font-weight:800;">{{ $member->name }}</h4>
                         <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold);margin-bottom:20px;">{{ $member->role }}</p>
                     @endif
 
@@ -95,7 +95,7 @@
 
                     @if($member->bio)
                         <div class="mb-4">
-                            <h5 style="font-family:'Cinzel',serif;color:var(--navy);font-weight:800;margin-bottom:12px;">
+                            <h5 style="font-family:'Inter',sans-serif;color:var(--navy);font-weight:800;margin-bottom:12px;">
                                 <i class="fas fa-book-open" style="color:var(--gold);margin-right:8px;"></i> About
                             </h5>
                             <div style="color:#555;font-size:15px;line-height:1.9;">
@@ -106,7 +106,7 @@
 
                     @if($member->qualifications)
                         <div class="mb-4">
-                            <h5 style="font-family:'Cinzel',serif;color:var(--navy);font-weight:800;margin-bottom:12px;">
+                            <h5 style="font-family:'Inter',sans-serif;color:var(--navy);font-weight:800;margin-bottom:12px;">
                                 <i class="fas fa-graduation-cap" style="color:var(--gold);margin-right:8px;"></i> Qualifications
                             </h5>
                             <div style="color:#555;font-size:15px;line-height:1.9;">
@@ -117,7 +117,7 @@
 
                     @if($member->experience)
                         <div class="mb-4">
-                            <h5 style="font-family:'Cinzel',serif;color:var(--navy);font-weight:800;margin-bottom:12px;">
+                            <h5 style="font-family:'Inter',sans-serif;color:var(--navy);font-weight:800;margin-bottom:12px;">
                                 <i class="fas fa-briefcase" style="color:var(--gold);margin-right:8px;"></i> Experience
                             </h5>
                             <div style="color:#555;font-size:15px;line-height:1.9;">
