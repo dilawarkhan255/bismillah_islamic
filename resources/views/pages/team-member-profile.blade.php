@@ -14,7 +14,7 @@
         :title="e($member->name)"
         :tag="'Our Team'"
         :subtitle="$member->role"
-        :image="setting('img_teachers_hero') ? asset('storage/' . setting('img_teachers_hero')) : asset('img/heroes/teachers.jpg')"
+        :image="setting('img_teachers_hero') ? asset('storage/' . setting('img_teachers_hero')) : asset('storage/feature.jpg')"
         :crumbs="['Our Team' => route('our-team'), $member->name => null]"
     ></x-page-hero>
 

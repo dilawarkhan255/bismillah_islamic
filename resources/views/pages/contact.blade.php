@@ -13,7 +13,7 @@
         :title="section('contact', 'hero', 'title', 'Get In <span>Touch</span>')"
         :tag="section('contact', 'hero', 'subtitle', 'We are here to help')"
         :subtitle="section('contact', 'hero', 'description', 'Questions about courses, timings or fees? Message us and our team will reply within 24 hours, In sha Allah.')"
-        :image="setting('img_contact_hero') ? asset('storage/' . setting('img_contact_hero')) : asset('img/heroes/contact.jpg')"
+        :image="setting('img_contact_hero') ? asset('storage/' . setting('img_contact_hero')) : asset('storage/cdd.jpg')"
         :crumbs="['Contact' => null]"
     ></x-page-hero>
 

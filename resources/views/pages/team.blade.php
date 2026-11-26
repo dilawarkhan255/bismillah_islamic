@@ -12,7 +12,7 @@
     <x-page-hero
         :title="section('team', 'hero', 'title', 'Our Teachers')"
         :subtitle="section('team', 'hero', 'subtitle', 'Certified scholars and experienced educators, dedicated to every student.')"
-        :image="setting('img_teachers_hero') ? asset('storage/' . setting('img_teachers_hero')) : asset('img/heroes/teachers.jpg')"
+        :image="setting('img_teachers_hero') ? asset('storage/' . setting('img_teachers_hero')) : asset('storage/feature.jpg')"
         :crumbs="['Our Teachers' => null]"
     ></x-page-hero>
 

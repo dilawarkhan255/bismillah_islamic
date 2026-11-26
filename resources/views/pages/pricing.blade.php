@@ -13,7 +13,7 @@
         :title="section('pricing', 'hero_title', 'title', 'Choose Your <span>Learning Plan</span>')"
         :tag="'Transparent Pricing'"
         :subtitle="section('pricing', 'hero_title', 'description', 'All plans are 30-minute live one-on-one sessions via Microsoft Teams. Every plan includes a 3-day free trial.')"
-        :image="setting('img_pricing_hero') ? asset('storage/' . setting('img_pricing_hero')) : asset('img/heroes/pricing.jpg')"
+        :image="setting('img_pricing_hero') ? asset('storage/' . setting('img_pricing_hero')) : asset('storage/how-to-learn.jpg')"
         :crumbs="['Pricing' => null]"
     >
         <!-- 4 trust badges -->

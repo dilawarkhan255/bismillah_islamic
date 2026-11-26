@@ -12,7 +12,7 @@
     <x-page-hero
         :title="section('about', 'hero', 'title', 'About Us')"
         :subtitle="section('about', 'hero', 'subtitle', 'Authentic Islamic education with care, excellence and devotion.')"
-        :image="setting('img_about_bg') ? asset('storage/' . setting('img_about_bg')) : asset('img/heroes/about.jpg')"
+        :image="setting('img_about_bg') ? asset('storage/' . setting('img_about_bg')) : asset('storage/about-bg.jpg')"
         :crumbs="['About Us' => null]"
     ></x-page-hero>
 

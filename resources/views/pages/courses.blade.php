@@ -15,7 +15,7 @@
     <x-page-hero
         :title="section('courses', 'hero', 'title', 'Our Islamic <span>Courses</span>')"
         :subtitle="section('courses', 'hero', 'subtitle', 'From the first Arabic letter to complete Quran memorization — a structured path for every student.')"
-        :image="setting('img_courses_hero') ? asset('storage/' . setting('img_courses_hero')) : asset('img/heroes/courses.jpg')"
+        :image="setting('img_courses_hero') ? asset('storage/' . setting('img_courses_hero')) : asset('storage/courses-hero.jpg')"
         :crumbs="['Courses' => null]"
     ></x-page-hero>
 

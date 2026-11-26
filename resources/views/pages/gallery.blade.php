@@ -12,7 +12,7 @@
     <x-page-hero
         :title="section('gallery', 'hero', 'title', 'Academy <span>Gallery</span>')"
         :subtitle="section('gallery', 'hero', 'subtitle', 'Cherished moments from our classes, ceremonies, and community events.')"
-        :image="setting('img_gallery_hero') ? asset('storage/' . setting('img_gallery_hero')) : asset('img/heroes/gallery.jpg')"
+        :image="setting('img_gallery_hero') ? asset('storage/' . setting('img_gallery_hero')) : asset('storage/gallery-hero.jpg')"
         :crumbs="['Gallery' => null]"
     ></x-page-hero>
 
