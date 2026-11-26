@@ -34,7 +34,7 @@ class HomeController extends Controller
         
         $teachers = Teacher::active()->limit(3)->get(['id', 'name', 'role', 'image', 'facebook_url', 'twitter_url', 'instagram_url', 'linkedin_url', 'is_active']);
         
-        $testimonials = Testimonial::active()->get(['id', 'name', 'role', 'image', 'text', 'is_active']);
+        $testimonials = Testimonial::active()->get(['id', 'name', 'role', 'country', 'course', 'image', 'text', 'rating', 'is_active']);
         
         // Fetch all home page sections in ONE query
         $homeSections = Section::where('page_name', 'home')

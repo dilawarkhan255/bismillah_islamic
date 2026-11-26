@@ -484,7 +484,12 @@
                         </div>
                         <p class="tst-text">{{ $t->text }}</p>
                         <div class="tst-person">
-                            <img loading="lazy" decoding="async" src="{{ person_image($t->image) }}" alt="{{ $t->name }}">
+                            @if($t->image)
+                                <img loading="lazy" decoding="async" src="{{ asset('storage/' . $t->image) }}" alt="{{ $t->name }}">
+                            @else
+                                {{-- No photo yet: initials, e.g. "AK" for Ahmad Khan --}}
+                                <span class="tst-initials" aria-hidden="true">{{ collect(preg_split('/\s+/', trim($t->name)))->filter()->take(2)->map(fn ($w) => mb_strtoupper(mb_substr($w, 0, 1)))->implode('') }}</span>
+                            @endif
                             <div class="min-w-0">
                                 <strong>{{ $t->name }}</strong>
                                 <span>{{ collect([$t->role, $t->country])->filter()->implode(' · ') }}</span>
