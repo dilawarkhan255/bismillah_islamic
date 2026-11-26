@@ -10,7 +10,6 @@
         :tag="section('free-trial', 'hero_title', 'subtitle', '3 Free Classes — No Commitment')"
         :subtitle="section('free-trial', 'hero_title', 'description', 'Live one-on-one classes with a qualified teacher. No payment, no commitment.')"
         :image="setting('img_free_trial_hero') ? asset('storage/' . setting('img_free_trial_hero')) : asset('storage/trial.jpg')"
-        focus="center 14%"
         :crumbs="['Free Trial' => null]"
     >
         <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;">

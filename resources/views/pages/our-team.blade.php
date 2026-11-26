@@ -13,7 +13,6 @@
         :title="section('our-team', 'hero', 'title', 'Meet Our Dedicated Team')"
         :subtitle="section('our-team', 'hero', 'subtitle', 'The people behind Bismillah Islamic Academy.')"
         :image="setting('img_teachers_hero') ? asset('storage/' . setting('img_teachers_hero')) : asset('storage/feature.jpg')"
-        focus="center 4%"
         :crumbs="['Our Team' => null]"
     ></x-page-hero>
 

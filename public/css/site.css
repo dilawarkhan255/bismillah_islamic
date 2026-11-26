@@ -382,15 +382,6 @@ button,
 .site-footer > div:last-child { background: rgba(0,0,0,.22); border-top-color: rgba(212,168,67,.2) !important; }
 .site-footer > div:last-child span { color: rgba(255,255,255,.6) !important; }
 
-
-/* ===================== Inner page banners: compact height (home slider unchanged) ===================== */
-.ph { min-height: 420px; padding: 56px 0; }
-.ph-title { font-size: clamp(28px, 4.2vw, 50px); }
-.ph-tag { margin-bottom: 16px; }
-.ph-sub { margin-bottom: 18px; }
-@media (max-width: 991.98px) { .ph { min-height: 360px; padding: 48px 0; } }
-@media (max-width: 575.98px) { .ph { min-height: 300px; padding: 40px 0; } .ph-arabic { font-size: 18px; margin-bottom: 10px; } }
-
 /* Footer contact lines: icon and text side by side, email on one line where there is room */
 .site-footer .row > div > a.d-block,
 .site-footer .row > div > p.mb-2 {
