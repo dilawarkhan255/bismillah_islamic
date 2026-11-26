@@ -82,7 +82,7 @@
     <!-- ===================== STATS ===================== -->
     <section class="stats-section">
         <div class="container">
-            <div class="row g-0">
+            <div class="row g-3 g-lg-4">
                 @foreach($sections['stats'] as $stat)
                     @php
                         $icon = $stat['icon'];
