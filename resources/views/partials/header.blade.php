@@ -635,38 +635,19 @@ a.bia-info-chip .bia-info-val {
 }
 
 /* ============================================================
-   TOP BAR polish: navy gradient with a gold glow, filled gold
-   icons, clearer labels and a solid gold Enroll button
+   TOP BAR polish: calm navy gradient, soft gold accents only
    ============================================================ */
 .bia-topbar {
-    background:
-        radial-gradient(ellipse at 50% -40%, rgba(212,168,67,.22), transparent 60%),
-        linear-gradient(90deg, #0D1B2A 0%, #14304D 50%, #0D1B2A 100%);
-    border-bottom: 1px solid rgba(212,168,67,.35);
+    background: linear-gradient(90deg, #0D1B2A 0%, #132A42 50%, #0D1B2A 100%);
+    border-bottom: 1px solid rgba(212,168,67,.18);
 }
-.bia-topbar::after {   /* faint geometric pattern */
-    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .05;
-    background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22%3E%3Cpath d=%22M20 0L40 20L20 40L0 20Z%22 fill=%22none%22 stroke=%22%23D4A843%22 stroke-width=%221%22/%3E%3C/svg%3E');
-}
-.bia-topbar-inner { position: relative; z-index: 1; min-height: 56px; }
-.bia-topbar .bia-topbar-tagline { color: #E8C877; }
-.bia-topbar .bia-info-icon {
-    background: linear-gradient(135deg, #D4A843, #AE8225); border-color: transparent;
-    box-shadow: 0 0 0 4px rgba(212,168,67,.12);
-}
-.bia-topbar .bia-info-icon i { color: #fff; font-size: 12px; }
-.bia-topbar .bia-info-chip:hover .bia-info-icon { background: linear-gradient(135deg, #E8C877, #D4A843); }
-.bia-topbar .bia-info-label { color: rgba(255,255,255,.58); }
-.bia-topbar .bia-info-val { color: #fff; }
-.bia-topbar .bia-vr { background: rgba(212,168,67,.25); }
-.bia-topbar .bia-socials a { color: #E8C877; border-color: rgba(212,168,67,.45); background: rgba(212,168,67,.08); }
-.bia-topbar .bia-socials a:hover { background: var(--gold, #AE8225); color: #fff; }
-.bia-topbar .bia-enroll-btn {
-    background: linear-gradient(135deg, #D4A843, #AE8225); color: #fff; border-color: transparent;
-    border-radius: 30px; padding: 10px 22px; box-shadow: 0 6px 18px rgba(174,130,37,.35);
-}
-.bia-topbar .bia-enroll-btn::before { background: none; }
-.bia-topbar .bia-enroll-btn:hover { background: #fff; color: var(--navy, #0D1B2A); }
-.bia-topbar .bia-enroll-icon { background: rgba(255,255,255,.22); }
-.bia-topbar .bia-arrow { opacity: 1; }
+.bia-topbar-inner { position: relative; z-index: 1; min-height: 54px; }
+.bia-topbar .bia-topbar-tagline { color: rgba(232,200,119,.85); }
+.bia-topbar .bia-info-icon { background: rgba(212,168,67,.08); border-color: rgba(212,168,67,.3); }
+.bia-topbar .bia-info-icon i { color: #D4A843; }
+.bia-topbar .bia-info-label { color: rgba(255,255,255,.5); }
+.bia-topbar .bia-info-val { color: rgba(255,255,255,.92); }
+.bia-topbar .bia-vr { background: rgba(255,255,255,.08); }
+.bia-topbar .bia-enroll-btn { border-radius: 30px; padding: 9px 20px; border-color: rgba(212,168,67,.5); }
+.bia-topbar .bia-enroll-btn:hover { box-shadow: 0 4px 14px rgba(174,130,37,.25); }
 </style>

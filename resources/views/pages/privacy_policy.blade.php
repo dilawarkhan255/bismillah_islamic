@@ -8,7 +8,7 @@
 <x-page-hero
         :title="'Privacy <span>Policy</span>'"
         :subtitle="section('privacy-policy', 'subtitle', 'title', 'Your trust is our amanah. Here\'s how we protect your information.')"
-        :image="setting('img_privacy_hero') ? asset('storage/' . setting('img_privacy_hero')) : asset('storage/about-bg.jpg')"
+        :image="setting('img_privacy_hero') ? asset('storage/' . setting('img_privacy_hero')) : asset('img/heroes/privacy.jpg')"
         :crumbs="['Privacy Policy' => null]"
     >
         <span class="ph-note"><i class="fas fa-shield-alt"></i> Last updated: January 2026</span>
