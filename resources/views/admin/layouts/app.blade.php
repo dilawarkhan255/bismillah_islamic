@@ -200,6 +200,10 @@
           <span class="nav-icon"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span>
           <span class="nav-text">Page Content</span>
         </a>
+        <a class="nav-link {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}" href="{{ route('admin.faqs.index') }}" data-sidebar-close>
+          <span class="nav-icon"><i class="bi bi-chat-dots" aria-hidden="true"></i></span>
+          <span class="nav-text">Chatbot FAQs</span>
+        </a>
         @endcan
 
         @can('manage settings')

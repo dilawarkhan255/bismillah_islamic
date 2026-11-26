@@ -745,6 +745,7 @@
     {{-- Footer --}}
     @include('partials.footer')
 
+    @include('partials.chatbot')
     @include('partials.whatsapp-float')
 
     <!-- Back to Top -->

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Models\Course;
+use App\Models\Faq;
 use App\Models\GalleryItem;
 use App\Models\HeroSlide;
 use App\Models\PricingPlan;
@@ -57,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
         };
 
         $contentModels = [
-            BlogCategory::class, BlogPost::class, Course::class, GalleryItem::class,
+            BlogCategory::class, BlogPost::class, Course::class, Faq::class, GalleryItem::class,
             HeroSlide::class, PricingPlan::class, Section::class, SiteSetting::class,
             Teacher::class, TeamMember::class, Testimonial::class,
         ];

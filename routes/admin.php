@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ClassScheduleController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EnrollmentController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\FreeTrialController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -59,6 +60,7 @@ Route::prefix('admin')
 
         Route::middleware('permission:manage page content')->group(function () {
             Route::get('page-content', [PageContentController::class, 'index'])->name('page-content.index');
+            Route::resource('faqs', FaqController::class)->except(['show', 'create'])->names('faqs');
             Route::get('page-content/{page}', [PageContentController::class, 'show'])->name('page-content.show');
             Route::post('page-content/{page}/sections', [PageContentController::class, 'store'])->name('page-content.store');
             Route::get('page-content/sections/{section}/edit', [PageContentController::class, 'edit'])->name('page-content.edit');
