@@ -50,6 +50,13 @@
         @endcan
 
         @role(\App\Support\AdminPermissions::ADMIN_ROLE)
+        <a class="nav-link {{ request()->routeIs('admin.visitors.*') ? 'active' : '' }}" href="{{ route('admin.visitors.index') }}" data-sidebar-close>
+          <span class="nav-icon"><i class="bi bi-graph-up" aria-hidden="true"></i></span>
+          <span class="nav-text">Visitors</span>
+        </a>
+        @endrole
+
+        @role(\App\Support\AdminPermissions::ADMIN_ROLE)
         <div class="nav-section-label">Classes</div>
         <a class="nav-link {{ request()->routeIs('admin.classes.*') ? 'active' : '' }}" href="{{ route('admin.classes.index') }}" data-sidebar-close>
           <span class="nav-icon"><i class="bi bi-calendar-week" aria-hidden="true"></i></span>

@@ -746,6 +746,19 @@
     @include('partials.footer')
 
     @include('partials.chatbot')
+    {{-- Visitor counter (Admin > Visitors): sends only the page, where the visitor came from and their timezone --}}
+    <script>
+        (function () {
+            try {
+                var d = new FormData();
+                d.append('p', location.pathname);
+                d.append('r', document.referrer || '');
+                d.append('tz', (window.Intl && Intl.DateTimeFormat().resolvedOptions().timeZone) || '');
+                if (navigator.sendBeacon) navigator.sendBeacon(@json(route('visit.track')), d);
+                else fetch(@json(route('visit.track')), { method: 'POST', body: d, keepalive: true });
+            } catch (e) {}
+        })();
+    </script>
     @include('partials.whatsapp-float')
 
     <!-- Back to Top -->

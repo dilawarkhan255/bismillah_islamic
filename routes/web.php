@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\QaidaController;
 use App\Http\Controllers\StudentPortalController;
+use App\Http\Controllers\VisitController;
 use App\Models\Course;
 use App\Models\GalleryItem;
 use App\Models\PricingPlan;
@@ -23,6 +24,9 @@ Route::middleware(['throttle:public-forms', 'honeypot'])->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Visitor counter beacon (Admin > Visitors). No cookie, no IP stored.
+Route::post('/v', [VisitController::class, 'store'])->middleware('throttle:60,1')->name('visit.track');
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [SeoController::class, 'robots'])->name('robots');
 Route::get('/home/clear-cache', [HomeController::class, 'clearCache'])->name('home.clear-cache')->middleware('auth', 'role:admin');

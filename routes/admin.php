@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VisitorStatsController;
 use App\Support\AdminPermissions;
 use Illuminate\Support\Facades\Route;
 
@@ -75,6 +76,7 @@ Route::prefix('admin')
 
         // Students & timetable (admin only)
         Route::middleware('role:' . AdminPermissions::ADMIN_ROLE)->group(function () {
+            Route::get('visitors', [VisitorStatsController::class, 'index'])->name('visitors.index');
             Route::delete('students', [StudentController::class, 'bulkDestroy'])->name('students.bulk-destroy');
             Route::get('students/import', [StudentImportController::class, 'create'])->name('students.import');
             Route::post('students/import', [StudentImportController::class, 'store'])->name('students.import.store');
