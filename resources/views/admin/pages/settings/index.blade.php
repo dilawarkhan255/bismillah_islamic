@@ -130,7 +130,7 @@
                     'img_home_teams' => ['label' => 'Our Teams', 'desc' => 'Home page teams banner'],
                     'img_about_hero' => ['label' => 'About Hero', 'desc' => 'About page top image'],
                     'img_about_team' => ['label' => 'About Team', 'desc' => 'About page team section'],
-                    'img_about_bg' => ['label' => 'About Background', 'desc' => 'About page parallax background'],
+                    'img_about_bg' => ['label' => 'About Banner', 'desc' => 'About page top banner (best 1920 x 640)'],
                     'img_courses_hero' => ['label' => 'Courses Hero', 'desc' => 'Courses page top banner'],
                     'img_gallery_hero' => ['label' => 'Gallery Hero', 'desc' => 'Gallery page top banner'],
                     'img_teachers_hero' => ['label' => 'Teachers Banner', 'desc' => 'Our Teachers, Our Team and profile pages'],

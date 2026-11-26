@@ -24,7 +24,7 @@
                 </a>
                 <a href="{{ section('footer', 'email', 'button_url', 'mailto:bismillahquranacademy2@gmail.com') }}" class="mb-2 d-block"
                     style="font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none;">
-                    <i class="{{ faIcon(section('footer', 'email', 'subtitle', 'fa-envelope')) }} me-3" style="color: var(--gold);"></i>{{ section('footer', 'email', 'description', 'bismillahquranacademy2@gmail.com') }}
+                    <i class="{{ faIcon(section('footer', 'email', 'subtitle', 'fa-envelope')) }} me-3" style="color: var(--gold);"></i>{{-- line break allowed only after the @ --}}<span>{!! str_replace('@', '@<wbr>', e(section('footer', 'email', 'description', 'bismillahquranacademy2@gmail.com'))) !!}</span>
                 </a>
                 @php
                     $socialRaw = section('footer', 'social', 'description', 'Facebook|https://www.facebook.com/share/1JPSiUdTG3/?mibextid=wwXIfr|fa-facebook-f,Instagram|https://www.instagram.com/bismillahislamicacademy?igsh=OWxiZHZwc2l5aXd6&utm_source=qr|fa-instagram,YouTube||fa-youtube');
