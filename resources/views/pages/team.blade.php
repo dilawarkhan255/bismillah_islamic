@@ -13,6 +13,7 @@
         :title="section('team', 'hero', 'title', 'Our Teachers')"
         :subtitle="section('team', 'hero', 'subtitle', 'Certified scholars and experienced educators, dedicated to every student.')"
         :image="setting('img_teachers_hero') ? asset('storage/' . setting('img_teachers_hero')) : asset('storage/feature.jpg')"
+        focus="center 4%"
         :crumbs="['Our Teachers' => null]"
     ></x-page-hero>
 

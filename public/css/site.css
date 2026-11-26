@@ -410,3 +410,10 @@ button,
 @media (min-width: 992px) {
     .site-footer .row > div > a.d-block span { white-space: nowrap; }
 }
+
+
+/* Banner photos show more clearly: veil darker behind the text, lighter towards the edges */
+.ph-overlay {
+    background:
+        radial-gradient(ellipse 60% 75% at 50% 50%, rgba(13,27,42,.62) 0%, rgba(13,27,42,.42) 60%, rgba(13,27,42,.28) 100%);
+}

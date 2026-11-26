@@ -20,6 +20,7 @@
     'image' => null,
     'decor' => null,
     'crumbs' => [],
+    'focus' => null,      // which part of the photo to keep, e.g. "center 10%" (default: center 22%)
 ])
 
 @php
@@ -34,7 +35,7 @@
 
 <section class="ph {{ $decor ? 'ph--decor' : '' }}">
     @if($image)
-        <div class="ph-bg"><img src="{{ $image }}" alt="" fetchpriority="high"></div>
+        <div class="ph-bg"><img src="{{ $image }}" alt="" fetchpriority="high" @if($focus) style="object-position: {{ $focus }};" @endif></div>
     @endif
     @if($decor)
         <div class="ph-decor" aria-hidden="true" lang="ar">{{ $decor }}</div>

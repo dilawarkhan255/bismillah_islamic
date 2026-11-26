@@ -14,6 +14,7 @@
         :tag="'Transparent Pricing'"
         :subtitle="section('pricing', 'hero_title', 'description', 'All plans are 30-minute live one-on-one sessions via Microsoft Teams. Every plan includes a 3-day free trial.')"
         :image="setting('img_pricing_hero') ? asset('storage/' . setting('img_pricing_hero')) : asset('storage/how-to-learn.jpg')"
+        focus="center 8%"
         :crumbs="['Pricing' => null]"
     >
         <!-- 4 trust badges -->
