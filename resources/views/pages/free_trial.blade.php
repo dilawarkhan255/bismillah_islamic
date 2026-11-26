@@ -88,7 +88,7 @@
 
 
     <!-- ── ENROLLMENT FORM ───────────────────────────── -->
-    <section style="background:#f8f6f0;padding:70px 0;" id="enroll-form">
+    <section style="background:var(--off-white);padding:70px 0;" id="enroll-form">
         <div class="container">
             <div class="row g-5 align-items-start">
 

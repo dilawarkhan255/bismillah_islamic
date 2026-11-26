@@ -329,7 +329,7 @@
     overflow: hidden;
     width: 100%;
     max-width: 100%;
-    background: #ffffff;
+    background: var(--off-white);
 }
 
 /* Background image hidden — white bg use ho raha hai */
@@ -931,7 +931,7 @@
     padding: 100px 0;
     overflow: hidden;
     text-align: center;
-    background: var(--white);
+    background: var(--light-bg);
     border-top: 1px solid rgba(174, 130, 37, 0.12);
     border-bottom: 1px solid rgba(174, 130, 37, 0.12);
 }
@@ -1080,7 +1080,7 @@
 
 /* ====== LEARNING JOURNEY STRIP ====== */
 .lj-section {
-    background: var(--off-white);
+    background: var(--white);
     padding: 70px 0 60px;
     cursor: pointer;
 }

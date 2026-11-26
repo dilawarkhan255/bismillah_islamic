@@ -33,7 +33,7 @@
 
 
     <!-- ── PLANS ──────────────────────────────────────── -->
-    <section style="background:#f5f3ed;padding:80px 0 70px;">
+    <section style="background:var(--light-bg);padding:80px 0 70px;">
         <div class="container">
             <div class="row g-0 justify-content-center align-items-stretch bia-plan-row">
 

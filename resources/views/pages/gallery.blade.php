@@ -56,7 +56,7 @@
     </section>
 
     <!-- CTA BANNER -->
-    <section class="g-cta-section g-scroll mb-5" data-dir="up">
+    <section class="g-cta-section g-scroll" data-dir="up">
         <div class="g-cta-pattern"></div>
         <div class="g-cta-glow"></div>
         <div class="container text-center" style="position:relative; z-index:2;">

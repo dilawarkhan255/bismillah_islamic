@@ -69,8 +69,8 @@
             --navy-mid: #122233;
             --navy-light: #1A3048;
             --white: #ffffff;
-            --off-white: #FAFAF7;
-            --light-bg: #F5F3EE;
+            --off-white: #F8F5EE;   /* light section, clearly different from white */
+            --light-bg: #F1ECE0;    /* deeper cream for alternating sections */
             --border: rgba(174, 130, 37, 0.25);
             --border-soft: rgba(174, 130, 37, 0.12);
             --text-dark: #0D1B2A;
@@ -78,7 +78,7 @@
             --text-muted: #7A8FA0;
             --primary: #AE8225;
             --secondary: #0D1B2A;
-            --light: #F5F3EE;
+            --light: #F1ECE0;
             --dark: #0D1B2A;
         }
 

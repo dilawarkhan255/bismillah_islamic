@@ -125,7 +125,7 @@
 
 
     <!-- ===================== CTA BANNER ===================== -->
-    <section class="cta-banner scroll-reveal mb-5" data-dir="up">
+    <section class="cta-banner scroll-reveal" data-dir="up">
         <div class="cta-pattern"></div>
         <div class="cta-glow"></div>
         <div class="container" style="position:relative; z-index:2;">

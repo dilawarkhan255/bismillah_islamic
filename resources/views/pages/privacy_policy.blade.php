@@ -145,7 +145,7 @@
 .pp-badge i { color:var(--gold); }
 
 /* ── MAIN ─────────────────────────────────── */
-.pp-main { background:#f4f2ee; padding:60px 0 80px; }
+.pp-main { background:var(--light-bg); padding:60px 0 80px; }
 
 /* ── BANNER ───────────────────────────────── */
 .pp-banner {
@@ -237,7 +237,7 @@
 .pp-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
 .pp-chips span {
     display:inline-flex; align-items:center; gap:6px;
-    background:#f4f2ee; border:1px solid rgba(174,130,37,.2);
+    background:var(--light-bg); border:1px solid rgba(174,130,37,.2);
     font-family:'Inter',sans-serif; font-size:12px; color:#444;
     padding:6px 12px;
 }

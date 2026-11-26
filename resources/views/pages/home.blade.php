@@ -186,7 +186,7 @@
 
 
     <!-- ===================== FREE TRIAL ===================== -->
-    <div class="container-xxl py-5" style="background: var(--off-white);">
+    <div class="container-xxl py-5" style="background: var(--white);">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
@@ -215,7 +215,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
                     <h6 class="section-title bg-white text-start pe-3"
-                        style="color: var(--gold); background: var(--off-white) !important;">Free Trial</h6>
+                        style="color: var(--gold); background: var(--white) !important;">Free Trial</h6>
                     <h1 class="display-6 mb-3" style="font-family: 'Inter', sans-serif; color: var(--navy);">
                         {!! section('home', 'trial_title', 'title', 'Start Your <span style="color: var(--gold);">3 Days</span><br>Free Trial Classes') !!}
                     </h1>
