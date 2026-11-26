@@ -85,14 +85,22 @@
                         <div class="course-card">
                             <div class="card-shimmer-line"></div>
 
-                            <div class="card-img-wrap">
-                                <img loading="lazy" decoding="async" src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}">
-                                <div class="card-img-overlay"></div>
-                                <span class="course-badge"
-                                    style="background:{{ $course->badge_color }};">{{ $course->badge }}</span>
-                                <span class="course-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                            @php
+                                // FontAwesome 5 names for icons saved with FontAwesome 6 names
+                                $courseIcon = str_replace(['fa-hands-praying', 'fa-person-praying'], 'fa-pray', (string) $course->icon);
+                                $badgeBg = preg_match('/^(#[0-9a-f]{3,8}|rgba?\(.+\))$/i', (string) $course->badge_color) ? $course->badge_color : null;
+                            @endphp
+                            <div class="card-media">
+                                <div class="card-img-wrap">
+                                    <img loading="lazy" decoding="async" src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}">
+                                    <div class="card-img-overlay"></div>
+                                    @if($course->badge)
+                                        <span class="course-badge" @if($badgeBg) style="background:{{ $badgeBg }};" @endif>{{ $course->badge }}</span>
+                                    @endif
+                                    <span class="course-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                                </div>
                                 <div class="course-icon-circle">
-                                    <i class="{{ $course->icon }}"></i>
+                                    <i class="{{ faIcon($courseIcon ?: 'fa-book-open') }}"></i>
                                 </div>
                             </div>
 

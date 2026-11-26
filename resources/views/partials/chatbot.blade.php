@@ -36,8 +36,8 @@
 
 <style>
     .cb-launch { position: fixed; right: 20px; bottom: 148px; z-index: 998; width: 56px; height: 56px; border-radius: 50%; border: 0;
-        background: var(--navy, #0D1B2A); color: var(--gold-light, #D4A843); font-size: 24px; cursor: pointer;
-        box-shadow: 0 6px 20px rgba(0,0,0,.25); display: grid; place-items: center; transition: transform .25s; }
+        background: linear-gradient(135deg, #D4A843, #AE8225); color: #fff; font-size: 24px; cursor: pointer;
+        border: 3px solid #fff; box-shadow: 0 6px 22px rgba(0,0,0,.3); display: grid; place-items: center; transition: transform .25s; }
     .cb-launch:hover { transform: scale(1.06); }
     .cb-ico-close, .cb.is-open .cb-ico-open { display: none; }
     .cb.is-open .cb-ico-close { display: inline; }

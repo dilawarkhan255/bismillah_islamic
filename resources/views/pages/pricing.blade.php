@@ -35,88 +35,62 @@
     <!-- ── PLANS ──────────────────────────────────────── -->
     <section style="background:var(--light-bg);padding:80px 0 70px;">
         <div class="container">
-            <div class="row g-0 justify-content-center align-items-stretch bia-plan-row">
-
-
-
+            @php $planWa = preg_replace('/\D+/', '', (string) setting('whatsapp_float', '923141833216')); @endphp
+            <div class="row g-4 justify-content-center align-items-stretch pl-row">
                 @foreach($plans as $plan)
-                    <div class="col-lg-4 col-md-6 {{ $plan->is_popular ? 'bia-col-popular' : '' }}">
-                        <div class="bia-plan {{ $plan->is_popular ? 'bia-plan-featured' : '' }}" style="--accent:{{ $plan->accent_color }};">
-
+                    @php
+                        $allCourses = strcasecmp((string) $plan->courses_count, 'all') === 0;
+                        $waText = rawurlencode('Assalamu Alaikum, I am interested in the ' . $plan->name . ' plan (' . $plan->days_per_week . ' days a week).');
+                    @endphp
+                    <div class="col-lg-4 col-md-6">
+                        <div class="pl-card {{ $plan->is_popular ? 'pl-card--featured' : '' }}">
                             @if($plan->is_popular)
-                                <div class="bia-pop-badge">Most Popular</div>
+                                <span class="pl-ribbon"><i class="fas fa-star"></i> Most Popular</span>
                             @endif
 
-                            <!-- Top: Badge + Name -->
-                            <div class="bia-plan-top">
-                                {{-- First letter of the plan name as a monogram (works whatever text is saved in "badge") --}}
-                                <div class="bia-plan-letter" style="color:{{ $plan->accent_color }};">{{ mb_strtoupper(mb_substr($plan->name, 0, 1)) }}</div>
-                                <div class="bia-plan-heading">
-                                    <div class="bia-plan-name">{{ $plan->name }} Plan</div>
-                                    <div class="bia-plan-tagline">{{ $plan->days_per_week }} days a week</div>
+                            <div class="pl-head">
+                                <span class="pl-mark">{{ mb_strtoupper(mb_substr($plan->name, 0, 1)) }}</span>
+                                <div>
+                                    <h3 class="pl-name">{{ $plan->name }}</h3>
+                                    <p class="pl-sub">{{ $plan->days_per_week }} days a week</p>
                                 </div>
-                                @if($plan->badge && !$plan->is_popular)
-                                    <span class="bia-plan-tag" style="color:{{ $plan->accent_color }}; border-color:{{ $plan->accent_color }};">{{ $plan->badge }}</span>
+                                @if($plan->badge && ! $plan->is_popular)
+                                    <span class="pl-tag">{{ $plan->badge }}</span>
                                 @endif
                             </div>
 
-                            <!-- Day dots visual -->
-                            <div class="bia-days-row">
-                                @for($d = 1; $d <= 6; $d++)
-                                    <div class="bia-day-dot {{ $d <= $plan->days_per_week ? 'active' : '' }}" style="{{ $d <= $plan->days_per_week ? 'background:' . $plan->accent_color . ';' : '' }}">
-                                        {{ ['M', 'T', 'W', 'T', 'F', 'S'][$d - 1] }}
-                                    </div>
-                                @endfor
+                            <div class="pl-days" aria-label="{{ $plan->days_per_week }} class days a week">
+                                @foreach(['M', 'T', 'W', 'T', 'F', 'S'] as $i => $day)
+                                    <span class="{{ $i < $plan->days_per_week ? 'on' : '' }}">{{ $day }}</span>
+                                @endforeach
                             </div>
 
-                            <!-- Key stats strip -->
-                            <div class="bia-stats-strip">
-                                <div class="bia-stat">
-                                    <span class="bia-stat-val">{{ $plan->classes_per_month }} classes / month</span>
-                                    <span class="bia-stat-lbl">Classes</span>
-                                </div>
-                                <div class="bia-stat-divider"></div>
-                                <div class="bia-stat">
-                                    <span class="bia-stat-val">30 min</span>
-                                    <span class="bia-stat-lbl">Per class</span>
-                                </div>
-                                <div class="bia-stat-divider"></div>
-                                <div class="bia-stat">
-                                    <span class="bia-stat-val">{{ strcasecmp((string) $plan->courses_count, 'all') === 0 ? 'All courses' : $plan->courses_count . ' ' . Str::plural('course', (int) $plan->courses_count) }}</span>
-                                    <span class="bia-stat-lbl">Available</span>
-                                </div>
+                            <div class="pl-stats">
+                                <div><strong>{{ $plan->classes_per_month }}</strong><span>classes<br>a month</span></div>
+                                <div><strong>30</strong><span>minutes<br>per class</span></div>
+                                <div><strong>{{ $allCourses ? 'All' : $plan->courses_count }}</strong><span>{{ $allCourses || (int) $plan->courses_count !== 1 ? 'courses' : 'course' }}<br>included</span></div>
                             </div>
 
-                            <!-- Features -->
-                            <div class="bia-features">
+                            <ul class="pl-features">
                                 @foreach($plan->features as $f)
-                                    <div class="bia-feat">
-                                        <i class="fas fa-check" style="color:{{ $plan->accent_color }};font-size:10px;margin-top:3px;flex-shrink:0;"></i>
-                                        <span>{{ $f }}</span>
-                                    </div>
+                                    <li><i class="fas fa-check"></i><span>{{ $f }}</span></li>
                                 @endforeach
                                 @if($plan->certificate)
-                                    <div class="bia-feat bia-feat-cert" style="border-left:2px solid {{ $plan->accent_color }};">
-                                        <i class="fas fa-certificate" style="color:{{ $plan->accent_color }};font-size:10px;margin-top:3px;flex-shrink:0;"></i>
-                                        <span style="font-weight:700;">Completion Certificate Included</span>
-                                    </div>
+                                    <li class="pl-cert"><i class="fas fa-award"></i><span>Completion certificate included</span></li>
                                 @endif
-                            </div>
+                            </ul>
 
-                            <!-- CTA -->
-                            <div class="bia-plan-cta">
-                                <a href="{{ route('free_trial') }}" class="bia-cta-primary {{ $plan->is_popular ? 'bia-cta-gold' : '' }}" style="{{ !$plan->is_popular ? 'border-color:' . $plan->accent_color . ';color:' . $plan->accent_color . ';' : '' }}">
-                                    Start Free Trial <i class="fas fa-arrow-right" style="font-size:10px;margin-left:6px;"></i>
+                            <div class="pl-cta">
+                                <a href="{{ route('free_trial') }}" class="pl-btn {{ $plan->is_popular ? 'pl-btn--gold' : '' }}">
+                                    Start Free Trial <i class="fas fa-arrow-right"></i>
                                 </a>
-                                <a href="https://wa.me/923141833216?text=Assalamu+Alaikum,+I+am+interested+in+free+trial+classes" target="_blank" class="bia-cta-wa">
-                                    <i class="fab fa-whatsapp"></i> Ask on WhatsApp
+                                <a href="https://wa.me/{{ $planWa }}?text={{ $waText }}" target="_blank" rel="noopener" class="pl-wa">
+                                    <i class="fab fa-whatsapp"></i> Ask about this plan
                                 </a>
                             </div>
-
                         </div>
                     </div>
                 @endforeach
-
             </div>
 
             <p class="text-center mt-4" style="font-family:'Inter',sans-serif;font-size:13px;color:#aaa;">

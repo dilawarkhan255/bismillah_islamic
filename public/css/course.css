@@ -668,3 +668,19 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+
+/* ---------- Course card polish: icon circle fully visible, readable badge ---------- */
+.course-card { border-radius: 16px; }
+.card-media { position: relative; }
+.card-media .card-img-wrap { border-radius: 16px 16px 0 0; }
+.card-media .card-img-overlay { background: linear-gradient(180deg, rgba(13,27,42,0) 55%, rgba(13,27,42,.45) 100%); }
+.course-card:hover .card-media .card-img-overlay { background: linear-gradient(180deg, rgba(13,27,42,.1) 30%, rgba(13,27,42,.55) 100%); }
+.card-media .course-icon-circle { bottom: -26px; right: 22px; z-index: 4; width: 54px; height: 54px; font-size: 20px; border-width: 3px; border-color: #fff;
+    box-shadow: 0 8px 20px rgba(13,27,42,.28); }
+.course-badge { top: 14px; left: 14px; border-radius: 20px; padding: 6px 12px; font-size: 10px; letter-spacing: 1.2px;
+    background: rgba(13,27,42,.82); color: var(--gold-light); border: 1px solid rgba(212,168,67,.55); backdrop-filter: blur(4px); }
+.course-number { color: rgba(255,255,255,.75); font-weight: 700; }
+.card-body-inner { padding-top: 38px; }
+.card-enroll-btn { border-radius: 10px; }
+.card-features { border-radius: 0 10px 10px 0; }
