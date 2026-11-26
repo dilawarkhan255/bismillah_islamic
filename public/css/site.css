@@ -391,18 +391,22 @@ button,
 @media (max-width: 991.98px) { .ph { min-height: 360px; padding: 48px 0; } }
 @media (max-width: 575.98px) { .ph { min-height: 300px; padding: 40px 0; } .ph-arabic { font-size: 18px; margin-bottom: 10px; } }
 
-/* Footer contact lines: icon and text stay side by side; long email wraps beside the icon */
-.site-footer .col-lg-3 > a.d-block,
-.site-footer .col-lg-3 > p.mb-2 {
+/* Footer contact lines: icon and text side by side, email on one line where there is room */
+.site-footer .row > div > a.d-block,
+.site-footer .row > div > p.mb-2 {
     display: flex !important;
     align-items: flex-start;
     overflow-wrap: break-word;
     line-height: 1.55;
+    margin-bottom: 12px !important;
 }
-.site-footer .col-lg-3 > a.d-block i,
-.site-footer .col-lg-3 > p.mb-2 i {
+.site-footer .row > div > a.d-block i,
+.site-footer .row > div > p.mb-2 i {
     flex-shrink: 0;
     width: 16px;
     margin-top: 4px;
     text-align: center;
+}
+@media (min-width: 992px) {
+    .site-footer .row > div > a.d-block span { white-space: nowrap; }
 }

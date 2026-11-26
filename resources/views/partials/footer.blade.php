@@ -6,7 +6,7 @@
         <div class="row g-5">
 
             {{-- Address --}}
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <h5
                     style="font-family: 'Inter', sans-serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
                     {{ section('footer', 'address', 'title', 'Address') }}
@@ -48,7 +48,7 @@
             </div>
 
             {{-- Quick Links --}}
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-2 col-md-6">
                 <h5
                     style="font-family: 'Inter', sans-serif; color: var(--gold-light); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 1px solid rgba(174,130,37,0.2);">
                     Quick Links
