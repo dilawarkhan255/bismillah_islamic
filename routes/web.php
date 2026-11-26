@@ -8,6 +8,7 @@ use App\Http\Controllers\SeoController;
 use App\Http\Controllers\QaidaController;
 use App\Http\Controllers\StudentPortalController;
 use App\Http\Controllers\VisitController;
+use App\Http\Controllers\ChatController;
 use App\Models\Course;
 use App\Models\GalleryItem;
 use App\Models\PricingPlan;
@@ -27,6 +28,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Visitor counter beacon (Admin > Visitors). No cookie, no IP stored.
 Route::post('/v', [VisitController::class, 'store'])->middleware('throttle:60,1')->name('visit.track');
+
+// AI chatbot answers (limits per visitor in AppServiceProvider)
+Route::post('/chat', [ChatController::class, 'reply'])->middleware('throttle:chatbot')->name('chat.reply');
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [SeoController::class, 'robots'])->name('robots');
 Route::get('/home/clear-cache', [HomeController::class, 'clearCache'])->name('home.clear-cache')->middleware('auth', 'role:admin');

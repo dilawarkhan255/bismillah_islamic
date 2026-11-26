@@ -50,6 +50,12 @@ class AppServiceProvider extends ServiceProvider
             ];
         });
 
+        // Website chatbot: keeps AI usage (and cost) in check per visitor.
+        RateLimiter::for('chatbot', fn (Request $request) => [
+            Limit::perMinute(8)->by('chat-min:' . $request->ip())->response(fn () => response()->json(['error' => 'slow_down'], 429)),
+            Limit::perDay(60)->by('chat-day:' . $request->ip())->response(fn () => response()->json(['error' => 'limit'], 429)),
+        ]);
+
         // Refresh every cached public page whenever site content changes.
         $flush = function () {
             ContentCache::flush();

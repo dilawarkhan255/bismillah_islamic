@@ -5,6 +5,18 @@
 @section('content')
 <x-admin.page-header title="Chatbot FAQs" icon="bi-chat-dots" eyebrow="Site setup" subtitle="Questions the website chatbot answers. The first six show as quick buttons."></x-admin.page-header>
 
+@if(\App\Support\ChatAssistant::enabled())
+  <div class="alert d-flex gap-2 align-items-start mb-4" style="background:rgba(15,118,110,.1);border:1px solid rgba(15,118,110,.3);color:var(--admin-text);">
+    <i class="bi bi-stars" style="color:var(--admin-success);"></i>
+    <div><strong>AI answers are ON</strong> ({{ config('services.anthropic.model') }}). Typed questions are answered by the AI using these FAQs, your courses and contact details. Quick buttons still use the answers below.</div>
+  </div>
+@else
+  <div class="alert d-flex gap-2 align-items-start mb-4" style="background:rgba(174,130,37,.08);border:1px solid rgba(174,130,37,.3);color:var(--admin-text);">
+    <i class="bi bi-info-circle" style="color:var(--admin-primary);"></i>
+    <div><strong>AI answers are OFF</strong> — the chatbot answers from these FAQs only. To turn AI on, add <code>ANTHROPIC_API_KEY=...</code> to the server's <code>.env</code>.</div>
+  </div>
+@endif
+
 <div class="row g-4">
   <div class="col-lg-7">
     <div class="panel">

@@ -1,7 +1,9 @@
 {{--
-  FAQ chatbot on every public page. Questions and answers come from Admin > Chatbot FAQs.
-  It matches what the visitor types against each question and its keywords (English and
-  Roman Urdu); with no good match it offers WhatsApp. Nothing typed is sent or stored.
+  Chatbot on every public page. Quick-question buttons answer from Admin > Chatbot FAQs.
+  Typed questions go to the AI assistant (POST /chat, App\Support\ChatAssistant) when an
+  API key is set; otherwise, or if the AI is unavailable, they are matched against the FAQs
+  (English and Roman Urdu keywords). When a person is needed it offers WhatsApp.
+  Conversations are not stored.
 --}}
 @php
     $chatFaqs = \App\Support\ContentCache::remember('faqs.active', fn () => \App\Models\Faq::active()
@@ -11,6 +13,7 @@
             'bt' => $f->button_text, 'bu' => $f->button_url ? url($f->button_url) : null,
         ])->values()->all());
     $chatWa = preg_replace('/\D+/', '', (string) setting('whatsapp_float', '923141833216'));
+    $chatAi = \App\Support\ChatAssistant::enabled();
 @endphp
 @if($chatFaqs)
 <div class="cb" id="chatbot">
@@ -63,6 +66,10 @@
     .cb-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid rgba(174,130,37,.18); background: #fff; }
     .cb-input { flex: 1; border: 1px solid rgba(174,130,37,.35); border-radius: 20px; padding: 9px 14px; font-size: 14px; font-family: inherit; outline: none; }
     .cb-input:focus { border-color: var(--gold, #AE8225); }
+    .cb-typing span { display: inline-block; width: 7px; height: 7px; margin: 0 2px; border-radius: 50%; background: rgba(174,130,37,.6); animation: cbDot 1.2s infinite ease-in-out; }
+    .cb-typing span:nth-child(2) { animation-delay: .15s; }
+    .cb-typing span:nth-child(3) { animation-delay: .3s; }
+    @keyframes cbDot { 0%, 80%, 100% { transform: scale(.6); opacity: .5; } 40% { transform: scale(1); opacity: 1; } }
     .cb-send { width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--navy, #0D1B2A); color: #D4A843; cursor: pointer; }
     @media (max-width: 575.98px) {
         .cb-launch { right: 14px; bottom: 140px; width: 52px; height: 52px; font-size: 22px; }
@@ -74,6 +81,8 @@
 (function () {
     var faqs = @json($chatFaqs);
     var wa = @json($chatWa);
+    var ai = @json($chatAi), aiUrl = @json(route('chat.reply')), csrf = @json(csrf_token());
+    var history = [];   // text of this conversation, sent to the AI for context
     var root = document.getElementById('chatbot');
     if (!root) return;
     var panel = root.querySelector('.cb-panel'), body = root.querySelector('.cb-body'),
@@ -147,13 +156,47 @@
         if (actions.children.length) el.appendChild(actions);
     }
 
+    function remember(role, text) {
+        history.push({ role: role, content: String(text).slice(0, 1000) });
+        while (history.length > 11) history.shift();
+        while (history.length && history[0].role !== 'user') history.shift();
+    }
+
+    function faqReply(text, known) {
+        var f = known || best(text);
+        answer(f, text);
+        remember('assistant', f ? f.a : 'Please ask the team on WhatsApp.');
+        chips(faqs.filter(function (x) { return x !== f; }).slice(0, 3));
+    }
+
+    function aiReply(text) {
+        var typing = add('cb-bot cb-typing', '');
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        fetch(aiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': csrf },
+            body: JSON.stringify({ messages: history })
+        })
+            .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+            .then(function (data) {
+                typing.remove();
+                var el = add('cb-bot', data.reply);
+                remember('assistant', data.reply);
+                if (data.whatsapp) {
+                    var actions = document.createElement('div');
+                    actions.className = 'cb-actions';
+                    link(actions, 'cb-btn--wa', waLink(text), '<i class="fab fa-whatsapp"></i> Continue on WhatsApp', true);
+                    el.appendChild(actions);
+                }
+            })
+            .catch(function () { typing.remove(); faqReply(text); });
+    }
+
     function ask(text, known) {
         add('cb-user', text);
-        var f = known || best(text);
-        setTimeout(function () {
-            answer(f, text);
-            chips(faqs.filter(function (x) { return x !== f; }).slice(0, 3));
-        }, 350);
+        remember('user', text);
+        if (!known && ai) { aiReply(text); return; }
+        setTimeout(function () { faqReply(text, known); }, 350);
     }
 
     function open(show) {

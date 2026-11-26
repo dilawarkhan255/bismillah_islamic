@@ -36,6 +36,12 @@ return [
     ],
     'email' => [
         'admin_email' => env('ADMIN_EMAIL')
-    ]
+    ],
+
+    // Website chatbot (Admin > Chatbot FAQs). Without a key it answers from the FAQs only.
+    'anthropic' => [
+        'key' => env('ANTHROPIC_API_KEY'),
+        'model' => env('CHATBOT_MODEL', 'claude-opus-5-5'),
+    ],
 
 ];
