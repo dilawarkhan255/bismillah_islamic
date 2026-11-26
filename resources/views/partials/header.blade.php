@@ -37,7 +37,7 @@ Row 2: Logo left | Nav CENTER
                 <div class="bia-info-icon"><i class="far fa-clock"></i></div>
                 <div>
                     <span class="bia-info-label">Class Hours</span>
-                    <span class="bia-info-val">{{ \App\Models\SiteSetting::get('class_hours', 'Mon–Sat 24/7 - Hours') }}</span>
+                    <span class="bia-info-val">{{ html_entity_decode((string) \App\Models\SiteSetting::get('class_hours', 'Mon–Sat 24/7 - Hours'), ENT_QUOTES | ENT_HTML5) }}</span>
                 </div>
             </div>
 
@@ -120,7 +120,7 @@ Row 2: Logo left | Nav CENTER
             @endphp
             {{-- Explore: reading and information --}}
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('blog', 'blog.show', 'our-team', 'team-member.profile', 'privacy_policy', 'progress.index', 'certificates.index') ? 'active' : '' }}" data-bs-toggle="dropdown" role="button" aria-expanded="false">Explore</a>
+                <a href="#" class="nav-link dropdown-toggle {{ request()->routeIs('blog', 'blog.show', 'our-team', 'team-member.profile', 'privacy_policy') ? 'active' : '' }}" data-bs-toggle="dropdown" role="button" aria-expanded="false">Explore</a>
                 <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
                     <a href="{{ route('blog') }}"
                         class="dropdown-item {{ request()->routeIs('blog', 'blog.show') ? 'active' : '' }}">Blog</a>
@@ -130,16 +130,6 @@ Row 2: Logo left | Nav CENTER
                     @endif
                     <a href="{{ route('privacy_policy') }}"
                         class="dropdown-item {{ request()->routeIs('privacy_policy') ? 'active' : '' }}">Privacy Policy</a>
-                    @auth
-                        @role(\App\Support\AdminPermissions::ADMIN_ROLE)
-                            {{-- Only a logged-in admin sees these; visitors and students never do --}}
-                            <div class="dropdown-divider"></div>
-                            <a href="{{ route('progress.index') }}"
-                                class="dropdown-item {{ request()->routeIs('progress.index') ? 'active' : '' }}">Student Progress Pages</a>
-                            <a href="{{ route('certificates.index') }}"
-                                class="dropdown-item {{ request()->routeIs('certificates.index') ? 'active' : '' }}">Certificates</a>
-                        @endrole
-                    @endauth
                 </div>
             </div>
         </div>

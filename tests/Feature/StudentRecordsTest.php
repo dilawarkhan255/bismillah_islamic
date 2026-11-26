@@ -118,8 +118,9 @@ class StudentRecordsTest extends TestCase
         $this->student->certificates()->create(['title' => 'Completion of Norani Qaida', 'issued_on' => '2026-11-20']);
         $left = Student::create(['name' => 'Gone Student', 'timezone' => 'Asia/Karachi', 'status' => 'left']);
 
-        // admin: menu links, both lists, and even a left student's page
-        $this->actingAs($this->admin)->get(route('home'))->assertSee('Student Progress Pages')->assertSee(route('certificates.index'), false);
+        // admin: both lists, and even a left student's page
+        // the lists are reached from the admin sidebar, not the website menu
+        $this->actingAs($this->admin)->get(route('home'))->assertDontSee('Student Progress Pages');
         $this->actingAs($this->admin)->get(route('progress.index'))->assertOk()->assertSee('Ali Khan')->assertSee('Gone Student')->assertSee($this->student->progress_url, false);
         $this->actingAs($this->admin)->get(route('certificates.index'))->assertOk()->assertSee('Completion of Norani Qaida');
         $this->actingAs($this->admin)->get($left->progress_url)->assertOk();

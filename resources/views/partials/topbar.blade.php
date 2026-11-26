@@ -16,8 +16,8 @@
             <div class="col-lg-6 d-flex align-items-center justify-content-end" style="gap:20px;">
                 <small style="color:rgba(255,255,255,.4);font-size:11px;letter-spacing:.5px;">
                     <i class="far fa-clock" style="color:var(--gold-light);margin-right:4px;"></i>
-                    <span style="color:rgba(255,255,255,.6);">{{ \App\Models\SiteSetting::get('class_hours', 'Mon–Sat') }}</span>
-                    &nbsp;{{ \App\Models\SiteSetting::get('class_hours_extra', '24/7 - Hours') }}
+                    <span style="color:rgba(255,255,255,.6);">{{ html_entity_decode((string) \App\Models\SiteSetting::get('class_hours', 'Mon–Sat'), ENT_QUOTES | ENT_HTML5) }}</span>
+                    &nbsp;{{ html_entity_decode((string) \App\Models\SiteSetting::get('class_hours_extra', '24/7 - Hours'), ENT_QUOTES | ENT_HTML5) }}
                 </small>
                 <span style="color:rgba(255,255,255,.15);">|</span>
                 <a href="https://wa.me/{{ str_replace('+','',\App\Models\SiteSetting::get('whatsapp','19295978179')) }}" target="_blank" style="font-size:11px;">

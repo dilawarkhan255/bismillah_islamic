@@ -1,7 +1,8 @@
 {{--
-  Today's Hijri date and prayer times for the visitor's city (from their browser timezone).
-  Hijri date: the browser's Umm al-Qura calendar. Prayer times: api.aladhan.com (free, no key),
-  Hanafi Asr, cached for the day. If the request fails only the Hijri date is shown.
+  Today's Hijri date and prayer times for Pakistan (Islamabad), the UK (London) and the USA (New York).
+  The visitor's own country opens first. Hijri date: the browser's Umm al-Qura calendar.
+  Prayer times: api.aladhan.com (free, no key), Hanafi Asr, each country's usual calculation
+  method, cached per day. If a request fails only the Hijri date is shown.
 --}}
 <div class="pt-bar" id="prayerBar" hidden>
     <div class="container">
@@ -11,7 +12,14 @@
                 <span class="pt-hijri"></span>
                 <small class="pt-city"></small>
             </div>
-            <ul class="pt-list" hidden></ul>
+            <div class="pt-right">
+                <div class="pt-tabs" role="tablist" aria-label="Country">
+                    <button type="button" role="tab" data-place="pk">Pakistan</button>
+                    <button type="button" role="tab" data-place="uk">UK</button>
+                    <button type="button" role="tab" data-place="us">USA</button>
+                </div>
+                <ul class="pt-list" hidden></ul>
+            </div>
         </div>
     </div>
 </div>
@@ -33,7 +41,13 @@
     [data-theme="dark"] .pt-bar { background: #142536; color: #e9e4d8; border-top-color: rgba(174,130,37,.3); }
     [data-theme="dark"] .pt-list li { background: rgba(255,255,255,.05); color: #e9e4d8; border-color: rgba(174,130,37,.25); }
     [data-theme="dark"] .pt-hijri { color: var(--gold-light, #D4A843); }
-    @media (max-width: 575.98px) { .pt-list li { min-width: 0; flex: 1 0 28%; } }
+    .pt-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .pt-tabs { display: inline-flex; background: var(--white, #fff); border: 1px solid var(--border-soft, rgba(174,130,37,.12)); border-radius: 30px; padding: 3px; }
+    .pt-tabs button { border: 0; background: none; padding: 6px 14px; border-radius: 30px; font: 700 12px/1 'Inter', sans-serif; color: var(--text-mid, #3D4F61); cursor: pointer; }
+    .pt-tabs button.on { background: var(--navy, #0D1B2A); color: var(--gold-light, #D4A843); }
+    [data-theme="dark"] .pt-tabs { background: rgba(255,255,255,.05); }
+    [data-theme="dark"] .pt-tabs button { color: #e9e4d8; }
+    @media (max-width: 575.98px) { .pt-list li { min-width: 0; flex: 1 0 28%; } .pt-right { width: 100%; } }
 </style>
 
 <script>
@@ -41,57 +55,72 @@
     var bar = document.getElementById('prayerBar');
     if (!bar || !window.Intl || !window.fetch) return;
 
-    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Karachi';
     try {
         bar.querySelector('.pt-hijri').textContent = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { day: 'numeric', month: 'long', year: 'numeric' })
             .format(new Date()).replace(/\s?AH$/, '') + ' AH';
     } catch (e) { return; }
     bar.hidden = false;
 
-    var city = tz.indexOf('/') > -1 ? tz.split('/').pop().replace(/_/g, ' ') : 'Karachi';
-    // calculation method the local mosques usually follow
-    var method = /^Asia\/(Karachi|Kolkata|Calcutta|Dhaka)/.test(tz) ? 1
-        : /^America\//.test(tz) ? 2
-        : /^Asia\/(Riyadh|Aden)/.test(tz) ? 4
-        : /^Asia\/(Dubai|Muscat)/.test(tz) ? 16
-        : /^Asia\/Qatar/.test(tz) ? 10
-        : /^Asia\/Kuwait/.test(tz) ? 9
-        : /^Europe\/(London|Dublin)/.test(tz) ? 15
-        : 3;
+    // city, its timezone, and the calculation method its mosques usually follow
+    var PLACES = {
+        pk: { city: 'Islamabad', country: 'Pakistan', tz: 'Asia/Karachi', method: 1 },
+        uk: { city: 'London', country: 'United Kingdom', tz: 'Europe/London', method: 15 },
+        us: { city: 'New York', country: 'United States', tz: 'America/New_York', method: 2 }
+    };
+    var NAMES = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+    var list = bar.querySelector('.pt-list'), label = bar.querySelector('.pt-city');
 
-    var d = new Date();
-    var today = ('0' + d.getDate()).slice(-2) + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + d.getFullYear();
-    var cacheKey = 'prayer:' + tz + ':' + today;
+    function partsIn(tz) {   // today's date and the current minute in that place
+        var p = {};
+        new Intl.DateTimeFormat('en-GB', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })
+            .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+        return { date: p.day + '-' + p.month + '-' + p.year, minutes: (Number(p.hour) % 24) * 60 + Number(p.minute) };
+    }
 
-    function show(t) {
-        var names = [['Fajr', 'Fajr'], ['Sunrise', 'Sunrise'], ['Dhuhr', 'Dhuhr'], ['Asr', 'Asr'], ['Maghrib', 'Maghrib'], ['Isha', 'Isha']];
-        var now = d.getHours() * 60 + d.getMinutes(), nextFound = false, list = bar.querySelector('.pt-list');
-        names.forEach(function (n) {
-            var hm = String(t[n[0]] || '').slice(0, 5);
+    function show(key, timings) {
+        var place = PLACES[key], now = partsIn(place.tz).minutes, nextFound = false;
+        list.innerHTML = '';
+        NAMES.forEach(function (n) {
+            var hm = String(timings[n] || '').slice(0, 5);
             if (!/^\d{2}:\d{2}$/.test(hm)) return;
             var mins = Number(hm.slice(0, 2)) * 60 + Number(hm.slice(3));
-            var h12 = ((Number(hm.slice(0, 2)) + 11) % 12 + 1) + ':' + hm.slice(3);
             var li = document.createElement('li');
-            li.innerHTML = '<small>' + n[1] + '</small>' + h12;
-            if (!nextFound && n[0] !== 'Sunrise' && mins > now) { li.className = 'is-next'; nextFound = true; }
+            li.innerHTML = '<small>' + n + '</small>' + (((Number(hm.slice(0, 2)) + 11) % 12) + 1) + ':' + hm.slice(3);
+            if (!nextFound && n !== 'Sunrise' && mins > now) { li.className = 'is-next'; nextFound = true; }
             list.appendChild(li);
         });
-        bar.querySelector('.pt-city').textContent = 'Prayer times for ' + city;
+        label.textContent = 'Prayer times in ' + place.city + ' (local time)';
         list.hidden = false;
     }
 
-    try {
-        var cached = localStorage.getItem(cacheKey);
-        if (cached) { show(JSON.parse(cached)); return; }
-    } catch (e) {}
+    function load(key) {
+        bar.querySelectorAll('.pt-tabs button').forEach(function (b) {
+            var on = b.dataset.place === key;
+            b.classList.toggle('on', on);
+            b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        var place = PLACES[key], date = partsIn(place.tz).date, cacheKey = 'prayer:' + key + ':' + date;
+        try {
+            var cached = localStorage.getItem(cacheKey);
+            if (cached) { show(key, JSON.parse(cached)); return; }
+        } catch (e) {}
+        fetch('https://api.aladhan.com/v1/timingsByCity/' + date + '?city=' + encodeURIComponent(place.city) +
+              '&country=' + encodeURIComponent(place.country) + '&method=' + place.method + '&school=1')
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (j) {
+                if (!j || !j.data || !j.data.timings) return;
+                try { localStorage.setItem(cacheKey, JSON.stringify(j.data.timings)); } catch (e) {}
+                show(key, j.data.timings);
+            })
+            .catch(function () {});
+    }
 
-    fetch('https://api.aladhan.com/v1/timingsByAddress/' + today + '?address=' + encodeURIComponent(city) + '&method=' + method + '&school=1')
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (j) {
-            if (!j || !j.data || !j.data.timings) return;
-            try { localStorage.setItem(cacheKey, JSON.stringify(j.data.timings)); } catch (e) {}
-            show(j.data.timings);
-        })
-        .catch(function () {});
+    bar.querySelectorAll('.pt-tabs button').forEach(function (b) {
+        b.addEventListener('click', function () { load(b.dataset.place); });
+    });
+
+    // open the visitor's own country first
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    load(/^Europe\/(London|Belfast)/.test(tz) ? 'uk' : (/^America\//.test(tz) ? 'us' : 'pk'));
 })();
 </script>
