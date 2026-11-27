@@ -37,19 +37,25 @@ class FormController extends Controller
 
         try {
             $enrollment = Enrollment::create($validated);
-            Mail::to(config('services.email.admin_email'))->send(new EnrollmentMail($validated));
-            User::role('admin')->each(fn($admin) => $admin->notify(new NewEnrollmentNotification($enrollment)));
-            try { event(new NewEnrollmentEvent($enrollment)); } catch (\Exception $e) {}
-            $this->sendConfirmation($validated['email'] ?? null, 'enrollment', $validated['parent_name'], [
-                'Student'    => $validated['student_name'],
-                'Course'     => $validated['course'],
-                'Class type' => $validated['class_type'],
-                'Phone'      => $validated['phone'],
-            ]);
-            return back()->with('success', 'Enrollment request submitted! We will contact you soon, In sha Allah.');
-        } catch (\Exception $e) {
-            return back()->with('error', 'Something went wrong. Please try again or call us directly.');
+        } catch (\Throwable $e) {
+            report($e);
+            return back()->withInput()->with('error', 'Something went wrong. Please try again or call us directly.');
         }
+
+        // The request is saved; an email or notification problem must not show the visitor an error.
+        $this->afterSave('enrollment', [
+            fn () => Mail::to(config('services.email.admin_email'))->send(new EnrollmentMail($validated)),
+            fn () => User::role('admin')->each(fn ($admin) => $admin->notify(new NewEnrollmentNotification($enrollment))),
+            fn () => event(new NewEnrollmentEvent($enrollment)),
+        ]);
+        $this->sendConfirmation($validated['email'] ?? null, 'enrollment', $validated['parent_name'], [
+            'Student'    => $validated['student_name'],
+            'Course'     => $validated['course'],
+            'Class type' => $validated['class_type'],
+            'Phone'      => $validated['phone'],
+        ]);
+
+        return back()->with('success', 'Enrollment request submitted! We will contact you soon, In sha Allah.');
     }
 
     public function freeTrial(Request $request)
@@ -116,15 +122,36 @@ class FormController extends Controller
 
         try {
             $message = Message::create($validated);
-            Mail::to(config('services.email.admin_email'))->send(new ContactMail($validated));
-            User::role('admin')->each(fn($admin) => $admin->notify(new NewMessageNotification($message)));
-            try { event(new NewMessageEvent($message)); } catch (\Exception $e) {}
-            $this->sendConfirmation($validated['email'], 'contact', $validated['name'], [
-                'Subject' => $validated['inquiry'],
-            ]);
-            return back()->with('success', 'Message received! We will respond within 24 hours, In sha Allah.');
-        } catch (\Exception $e) {
-            return back()->with('error', 'Something went wrong. Please try again or call us directly.');
+        } catch (\Throwable $e) {
+            report($e);
+            return back()->withInput()->with('error', 'Something went wrong. Please try again or call us directly.');
+        }
+
+        // The message is saved; an email or notification problem must not show the visitor an error.
+        $this->afterSave('message', [
+            fn () => Mail::to(config('services.email.admin_email'))->send(new ContactMail($validated)),
+            fn () => User::role('admin')->each(fn ($admin) => $admin->notify(new NewMessageNotification($message))),
+            fn () => event(new NewMessageEvent($message)),
+        ]);
+        $this->sendConfirmation($validated['email'], 'contact', $validated['name'], [
+            'Subject' => $validated['inquiry'],
+        ]);
+
+        return back()->with('success', 'Message received! We will respond within 24 hours, In sha Allah.');
+    }
+
+    /**
+     * Runs each follow-up step (admin email, notifications, live event) on its own:
+     * one failing never stops the others, and every failure is written to the log.
+     */
+    private function afterSave(string $what, array $steps): void
+    {
+        foreach ($steps as $step) {
+            try {
+                $step();
+            } catch (\Throwable $e) {
+                report($e);
+            }
         }
     }
 

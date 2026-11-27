@@ -85,6 +85,26 @@ class PublicFormsTest extends TestCase
         Mail::assertNothingSent();
     }
 
+    public function test_email_failure_still_shows_success_when_saved(): void
+    {
+        // the mail server is down: every Mail::to(...) throws
+        Mail::shouldReceive('to')->andThrow(new \RuntimeException('SMTP connection failed'));
+
+        $this->post('/enroll', $this->human([
+            'student_name' => 'Ali', 'parent_name' => 'Sara Khan', 'phone' => '+923001234567',
+            'email' => 'sara@example.com', 'age' => 9, 'gender' => 'Male',
+            'course' => 'Hifz ul Quran', 'class_type' => 'One-on-One',
+        ]))->assertSessionHas('success')->assertSessionMissing('error');
+
+        $this->post('/contact', $this->human([
+            'name' => 'Fatima', 'email' => 'fatima@example.com', 'inquiry' => 'Fees',
+            'message' => 'What are the fees for Hifz for my son aged 9?',
+        ]))->assertSessionHas('success')->assertSessionMissing('error');
+
+        $this->assertSame(1, Enrollment::count());
+        $this->assertSame(1, Message::count());
+    }
+
     public function test_confirmation_email_renders(): void
     {
         $html = (new VisitorConfirmationMail('free_trial', 'Sara', ['Course' => 'Tajweed']))->render();
